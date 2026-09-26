@@ -7,9 +7,9 @@ as a keyword (``lv.line(df, y_range=(0, 100))``) or with a chainable method
 
 from __future__ import annotations
 
+import copy
 import difflib
 import math
-import os
 import warnings
 from dataclasses import dataclass, fields, replace
 from typing import Any, Optional
@@ -18,8 +18,10 @@ import numpy as np
 
 from . import scene as S
 from . import themes
+from ._output import Renderable
 from ._color import ramp_lut
 from ._text import format_value, text_width, truncate, wrap
+from .marks import layer_class
 from .marks._base import Domain, DrawContext, LegendItem, Plot
 from .scales import BandScale, LinearScale, LogScale, TimeScale, nice_domain
 
@@ -55,7 +57,7 @@ _CHART_KEYS = {
 _AXIS_KEYS = {f.name for f in fields(Axis)}
 
 
-class Chart:
+class Chart(Renderable):
     """A figure made of one or more layers (line, bar, scatter, ...)."""
 
     def __init__(self, data: Any = None, **options):
@@ -175,94 +177,76 @@ class Chart:
         return self
 
     def line(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
-        from .marks.line import LineLayer
-        return self._add(LineLayer(self._d(data), x, y, color, **kw))
+        return self._add(layer_class("line")(self._d(data), x, y, color, **kw))
 
     def area(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
-        from .marks.line import AreaLayer
-        return self._add(AreaLayer(self._d(data), x, y, color, **kw))
+        return self._add(layer_class("area")(self._d(data), x, y, color, **kw))
 
     def scatter(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
-        from .marks.scatter import ScatterLayer
-        return self._add(ScatterLayer(self._d(data), x, y, color, **kw))
+        return self._add(layer_class("scatter")(self._d(data), x, y, color, **kw))
 
     def bar(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
-        from .marks.bar import BarLayer
-        return self._add(BarLayer(self._d(data), x, y, color, **kw))
+        return self._add(layer_class("bar")(self._d(data), x, y, color, **kw))
 
     def histogram(self, data=None, x=None, color=None, **kw) -> "Chart":
-        from .marks.histogram import HistogramLayer
-        return self._add(HistogramLayer(self._d(data), x, color, **kw))
+        return self._add(layer_class("histogram")(self._d(data), x, color, **kw))
 
     def heatmap(self, data=None, x=None, y=None, value=None, **kw) -> "Chart":
-        from .marks.heatmap import HeatmapLayer
-        return self._add(HeatmapLayer(self._d(data), x, y, value, **kw))
+        return self._add(layer_class("heatmap")(self._d(data), x, y, value, **kw))
 
     def box(self, data=None, x=None, y=None, **kw) -> "Chart":
-        from .marks.box import BoxLayer
-        return self._add(BoxLayer(self._d(data), x, y, **kw))
+        return self._add(layer_class("box")(self._d(data), x, y, **kw))
+
+    def violin(self, data=None, x=None, y=None, **kw) -> "Chart":
+        return self._add(layer_class("violin")(self._d(data), x, y, **kw))
+
+    def ridgeline(self, data=None, x=None, y=None, **kw) -> "Chart":
+        return self._add(layer_class("ridgeline")(self._d(data), x, y, **kw))
 
     def network(self, data=None, **kw) -> "Chart":
-        from .marks.network import NetworkLayer
-        return self._add(NetworkLayer(self._d(data), **kw))
+        return self._add(layer_class("network")(self._d(data), **kw))
+
+    def pie(self, data=None, x=None, y=None, **kw) -> "Chart":
+        return self._add(layer_class("pie")(self._d(data), x, y, **kw))
+
+    def dumbbell(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+        return self._add(layer_class("dumbbell")(self._d(data), x, y, color, **kw))
+
+    def slope(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+        return self._add(layer_class("slope")(self._d(data), x, y, color, **kw))
+
+    def waterfall(self, data=None, x=None, y=None, **kw) -> "Chart":
+        return self._add(layer_class("waterfall")(self._d(data), x, y, **kw))
+
+    def candlestick(self, data=None, x=None, **kw) -> "Chart":
+        return self._add(layer_class("candlestick")(self._d(data), x, **kw))
+
+    def treemap(self, data=None, **kw) -> "Chart":
+        return self._add(layer_class("treemap")(self._d(data), **kw))
+
+    def sankey(self, data=None, **kw) -> "Chart":
+        return self._add(layer_class("sankey")(self._d(data), **kw))
+
+    def radar(self, data=None, **kw) -> "Chart":
+        return self._add(layer_class("radar")(self._d(data), **kw))
+
+    def density(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+        return self._add(layer_class("density")(self._d(data), x, y, color, **kw))
+
+    def timeline(self, data=None, **kw) -> "Chart":
+        return self._add(layer_class("timeline")(self._d(data), **kw))
+
+    def calendar(self, data=None, x=None, y=None, **kw) -> "Chart":
+        return self._add(layer_class("calendar")(self._d(data), x, y, **kw))
+
+    def sparkline(self, data=None, x=None, **kw) -> "Chart":
+        return self._add(layer_class("sparkline")(self._d(data), x, **kw))
+
+    def stat(self, value=None, **kw) -> "Chart":
+        return self._add(layer_class("stat")(self._d(value), **kw))
 
     def _d(self, data):
         return self.data if data is None else data
-
-    # ------------------------------------------------------------------ output
-
-    def to_svg(self) -> str:
-        from .backends import svg
-        return svg.render(self.build())
-
-    def to_pdf(self) -> bytes:
-        from .backends import pdf
-        return pdf.render(self.build())
-
-    def to_png(self, scale: Optional[float] = None, dpi: Optional[float] = None) -> bytes:
-        from .backends import png
-        s = scale if scale is not None else (dpi / 96 if dpi else 2.0)
-        return png.render(self.build(raster_scale=max(1.0, s)), s)
-
-    def save(self, path: str | os.PathLike, *, dpi: Optional[float] = None, scale: Optional[float] = None,
-             format: Optional[str] = None) -> str:
-        """Save to .svg, .pdf or .png (format from the extension). Returns the path.
-
-        PNG defaults to 2x resolution (192 dpi). ``dpi=300`` for print.
-        """
-        path = os.fspath(path)
-        fmt = (format or os.path.splitext(path)[1].lstrip(".") or "svg").lower()
-        if fmt == "svg":
-            data = self.to_svg().encode("utf-8")
-        elif fmt == "pdf":
-            data = self.to_pdf()
-        elif fmt == "png":
-            data = self.to_png(scale=scale, dpi=dpi)
-        else:
-            raise ValueError(f"Unsupported format {fmt!r}. Use .svg, .png or .pdf.")
-        with open(path, "wb") as fh:
-            fh.write(data)
-        return path
-
-    def show(self) -> None:
-        """Display in a notebook, or open in the default browser."""
-        try:
-            from IPython import get_ipython
-            from IPython.display import SVG, display
-            if get_ipython() is not None:
-                display(SVG(self.to_svg()))
-                return
-        except ImportError:
-            pass
-        import tempfile
-        import webbrowser
-        fd, path = tempfile.mkstemp(suffix=".svg", prefix="lineova-")
-        with os.fdopen(fd, "w", encoding="utf-8") as fh:
-            fh.write(self.to_svg())
-        webbrowser.open("file://" + path)
-
-    def _repr_svg_(self) -> str:
-        return self.to_svg()
 
     def __repr__(self) -> str:
         kinds = ", ".join(type(l).__name__.replace("Layer", "").lower() for l in self._layers) or "empty"
@@ -328,9 +312,11 @@ class Chart:
         if all(l.cartesian for l in self._layers):
             self._draw_cartesian(scene, theme, region, colors, highlight, raster_scale, mode)
         else:
-            ctx = DrawContext(scene, theme, region, None, None, colors, highlight, raster_scale, dict(self._opts))
+            ctx = DrawContext(scene, theme, region, None, None, colors, highlight, raster_scale,
+                              dict(self._opts, _legend_mode=mode))
             for layer in self._layers:
                 layer.draw(ctx)
+            scene.extend(ctx.overlay)
         return scene
 
     # ------------------------------------------------------------------ sizing & colour
@@ -397,6 +383,8 @@ class Chart:
             return "none"
         if mode != "auto":
             return mode
+        if all(getattr(l, "own_legend", False) for l in self._layers):
+            return "none"            # the layer labels itself (pie, treemap, sankey, ...)
         visible_keys = [k for k in keys if not k.startswith("__")]
         if len(visible_keys) <= 1 and not any(getattr(l, "force_legend", False) for l in self._layers):
             return "none"
@@ -825,7 +813,7 @@ class Chart:
                     scene.add(S.Line(plot.right, py, plot.right - tl, py, ink, theme.axis_width))
                 tx = base - (tl if tdir == "out" else 0) - 7
                 is_hl = isinstance(ys, BandScale) and lab in {str(h) for h in (self._opts["highlight"] or [])}
-                lab_txt = truncate(lab, plot.x - theme.padding - 8, size, kind) if isinstance(ys, BandScale) else lab
+                lab_txt = truncate(lab, tx - theme.padding + 2, size, kind) if isinstance(ys, BandScale) else lab
                 scene.add(S.Text(tx, py, lab_txt, size, theme.ink if is_hl else lab_col, anchor="end",
                                  baseline="middle", weight=600 if is_hl else 400))
 

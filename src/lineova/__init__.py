@@ -6,7 +6,9 @@
 
 from . import themes
 from ._data import DataError
-from .api import area, bar, box, heatmap, histogram, line, network, scatter
+from .api import (area, bar, box, calendar, candlestick, density, donut, dumbbell, heatmap, histogram, line,
+                  network, pie, radar, ridgeline, sankey, scatter, slope, sparkline, stat, timeline, treemap,
+                  violin, waterfall)
 from .chart import SIZES, Axis, Chart
 from .graph import Graph, GraphError
 from .themes import Theme
@@ -16,4 +18,6 @@ __version__ = "0.1.0"
 __all__ = [
     "Chart", "Axis", "Graph", "GraphError", "DataError", "Theme", "themes", "SIZES",
     "line", "area", "bar", "scatter", "histogram", "heatmap", "box", "network", "__version__",
+    "pie", "donut", "violin", "ridgeline", "dumbbell", "slope", "waterfall", "candlestick", "treemap",
+    "sankey", "radar", "density", "timeline", "calendar", "sparkline", "stat",
 ]

@@ -132,6 +132,14 @@ class EndClip:
     pass
 
 
+@dataclass(slots=True)
+class Group:
+    """Ops drawn translated by (dx, dy): used to compose several charts into one figure."""
+    dx: float
+    dy: float
+    ops: list
+
+
 @dataclass
 class Scene:
     width: float

@@ -232,6 +232,11 @@ class _Writer:
             o.append(f"q {_n(op.x)} {_n(op.y)} {_n(op.w)} {_n(op.h)} re W n")
         elif t is S.EndClip:
             o.append("Q")
+        elif t is S.Group:
+            o.append(f"q 1 0 0 1 {_n(op.dx)} {_n(op.dy)} cm")
+            for child in op.ops:
+                self.op(child)
+            o.append("Q")
 
     def arrow(self, op: S.Path):
         pts = [(c[-2], c[-1]) for c in op.cmds if c[0] != "Z"]

@@ -202,8 +202,52 @@ def _looks_like_many(y: Any) -> bool:
     return False
 
 
-def resolve_xy(data=None, x=None, y=None, color=None, *, allow_cat_x=True) -> XY:
-    """Normalise the many ways people pass x/y data into a list of ``Series``."""
+def resolve_xy(data=None, x=None, y=None, color=None, *, allow_cat_x=True, extra: Optional[dict] = None) -> XY:
+    """Normalise the many ways people pass x/y data into a list of ``Series``.
+
+    ``extra`` maps names to per-point columns/arrays that travel with y (error
+    bars, bands, sizes). They are split by group and sorted along with the data;
+    each series gets them in ``Series.extra``.
+    """
+    xy = _resolve_xy(data, x, y, color, extra)
+    for s in xy.series:
+        for k, v in s.extra.items():
+            s.extra[k] = as_float(np.asarray(v), "num")
+            if len(s.extra[k]) != len(s.y):
+                raise DataError(f"{k!r} has {len(s.extra[k])} values but {s.name!r} has {len(s.y)} points.")
+    return xy
+
+
+def _extra_arrays(data, extra, n_hint=None) -> dict:
+    out = {}
+    for k, spec in (extra or {}).items():
+        if spec is None:
+            continue
+        if isinstance(spec, str) and is_frame(data):
+            out[k] = to_array(get_column(data, spec))
+        elif isinstance(spec, dict):
+            out[k] = spec            # per-series mapping, resolved later
+        elif np.ndim(spec) == 0:
+            out[k] = np.full(n_hint or 0, float(spec)) if n_hint else spec
+        else:
+            out[k] = to_array(spec)
+    return out
+
+
+def _attach(series: list, extras: dict) -> list:
+    for s in series:
+        for k, v in extras.items():
+            if isinstance(v, dict):
+                if s.name in v:
+                    s.extra[k] = to_array(v[s.name]) if np.ndim(v[s.name]) else np.full(len(s.y), float(v[s.name]))
+            elif np.ndim(v) == 0:
+                s.extra[k] = np.full(len(s.y), float(v))
+            else:
+                s.extra[k] = v
+    return series
+
+
+def _resolve_xy(data, x, y, color, extra) -> XY:
     x_label = y_label = None
     grouped_by = None
 
@@ -213,7 +257,7 @@ def resolve_xy(data=None, x=None, y=None, color=None, *, allow_cat_x=True) -> XY
         cols = columns_of(data)
         if isinstance(data, dict) and y is None and (color is None or is_auto(color)) and (x is None or not _is_key(x)):
             # {name: values}: one series per key (x optional, shared)
-            return _from_mapping(data, x)
+            return _attach_xy(_from_mapping(data, x), _extra_arrays(None, extra))
         xcol = x
         if xcol is None:
             xcol = _guess_x(data, cols)
@@ -236,10 +280,11 @@ def resolve_xy(data=None, x=None, y=None, color=None, *, allow_cat_x=True) -> XY
             yv = to_array(get_column(data, ycols[0]))
             gv = to_array(get_column(data, color))
             order = ordered_categories(get_column(data, color))
-            return _finish(_split_groups(x_arr, yv, gv, order), x_label, y_label, grouped_by)
+            ex = _extra_arrays(data, extra)
+            return _finish(_split_groups(x_arr, yv, gv, order, ex), x_label, y_label, grouped_by)
         series = [Series(str(c), x_arr, to_array(get_column(data, c))) for c in ycols]
         y_label = str(ycols[0]) if len(ycols) == 1 else None
-        return _finish(series, x_label, y_label, None)
+        return _finish(_attach(series, _extra_arrays(data, extra)), x_label, y_label, None)
 
     # -- data passed positionally as the y values ---------------------------------------
     if data is not None and y is None:
@@ -247,16 +292,16 @@ def resolve_xy(data=None, x=None, y=None, color=None, *, allow_cat_x=True) -> XY
     if y is None:
         raise DataError("Nothing to plot: pass data, e.g. lv.line([3, 1, 4, 1, 5]).")
     if isinstance(y, dict):
-        return _from_mapping(y, x)
+        return _attach_xy(_from_mapping(y, x), _extra_arrays(None, extra))
     if _looks_like_many(y):
         arr = y if isinstance(y, np.ndarray) else None
         cols = [arr[:, i] for i in range(arr.shape[1])] if arr is not None else [to_array(v) for v in y]
         xs = None if x is None else to_array(x)
         series = [Series(f"Series {i + 1}", xs if xs is not None else np.arange(len(c)), to_array(c))
                   for i, c in enumerate(cols)]
-        return _finish(series, series_name(x), None, None)
+        return _finish(_attach(series, _extra_arrays(None, extra)), series_name(x), None, None)
     if is_frame(y):
-        return resolve_xy(y, x, None, color)
+        return _resolve_xy(y, x, None, color, extra)
     yv = to_array(y)
     name = series_name(y) or "Series 1"
     if x is None:
@@ -269,8 +314,15 @@ def resolve_xy(data=None, x=None, y=None, color=None, *, allow_cat_x=True) -> XY
         xv, x_label = to_array(x), series_name(x)
     if color is not None and not is_auto(color):
         gv = to_array(color)
-        return _finish(_split_groups(xv, yv, gv, ordered_categories(color)), x_label, series_name(y), series_name(color))
-    return _finish([Series(name, xv, yv)], x_label, series_name(y), None)
+        ex = _extra_arrays(None, extra)
+        return _finish(_split_groups(xv, yv, gv, ordered_categories(color), ex), x_label, series_name(y),
+                       series_name(color))
+    return _finish(_attach([Series(name, xv, yv)], _extra_arrays(None, extra)), x_label, series_name(y), None)
+
+
+def _attach_xy(xy: XY, extras: dict) -> XY:
+    _attach(xy.series, extras)
+    return xy
 
 
 def _is_range_index(idx) -> bool:
@@ -333,7 +385,7 @@ def guess_group(frame, cols, exclude) -> Optional[str]:
     return best[0] if best else None
 
 
-def _split_groups(x, y, g, order=None) -> list[Series]:
+def _split_groups(x, y, g, order=None, extras: Optional[dict] = None) -> list[Series]:
     codes, names = factorize(g)
     if order:
         pos = {n: i for i, n in enumerate(order)}
@@ -350,7 +402,10 @@ def _split_groups(x, y, g, order=None) -> list[Series]:
     for i, n in enumerate(names):
         sel = idx[start:start + counts[i]]
         start += counts[i]
-        out.append(Series(n, x[sel], y[sel]))
+        ex = {k: (v[sel] if np.ndim(v) else v) for k, v in (extras or {}).items() if not isinstance(v, dict)}
+        s = Series(n, x[sel], y[sel], ex)
+        _attach([s], {k: v for k, v in (extras or {}).items() if isinstance(v, dict)})
+        out.append(s)
     return out
 
 
@@ -384,6 +439,7 @@ def _finish(series: list[Series], x_label, y_label, grouped_by) -> XY:
 _AGG = {
     "sum": np.nansum, "mean": np.nanmean, "median": np.nanmedian,
     "min": np.nanmin, "max": np.nanmax, "count": lambda v: float(np.count_nonzero(~np.isnan(v))),
+    "std": lambda v: float(np.nanstd(v, ddof=1)) if np.count_nonzero(~np.isnan(v)) > 1 else np.nan,
 }
 
 
@@ -411,3 +467,24 @@ def aggregate(labels: np.ndarray, values: Optional[np.ndarray], how: str = "sum"
     bounds = np.searchsorted(cs, np.arange(k + 1))
     return names, np.array([_AGG[how](vs[bounds[i]:bounds[i + 1]]) if bounds[i + 1] > bounds[i] else np.nan
                             for i in range(k)])
+
+
+# --------------------------------------------------------------------------- intervals
+
+def interval_spec(spec, prefix: str = "") -> dict:
+    """Error/band input -> extra columns. A tuple means (lower, upper); anything else is a ± half-width."""
+    if spec is None:
+        return {}
+    if isinstance(spec, tuple) and len(spec) == 2:
+        return {prefix + "lo": spec[0], prefix + "hi": spec[1]}
+    return {prefix + "err": spec}
+
+
+def interval_bounds(y: np.ndarray, extra: dict, prefix: str = ""):
+    """(lower, upper) arrays from a series' extras, or None."""
+    if prefix + "lo" in extra:
+        return extra[prefix + "lo"], extra[prefix + "hi"]
+    if prefix + "err" in extra:
+        e = np.abs(extra[prefix + "err"])
+        return y - e, y + e
+    return None

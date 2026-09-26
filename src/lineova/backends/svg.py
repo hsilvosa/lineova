@@ -114,73 +114,81 @@ def render(scene: S.Scene) -> str:
                          f'<path d="M0,1L10,5L0,9Z" fill="{color}"/></marker>')
         return key
 
-    for op in scene.ops:
-        t = type(op)
-        if t is S.Rect:
-            title = f"<title>{escape(op.title)}</title>" if op.title else ""
-            rx = f' rx="{_f(op.rx)}"' if op.rx else ""
-            geo = f'x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(max(op.w, 0))}" height="{_f(max(op.h, 0))}"{rx}'
-            body = f"<rect {geo}{_paint(op.fill, op.stroke, op.stroke_width, op.opacity, dash=op.dash)}"
-            out.append(body + (f">{title}</rect>" if title else "/>"))
-            if op.hatch:
-                out.append(f'<rect {geo} fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
-        elif t is S.Line:
-            out.append(f'<line x1="{_f(op.x1)}" y1="{_f(op.y1)}" x2="{_f(op.x2)}" y2="{_f(op.y2)}"'
-                       f'{_paint(None, op.stroke, op.stroke_width, op.opacity, dash=op.dash, cap=op.cap)}/>')
-        elif t is S.Polyline:
-            runs = _points(np.asarray(op.xs, float), np.asarray(op.ys, float))
-            if not runs:
-                continue
-            d = "".join(r + ("Z" if op.closed else "") for r in runs)
-            paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
-            out.append(f'<path d="{d}"{paint}/>')
-        elif t is S.Path:
-            title = f"<title>{escape(op.title)}</title>" if op.title else ""
-            arrow = f' marker-end="url(#{arrow_id(op.stroke)})"' if op.arrow and op.stroke else ""
-            paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
-            body = f'<path d="{_path_d(op.cmds)}"{paint}{arrow}'
-            out.append(body + (f">{title}</path>" if title else "/>"))
-            if op.hatch:
-                out.append(f'<path d="{_path_d(op.cmds)}" fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
-        elif t is S.Markers:
-            _markers(op, out)
-        elif t is S.Text:
-            if not op.text:
-                continue
-            y = op.y + baseline_shift(op.baseline, op.size)
-            attrs = [f'x="{_f(op.x)}" y="{_f(y)}" font-size="{_f(op.size)}" fill="{op.color}"']
-            if op.anchor != "start":
-                attrs.append(f'text-anchor="{op.anchor}"')
-            if op.weight != 400:
-                attrs.append(f'font-weight="{op.weight}"')
-            if op.italic:
-                attrs.append('font-style="italic"')
-            if op.letter_spacing:
-                attrs.append(f'letter-spacing="{_f(op.letter_spacing)}"')
-            if op.rotate:
-                attrs.append(f'transform="rotate({_f(op.rotate)} {_f(op.x)} {_f(op.y)})"')
-            if op.halo:
-                attrs.append(f'stroke="{op.halo}" stroke-width="3" stroke-linejoin="round" paint-order="stroke"')
-            if op.spans:
-                attrs.append('xml:space="preserve"')
-                body = "".join(_tspan(t, w, it, c, op) for t, w, it, c in op.spans)
-            else:
-                body = escape(op.text)
-            out.append(f"<text {' '.join(attrs)}>{body}</text>")
-        elif t is S.Image:
-            data = base64.b64encode(encode_png(op.rgba)).decode("ascii")
-            rendering = "" if op.smooth else ' image-rendering="pixelated" style="image-rendering:pixelated"'
-            out.append(f'<image x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(op.w)}" height="{_f(op.h)}" '
-                       f'preserveAspectRatio="none"{rendering} href="data:image/png;base64,{data}"/>')
-        elif t is S.Clip:
-            clip_n += 1
-            cid = f"{uid}c{clip_n}"
-            defs[cid] = f'<clipPath id="{cid}"><rect x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(op.w)}" height="{_f(op.h)}"/></clipPath>'
-            out.append(f'<g clip-path="url(#{cid})">')
-        elif t is S.EndClip:
-            out.append("</g>")
-        else:  # pragma: no cover - defensive
-            raise TypeError(f"Unknown scene op {t.__name__}")
+    def emit(ops):
+        nonlocal clip_n
+        for op in ops:
+            t = type(op)
+            if t is S.Rect:
+                title = f"<title>{escape(op.title)}</title>" if op.title else ""
+                rx = f' rx="{_f(op.rx)}"' if op.rx else ""
+                geo = f'x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(max(op.w, 0))}" height="{_f(max(op.h, 0))}"{rx}'
+                body = f"<rect {geo}{_paint(op.fill, op.stroke, op.stroke_width, op.opacity, dash=op.dash)}"
+                out.append(body + (f">{title}</rect>" if title else "/>"))
+                if op.hatch:
+                    out.append(f'<rect {geo} fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
+            elif t is S.Line:
+                out.append(f'<line x1="{_f(op.x1)}" y1="{_f(op.y1)}" x2="{_f(op.x2)}" y2="{_f(op.y2)}"'
+                           f'{_paint(None, op.stroke, op.stroke_width, op.opacity, dash=op.dash, cap=op.cap)}/>')
+            elif t is S.Polyline:
+                runs = _points(np.asarray(op.xs, float), np.asarray(op.ys, float))
+                if not runs:
+                    continue
+                d = "".join(r + ("Z" if op.closed else "") for r in runs)
+                paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
+                out.append(f'<path d="{d}"{paint}/>')
+            elif t is S.Path:
+                title = f"<title>{escape(op.title)}</title>" if op.title else ""
+                arrow = f' marker-end="url(#{arrow_id(op.stroke)})"' if op.arrow and op.stroke else ""
+                paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
+                body = f'<path d="{_path_d(op.cmds)}"{paint}{arrow}'
+                out.append(body + (f">{title}</path>" if title else "/>"))
+                if op.hatch:
+                    out.append(f'<path d="{_path_d(op.cmds)}" fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
+            elif t is S.Markers:
+                _markers(op, out)
+            elif t is S.Text:
+                if not op.text:
+                    continue
+                y = op.y + baseline_shift(op.baseline, op.size)
+                attrs = [f'x="{_f(op.x)}" y="{_f(y)}" font-size="{_f(op.size)}" fill="{op.color}"']
+                if op.anchor != "start":
+                    attrs.append(f'text-anchor="{op.anchor}"')
+                if op.weight != 400:
+                    attrs.append(f'font-weight="{op.weight}"')
+                if op.italic:
+                    attrs.append('font-style="italic"')
+                if op.letter_spacing:
+                    attrs.append(f'letter-spacing="{_f(op.letter_spacing)}"')
+                if op.rotate:
+                    attrs.append(f'transform="rotate({_f(op.rotate)} {_f(op.x)} {_f(op.y)})"')
+                if op.halo:
+                    attrs.append(f'stroke="{op.halo}" stroke-width="3" stroke-linejoin="round" paint-order="stroke"')
+                if op.spans:
+                    attrs.append('xml:space="preserve"')
+                    body = "".join(_tspan(t, w, it, c, op) for t, w, it, c in op.spans)
+                else:
+                    body = escape(op.text)
+                out.append(f"<text {' '.join(attrs)}>{body}</text>")
+            elif t is S.Image:
+                data = base64.b64encode(encode_png(op.rgba)).decode("ascii")
+                rendering = "" if op.smooth else ' image-rendering="pixelated" style="image-rendering:pixelated"'
+                out.append(f'<image x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(op.w)}" height="{_f(op.h)}" '
+                           f'preserveAspectRatio="none"{rendering} href="data:image/png;base64,{data}"/>')
+            elif t is S.Clip:
+                clip_n += 1
+                cid = f"{uid}c{clip_n}"
+                defs[cid] = f'<clipPath id="{cid}"><rect x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(op.w)}" height="{_f(op.h)}"/></clipPath>'
+                out.append(f'<g clip-path="url(#{cid})">')
+            elif t is S.EndClip:
+                out.append("</g>")
+            elif t is S.Group:
+                out.append(f'<g transform="translate({_f(op.dx)} {_f(op.dy)})">')
+                emit(op.ops)
+                out.append("</g>")
+            else:  # pragma: no cover - defensive
+                raise TypeError(f"Unknown scene op {t.__name__}")
+
+    emit(scene.ops)
 
     font = escape(scene.font, quote=True)
     head = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{_f(w)}" height="{_f(h)}" '
