@@ -1,0 +1,51 @@
+site_name: lineova
+site_description: Clean, fast charts from Python, with good defaults and one dependency.
+site_author: Hugo Silvosa Cuervo
+site_url: https://hsilvosa.github.io/lineova/
+repo_url: https://github.com/hsilvosa/lineova
+repo_name: hsilvosa/lineova
+edit_uri: edit/develop/docs/
+copyright: Copyright © 2026 Hugo Silvosa Cuervo. MIT license.
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      toggle: {icon: material/brightness-7, name: Dark mode}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      toggle: {icon: material/brightness-4, name: Light mode}
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Installation: installation.md
+      - Quick start: quickstart.md
+  - User guide: guide.md
+  - Use cases: use-cases.md
+  - Gallery: gallery.md
+  - Themes: themes.md
+  - Graphs: graphs.md
+  - Performance: performance.md
+  - API reference: api.md
+  - FAQ: faq.md
+
+exclude_docs: |
+  _templates/
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc: {permalink: true}
+  - pymdownx.highlight
+  - pymdownx.superfences
