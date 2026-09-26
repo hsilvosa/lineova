@@ -12,7 +12,7 @@ import numpy as np
 from .. import scene as S
 from .._data import DataError, as_float, columns_of, get_column, is_auto, is_frame, to_array, value_kind
 from .._text import format_value
-from ._base import Domain, DrawContext, Layer, LegendItem
+from ._base import Domain, DrawContext, Layer
 
 _AUTO = "auto"
 _NAMES = {"open": ("open", "o", "opening"), "high": ("high", "h", "max"), "low": ("low", "l", "min"),

@@ -76,3 +76,29 @@ def test_network_input_forms():
     lv.network(edges_df, layout="circular").to_svg()
     lv.network(np.array([[0, 1], [1, 2], [2, 0]]), groups="community").to_svg()
     lv.network({"a": ["b", "c"], "b": ["c"]}, positions={"a": (0, 0), "b": (1, 0), "c": (0.5, 1)}).to_svg()
+
+
+def _blocks(path):
+    import re
+    from pathlib import Path
+    text = (Path(__file__).resolve().parent.parent / path).read_text(encoding="utf-8")
+    return re.findall(r"```python\n(.*?)```", text, re.S)
+
+
+def test_quickstart_runs(tmp_path, monkeypatch):
+    """Every code block in docs/quickstart.md runs, in order, in one namespace."""
+    monkeypatch.chdir(tmp_path)
+    ns = {"chart_a": lv.bar({"a": 1}), "chart_b": lv.line([1, 2]), "chart_c": lv.pie({"x": 1, "y": 2})}
+    for code in _blocks("docs/quickstart.md"):
+        if "figure.png" in code:              # PNG needs an optional backend
+            code = code.replace('chart.save("figure.png", dpi=300)', "")
+        exec(compile(code, "quickstart.md", "exec"), ns)
+    lv.themes.set_default("ledger")
+
+
+def test_use_case_blocks_run(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    for code in _blocks("docs/use-cases.md"):
+        if "pyarrow" in code or "Chunks(trips)" in code:     # needs pyarrow / slow; covered elsewhere
+            continue
+        exec(compile(code, "use-cases.md", "exec"), {})

@@ -24,8 +24,9 @@ class Domain:
     log_ok: bool = True
     gap: Optional[float] = None         # band gap for categorical axes (None = theme default)
     extent: Optional[tuple] = None      # raw data extent, for range-frame axes
+    min_positive: Optional[float] = None  # smallest value > 0 (lower end of a log axis)
 
-    def merge(self, other: "Domain") -> "Domain":
+    def merge(self, other: Domain) -> Domain:
         if other is None:
             return self
         kind = self.kind if self.kind == other.kind else ("cat" if "cat" in (self.kind, other.kind) else other.kind)
@@ -38,9 +39,10 @@ class Domain:
             e = [v for v in (self.extent, other.extent) if v]
             ext = (min(a for a, _ in e), max(b for _, b in e))
         gap = self.gap if self.gap is not None else other.gap
+        mp = [v for v in (self.min_positive, other.min_positive) if v]
         return Domain(kind, min(self.lo, other.lo), max(self.hi, other.hi), cats,
                       self.zero or other.zero, self.nice and other.nice, max(self.pad, other.pad),
-                      self.log_ok and other.log_ok, gap, ext)
+                      self.log_ok and other.log_ok, gap, ext, min(mp) if mp else None)
 
 
 @dataclass

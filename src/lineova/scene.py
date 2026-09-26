@@ -8,7 +8,8 @@ pixels with the origin at the top-left.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Optional, Sequence
+from typing import Any, Optional
+from collections.abc import Sequence
 
 import numpy as np
 

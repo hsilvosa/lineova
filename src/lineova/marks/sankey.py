@@ -5,7 +5,6 @@ from __future__ import annotations
 import numpy as np
 
 from .. import scene as S
-from .._color import mix
 from .._data import DataError, is_frame
 from .._text import format_value, text_width
 from ._base import DrawContext, Layer

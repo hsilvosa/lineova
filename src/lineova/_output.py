@@ -13,14 +13,17 @@ class Renderable:
         raise NotImplementedError
 
     def to_svg(self) -> str:
+        """The chart as an SVG document (string)."""
         from .backends import svg
         return svg.render(self.build())
 
     def to_pdf(self) -> bytes:
+        """The chart as a vector PDF (bytes). Text stays selectable."""
         from .backends import pdf
         return pdf.render(self.build())
 
     def to_png(self, scale: Optional[float] = None, dpi: Optional[float] = None) -> bytes:
+        """The chart as PNG bytes. Default 2x; ``dpi=300`` for print. Needs a PNG backend (``lineova[png]``)."""
         from .backends import png
         s = scale if scale is not None else (dpi / 96 if dpi else 2.0)
         return png.render(self.build(raster_scale=max(1.0, s)), s)
@@ -30,7 +33,7 @@ class Renderable:
         from .backends import html
         return html.render(self.to_svg(), title=title or getattr(self, "_page_title", None))
 
-    def save(self, path: "str | os.PathLike", *, dpi: Optional[float] = None, scale: Optional[float] = None,
+    def save(self, path: str | os.PathLike, *, dpi: Optional[float] = None, scale: Optional[float] = None,
              format: Optional[str] = None) -> str:
         """Save to .svg, .pdf, .png or .html (format from the extension). Returns the path.
 

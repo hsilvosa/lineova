@@ -193,7 +193,8 @@ class HistogramLayer(Layer):
 
     def y_domain(self):
         hi = max((float(c.max()) for c in self.counts if len(c)), default=1.0)
-        return Domain("num", 0.0, hi, zero=True, nice=True)
+        pos = [float(c[c > 0].min()) for c in self.counts if (c > 0).any()]
+        return Domain("num", 0.0, hi, zero=True, nice=True, min_positive=min(pos) if pos else None)
 
     def axis_labels(self):
         return self.x_label, self.y_label
@@ -205,7 +206,7 @@ class HistogramLayer(Layer):
         theme = ctx.theme
         overlay = len(self.groups) > 1
         xe = ctx.xs(self.edges)
-        base = ctx.ys.scalar(0.0)
+        base = ctx.plot.bottom if ctx.ys.kind == "log" else ctx.ys.scalar(0.0)
         nb = len(self.edges) - 1
         gap = 1.0 if (xe[-1] - xe[0]) / max(nb, 1) > 4 else 0.0
         for gi, (name, _) in enumerate(self.groups):

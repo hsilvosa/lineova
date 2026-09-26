@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1172" height="205.05" viewBox="0 0 1172 205.05" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Q3 at a glance</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Q3 at a glance</text>
+<g transform="translate(0 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Active customers</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">1,326</text>
+<rect x="16" y="77.5" width="57.21" height="19" rx="9.5" fill="#daf0ec"/>
+<text x="23" y="90.85" font-size="11" fill="#17a38b" font-weight="700">▲ +5.9%</text>
+<path d="M19,134L19,127.64L33.64,125.16L48.28,125.11L62.92,125.4L77.56,124.06L92.2,129.27L106.84,126.68L121.48,125.63L136.12,124.46L150.76,120.29L165.4,125.61L180.04,131L194.68,129.06L209.32,128.04L223.96,126.45L238.6,126.91L253.24,123.7L267.88,119.62L282.52,117L297.16,116.81L311.8,122.63L326.44,119.08L341.08,114.06L355.72,110.91L370.36,112.74L385,109.5L385,134Z" fill="#2f5bd3" fill-opacity="0.12"/>
+<path d="M19,127.64L33.64,125.16L48.28,125.11L62.92,125.4L77.56,124.06L92.2,129.27L106.84,126.68L121.48,125.63L136.12,124.46L150.76,120.29L165.4,125.61L180.04,131L194.68,129.06L209.32,128.04L223.96,126.45L238.6,126.91L253.24,123.7L267.88,119.62L282.52,117L297.16,116.81L311.8,122.63L326.44,119.08L341.08,114.06L355.72,110.91L370.36,112.74L385,109.5" fill="none" stroke="#2f5bd3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="1.2">
+<circle cx="385" cy="109.5" r="3"/>
+</g>
+</g>
+<g transform="translate(384 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Churn</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">4.2%</text>
+<rect x="16" y="77.5" width="63.82" height="19" rx="9.5" fill="#daf0ec"/>
+<text x="23" y="90.85" font-size="11" fill="#17a38b" font-weight="700">▼ −17.6%</text>
+</g>
+<g transform="translate(768 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Satisfaction</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">4.6</text>
+<text x="16" y="88.5" font-size="10.5" fill="#8a94a6">out of 5, 1,204 answers</text>
+</g>
+</svg>
