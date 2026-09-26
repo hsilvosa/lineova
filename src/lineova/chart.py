@@ -469,9 +469,11 @@ class Chart:
         y = bottom - lh * (len(lines) - 1)
         for ln, col, has_prefix in lines:
             if has_prefix and ln.startswith(prefix):
-                scene.add(S.Text(pad, y, prefix, size, theme.ink, weight=700))
-                off = text_width(prefix + " ", size, theme.font_kind, True)
-                scene.add(S.Text(pad + off, y, ln[len(prefix):].lstrip(), size, col))
+                # one text element with two runs: the renderer places the second run
+                # right after the first, so spacing is correct whatever font is used
+                rest = ln[len(prefix):].lstrip()
+                spans = [(prefix, 700, False, theme.ink)] + ([(" " + rest, 400, False, col)] if rest else [])
+                scene.add(S.Text(pad, y, ln, size, col, spans=spans))
             else:
                 scene.add(S.Text(pad, y, ln, size, col))
             y += lh

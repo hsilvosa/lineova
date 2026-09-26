@@ -106,6 +106,7 @@ class Text:
     baseline: str = "alphabetic"     # alphabetic | middle | hanging
     letter_spacing: float = 0.0
     halo: Optional[str] = None       # background-coloured outline for legibility
+    spans: Optional[list] = None     # rich text: [(text, weight, italic, colour|None), ...]; overrides ``text``
 
 
 @dataclass(slots=True)

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import base64
 import math
-import secrets
+import hashlib
 from html import escape
 
 import numpy as np
@@ -96,7 +96,7 @@ def render(scene: S.Scene) -> str:
     out: list[str] = []
     defs: dict[str, str] = {}
     clip_n = 0
-    uid = "lv" + secrets.token_hex(3)   # unique ids: many charts can share one HTML page
+    uid = "\x00U\x00"   # replaced by a content hash at the end: stable across runs, unique across charts
 
     def hatch_id(color: str) -> str:
         key = f"{uid}h" + color.lstrip("#")
@@ -161,7 +161,12 @@ def render(scene: S.Scene) -> str:
                 attrs.append(f'transform="rotate({_f(op.rotate)} {_f(op.x)} {_f(op.y)})"')
             if op.halo:
                 attrs.append(f'stroke="{op.halo}" stroke-width="3" stroke-linejoin="round" paint-order="stroke"')
-            out.append(f"<text {' '.join(attrs)}>{escape(op.text)}</text>")
+            if op.spans:
+                attrs.append('xml:space="preserve"')
+                body = "".join(_tspan(t, w, it, c, op) for t, w, it, c in op.spans)
+            else:
+                body = escape(op.text)
+            out.append(f"<text {' '.join(attrs)}>{body}</text>")
         elif t is S.Image:
             data = base64.b64encode(encode_png(op.rgba)).decode("ascii")
             rendering = "" if op.smooth else ' image-rendering="pixelated" style="image-rendering:pixelated"'
@@ -188,7 +193,21 @@ def render(scene: S.Scene) -> str:
     parts.append(f'<rect width="100%" height="100%" fill="{scene.background}"/>')
     parts.extend(out)
     parts.append("</svg>")
-    return "\n".join(parts)
+    doc = "\n".join(parts)
+    if uid in doc:
+        doc = doc.replace(uid, "lv" + hashlib.sha1(doc.encode("utf-8")).hexdigest()[:8])
+    return doc
+
+
+def _tspan(text: str, weight: int, italic: bool, color, parent) -> str:
+    a = []
+    if weight != parent.weight:
+        a.append(f' font-weight="{weight}"')
+    if italic != parent.italic:
+        a.append(f' font-style="{"italic" if italic else "normal"}"')
+    if color and color != parent.color:
+        a.append(f' fill="{color}"')
+    return f"<tspan{''.join(a)}>{escape(text)}</tspan>"
 
 
 def _markers(op: S.Markers, out: list[str]) -> None:

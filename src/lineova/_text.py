@@ -47,8 +47,9 @@ _TABLES = {
     ("serif", False): _TIMES,
     ("serif", True): _TIMES_BOLD,
 }
-# Web faces used by the themes run slightly wider than the core fonts.
-_KIND_FACTOR = {"sans": 1.04, "serif": 1.06, "mono": 1.0}
+# Web faces used by the themes (and their fallbacks, e.g. Georgia) run wider than the
+# core fonts. Over-estimating is safe for layout; under-estimating causes overlaps.
+KIND_FACTOR = {"sans": 1.05, "serif": 1.12, "mono": 1.0}
 
 
 @lru_cache(maxsize=8192)
@@ -63,7 +64,7 @@ def text_width(text: str, size: float, kind: str = "sans", bold: bool = False) -
     for ch in text:
         o = ord(ch)
         total += table[o - 32] if 32 <= o <= 126 else 600
-    return total / 1000.0 * size * _KIND_FACTOR.get(kind, 1.0)
+    return total / 1000.0 * size * KIND_FACTOR.get(kind, 1.0)
 
 
 def text_height(size: float) -> float:
