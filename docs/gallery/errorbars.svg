@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Mean ± 95% CI</desc>
+<defs><clipPath id="lv42d5db65c1"><rect x="45.48" y="65.85" width="579.52" height="296.65"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Mean ± 95% CI</text>
+<line x1="46.48" y1="361.5" x2="624" y2="361.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.48" y1="312.39" x2="624" y2="312.39" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.48" y1="263.28" x2="624" y2="263.28" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.48" y1="214.18" x2="624" y2="214.18" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.48" y1="165.07" x2="624" y2="165.07" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.48" y1="115.96" x2="624" y2="115.96" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.48" y1="66.85" x2="624" y2="66.85" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv42d5db65c1)">
+<path d="M66.69,361.5L66.69,167.43Q66.69,164.43,69.69,164.43L167.64,164.43Q170.64,164.43,170.64,167.43L170.64,361.5Z" fill="#2f5bd3"><title>Alpha: 10</title></path>
+<line x1="118.67" y1="168.89" x2="118.67" y2="159.96" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="110.67" y1="168.89" x2="126.67" y2="168.89" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="110.67" y1="159.96" x2="126.67" y2="159.96" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<path d="M211.07,361.5L211.07,201.55Q211.07,198.55,214.07,198.55L312.02,198.55Q315.02,198.55,315.02,201.55L315.02,361.5Z" fill="#2f5bd3"><title>Beta: 8.3</title></path>
+<line x1="263.05" y1="208.31" x2="263.05" y2="188.78" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="255.05" y1="208.31" x2="271.05" y2="208.31" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="255.05" y1="188.78" x2="271.05" y2="188.78" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<path d="M355.45,361.5L355.45,91.94Q355.45,88.94,358.45,88.94L456.41,88.94Q459.41,88.94,459.41,91.94L459.41,361.5Z" fill="#2f5bd3"><title>Gamma: 13.9</title></path>
+<line x1="407.43" y1="98.33" x2="407.43" y2="79.55" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="399.43" y1="98.33" x2="415.43" y2="98.33" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="399.43" y1="79.55" x2="415.43" y2="79.55" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<path d="M499.83,361.5L499.83,167.85Q499.83,164.85,502.83,164.85L600.79,164.85Q603.79,164.85,603.79,167.85L603.79,361.5Z" fill="#2f5bd3"><title>Delta: 10</title></path>
+<line x1="551.81" y1="171.92" x2="551.81" y2="157.77" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="543.81" y1="171.92" x2="559.81" y2="171.92" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+<line x1="543.81" y1="157.77" x2="559.81" y2="157.77" fill="none" stroke="#1a2233" stroke-width="1.1"/>
+</g>
+<line x1="46.48" y1="361.5" x2="624" y2="361.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="118.67" y="376.08" font-size="11" fill="#8a94a6" text-anchor="middle">Alpha</text>
+<text x="263.05" y="376.08" font-size="11" fill="#8a94a6" text-anchor="middle">Beta</text>
+<text x="407.43" y="376.08" font-size="11" fill="#8a94a6" text-anchor="middle">Gamma</text>
+<text x="551.81" y="376.08" font-size="11" fill="#8a94a6" text-anchor="middle">Delta</text>
+<text x="39.48" y="365.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="39.48" y="316.24" font-size="11" fill="#8a94a6" text-anchor="end">2.5</text>
+<text x="39.48" y="267.13" font-size="11" fill="#8a94a6" text-anchor="end">5.0</text>
+<text x="39.48" y="218.03" font-size="11" fill="#8a94a6" text-anchor="end">7.5</text>
+<text x="39.48" y="168.92" font-size="11" fill="#8a94a6" text-anchor="end">10.0</text>
+<text x="39.48" y="119.81" font-size="11" fill="#8a94a6" text-anchor="end">12.5</text>
+<text x="39.48" y="70.7" font-size="11" fill="#8a94a6" text-anchor="end">15.0</text>
+<text x="16" y="56.95" font-size="11" fill="#8a94a6">value</text>
+</svg>

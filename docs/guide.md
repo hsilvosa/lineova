@@ -10,6 +10,9 @@ Every option below defaults to `"auto"` or `None`, and the automatic choice is d
 - [Themes](#themes)
 - [Output](#output)
 - [Performance notes](#performance-notes)
+- [Layouts: grids and facets](#layouts-grids-and-facets)
+- [Data larger than memory](#data-larger-than-memory)
+- [Interactive HTML](#interactive-html)
 - [What "auto" does](#what-auto-does)
 
 ## Data you can pass
@@ -133,10 +136,75 @@ Pass a `lv.Graph`, an edge list `[(u, v)]` / `[(u, v, w)]`, an `(m, 2|3)` array,
 | `positions` | `{node: (x, y)}` to place nodes yourself |
 | `groups` | `{node: group}`, `"component"`, or `"community"` (label propagation). Auto: colours components when there are 2–8. |
 | `labels` | auto: all nodes up to 40, the 12 best-connected up to 400 |
-| `node_size` | px radius, or `"degree"` |
+| `node_size` | px radius, `"degree"`, `"pagerank"`, `"betweenness"` or `"closeness"` |
 | `edge_labels` | weights on edges: auto for weighted graphs with 30 or fewer edges |
 | `directed` | Draw arrows. Auto for directed `Graph`s. |
 | `seed` | Layout random seed (layouts are deterministic) |
+
+### Error bars and bands
+`line(..., band=spec)`, `scatter(..., error=spec, x_error=spec)`, `bar(..., error=spec)`. A spec is a column name or array of ± half-widths, a number, or a **tuple** `(lower, upper)` of absolute bounds. For bars built from raw rows, `error="std"`, `"sem"` or `"ci"` (95%) computes the statistic per bar.
+
+### pie / donut
+`pie({label: value})` or `pie(df, x="label", y="value")`. Options: `donut` (auto: a donut except in Folio), `top` (auto 6: the smallest slices fold into "Other", with a warning suggesting a bar chart), `sort`, `labels` (outside, with leader lines that never overlap), `center` (donut centre text, auto: the total), `start` (angle, default 90 = 12 o'clock), `format`.
+
+### violin / ridgeline
+Same inputs as `box`. The density is a binned Gaussian KDE (Silverman bandwidth, `bw=` to override), so it's O(n). Violin options: `inner` (quartile bar + median dot), `scale` (`"width"`: every violin as wide as the band, or `"area"`: shared scale), `orientation`. Ridgeline: `overlap` (default 1.6 rows).
+
+### dumbbell / slope
+Two values per item: `{item: (before, after)}`, `df` with `y="item", x=("col_a", "col_b")`, or long data with `x="value", color="year"` (exactly two years). `labels=("2015", "2024")` names the two ends. Slope lines are coloured up/down (theme `positive`/`negative`), or by `highlight=`.
+
+### waterfall
+`waterfall({step: change})`. `start=("2024", 900)` adds an opening bar; `subtotals=["H1"]` turns steps into running-total bars; `total=False` hides the closing bar. Increases and decreases use the theme's `positive` and `negative` colours.
+
+### candlestick
+A DataFrame with open/high/low/close columns (detected by name, or `open=`, `high=`, … to set them) and a date column or index. `style="candle" | "ohlc"` (Folio defaults to OHLC). When there are more rows than fit (about 1 per 4 px), consecutive rows are merged into longer periods.
+
+### treemap
+`treemap({label: value})`, nested `{group: {label: value}}`, or `treemap(df, path=["region", "country"], value="pop")`. Squarified layout. Labels appear where they fit.
+
+### sankey
+Rows of `(source, target, value)` or an edge DataFrame. Nodes are placed in stages by their longest path from a source; flows must not form a cycle.
+
+### radar
+`radar({item: {measure: value}})` or a DataFrame with one row per item. `normalize=True` scales each measure to its own maximum (use it when measures have different units). Warns above 6 items.
+
+### density
+`density(df, x=, y=, color=)`: smoothed 2-D density with contour lines enclosing 25/50/75/90% of the points (`levels=` to change). One group gets a shaded image. Several groups get coloured contours. Works for any number of points.
+
+### timeline
+Rows of `(task, start, end[, group])` or a DataFrame (columns named task/start/end are detected). `color=` groups tasks, `progress=` shades the completed part, and tasks with no end become milestone diamonds. On a date axis, `today` (auto) draws a line at the current date when it's in range.
+
+### calendar
+Dates (counted per day) or dates with values (`calendar(df)` detects a date and a value column; `agg="sum" | "mean"`). One block per year, weeks as columns.
+
+### sparkline / stat
+`sparkline(values)`: a word-sized line with the last value. `stat(value, label=, previous= | delta=, spark=, good="up" | "down" | None, note=)`: a KPI tile. The change is shown as ▲/▼ with a sign and colour, so it doesn't rely on colour alone.
+
+## Layouts: grids and facets
+
+```python
+lv.line(df, x="month", y="gwh", color="source", facet="region")        # small multiples
+chart.facet("region", cols=2, share="y")                                # same, chained
+lv.grid([c1, c2, c3], cols=3, title="Overview", share="none")
+```
+
+Panels share one colour per series and one legend (when they show the same series), and axis ranges when `share` is `"both"` (default for facets), `"x"` or `"y"`. Axis titles appear once: x on the bottom row, y on the first column. In Folio, panels are labelled (a), (b), (c). Grids save to every format, like charts.
+
+## Data larger than memory
+
+`lv.Chunks(source)` wraps data that arrives in pieces. `source` is a function returning a fresh iterable of chunks (called once per pass), or a list of chunks. A chunk can be an array, a dict of arrays, a pandas/polars DataFrame or a pyarrow RecordBatch.
+
+| Chart | How it streams |
+|---|---|
+| `line` | extent pass, then per-chunk M4 on a shared 16k-column grid. Chunks must arrive sorted by x. |
+| `scatter` | extent pass, then a 2048 × 2048 count grid, always drawn as density. |
+| `histogram` | range + 1M-value sample pass for the bins, then a counting pass. Counts are exact. |
+
+Memory use is bounded by the chunk size. `np.memmap` arrays don't need `Chunks`: pass them directly.
+
+## Interactive HTML
+
+`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip, the scroll wheel zooms around the pointer, dragging pans, and double-click resets. `chart.show()` outside a notebook opens this page in the browser.
 
 ## Themes
 

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Electricity mix</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Electricity mix</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">Share of generation, %</text>
+<path d="M320,72.65C370.24,72.65,417.21,97.52,445.45,139.07C473.68,180.62,479.52,233.45,461.02,280.16L401.79,256.71C412.52,229.62,409.14,198.98,392.76,174.88C376.38,150.78,349.14,136.35,320,136.35Z" fill="#2f5bd3" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Solar: 31 (31.0%)</title></path>
+<path d="M461.02,280.16C445,320.64,412.34,352.28,371.38,367.03C330.41,381.78,285.08,378.21,246.93,357.24L277.62,301.42C299.75,313.58,326.04,315.65,349.8,307.1C373.56,298.54,392.5,280.19,401.79,256.71Z" fill="#17a38b" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Wind: 27 (27.0%)</title></path>
+<path d="M246.93,357.24C195.44,328.93,164.94,273.44,168.62,214.8L232.2,218.8C230.06,252.81,247.76,285,277.62,301.42Z" fill="#e0913a" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Hydro: 18 (18.0%)</title></path>
+<path d="M168.62,214.8C171.46,169.69,194.28,128.19,230.85,101.62L268.29,153.15C247.08,168.57,233.85,192.63,232.2,218.8Z" fill="#8a6bd1" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Gas: 14 (14.0%)</title></path>
+<path d="M230.85,101.62C246.31,90.38,263.76,82.17,282.28,77.42L298.12,139.12C287.38,141.87,277.26,146.64,268.29,153.15Z" fill="#d0527a" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Coal: 6 (6.0%)</title></path>
+<path d="M282.28,77.42C294.6,74.25,307.28,72.65,320,72.65L320,136.35C312.62,136.35,305.27,137.28,298.12,139.12Z" fill="#5b8c2a" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Nuclear: 4 (4.0%)</title></path>
+<path d="M187.09,297.39L154.32,317.08L151.32,317.08" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="148.32" y="314.88" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Hydro</text>
+<text x="148.32" y="328.63" font-size="11" fill="#475467" text-anchor="end">18%</text>
+<path d="M187.09,151.26L154.32,159.25L151.32,159.25" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="148.32" y="157.05" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Gas</text>
+<text x="148.32" y="170.8" font-size="11" fill="#475467" text-anchor="end">14%</text>
+<path d="M255.42,87.09L154.32,101.5L151.32,101.5" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="148.32" y="99.3" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Coal</text>
+<text x="148.32" y="113.05" font-size="11" fill="#475467" text-anchor="end">6%</text>
+<path d="M300.99,73.85L154.32,75.65L151.32,75.65" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="148.32" y="73.45" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Nuclear</text>
+<text x="148.32" y="87.2" font-size="11" fill="#475467" text-anchor="end">4%</text>
+<path d="M445.45,139.07L485.68,132.25L488.68,132.25" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="491.68" y="130.05" font-size="11" fill="#1a2233" font-weight="600">Solar</text>
+<text x="491.68" y="143.8" font-size="11" fill="#475467">31%</text>
+<path d="M371.38,367.03L485.68,373L488.68,373" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="491.68" y="370.8" font-size="11" fill="#1a2233" font-weight="600">Wind</text>
+<text x="491.68" y="384.55" font-size="11" fill="#475467">27%</text>
+<text x="320" y="237.15" font-size="28.5" fill="#1a2233" text-anchor="middle" font-weight="700">100</text>
+<text x="320" y="252.4" font-size="11" fill="#8a94a6" text-anchor="middle">total</text>
+</svg>

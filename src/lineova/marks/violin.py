@@ -140,13 +140,14 @@ class RidgeLayer(BoxLayer):
         lo = min((s["min"] for s in self.stats if s["n"]), default=0.0)
         hi = max((s["max"] for s in self.stats if s["n"]), default=1.0)
         pad = (hi - lo) * 0.05
+        self.data_lo, self.data_hi = lo, hi
         self.lo, self.hi = lo - pad, hi + pad
         bws = [bandwidth(v[np.isfinite(v)]) for _, v in self.groups if np.isfinite(v).sum() > 1]
         bw = self.bw or (float(np.median(bws)) if bws else None)
         self.dens = [kde(v, self.lo, self.hi, bw) if np.isfinite(v).sum() > 1 else None for _, v in self.groups]
 
     def _value_domain(self):
-        return Domain("num", self.lo, self.hi, nice=False, extent=(self.lo, self.hi))
+        return Domain("num", self.lo, self.hi, nice=False, extent=(self.data_lo, self.data_hi))
 
     def _cat_domain(self):
         # an empty row on top leaves room for the first curve to rise above its baseline

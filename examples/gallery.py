@@ -61,4 +61,74 @@ y = rng.standard_normal(n) * 0.8 + np.sin(cls * 2.0)
 lv.scatter(x=x, y=y, color=np.array(["North", "Central", "South"])[cls], title="Two million points",
            subtitle="Rendered as a density image automatically", theme="ledger", width=640, height=400) \
     .save(OUT / "big-scatter.svg")
+# 0.2 chart types
+import pandas as pd  # noqa: E402  (only the gallery needs pandas)
+
+groups = pd.DataFrame({"group": np.repeat(["Alpha", "Beta", "Gamma", "Delta"], 300),
+                       "value": np.concatenate([rng.normal(10, 2, 300), rng.gamma(4, 2, 300), rng.normal(14, 4, 300),
+                                                np.r_[rng.normal(7, 1, 150), rng.normal(13, 1.5, 150)]])})
+mix = {"Solar": 31, "Wind": 27, "Hydro": 18, "Gas": 14, "Coal": 6, "Nuclear": 4}
+share = {"Spain": (37, 57), "France": (19, 28), "Italy": (33, 41), "Germany": (31, 52), "Portugal": (52, 64)}
+days = pd.date_range("2025-01-01", periods=120)
+close = 100 + np.cumsum(rng.normal(0, 1.4, 120))
+opn = np.r_[100, close[:-1]] + rng.normal(0, 0.4, 120)
+ohlc = pd.DataFrame({"date": days, "open": opn, "close": close,
+                     "high": np.maximum(opn, close) + rng.random(120) * 2,
+                     "low": np.minimum(opn, close) - rng.random(120) * 2})
+flows = [("Solar", "Grid", 120), ("Wind", "Grid", 160), ("Hydro", "Grid", 90), ("Gas", "Grid", 140),
+         ("Grid", "Homes", 210), ("Grid", "Industry", 200), ("Grid", "Transport", 60), ("Grid", "Losses", 40),
+         ("Gas", "Industry", 50)]
+plan = pd.DataFrame({
+    "task": ["Research", "Design", "Prototype", "Review", "Build", "Test", "Launch"],
+    "start": pd.to_datetime(["2026-07-01", "2026-07-20", "2026-08-10", "2026-09-01", "2026-09-05", "2026-10-10",
+                             "2026-11-02"]),
+    "end": pd.to_datetime(["2026-07-25", "2026-08-15", "2026-09-05", "2026-09-01", "2026-10-20", "2026-11-01",
+                           "2026-11-02"]),
+    "team": ["Research", "Design", "Engineering", "Research", "Engineering", "Engineering", "Design"],
+    "done": [1, 1, 1, np.nan, .6, .1, 0]})
+year = pd.date_range("2025-01-01", "2025-12-31")
+commits = pd.DataFrame({"day": year, "commits": rng.poisson(np.where(year.dayofweek < 5, 4, 0.7))})
+x24 = np.arange(24.0)
+fc = 20 + 5 * np.sin(x24 / 4) + rng.normal(0, 0.8, 24)
+size = {"width": 640, "height": 400}
+
+lv.donut(mix, title="Electricity mix", subtitle="Share of generation, %", theme="ledger", **size).save(OUT / "donut.svg")
+lv.violin(groups, x="group", y="value", title="Response by group", theme="fjord", **size).save(OUT / "violin.svg")
+lv.ridgeline(groups, x="group", y="value", title="Distributions", theme="folio", number=6, **size) \
+    .save(OUT / "ridgeline.svg")
+lv.slope(share, labels=("2015", "2024"), title="Renewables share of electricity", subtitle="%", theme="ledger",
+         width=640, height=400).save(OUT / "slope.svg")
+lv.dumbbell(share, labels=("2015", "2024"), title="Renewables share of electricity", subtitle="%",
+            theme="instrument", **size).save(OUT / "dumbbell.svg")
+lv.waterfall({"Sales": 420, "Services": 130, "Costs": -310, "Tax": -60, "Other": 25}, start=("2024", 900),
+             title="Profit bridge", subtitle="k€", theme="ledger", **size).save(OUT / "waterfall.svg")
+lv.candlestick(ohlc, title="Share price", theme="instrument", **size).save(OUT / "candlestick.svg")
+lv.treemap({"Europe": {"Spain": 48, "France": 68, "Italy": 59}, "Asia": {"Japan": 125, "Korea": 52},
+            "America": {"USA": 335, "Mexico": 128, "Brazil": 216}}, title="Population", subtitle="millions",
+           theme="fjord", **size).save(OUT / "treemap.svg")
+lv.sankey(flows, title="Energy flows", subtitle="TWh", theme="ledger", width=720, height=400).save(OUT / "sankey.svg")
+lv.radar({"Model A": {"Speed": 8, "Accuracy": 6, "Cost": 4, "Memory": 7, "Ease": 9},
+          "Model B": {"Speed": 5, "Accuracy": 9, "Cost": 7, "Memory": 5, "Ease": 6}}, title="Model comparison",
+         theme="fjord", **size).save(OUT / "radar.svg")
+dens = pd.DataFrame({"x": np.r_[rng.normal(0, 1, 20000), rng.normal(2.5, 1.2, 20000)],
+                     "y": np.r_[rng.normal(0, 0.8, 20000), rng.normal(1.5, 1, 20000)]})
+lv.density(dens, x="x", y="y", title="Where the points are", theme="ledger", **size).save(OUT / "density.svg")
+lv.timeline(plan, color="team", progress="done", today=False, title="Project plan", theme="ledger", **size) \
+    .save(OUT / "timeline.svg")
+lv.calendar(commits, title="Commits in 2025", theme="ledger", width=860).save(OUT / "calendar.svg")
+lv.line(x=x24, y=fc, band=(fc - 2, fc + 2.5), title="Forecast", subtitle="with 90% interval", theme="folio",
+        number=7, **size).save(OUT / "band.svg")
+lv.bar(groups, x="group", y="value", agg="mean", error="ci", title="Mean ± 95% CI", theme="ledger", **size) \
+    .save(OUT / "errorbars.svg")
+lv.grid([lv.stat(1284, label="Active users", previous=1190, spark=rng.normal(0, 1, 30).cumsum()),
+         lv.stat(56.2, label="Revenue (k€)", previous=61.0, spark=rng.normal(0, 1, 30).cumsum()),
+         lv.stat("99.9%", label="Uptime", note="last 30 days")], title="This week", theme="ledger") \
+    .save(OUT / "stats.svg")
+panel = pd.DataFrame({"month": np.tile(pd.date_range("2025-01-01", periods=12, freq="MS"), 12),
+                      "region": np.repeat(["North", "South", "East", "West"], 36),
+                      "source": np.tile(np.repeat(["Solar", "Wind", "Hydro"], 12), 4),
+                      "gwh": rng.random(144) * 60 + np.tile(np.r_[np.linspace(20, 90, 6), np.linspace(90, 20, 6)], 12)})
+lv.line(panel, x="month", y="gwh", color="source", facet="region", title="Output by region", subtitle="GWh",
+        theme="fjord", width=860).save(OUT / "facets.svg")
+
 print("wrote", len(list(OUT.glob("*.svg"))), "files to", OUT)

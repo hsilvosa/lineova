@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img">
 <desc>Daily capacity factor</desc>
-<defs><clipPath id="lv6200a3c1"><rect x="35" y="51.3" width="590" height="312.7"/></clipPath></defs>
+<defs><clipPath id="lv54923416c1"><rect x="35" y="51.3" width="590" height="312.7"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#0f1a24"/>
 <text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">DAILY CAPACITY FACTOR</text>
 <text x="624" y="23.9" font-size="10" fill="#62788a" text-anchor="end" letter-spacing="0.4">%</text>
@@ -10,7 +10,7 @@
 <line x1="36" y1="207.65" x2="624" y2="207.65" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
 <line x1="36" y1="155.87" x2="624" y2="155.87" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
 <line x1="36" y1="104.08" x2="624" y2="104.08" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
-<g clip-path="url(#lv6200a3c1)">
+<g clip-path="url(#lv54923416c1)">
 <line x1="78" y1="222.14" x2="78" y2="169.13" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
 <line x1="78" y1="132.96" x2="78" y2="80.22" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
 <line x1="67.84" y1="222.14" x2="88.16" y2="222.14" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lineova"
-version = "0.1.0"
+version = "0.2.0"
 description = "Clean, fast charts with good defaults: four house styles, any data size."
 readme = "README.md"
 license = { text = "MIT" }

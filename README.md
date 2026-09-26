@@ -65,9 +65,26 @@ See **[docs/guide.md](docs/guide.md)** for every option.
 
 ## Chart types
 
-`line`, `area`, `bar` (grouped, stacked, 100%, horizontal), `scatter` (bubbles, colour scales, trend line), `histogram`, `heatmap`, `box` and `network`.
+| Compare | Distribution | Composition | Change & time | Relationships | Flows & structure | Dashboards |
+|---|---|---|---|---|---|---|
+| `bar` (grouped, stacked, 100%, error bars) | `histogram` | `pie` / `donut` | `line` (bands) | `scatter` (bubbles, fit, error bars) | `network` | `stat` |
+| `dumbbell` | `box` | `treemap` | `area` | `density` (contours) | `sankey` | `sparkline` |
+| `slope` | `violin` | `waterfall` | `candlestick` | `heatmap` | `timeline` (Gantt) | `grid` |
+| `radar` | `ridgeline` | | `calendar` | | | `facet=` |
 
-![](docs/gallery/area.svg) ![](docs/gallery/histogram.svg)
+| | |
+|---|---|
+| ![](docs/gallery/facets.svg) | ![](docs/gallery/sankey.svg) |
+| ![](docs/gallery/violin.svg) | ![](docs/gallery/waterfall.svg) |
+| ![](docs/gallery/treemap.svg) | ![](docs/gallery/timeline.svg) |
+| ![](docs/gallery/ridgeline.svg) | ![](docs/gallery/stats.svg) |
+
+### Small multiples and layouts
+
+```python
+lv.line(df, x="month", y="gwh", color="source", facet="region")   # one panel per region, shared axes & legend
+lv.grid([chart_a, chart_b, chart_c], cols=3, title="This week")     # any charts side by side
+```
 
 ## Big data
 
@@ -78,7 +95,12 @@ The work a chart does scales with the number of pixels, not the number of rows:
 - **Histograms, heatmaps and box plots** use chunked NumPy passes (`bincount`, block means, partition-based quantiles).
 - **Networks** use an FFT-accelerated force layout for large graphs and rasterise the edges when there are too many to draw one by one.
 
-Memory stays bounded because data is processed in chunks. Memory-mapped arrays (`np.memmap`) work directly.
+Memory stays bounded because data is processed in chunks. Memory-mapped arrays (`np.memmap`) work directly, and data that doesn't fit in memory at all can be streamed:
+
+```python
+batches = lambda: pq.ParquetFile("trips.parquet").iter_batches(columns=["distance"])
+lv.histogram(lv.Chunks(batches), x="distance")        # also works for line() and scatter()
+```
 
 Measured on a 2-core cloud VM (full pipeline, data → finished SVG):
 
@@ -90,7 +112,12 @@ Measured on a 2-core cloud VM (full pipeline, data → finished SVG):
 | scatter, 100 million points | 1.9 s | 630 KB |
 | histogram, 100 million values | 1.3 s | 20 KB |
 | heatmap, 4,000 × 4,000 | 0.5 s | 390 KB |
-| network, 40,000 nodes / 200,000 edges | 4 s | 700 KB |
+| network, 40,000 nodes / 200,000 edges | 3 s | 670 KB |
+| violin, 10 million values in 5 groups | 1.9 s | 40 KB |
+| 2-D density + contours, 10 million points | 0.5 s | 30 KB |
+| candlestick, 1 million rows | 0.03 s | 30 KB |
+| calendar, 5 million events over 10 years | 0.16 s | 450 KB |
+| line from `lv.Chunks`, 20 million rows streamed | 1.1 s | 70 KB |
 
 Run `python benchmarks/bench.py` (add `--big` for 100M) to reproduce.
 
@@ -103,6 +130,7 @@ Run `python benchmarks/bench.py` (add `--big` for 100M) to reproduce.
 | SVG | `.save("x.svg")` / `.to_svg()` | No dependencies. Hover tooltips on marks. |
 | PDF | `.save("x.pdf")` / `.to_pdf()` | Built-in vector writer. Text stays selectable. Journal-ready. |
 | PNG | `.save("x.png", dpi=300)` | Needs `lineova[png]`, `cairosvg` or `playwright`. Defaults to 2× resolution. |
+| HTML | `.save("x.html")` / `.to_html()` | One self-contained file: hover tooltips, scroll to zoom, drag to pan. |
 | Jupyter | just display the chart | Rendered inline as SVG. |
 
 ## Graphs (the data structure)
@@ -112,6 +140,7 @@ g = lv.Graph.from_edges([("A", "B", 4), ("A", "C", 3), ("C", "D", 2)])
 g.shortest_path("A", "D")        # ['A', 'C', 'D']
 g.bfs("A"), g.dfs("A")
 g.connected_components(), g.minimum_spanning_tree(), g.communities()
+g.pagerank(), g.betweenness(), g.closeness(), g.max_flow("A", "D"), g.astar("A", "D")
 lv.Graph.from_edges(deps, directed=True).topological_sort()
 g.draw(path=("A", "D")).save("route.svg")
 ```
