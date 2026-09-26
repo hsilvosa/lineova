@@ -379,8 +379,9 @@ class Chart(Renderable):
         limit = len(base)
         if len(free) > limit:
             keep, others = free[: limit - 1], free[limit - 1:]
-            warnings.warn(f"{len(free)} series but only {limit} distinct colours; the last {len(others)} are "
-                          "drawn muted as 'Other'. Use highlight=... or split into several charts.", stacklevel=3)
+            if not all(getattr(l, "own_legend", False) for l in self._layers):
+                warnings.warn(f"{len(free)} series but only {limit} distinct colours; the last {len(others)} are "
+                              "drawn muted as 'Other'. Use highlight=... or split into several charts.", stacklevel=3)
         else:
             keep = free
         for i, k in enumerate(keep):

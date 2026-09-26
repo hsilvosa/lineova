@@ -193,7 +193,8 @@ class BarLayer(Layer):
         # plain arrays
         if data is not None and y is None and x is None:
             arr = data
-            if type(arr).__module__.split(".")[0] == "pandas" and hasattr(arr, "index"):
+            if type(arr).__module__.split(".")[0] == "pandas" and hasattr(arr, "index") and \
+                    value_kind(to_array(arr)) != "cat":
                 cats = [str(v) for v in to_array(arr.index)]
                 return cats, [(series_name(arr) or "value", as_float(to_array(arr), "num"))], \
                     series_name(arr.index), series_name(arr), _looks_ordered(cats)

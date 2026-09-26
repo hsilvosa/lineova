@@ -459,6 +459,13 @@ def aggregate(labels: np.ndarray, values: Optional[np.ndarray], how: str = "sum"
         c = np.bincount(codes[good], minlength=k)
         with np.errstate(invalid="ignore", divide="ignore"):
             return names, s / c
+    if how == "std":           # two bincount passes (centred), no sorting
+        c = np.bincount(codes[good], minlength=k).astype(np.float64)
+        with np.errstate(invalid="ignore", divide="ignore"):
+            mean = np.bincount(codes[good], weights=v[good], minlength=k) / c
+            dev = v[good] - mean[codes[good]]
+            ss = np.bincount(codes[good], weights=dev * dev, minlength=k)
+            return names, np.where(c > 1, np.sqrt(ss / (c - 1)), np.nan)
     if how not in _AGG:
         raise DataError(f"Unknown aggregation {how!r}. Use one of: {', '.join(_AGG)}.")
     order = np.argsort(codes[good], kind="stable")
