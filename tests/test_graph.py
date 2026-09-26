@@ -117,6 +117,7 @@ def weighted_digraph():
 
 
 def test_pagerank_matches_networkx(weighted_digraph):
+    pytest.importorskip("scipy")          # networkx.pagerank needs scipy
     ref = nx.pagerank(weighted_digraph, weight="weight")
     got = lv.Graph.from_networkx(weighted_digraph).pagerank()
     assert max(abs(got[k] - ref[k]) for k in ref) < 1e-5
