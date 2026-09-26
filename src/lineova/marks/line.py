@@ -5,12 +5,12 @@ from __future__ import annotations
 import numpy as np
 
 from .. import scene as S
-from .._data import interval_bounds, interval_spec, is_auto, resolve_xy
+from .._data import Chunks, interval_bounds, interval_spec, is_auto, resolve_xy
 from .._text import format_value
 from ..reduce import is_sorted, m4, minmax_envelope
 from ..scales import BandScale
 from ._base import Domain, DrawContext, Layer, LegendItem
-from ._geom import finite_runs, monotone_path
+from ._geom import finite_runs, monotone_path, spread_labels
 
 _AUTO = "auto"
 
@@ -42,7 +42,18 @@ class LineLayer(Layer):
 
     # ---------------------------------------------------------------- data
     def prepare(self, chart) -> None:
-        xy = resolve_xy(self.data, self.x, self.y, self.color, extra=interval_spec(self.band))
+        data, x, y, color = self.data, self.x, self.y, self.color
+        if isinstance(data, Chunks):
+            from .. import stream
+            xv, yv, _ = stream.line(data, x, y)
+            if x is not None and stream.first_kind(data, x) == "time":
+                xv = xv.astype(np.int64).astype("datetime64[ns]")
+            data, x, y, color = None, xv, yv, None
+        xy = resolve_xy(data, x, y, color, extra=interval_spec(self.band))
+        if isinstance(self.data, Chunks) and isinstance(self.y, str):
+            xy.series[0].name = self.label or str(self.y)
+            xy.y_label = str(self.y)
+            xy.x_label = str(self.x) if isinstance(self.x, str) else None
         if self.label and len(xy.series) == 1:
             xy.series[0].name = str(self.label)
         for s in xy.series:
@@ -139,6 +150,7 @@ class LineLayer(Layer):
         smooth = (theme.curve == "smooth") if is_auto(self.curve) else self.curve in (True, "smooth")
         legend_mode = ctx.options.get("_legend_mode")
         self._last = {}
+        end_vals: list = []
         for i, s in self._order(ctx):
             color = ctx.color(s.name, i)
             is_muted = color == theme.muted and n_series > 1
@@ -168,10 +180,15 @@ class LineLayer(Layer):
                 ctx.scene.add(S.Markers(np.array([lx]), np.array([ly]), "circle", 4.0, fill=color,
                                         stroke=theme.background, stroke_width=2))
                 if self._show_values(theme, legend_mode):
-                    ctx.overlay.append(S.Text(lx + 8, ly, format_value(self._last[s.name][2]), theme.font_size,
-                                         theme.ink, baseline="middle", weight=600, halo=theme.background))
+                    end_vals.append((lx, ly, format_value(self._last[s.name][2])))
             if legend_mode == "direct":
                 ctx.end_labels.append((s.name, s.name, lx, ly))
+        if end_vals:
+            size = theme.font_size
+            ys = spread_labels([v[1] for v in end_vals], size * 1.2, ctx.plot.y, ctx.plot.bottom)
+            for (lx, ly, txt), y in zip(end_vals, ys):
+                ctx.overlay.append(S.Text(lx + 8, y, txt, size, theme.ink, baseline="middle", weight=600,
+                                          halo=theme.background))
 
     def _show_values(self, theme, legend_mode) -> bool:
         n = len(self.xy.series)
