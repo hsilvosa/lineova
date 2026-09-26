@@ -81,3 +81,58 @@ def rounded_bar(x: float, y: float, w: float, h: float, r: float, end: str) -> l
                 ("L", x + r, y1), ("Q", x, y1, x, y1 - r), ("Q", x, y, x + r, y), ("Z",)]
     return [("M", x, y + r), ("Q", x, y, x + r, y), ("Q", x1, y, x1, y + r), ("L", x1, y1 - r),
             ("Q", x1, y1, x + r, y1), ("Q", x, y1, x, y1 - r), ("Z",)]
+
+
+def arc(cx: float, cy: float, r: float, a0: float, a1: float, move: bool = True) -> list:
+    """Circular arc from angle a0 to a1 (radians, screen coordinates: 0 = 3 o'clock, clockwise positive)
+    as cubic Béziers of at most 90° each."""
+    cmds: list = []
+    n = max(1, int(np.ceil(abs(a1 - a0) / (np.pi / 2) - 1e-9)))
+    step = (a1 - a0) / n
+    k = 4 / 3 * np.tan(step / 4)
+    x0, y0 = cx + r * np.cos(a0), cy + r * np.sin(a0)
+    if move:
+        cmds.append(("M", x0, y0))
+    for i in range(n):
+        t0 = a0 + i * step
+        t1 = t0 + step
+        x1, y1 = cx + r * np.cos(t1), cy + r * np.sin(t1)
+        c1 = (x0 - k * r * np.sin(t0), y0 + k * r * np.cos(t0))
+        c2 = (x1 + k * r * np.sin(t1), y1 - k * r * np.cos(t1))
+        cmds.append(("C", c1[0], c1[1], c2[0], c2[1], x1, y1))
+        x0, y0 = x1, y1
+    return cmds
+
+
+def wedge(cx: float, cy: float, r_out: float, r_in: float, a0: float, a1: float) -> list:
+    """Pie slice (r_in = 0) or donut segment as a closed path."""
+    cmds = arc(cx, cy, r_out, a0, a1)
+    if r_in > 0:
+        cmds.append(("L", cx + r_in * np.cos(a1), cy + r_in * np.sin(a1)))
+        cmds += arc(cx, cy, r_in, a1, a0, move=False)
+    else:
+        cmds.append(("L", cx, cy))
+    cmds.append(("Z",))
+    return cmds
+
+
+def spread_labels(ys: list, gap: float, lo: float, hi: float) -> list:
+    """Move label positions apart so neighbours are at least ``gap`` apart, staying inside [lo, hi]."""
+    if not ys:
+        return []
+    order = sorted(range(len(ys)), key=lambda i: ys[i])
+    pos = [ys[i] for i in order]
+    for i in range(1, len(pos)):
+        pos[i] = max(pos[i], pos[i - 1] + gap)
+    over = pos[-1] - hi
+    if over > 0:
+        pos[-1] -= over
+        for i in range(len(pos) - 2, -1, -1):
+            pos[i] = min(pos[i], pos[i + 1] - gap)
+    under = lo - pos[0]
+    if under > 0:
+        pos = [p + under for p in pos]
+    out = [0.0] * len(ys)
+    for k, i in enumerate(order):
+        out[i] = pos[k]
+    return out
