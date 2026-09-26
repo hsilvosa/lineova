@@ -89,7 +89,8 @@ class NetworkLayer(Layer):
             w = np.ones(m) if w is None else np.asarray(w, float)
             directed = bool(self.directed)
             self.graph = None
-            if len(nodes) <= 200_000 and (self.path is not None or self.groups_opt == "community"):
+            if len(nodes) <= 200_000 and (self.path is not None or self.groups_opt == "community"
+                                          or self.node_size in ("pagerank", "betweenness", "closeness")):
                 g = Graph(directed=directed)
                 for n in nodes:
                     g.add_node(n)
@@ -216,10 +217,16 @@ class NetworkLayer(Layer):
             base_r = float(self.node_size)
         else:
             base_r = 12.0 if n <= 20 else (9.0 if n <= 60 else max(1.2, 60 / math.sqrt(n)))
-        sized = style == "sized" or self.node_size == "degree"
+        measure = self.deg.astype(float)
+        if self.node_size in ("pagerank", "betweenness", "closeness"):
+            if self.graph is None:
+                raise DataError(f"node_size={self.node_size!r} needs the graph structure; pass a lv.Graph.")
+            scores = getattr(self.graph, self.node_size)()
+            measure = np.array([scores[nn] for nn in self.nodes], float)
+        sized = style == "sized" or self.node_size in ("degree", "pagerank", "betweenness", "closeness")
         if sized and n:
-            dmax = max(1, int(self.deg.max()))
-            radii = base_r * (0.55 + 0.75 * np.sqrt(self.deg / dmax))
+            dmax = float(measure.max()) or 1.0
+            radii = base_r * (0.55 + 0.75 * np.sqrt(np.clip(measure, 0, None) / dmax))
         else:
             radii = np.full(n, base_r)
         if style == "box" and show_labels:

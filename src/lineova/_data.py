@@ -488,3 +488,69 @@ def interval_bounds(y: np.ndarray, extra: dict, prefix: str = ""):
         e = np.abs(extra[prefix + "err"])
         return y - e, y + e
     return None
+
+
+def subset(data, mask: np.ndarray):
+    """Rows of a DataFrame / dict of columns / structured array where ``mask`` is True."""
+    mod = type(data).__module__.split(".")[0]
+    if mod == "pandas":
+        return data[mask]
+    if mod == "polars":
+        import polars as pl
+        return data.filter(pl.Series(mask))
+    if isinstance(data, dict):
+        return {k: (to_array(v)[mask] if np.ndim(v) else v) for k, v in data.items()}
+    if isinstance(data, np.ndarray):
+        return data[mask]
+    raise DataError(f"Can't split {type(data).__name__} into facets; use a DataFrame or a dict of columns.")
+
+
+# --------------------------------------------------------------------------- out-of-core input
+
+class Chunks:
+    """Data read piece by piece, for inputs larger than memory.
+
+        lv.histogram(lv.Chunks(lambda: pq.ParquetFile("big.parquet").iter_batches(columns=["v"])), x="v")
+        lv.line(lv.Chunks(my_reader), x="t", y="value")
+
+    ``source`` is a function returning a fresh iterable of chunks (it's called
+    once per pass; most charts need two passes), or a list of chunks. A chunk
+    can be a NumPy array (one column), a dict of arrays, a pandas/polars
+    DataFrame or a pyarrow RecordBatch/Table.
+    """
+
+    def __init__(self, source):
+        if not callable(source) and not isinstance(source, (list, tuple)):
+            raise TypeError("Chunks(source): pass a function returning an iterable of chunks, or a list of chunks.")
+        self.source = source
+
+    def __iter__(self):
+        it = self.source() if callable(self.source) else self.source
+        for chunk in it:
+            yield chunk
+
+    def columns(self, *names):
+        """Yield one tuple of float arrays per chunk for the requested columns (None = the chunk itself)."""
+        for chunk in self:
+            out = []
+            for name in names:
+                out.append(_chunk_column(chunk, name))
+            yield tuple(out)
+
+    def __repr__(self) -> str:
+        return "<lineova.Chunks>"
+
+
+def _chunk_column(chunk, name) -> np.ndarray:
+    if name is None:
+        if hasattr(chunk, "num_columns") and getattr(chunk, "num_columns", 0) == 1:   # pyarrow, one column
+            chunk = chunk.column(0)
+        a = np.asarray(to_array(chunk))
+        if a.ndim != 1:
+            raise DataError("A chunk with several columns needs a column name (x= / y=).")
+        return as_float(a, value_kind(a) if len(a) else "num")
+    if hasattr(chunk, "column") and hasattr(chunk, "schema"):            # pyarrow RecordBatch / Table
+        a = np.asarray(chunk.column(name).to_numpy(zero_copy_only=False))
+    else:
+        a = to_array(get_column(chunk, name))
+    return as_float(a, value_kind(a) if len(a) else "num")

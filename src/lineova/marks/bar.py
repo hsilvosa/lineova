@@ -413,20 +413,20 @@ class BarLayer(Layer):
         weight = 600 if bold else 400
         if self.horizontal:
             if mode == "inside" and length > tw + 18 and thick >= size + 2:
-                ctx.scene.add(S.Text(p1 - sign * 10, cy, text, size, readable_on(color), anchor="end" if sign > 0 else "start",
+                ctx.overlay.append(S.Text(p1 - sign * 10, cy, text, size, readable_on(color), anchor="end" if sign > 0 else "start",
                                      baseline="middle", weight=700))
             else:
-                ctx.scene.add(S.Text(p1 + sign * 6, cy, text, size, theme.ink if bold else theme.ink_secondary,
+                ctx.overlay.append(S.Text(p1 + sign * 6, cy, text, size, theme.ink if bold else theme.ink_secondary,
                                      anchor="start" if sign > 0 else "end", baseline="middle", weight=weight))
         else:
             if thick < tw * 0.8 and thick < 16:
                 return
             if mode == "inside" and length > size * 2.2 and thick > tw + 6:
-                ctx.scene.add(S.Text(pos0 + thick / 2, p1 + (size + 4 if v >= 0 else -6), text, size, readable_on(color),
+                ctx.overlay.append(S.Text(pos0 + thick / 2, p1 + (size + 4 if v >= 0 else -6), text, size, readable_on(color),
                                      anchor="middle", weight=700))
             else:
                 y = p1 - 6 if v >= 0 else p1 + size + 4
-                ctx.scene.add(S.Text(pos0 + thick / 2, y, text, size, theme.ink if bold else theme.ink_secondary,
+                ctx.overlay.append(S.Text(pos0 + thick / 2, y, text, size, theme.ink if bold else theme.ink_secondary,
                                      anchor="middle", weight=weight))
 
     def legend_items(self, ctx):

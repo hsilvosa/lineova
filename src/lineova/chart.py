@@ -52,7 +52,7 @@ class Axis:
 
 _CHART_KEYS = {
     "title", "subtitle", "caption", "source", "theme", "width", "height", "size", "legend",
-    "palette", "highlight", "number", "background", "notes",
+    "palette", "highlight", "number", "background", "notes", "facet", "facet_cols", "share",
 }
 _AXIS_KEYS = {f.name for f in fields(Axis)}
 
@@ -67,7 +67,8 @@ class Chart(Renderable):
         self._opts: dict = {"theme": None, "title": None, "subtitle": None, "caption": None,
                             "source": None, "width": "auto", "height": "auto", "size": None,
                             "legend": "auto", "palette": "auto", "highlight": None, "number": None,
-                            "background": None, "notes": True}
+                            "background": None, "notes": True, "facet": None, "facet_cols": "auto",
+                            "share": "both", "panel": None}
         self._x = Axis()
         self._y = Axis()
         self.set(**options)
@@ -258,19 +259,30 @@ class Chart(Renderable):
     def resolved_theme(self):
         return themes.get(self._opts["theme"])
 
+    def facet(self, column: Any, cols: Any = "auto", share: str = "both") -> "Chart":
+        """Small multiples: one panel per value of ``column``, with shared axes and one legend."""
+        self._opts.update(facet=column, facet_cols=cols, share=share)
+        return self
+
     def build(self, raster_scale: float = 2.0) -> S.Scene:
         """Lay out and draw the chart into a backend-neutral ``Scene``."""
+        if self._opts.get("facet") is not None:
+            from .figure import facet_grid
+            return facet_grid(self).build(raster_scale)
         if not self._layers:
             if self.data is None:
                 raise ValueError("The chart has no layers. Add one, e.g. Chart(df).line(x='t', y='v').")
             self.line()
+        for layer in self._layers:
+            layer.prepare(self)
+        return self._build_prepared(raster_scale)
+
+    def _build_prepared(self, raster_scale: float = 2.0) -> S.Scene:
+        """Draw, assuming every layer's ``prepare`` has already run."""
         theme = self.resolved_theme
         if self._opts["background"]:
             theme = theme.replace(background=self._opts["background"])
         self._theme = theme
-        for layer in self._layers:
-            layer.prepare(self)
-
         W, H = self._resolve_size(theme)
         scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind,
                         description=self._opts["title"] or "")
@@ -399,9 +411,18 @@ class Chart(Renderable):
 
     def _draw_header(self, scene, theme, W, top) -> float:
         title, subtitle = self._opts["title"], self._opts["subtitle"]
+        pad = theme.padding
+        panel = self._opts.get("panel")
+        if panel is not None and title:
+            # a panel inside a grid: small heading; Folio uses the (a), (b) convention
+            size = theme.subtitle_size + 0.5
+            spans = None
+            if theme.caption_style == "figure":
+                spans = [(f"({panel}) ", 700, False, theme.ink), (str(title), 400, True, theme.ink)]
+            scene.add(S.Text(pad, top + size, str(title), size, theme.ink, weight=theme.title_weight, spans=spans))
+            return top + size + 10
         if theme.caption_style == "figure" or not (title or subtitle):
             return top
-        pad = theme.padding
         if theme.uppercase_header:
             y = pad + theme.title_size * 0.4
             if title:
@@ -432,6 +453,8 @@ class Chart(Renderable):
 
     def _draw_footer(self, scene, theme, W, bottom) -> float:
         pad = theme.padding
+        if self._opts.get("panel") is not None:
+            return bottom
         width = W - 2 * pad
         size = theme.font_size + (1.5 if theme.caption_style == "figure" else 0)
         lines: list[tuple[str, str, bool]] = []   # (text, colour, first-line-has-prefix)
@@ -536,6 +559,9 @@ class Chart(Renderable):
     # ------------------------------------------------------------------ cartesian
 
     def _domain(self, which: str) -> Domain:
+        forced = getattr(self, "_forced", None)
+        if forced and which in forced:
+            return forced[which]
         dom = None
         for layer in self._layers:
             d = layer.x_domain() if which == "x" else layer.y_domain()

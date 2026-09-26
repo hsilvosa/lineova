@@ -6,7 +6,7 @@ import numpy as np
 
 from .. import scene as S
 from .._color import rgb_array, ramp_lut
-from .._data import (as_float, interval_bounds, interval_spec, columns_of, DataError, factorize, get_column, guess_group, is_auto, is_frame,
+from .._data import (Chunks, as_float, interval_bounds, interval_spec, columns_of, DataError, factorize, get_column, guess_group, is_auto, is_frame,
                      resolve_xy, to_array, value_kind)
 from .._text import format_value
 from ..raster import CHUNK, bin_points, shade
@@ -47,8 +47,24 @@ class ScatterLayer(Layer):
         self.size_range = sizes
 
     # ---------------------------------------------------------------- data
+    def _prepare_chunked(self, chart) -> None:
+        from .. import stream
+        cx, cy, w, n, _ = stream.points(self.data, self.x, self.y)
+        name = self.label or (str(self.y) if isinstance(self.y, str) else "points")
+        self.groups = [_Group(name, cx, cy, extra={"_w": w})]
+        self.n = n
+        self.x_kind = "num"
+        self.x_label = str(self.x) if isinstance(self.x, str) else None
+        self.y_label = str(self.y) if isinstance(self.y, str) else None
+        self.continuous = None
+        self.size_lim = None
+        self.density = True
+        self.fit_result = None
+
     def prepare(self, chart) -> None:
         self.theme = chart.resolved_theme
+        if isinstance(self.data, Chunks):
+            return self._prepare_chunked(chart)
         data, color = self.data, self.color
         if is_auto(color):
             color = guess_group(data, columns_of(data), {v for v in (self.x, self.y, self.size) if isinstance(v, str)}) if (
@@ -259,8 +275,8 @@ class ScatterLayer(Layer):
         ylim = (min(ys.d0, ys.d1), max(ys.d0, ys.d1))
         xt = xs.transform if xs.kind == "log" else None
         yt = ys.transform if ys.kind == "log" else None
-        grids = [bin_points(g.x, g.y, xlim, ylim, (rows, cols), x_transform=xt, y_transform=yt)
-                 for g in self.groups]
+        grids = [bin_points(g.x, g.y, xlim, ylim, (rows, cols), x_transform=xt, y_transform=yt,
+                            weights=g.extra.get("_w")) for g in self.groups]
         colors = rgb_array([ctx.color(g.name, i) for i, g in enumerate(self.groups)])
         if len(grids) == 1:
             img = shade(grids[0], colors[0], self.shade_how)
