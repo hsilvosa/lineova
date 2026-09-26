@@ -19,6 +19,10 @@
 
 ---
 
+**lineova** is a Python library for charts and graphs. It draws everything from quick exploratory plots to publication-ready figures, with sensible defaults, and handles datasets of any size with NumPy as its only dependency.
+
+There are already great plotting libraries. I built this one because I wanted my own: a library I understand end to end and can keep shaping as my needs grow.
+
 ```python
 import lineova as lv
 
@@ -27,7 +31,7 @@ lv.line(df, x="date", y="price", color="market").save("prices.svg")
 
 That one call chooses the size, the ticks, number and date formats, the colours, the legend, and how to draw the data: vector marks for small data, pixel-exact reduction for millions of points. Every choice can be overridden, one option at a time.
 
-## Why lineova
+## What it offers
 
 - **Good output with no tuning.** Readable ticks, labels that don't collide, colour palettes checked for colour-blind readers, captions and sources where they belong.
 - **Four house styles** for four kinds of document: *Folio* for papers and theses, *Ledger* for business reports and dashboards, *Instrument* for engineering and monitoring, *Fjord* for public-facing reports and teaching.
