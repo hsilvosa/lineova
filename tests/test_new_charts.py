@@ -6,7 +6,6 @@ import pytest
 
 import lineova as lv
 from lineova import DataError
-from lineova import scene as S
 
 pd = pytest.importorskip("pandas")
 THEMES = ["folio", "ledger", "instrument", "fjord"]

@@ -10,7 +10,6 @@ import numpy as np
 
 from .. import scene as S
 from .._color import mix
-from .._data import is_auto
 from .._text import format_value
 from ..raster import CHUNK
 from ..reduce import sample_indices

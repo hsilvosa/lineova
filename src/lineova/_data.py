@@ -533,8 +533,7 @@ class Chunks:
 
     def __iter__(self):
         it = self.source() if callable(self.source) else self.source
-        for chunk in it:
-            yield chunk
+        yield from it
 
     def columns(self, *names):
         """Yield one tuple of float arrays per chunk for the requested columns (None = the chunk itself)."""

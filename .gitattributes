@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.py   text diff=python
+*.md   text
+*.svg  text -diff linguist-generated=true
+*.png  binary
+*.pdf  binary
+docs/gallery/** linguist-generated=true
+docs/api.md linguist-generated=true
+docs/use-cases.md linguist-generated=true

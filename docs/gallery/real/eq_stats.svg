@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1172" height="205.05" viewBox="0 0 1172 205.05" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>IGN earthquake catalogue</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">IGN earthquake catalogue</text>
+<g transform="translate(0 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Events in the catalogue</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">207k</text>
+</g>
+<g transform="translate(384 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Events in 2025</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">8,008</text>
+<rect x="16" y="77.5" width="63.63" height="19" rx="9.5" fill="#e2e4e7"/>
+<text x="23" y="90.85" font-size="11" fill="#475467" font-weight="700">▲ +17.3%</text>
+<path d="M19,134L19,120.75L27.51,124.96L36.02,123.34L44.53,124.55L53.05,123.3L61.56,122.76L70.07,122.14L78.58,121.43L87.09,119.46L95.6,124.71L104.12,124.32L112.63,119.21L121.14,123.88L129.65,126.87L138.16,124.84L146.67,125.38L155.19,123.8L163.7,124.79L172.21,123.49L180.72,122.55L189.23,122.14L197.74,123.24L206.26,121.72L214.77,122.62L223.28,122.8L231.79,125.77L240.3,123.36L248.81,120.96L257.33,122.76L265.84,122.43L274.35,119.73L282.86,118.82L291.37,123.16L299.88,120.02L308.4,120.58L316.91,120.46L325.42,123.01L333.93,109.85L342.44,118.86L350.95,119.86L359.47,120.64L367.98,117.45L376.49,109.5L385,131L385,134Z" fill="#2f5bd3" fill-opacity="0.12"/>
+<path d="M19,120.75L27.51,124.96L36.02,123.34L44.53,124.55L53.05,123.3L61.56,122.76L70.07,122.14L78.58,121.43L87.09,119.46L95.6,124.71L104.12,124.32L112.63,119.21L121.14,123.88L129.65,126.87L138.16,124.84L146.67,125.38L155.19,123.8L163.7,124.79L172.21,123.49L180.72,122.55L189.23,122.14L197.74,123.24L206.26,121.72L214.77,122.62L223.28,122.8L231.79,125.77L240.3,123.36L248.81,120.96L257.33,122.76L265.84,122.43L274.35,119.73L282.86,118.82L291.37,123.16L299.88,120.02L308.4,120.58L316.91,120.46L325.42,123.01L333.93,109.85L342.44,118.86L350.95,119.86L359.47,120.64L367.98,117.45L376.49,109.5L385,131" fill="none" stroke="#2f5bd3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="1.2">
+<circle cx="385" cy="131" r="3"/>
+</g>
+</g>
+<g transform="translate(768 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Largest magnitude</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">8.5</text>
+<text x="16" y="88.5" font-size="10.5" fill="#8a94a6">1761, SW of Cabo San Vicente</text>
+</g>
+</svg>

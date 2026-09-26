@@ -186,7 +186,7 @@ class LineLayer(Layer):
         if end_vals:
             size = theme.font_size
             ys = spread_labels([v[1] for v in end_vals], size * 1.2, ctx.plot.y, ctx.plot.bottom)
-            for (lx, ly, txt), y in zip(end_vals, ys):
+            for (lx, _ly, txt), y in zip(end_vals, ys):
                 ctx.overlay.append(S.Text(lx + 8, y, txt, size, theme.ink, baseline="middle", weight=600,
                                           halo=theme.background))
 

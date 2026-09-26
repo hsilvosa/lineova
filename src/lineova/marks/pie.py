@@ -125,7 +125,7 @@ class PieLayer(Layer):
                                          size, theme.ink_secondary, anchor=anchor))
         elif len(self.cats) <= 8:
             # small inside labels when there's no room outside
-            for i, (m, share, color) in enumerate(mids):
+            for m, share, color in mids:
                 if share < 0.06:
                     continue
                 rr = (r + r_in) / 2 if r_in else r * 0.62

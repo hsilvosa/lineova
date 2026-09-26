@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img">
+<desc>Daily price candles, 2025</desc>
+<defs><clipPath id="lv295890f5c1"><rect x="41" y="51.3" width="680" height="330.7"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#0f1a24"/>
+<text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">DAILY PRICE CANDLES, 2025</text>
+<text x="744" y="23.9" font-size="10" fill="#62788a" text-anchor="end" letter-spacing="0.4">€/MWH</text>
+<line x1="0" y1="33.9" x2="760" y2="33.9" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="16" y="424" font-size="10" fill="#62788a">Source: OMIE, Mercado diario</text>
+<line x1="42" y1="326.22" x2="720" y2="326.22" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="42" y1="271.43" x2="720" y2="271.43" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="42" y1="216.65" x2="720" y2="216.65" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="42" y1="161.87" x2="720" y2="161.87" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="42" y1="107.08" x2="720" y2="107.08" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="43.85" y1="52.3" x2="43.85" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="153.15" y1="52.3" x2="153.15" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="266.15" y1="52.3" x2="266.15" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="379.15" y1="52.3" x2="379.15" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="494" y1="52.3" x2="494" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="607" y1="52.3" x2="607" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<g clip-path="url(#lv295890f5c1)">
+<path d="M45.7,149.7L45.7,303.66M56.82,171.43L56.82,311.96M62.38,168.13L62.38,322.92M67.93,79.69L67.93,216.65M73.49,124.26L73.49,209.53M95.72,179.56L95.72,326.22M101.28,124.09L101.28,320.67M106.84,63.26L106.84,293.35M112.39,73.12L112.39,276.87M117.95,107.08L117.95,256.09M123.51,105.26L123.51,265.96M129.07,90.08L129.07,313.07M140.18,178.63L140.18,322.36M145.74,79.69L145.74,290.45M156.85,162.96L156.85,296.09M167.97,159.62L167.97,326.19M179.08,172.82L179.08,326.22M190.2,214.9L190.2,326.23M195.75,129.98L195.75,326.22M206.87,110.1L206.87,330.6M217.98,221.46L217.98,327.9M229.1,239.66L229.1,326.23M240.21,208.43L240.21,327.9M245.77,150.91L245.77,331.68M251.33,183.74L251.33,326.22M262.44,237.69L262.44,328.96M268,256.51L268,325.92M273.56,254.87L273.56,319.54M284.67,192.51L284.67,326.22M295.79,263.63L295.79,327.31M301.34,267.05L301.34,324.57M306.9,269.24L306.9,325.5M312.46,204.42L312.46,326.22M318.02,178.31L318.02,315.8M329.13,170.6L329.13,320.74M340.25,178.3L340.25,325.01M351.36,96.13L351.36,326.22M356.92,113.04L356.92,282.38M362.48,111.72L362.48,327.54M373.59,156.91L373.59,325.29M384.7,169.99L384.7,322.36M395.82,139.95L395.82,287.76M406.93,133.94L406.93,293.4M418.05,140.83L418.05,320.62M429.16,213.07L429.16,326.87M434.72,200.82L434.72,322.36M440.28,142.12L440.28,328.52M451.39,176.25L451.39,326.9M479.18,170.63L479.18,326.33M495.85,150.91L495.85,326.22M506.97,194.74L506.97,326.22M512.52,169.37L512.52,326.22M523.64,90.65L523.64,319.91M534.75,198.99L534.75,326.23M540.31,134.46L540.31,319.64M545.87,107.81L545.87,316.87M551.43,74.21L551.43,318.91M568.1,189.93L568.1,326.04M573.66,137.4L573.66,260.37M590.33,145.56L590.33,326.22M595.89,151.06L595.89,325.13M608.85,154.03L608.85,326.22M619.97,191.52L619.97,325.5M631.08,245.73L631.08,320.62M636.64,156.96L636.64,326.22M654.24,152.9L654.24,325.5M677.39,167.35L677.39,319.91M694.07,159.04L694.07,297.73M705.18,216.51L705.18,315.6" fill="none" stroke="#62a846" stroke-width="1" stroke-linejoin="round"/>
+<rect x="43.82" y="176.75" width="3.78" height="2.11" fill="#62a846"><title>O 134  H 161  L 20.6  C 136</title></rect>
+<rect x="54.93" y="215.55" width="3.78" height="4.08" fill="#62a846"><title>O 97.3  H 141  L 13  C 101</title></rect>
+<rect x="60.49" y="200.32" width="3.78" height="16.33" fill="#62a846"><title>O 100  H 144  L 3.01  C 115</title></rect>
+<rect x="66.04" y="190.46" width="3.78" height="12.61" fill="#62a846"><title>O 112  H 225  L 100  C 124</title></rect>
+<rect x="71.6" y="170.42" width="3.78" height="19.57" fill="#62a846"><title>O 124  H 184  L 106  C 142</title></rect>
+<rect x="93.83" y="239.66" width="3.78" height="82.7" fill="#62a846"><title>O 3.52  H 134  L 0  C 79</title></rect>
+<rect x="99.39" y="180.23" width="3.78" height="79.15" fill="#62a846"><title>O 61  H 184  L 5.06  C 133</title></rect>
+<rect x="104.95" y="176.17" width="3.78" height="22.5" fill="#62a846"><title>O 116  H 240  L 30  C 137</title></rect>
+<rect x="110.5" y="167.01" width="3.78" height="12.75" fill="#62a846"><title>O 134  H 231  L 45  C 145</title></rect>
+<rect x="116.06" y="183.14" width="3.78" height="0.8" fill="#62a846"><title>O 130  H 200  L 64  C 131</title></rect>
+<rect x="121.62" y="172.79" width="3.78" height="20.78" fill="#62a846"><title>O 121  H 202  L 55  C 140</title></rect>
+<rect x="127.18" y="183.12" width="3.78" height="8.79" fill="#62a846"><title>O 123  H 216  L 12  C 131</title></rect>
+<rect x="138.29" y="238.89" width="3.78" height="7.47" fill="#62a846"><title>O 72.9  H 135  L 3.52  C 79.7</title></rect>
+<rect x="143.85" y="189.26" width="3.78" height="50.17" fill="#62a846"><title>O 79.2  H 225  L 32.6  C 125</title></rect>
+<rect x="154.96" y="213.69" width="3.78" height="44.59" fill="#62a846"><title>O 62  H 149  L 27.5  C 103</title></rect>
+<rect x="166.08" y="225.42" width="3.78" height="69.03" fill="#62a846"><title>O 29  H 152  L 0.02  C 92</title></rect>
+<rect x="177.19" y="228.7" width="3.78" height="43" fill="#62a846"><title>O 49.8  H 140  L 0  C 89</title></rect>
+<rect x="188.31" y="287.86" width="3.78" height="29.71" fill="#62a846"><title>O 7.89  H 102  L −0.01  C 35</title></rect>
+<rect x="193.86" y="217.75" width="3.78" height="70.11" fill="#62a846"><title>O 35  H 179  L 0  C 99</title></rect>
+<rect x="204.98" y="222.12" width="3.78" height="89.54" fill="#62a846"><title>O 13.3  H 197  L −4  C 95</title></rect>
+<rect x="216.09" y="253.49" width="3.78" height="68.79" fill="#62a846"><title>O 3.6  H 95.6  L −1.54  C 66.4</title></rect>
+<rect x="227.21" y="276.27" width="3.78" height="13.05" fill="#62a846"><title>O 33.7  H 79  L −0.01  C 45.6</title></rect>
+<rect x="238.32" y="303.15" width="3.78" height="5.29" fill="#62a846"><title>O 16.2  H 108  L −1.54  C 21.1</title></rect>
+<rect x="243.88" y="218.62" width="3.78" height="98.83" fill="#62a846"><title>O 8  H 160  L −4.99  C 98.2</title></rect>
+<rect x="249.44" y="224.21" width="3.78" height="8.77" fill="#62a846"><title>O 85.1  H 130  L 0  C 93.1</title></rect>
+<rect x="260.55" y="283.95" width="3.78" height="15.28" fill="#62a846"><title>O 24.6  H 80.8  L −2.5  C 38.6</title></rect>
+<rect x="266.11" y="274.33" width="3.78" height="19.9" fill="#62a846"><title>O 29.2  H 63.6  L 0.27  C 47.4</title></rect>
+<rect x="271.67" y="273.87" width="3.78" height="12.76" fill="#62a846"><title>O 36.1  H 65.1  L 6.09  C 47.8</title></rect>
+<rect x="282.78" y="249.04" width="3.78" height="45.16" fill="#62a846"><title>O 29.2  H 122  L 0  C 70.4</title></rect>
+<rect x="293.9" y="289.01" width="3.78" height="31.61" fill="#62a846"><title>O 5.11  H 57.1  L −1  C 34</title></rect>
+<rect x="299.45" y="296.38" width="3.78" height="7.02" fill="#62a846"><title>O 20.8  H 54  L 1.5  C 27.2</title></rect>
+<rect x="305.01" y="285.68" width="3.78" height="26.23" fill="#62a846"><title>O 13.1  H 52  L 0.65  C 37</title></rect>
+<rect x="310.57" y="243.7" width="3.78" height="49.64" fill="#62a846"><title>O 30  H 111  L 0  C 75.3</title></rect>
+<rect x="316.13" y="212.98" width="3.78" height="74.88" fill="#62a846"><title>O 35  H 135  L 9.51  C 103</title></rect>
+<rect x="327.24" y="196.67" width="3.78" height="41.9" fill="#62a846"><title>O 80  H 142  L 5  C 118</title></rect>
+<rect x="338.36" y="206.15" width="3.78" height="20.8" fill="#62a846"><title>O 90.6  H 135  L 1.1  C 110</title></rect>
+<rect x="349.47" y="186.07" width="3.78" height="44.31" fill="#62a846"><title>O 87.5  H 210  L 0  C 128</title></rect>
+<rect x="355.03" y="181.36" width="3.78" height="4.21" fill="#62a846"><title>O 128  H 195  L 40  C 132</title></rect>
+<rect x="360.59" y="177.4" width="3.78" height="7.59" fill="#62a846"><title>O 129  H 196  L −1.21  C 136</title></rect>
+<rect x="371.7" y="179.82" width="3.78" height="19.32" fill="#62a846"><title>O 116  H 155  L 0.85  C 134</title></rect>
+<rect x="382.82" y="194.74" width="3.78" height="8.81" fill="#62a846"><title>O 112  H 143  L 3.52  C 120</title></rect>
+<rect x="393.93" y="183.78" width="3.78" height="21.23" fill="#62a846"><title>O 111  H 170  L 35.1  C 130</title></rect>
+<rect x="405.04" y="193.9" width="3.78" height="8.33" fill="#62a846"><title>O 113  H 175  L 29.9  C 121</title></rect>
+<rect x="416.16" y="216.22" width="3.78" height="38.79" fill="#62a846"><title>O 65  H 169  L 5.11  C 100</title></rect>
+<rect x="427.27" y="234.04" width="3.78" height="12.48" fill="#62a846"><title>O 72.7  H 103  L −0.6  C 84.1</title></rect>
+<rect x="432.83" y="221.68" width="3.78" height="31.46" fill="#62a846"><title>O 66.7  H 114  L 3.52  C 95.4</title></rect>
+<rect x="438.39" y="200.17" width="3.78" height="18.89" fill="#62a846"><title>O 97.8  H 168  L −2.1  C 115</title></rect>
+<rect x="449.5" y="202.43" width="3.78" height="7.06" fill="#62a846"><title>O 107  H 137  L −0.62  C 113</title></rect>
+<rect x="477.29" y="200.57" width="3.78" height="21.2" fill="#62a846"><title>O 95.3  H 142  L −0.1  C 115</title></rect>
+<rect x="493.96" y="215.71" width="3.78" height="71.3" fill="#62a846"><title>O 35.8  H 160  L 0  C 101</title></rect>
+<rect x="505.08" y="218.76" width="3.78" height="82.25" fill="#62a846"><title>O 23  H 120  L 0  C 98.1</title></rect>
+<rect x="510.64" y="219.55" width="3.78" height="8.12" fill="#62a846"><title>O 89.9  H 143  L 0  C 97.3</title></rect>
+<rect x="521.75" y="208.27" width="3.78" height="30.28" fill="#62a846"><title>O 80  H 215  L 5.76  C 108</title></rect>
+<rect x="532.86" y="235.19" width="3.78" height="57.17" fill="#62a846"><title>O 30.9  H 116  L −0.01  C 83.1</title></rect>
+<rect x="538.42" y="225.59" width="3.78" height="9.18" fill="#62a846"><title>O 83.5  H 175  L 6  C 91.8</title></rect>
+<rect x="543.98" y="215.01" width="3.78" height="41.62" fill="#62a846"><title>O 63.5  H 199  L 8.53  C 102</title></rect>
+<rect x="549.54" y="203.53" width="3.78" height="7.53" fill="#62a846"><title>O 105  H 230  L 6.67  C 112</title></rect>
+<rect x="566.21" y="209.2" width="3.78" height="9.39" fill="#62a846"><title>O 98.2  H 124  L 0.16  C 107</title></rect>
+<rect x="571.77" y="205.43" width="3.78" height="9.72" fill="#62a846"><title>O 101  H 172  L 60.1  C 110</title></rect>
+<rect x="588.44" y="219.86" width="3.78" height="55" fill="#62a846"><title>O 46.9  H 165  L 0  C 97.1</title></rect>
+<rect x="594" y="209.69" width="3.78" height="8.17" fill="#62a846"><title>O 98.9  H 160  L 0.99  C 106</title></rect>
+<rect x="606.96" y="231.84" width="3.78" height="40.36" fill="#62a846"><title>O 49.3  H 157  L 0  C 86.1</title></rect>
+<rect x="618.08" y="236.14" width="3.78" height="18.25" fill="#62a846"><title>O 65.5  H 123  L 0.65  C 82.2</title></rect>
+<rect x="629.19" y="287.85" width="3.78" height="3.69" fill="#62a846"><title>O 31.6  H 73.5  L 5.11  C 35</title></rect>
+<rect x="634.75" y="226.52" width="3.78" height="50.39" fill="#62a846"><title>O 45  H 154  L 0  C 91</title></rect>
+<rect x="652.35" y="218.6" width="3.78" height="56.83" fill="#62a846"><title>O 46.4  H 158  L 0.65  C 98.2</title></rect>
+<rect x="675.5" y="215.47" width="3.78" height="31.84" fill="#62a846"><title>O 72  H 145  L 5.76  C 101</title></rect>
+<rect x="692.18" y="216.65" width="3.78" height="14.51" fill="#62a846"><title>O 86.8  H 153  L 26  C 100</title></rect>
+<rect x="703.29" y="229.79" width="3.78" height="8.78" fill="#62a846"><title>O 80  H 100  L 9.69  C 88</title></rect>
+<path d="M51.26,167.35L51.26,322.36M79.05,139.95L79.05,214.08M84.61,110.91L84.61,243.96M90.16,220.63L90.16,325.5M134.62,103.58L134.62,318.51M151.3,86.18L151.3,291.45M162.41,188.14L162.41,317.65M173.52,132.62L173.52,250.51M184.64,139.95L184.64,326.22M201.31,161.87L201.31,326.33M212.43,151.6L212.43,326.24M223.54,139.94L223.54,327.33M234.66,244.11L234.66,327.87M256.89,215.88L256.89,331.7M279.11,238.27L279.11,298.43M290.23,185.89L290.23,322.38M323.57,208.98L323.57,323.59M334.69,172.45L334.69,327.32M345.8,172.12L345.8,326.62M368.03,151.33L368.03,323.54M379.15,134.46L379.15,248.82M390.26,203.32L390.26,325.5M401.38,178.72L401.38,326.22M412.49,195.41L412.49,327.32M423.61,211.48L423.61,326.22M445.84,139.95L445.84,325.49M456.95,156.28L456.95,316.36M462.51,162.94L462.51,326.22M468.07,182.41L468.07,325.5M473.62,211.69L473.62,321.49M484.74,188.22L484.74,326.21M490.3,208.85L490.3,327.29M501.41,202.42L501.41,327.3M518.08,188.02L518.08,326.23M529.2,189.04L529.2,326.9M556.98,126.16L556.98,329.11M562.54,128.11L562.54,305.39M579.21,149.43L579.21,324.55M584.77,203.5L584.77,326.22M602.37,150.68L602.37,312.41M614.41,186.64L614.41,325.01M625.52,161.86L625.52,326.22M642.2,151.26L642.2,326.13M647.75,210.12L647.75,326.22M660.72,151.26L660.72,282.39M666.28,172.76L666.28,310.88M671.84,222.12L671.84,325.67M682.95,189.49L682.95,263.2M688.51,171.97L688.51,263.69M699.62,214.39L699.62,298.82M710.74,194.92L710.74,274.01M716.3,144.88L716.3,253.1" fill="none" stroke="#d2567f" stroke-width="1" stroke-linejoin="round"/>
+<rect x="49.37" y="202.58" width="3.78" height="25.03" fill="#d2567f"><title>O 113  H 145  L 3.52  C 90</title></rect>
+<rect x="77.16" y="178.89" width="3.78" height="9.54" fill="#d2567f"><title>O 134  H 170  L 102  C 126</title></rect>
+<rect x="82.72" y="190.87" width="3.78" height="35.97" fill="#d2567f"><title>O 124  H 197  L 75.1  C 90.7</title></rect>
+<rect x="88.27" y="263.73" width="3.78" height="33.75" fill="#d2567f"><title>O 57  H 96.4  L 0.65  C 26.2</title></rect>
+<rect x="132.73" y="212.44" width="3.78" height="17.36" fill="#d2567f"><title>O 104  H 203  L 7.03  C 88</title></rect>
+<rect x="149.41" y="198.55" width="3.78" height="55.05" fill="#d2567f"><title>O 117  H 219  L 31.7  C 66.3</title></rect>
+<rect x="160.52" y="231.99" width="3.78" height="46.19" fill="#d2567f"><title>O 86  H 126  L 7.82  C 43.8</title></rect>
+<rect x="171.64" y="226.51" width="3.78" height="9.97" fill="#d2567f"><title>O 91  H 177  L 69.1  C 81.9</title></rect>
+<rect x="182.75" y="234.67" width="3.78" height="73.91" fill="#d2567f"><title>O 83.5  H 170  L 0  C 16.1</title></rect>
+<rect x="199.42" y="274.29" width="3.78" height="29.13" fill="#d2567f"><title>O 47.4  H 150  L −0.1  C 20.8</title></rect>
+<rect x="210.54" y="227.61" width="3.78" height="87.54" fill="#d2567f"><title>O 90  H 159  L −0.02  C 10.1</title></rect>
+<rect x="221.65" y="273.22" width="3.78" height="12.85" fill="#d2567f"><title>O 48.4  H 170  L −1.02  C 36.6</title></rect>
+<rect x="232.77" y="287.87" width="3.78" height="14.84" fill="#d2567f"><title>O 35  H 74.9  L −1.51  C 21.5</title></rect>
+<rect x="255" y="244.87" width="3.78" height="37.52" fill="#d2567f"><title>O 74.2  H 101  L −5  C 40</title></rect>
+<rect x="277.23" y="275.36" width="3.78" height="7.3" fill="#d2567f"><title>O 46.4  H 80.3  L 25.4  C 39.8</title></rect>
+<rect x="288.34" y="252.81" width="3.78" height="51.52" fill="#d2567f"><title>O 67  H 128  L 3.5  C 20</title></rect>
+<rect x="321.68" y="208.98" width="3.78" height="44.37" fill="#d2567f"><title>O 107  H 107  L 2.4  C 66.5</title></rect>
+<rect x="332.8" y="183.73" width="3.78" height="34.24" fill="#d2567f"><title>O 130  H 140  L −1.01  C 98.8</title></rect>
+<rect x="343.91" y="211.62" width="3.78" height="3.96" fill="#d2567f"><title>O 105  H 141  L −0.37  C 101</title></rect>
+<rect x="366.14" y="183.98" width="3.78" height="11.01" fill="#d2567f"><title>O 130  H 160  L 2.44  C 120</title></rect>
+<rect x="377.26" y="188.71" width="3.78" height="16.71" fill="#d2567f"><title>O 126  H 175  L 70.6  C 110</title></rect>
+<rect x="388.37" y="203.32" width="3.78" height="6.69" fill="#d2567f"><title>O 112  H 112  L 0.65  C 106</title></rect>
+<rect x="399.49" y="194.98" width="3.78" height="1.67" fill="#d2567f"><title>O 120  H 135  L 0  C 118</title></rect>
+<rect x="410.6" y="201.31" width="3.78" height="41.35" fill="#d2567f"><title>O 114  H 119  L −1.01  C 76.3</title></rect>
+<rect x="421.72" y="222.13" width="3.78" height="4.76" fill="#d2567f"><title>O 95  H 105  L 0  C 90.7</title></rect>
+<rect x="443.95" y="172.06" width="3.78" height="33.64" fill="#d2567f"><title>O 141  H 170  L 0.66  C 110</title></rect>
+<rect x="455.06" y="206.02" width="3.78" height="3.76" fill="#d2567f"><title>O 110  H 155  L 9  C 106</title></rect>
+<rect x="460.62" y="187.21" width="3.78" height="10.1" fill="#d2567f"><title>O 127  H 149  L 0  C 118</title></rect>
+<rect x="466.18" y="196.29" width="3.78" height="21.45" fill="#d2567f"><title>O 119  H 131  L 0.65  C 99</title></rect>
+<rect x="471.73" y="221.49" width="3.78" height="1.33" fill="#d2567f"><title>O 95.6  H 105  L 4.31  C 94.4</title></rect>
+<rect x="482.85" y="209.24" width="3.78" height="20.46" fill="#d2567f"><title>O 107  H 126  L 0.01  C 88.1</title></rect>
+<rect x="488.41" y="235.61" width="3.78" height="22.68" fill="#d2567f"><title>O 82.7  H 107  L −0.98  C 62</title></rect>
+<rect x="499.52" y="226.25" width="3.78" height="56.69" fill="#d2567f"><title>O 91.2  H 113  L −0.99  C 39.5</title></rect>
+<rect x="516.19" y="214.13" width="3.78" height="17.89" fill="#d2567f"><title>O 102  H 126  L −0.01  C 86</title></rect>
+<rect x="527.31" y="202.33" width="3.78" height="82.15" fill="#d2567f"><title>O 113  H 125  L −0.62  C 38.1</title></rect>
+<rect x="555.09" y="203.39" width="3.78" height="21.85" fill="#d2567f"><title>O 112  H 183  L −2.64  C 92.2</title></rect>
+<rect x="560.65" y="203.94" width="3.78" height="34.16" fill="#d2567f"><title>O 112  H 181  L 19  C 80.4</title></rect>
+<rect x="577.32" y="196.05" width="3.78" height="16.46" fill="#d2567f"><title>O 119  H 161  L 1.52  C 104</title></rect>
+<rect x="582.88" y="220.59" width="3.78" height="53.86" fill="#d2567f"><title>O 96.4  H 112  L 0  C 47.2</title></rect>
+<rect x="600.48" y="207.18" width="3.78" height="56.36" fill="#d2567f"><title>O 109  H 160  L 12.6  C 57.2</title></rect>
+<rect x="612.52" y="237.97" width="3.78" height="17.03" fill="#d2567f"><title>O 80.5  H 127  L 1.1  C 65</title></rect>
+<rect x="623.64" y="225.94" width="3.78" height="80.15" fill="#d2567f"><title>O 91.5  H 150  L 0  C 18.4</title></rect>
+<rect x="640.31" y="191.91" width="3.78" height="40.01" fill="#d2567f"><title>O 123  H 160  L 0.08  C 86.1</title></rect>
+<rect x="645.86" y="221.38" width="3.78" height="45.19" fill="#d2567f"><title>O 95.7  H 106  L 0  C 54.4</title></rect>
+<rect x="658.83" y="205.32" width="3.78" height="22.29" fill="#d2567f"><title>O 110  H 160  L 40  C 90</title></rect>
+<rect x="664.39" y="235.78" width="3.78" height="27.44" fill="#d2567f"><title>O 82.5  H 140  L 14  C 57.5</title></rect>
+<rect x="669.95" y="242.86" width="3.78" height="7.78" fill="#d2567f"><title>O 76.1  H 95  L 0.5  C 69</title></rect>
+<rect x="681.06" y="202.69" width="3.78" height="35.87" fill="#d2567f"><title>O 113  H 125  L 57.5  C 80</title></rect>
+<rect x="686.62" y="219.39" width="3.78" height="20.27" fill="#d2567f"><title>O 97.5  H 141  L 57.1  C 79</title></rect>
+<rect x="697.73" y="220.35" width="3.78" height="29.17" fill="#d2567f"><title>O 96.6  H 102  L 25  C 70</title></rect>
+<rect x="708.85" y="209.58" width="3.78" height="26.89" fill="#d2567f"><title>O 106  H 120  L 47.6  C 81.9</title></rect>
+<rect x="714.41" y="213.3" width="3.78" height="7.4" fill="#d2567f"><title>O 103  H 166  L 66.7  C 96.3</title></rect>
+</g>
+<rect x="42" y="52.3" width="678" height="328.7" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="43.85" y1="381" x2="43.85" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="43.85" y1="52.3" x2="43.85" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="43.85" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Jan 2025</text>
+<line x1="153.15" y1="381" x2="153.15" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="153.15" y1="52.3" x2="153.15" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="153.15" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Mar</text>
+<line x1="266.15" y1="381" x2="266.15" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="266.15" y1="52.3" x2="266.15" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="266.15" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">May</text>
+<line x1="379.15" y1="381" x2="379.15" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="379.15" y1="52.3" x2="379.15" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="379.15" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Jul</text>
+<line x1="494" y1="381" x2="494" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="494" y1="52.3" x2="494" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="494" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Sep</text>
+<line x1="607" y1="381" x2="607" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="607" y1="52.3" x2="607" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="607" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Nov</text>
+<line x1="720" y1="381" x2="720" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="52.3" x2="720" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="720" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Jan 2026</text>
+<line x1="42" y1="381" x2="47" y2="381" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="381" x2="715" y2="381" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="384.5" font-size="10" fill="#62788a" text-anchor="end">−50</text>
+<line x1="42" y1="326.22" x2="47" y2="326.22" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="326.22" x2="715" y2="326.22" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="329.72" font-size="10" fill="#62788a" text-anchor="end">0</text>
+<line x1="42" y1="271.43" x2="47" y2="271.43" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="271.43" x2="715" y2="271.43" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="274.93" font-size="10" fill="#62788a" text-anchor="end">50</text>
+<line x1="42" y1="216.65" x2="47" y2="216.65" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="216.65" x2="715" y2="216.65" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="220.15" font-size="10" fill="#62788a" text-anchor="end">100</text>
+<line x1="42" y1="161.87" x2="47" y2="161.87" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="161.87" x2="715" y2="161.87" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="165.37" font-size="10" fill="#62788a" text-anchor="end">150</text>
+<line x1="42" y1="107.08" x2="47" y2="107.08" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="107.08" x2="715" y2="107.08" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="110.58" font-size="10" fill="#62788a" text-anchor="end">200</text>
+<line x1="42" y1="52.3" x2="47" y2="52.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="720" y1="52.3" x2="715" y2="52.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="35" y="55.8" font-size="10" fill="#62788a" text-anchor="end">250</text>
+</svg>

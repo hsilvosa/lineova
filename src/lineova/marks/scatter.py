@@ -49,7 +49,7 @@ class ScatterLayer(Layer):
     # ---------------------------------------------------------------- data
     def _prepare_chunked(self, chart) -> None:
         from .. import stream
-        cx, cy, w, n, _ = stream.points(self.data, self.x, self.y)
+        cx, cy, w, n, _ = stream.points(self.data, self.x, self.y, xlim=chart._x.range, ylim=chart._y.range)
         name = self.label or (str(self.y) if isinstance(self.y, str) else "points")
         self.groups = [_Group(name, cx, cy, extra={"_w": w})]
         self.n = n
@@ -267,7 +267,6 @@ class ScatterLayer(Layer):
         ctx.overlay.append(S.Polyline(xs2, ys2, stroke=color, stroke_width=1.0, opacity=0.7, cap="butt"))
 
     def _draw_density(self, ctx):
-        theme = ctx.theme
         xs, ys = ctx.xs, ctx.ys
         rs = ctx.raster_scale
         rows, cols = max(1, int(round(ctx.plot.h * rs))), max(1, int(round(ctx.plot.w * rs)))

@@ -1,0 +1,16 @@
+name: Feature request
+description: A new chart type, option or improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What are you trying to show or do?
+      description: Describe the data and the question the chart should answer. Links to examples you like are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: api
+    attributes:
+      label: How would you like to call it?
+      render: python

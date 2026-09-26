@@ -5,13 +5,14 @@ from __future__ import annotations
 import copy
 import math
 import string
-from typing import Any, Optional, Sequence
+from typing import Any, Optional
+from collections.abc import Sequence
 
 from . import scene as S
 from . import themes
 from ._data import DataError, factorize, get_column, ordered_categories, subset, to_array
 from ._output import Renderable
-from .marks._base import DrawContext, LegendItem, Plot
+from .marks._base import DrawContext, Plot
 
 _AUTO = "auto"
 

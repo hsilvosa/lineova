@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use lineova in your work, please cite it as below."
+title: "lineova: clean, fast charts from Python"
+abstract: "A Python charting library with automatic defaults, four house styles, 23 chart types, vector and raster output, and rendering that scales to hundreds of millions of points."
+type: software
+authors:
+  - family-names: "Silvosa Cuervo"
+    given-names: "Hugo"
+version: 0.2.0
+date-released: 2026-09-26
+license: MIT
+repository-code: "https://github.com/hsilvosa/lineova"
+url: "https://hsilvosa.github.io/lineova/"
+keywords: [visualization, charts, plotting, svg, pdf, big data, graphs]

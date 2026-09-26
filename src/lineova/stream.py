@@ -60,16 +60,24 @@ def line(chunks: Chunks, x, y, columns: int = LINE_COLUMNS):
     return (*m4(x_all, y_all, (lo[0], hi[0]), columns), n)
 
 
-def points(chunks: Chunks, x, y, bins: int = GRID_2D):
-    """Two passes: extent, then a fine 2-D histogram. Returns bin centres and counts (non-empty bins)."""
+def points(chunks: Chunks, x, y, bins: int = GRID_2D, xlim=None, ylim=None):
+    """Two passes: extent, then a fine 2-D histogram. Returns bin centres and counts (non-empty bins).
+
+    ``xlim``/``ylim`` (from the chart's axis ranges) focus the grid on the visible area, so a long
+    tail of outliers doesn't make the grid coarse.
+    """
     lo, hi, n = extent(chunks, x, y)
+    for i, lim in enumerate((xlim, ylim)):
+        if lim is not None:
+            lo[i] = lim[0] if lim[0] is not None else lo[i]
+            hi[i] = lim[1] if lim[1] is not None else hi[i]
     sx = bins / ((hi[0] - lo[0]) or 1.0)
     sy = bins / ((hi[1] - lo[1]) or 1.0)
     grid = np.zeros(bins * bins, dtype=np.int64)
     for xc, yc in chunks.columns(x, y):
         fx = (xc - lo[0]) * sx
         fy = (yc - lo[1]) * sy
-        ok = np.isfinite(fx) & np.isfinite(fy)
+        ok = np.isfinite(fx) & np.isfinite(fy) & (fx >= 0) & (fx <= bins) & (fy >= 0) & (fy <= bins)
         ix = np.clip(fx[ok].astype(np.int64), 0, bins - 1)
         iy = np.clip(fy[ok].astype(np.int64), 0, bins - 1)
         grid += np.bincount(iy * bins + ix, minlength=bins * bins)

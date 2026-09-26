@@ -5,18 +5,25 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "lineova"
 version = "0.2.0"
-description = "Clean, fast charts with good defaults: four house styles, any data size."
+description = "Clean, fast charts from Python, with good defaults and one dependency: 23 chart types, four styles, any data size."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"
 authors = [{ name = "Hugo Silvosa Cuervo" }]
-keywords = ["charts", "plotting", "visualization", "svg", "graphs", "network"]
+keywords = ["charts", "plotting", "visualization", "dataviz", "svg", "pdf", "big data", "graphs", "network"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: OS Independent",
+  "Framework :: Jupyter",
   "Topic :: Scientific/Engineering :: Visualization",
   "Typing :: Typed",
 ]
@@ -25,10 +32,14 @@ dependencies = ["numpy>=1.23"]
 [project.optional-dependencies]
 png = ["resvg-py>=0.1"]
 pandas = ["pandas>=1.5"]
-dev = ["pytest>=7", "pandas>=1.5"]
+dev = ["pytest>=7", "pandas>=1.5", "networkx>=3", "ruff>=0.5"]
+docs = ["mkdocs-material>=9.5"]
 
 [project.urls]
-Homepage = "https://github.com/hugo/lineova"
+Homepage = "https://github.com/hsilvosa/lineova"
+Documentation = "https://hsilvosa.github.io/lineova/"
+Changelog = "https://github.com/hsilvosa/lineova/blob/main/CHANGELOG.md"
+Issues = "https://github.com/hsilvosa/lineova/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -42,3 +53,12 @@ addopts = "-q"
 
 [tool.ruff]
 line-length = 140
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP"]
+ignore = ["E501", "E741", "B905", "B028", "UP007", "UP045"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B"]
+"examples/*" = ["E402"]

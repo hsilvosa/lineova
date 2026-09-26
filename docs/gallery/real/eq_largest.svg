@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Largest earthquakes since 1950</desc>
+<defs><clipPath id="lv444dfc8cc1"><rect x="210.44" y="67.65" width="531.34" height="261.45"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Largest earthquakes since 1950</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">Magnitude</text>
+<text x="16" y="374" font-size="11" fill="#8a94a6">Source: IGN, Catálogo de terremotos (doi:10.7419/162.03.2022)</text>
+<g clip-path="url(#lv444dfc8cc1)">
+<path d="M211.44,90.96L727.56,90.96L727.56,72.28L211.44,72.28Z" fill="#2f5bd3"><title>Durcal.Gr (1954): 7.8</title></path>
+<path d="M211.44,116.91L727.56,116.91L727.56,98.23L211.44,98.23Z" fill="#2f5bd3"><title>Sw Cabo De San Vicente (1969): 7.8</title></path>
+<path d="M211.44,142.85L727.56,142.85L727.56,124.17L211.44,124.17Z" fill="#2f5bd3"><title>Azores-Cabo De San Vicente (1975): 7.8</title></path>
+<path d="M211.44,168.8L681.24,168.8L681.24,150.12L211.44,150.12Z" fill="#2f5bd3"><title>E Chlef.Arg (1980): 7.1</title></path>
+<path d="M211.44,194.74L661.39,194.74L661.39,176.06L211.44,176.06Z" fill="#2f5bd3"><title>E Boumerdas.Arg (2003): 6.8</title></path>
+<path d="M211.44,220.69L661.39,220.69L661.39,202.01L211.44,202.01Z" fill="#2f5bd3"><title>Morocco (2023): 6.8</title></path>
+<path d="M211.44,246.63L654.77,246.63L654.77,227.95L211.44,227.95Z" fill="#2f5bd3"><title>El Asnam.Arg (1954): 6.7</title></path>
+<path d="M211.44,272.58L628.3,272.58L628.3,253.9L211.44,253.9Z" fill="#2f5bd3"><title>Bir Hadada.Arg (1963): 6.3</title></path>
+<path d="M211.44,298.52L628.3,298.52L628.3,279.84L211.44,279.84Z" fill="#2f5bd3"><title>Alborán Sur (2016): 6.3</title></path>
+<path d="M211.44,324.47L621.69,324.47L621.69,305.79L211.44,305.79Z" fill="#2f5bd3"><title>Golfo De Cádiz (1964): 6.2</title></path>
+</g>
+<text x="733.56" y="85.47" font-size="11" fill="#475467">7.8</text>
+<text x="733.56" y="111.42" font-size="11" fill="#475467">7.8</text>
+<text x="733.56" y="137.36" font-size="11" fill="#475467">7.8</text>
+<text x="687.24" y="163.31" font-size="11" fill="#475467">7.1</text>
+<text x="667.39" y="189.25" font-size="11" fill="#475467">6.8</text>
+<text x="667.39" y="215.2" font-size="11" fill="#475467">6.8</text>
+<text x="660.77" y="241.14" font-size="11" fill="#475467">6.7</text>
+<text x="634.3" y="267.09" font-size="11" fill="#475467">6.3</text>
+<text x="634.3" y="293.03" font-size="11" fill="#475467">6.3</text>
+<text x="627.69" y="318.98" font-size="11" fill="#475467">6.2</text>
+<line x1="211.44" y1="68.65" x2="211.44" y2="328.1" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="211.44" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">0</text>
+<text x="277.61" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">1</text>
+<text x="343.78" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">2</text>
+<text x="409.95" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">3</text>
+<text x="476.12" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">4</text>
+<text x="542.29" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">5</text>
+<text x="608.45" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">6</text>
+<text x="674.62" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">7</text>
+<text x="740.79" y="342.68" font-size="11" fill="#8a94a6" text-anchor="middle">8</text>
+<text x="204.44" y="318.98" font-size="11" fill="#8a94a6" text-anchor="end">Golfo De Cádiz (1964)</text>
+<text x="204.44" y="293.03" font-size="11" fill="#8a94a6" text-anchor="end">Alborán Sur (2016)</text>
+<text x="204.44" y="267.09" font-size="11" fill="#8a94a6" text-anchor="end">Bir Hadada.Arg (1963)</text>
+<text x="204.44" y="241.14" font-size="11" fill="#8a94a6" text-anchor="end">El Asnam.Arg (1954)</text>
+<text x="204.44" y="215.2" font-size="11" fill="#8a94a6" text-anchor="end">Morocco (2023)</text>
+<text x="204.44" y="189.25" font-size="11" fill="#8a94a6" text-anchor="end">E Boumerdas.Arg (2003)</text>
+<text x="204.44" y="163.31" font-size="11" fill="#8a94a6" text-anchor="end">E Chlef.Arg (1980)</text>
+<text x="204.44" y="137.36" font-size="11" fill="#8a94a6" text-anchor="end">Azores-Cabo De San Vicente (1975)</text>
+<text x="204.44" y="111.42" font-size="11" fill="#8a94a6" text-anchor="end">Sw Cabo De San Vicente (1969)</text>
+<text x="204.44" y="85.47" font-size="11" fill="#8a94a6" text-anchor="end">Durcal.Gr (1954)</text>
+</svg>

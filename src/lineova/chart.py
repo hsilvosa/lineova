@@ -7,7 +7,6 @@ as a keyword (``lv.line(df, y_range=(0, 100))``) or with a chainable method
 
 from __future__ import annotations
 
-import copy
 import difflib
 import math
 import warnings
@@ -75,7 +74,7 @@ class Chart(Renderable):
 
     # ------------------------------------------------------------------ configuration
 
-    def set(self, **options) -> "Chart":
+    def set(self, **options) -> Chart:
         """Set any chart option by keyword. Axis options use ``x_``/``y_`` prefixes."""
         for key, value in options.items():
             if key == "highlight" and isinstance(value, (str, int, float)):
@@ -94,31 +93,36 @@ class Chart(Renderable):
                 raise TypeError(f"Unknown option {key!r}.{hint}")
         return self
 
-    def title(self, text: str, subtitle: Optional[str] = None) -> "Chart":
+    def title(self, text: str, subtitle: Optional[str] = None) -> Chart:
+        """Main heading, optionally with a subtitle."""
         self._opts["title"] = text
         if subtitle is not None:
             self._opts["subtitle"] = subtitle
         return self
 
-    def subtitle(self, text: str) -> "Chart":
+    def subtitle(self, text: str) -> Chart:
+        """Second heading line."""
         self._opts["subtitle"] = text
         return self
 
-    def caption(self, text: str, number: Optional[int] = None) -> "Chart":
+    def caption(self, text: str, number: Optional[int] = None) -> Chart:
+        """Paragraph under the chart. ``number`` adds 'Figure N.' (Folio)."""
         self._opts["caption"] = text
         if number is not None:
             self._opts["number"] = number
         return self
 
-    def source(self, text: str) -> "Chart":
+    def source(self, text: str) -> Chart:
+        """'Source: …' line under the chart."""
         self._opts["source"] = text
         return self
 
-    def theme(self, theme) -> "Chart":
+    def theme(self, theme) -> Chart:
+        """Use a theme by name or a ``Theme`` object."""
         self._opts["theme"] = theme
         return self
 
-    def size(self, width: Any = "auto", height: Any = "auto") -> "Chart":
+    def size(self, width: Any = "auto", height: Any = "auto") -> Chart:
         """``size(800, 450)``, ``size(width=600)`` or a preset: ``size("column")``."""
         if isinstance(width, str) and width in SIZES:
             self._opts["size"] = width
@@ -126,17 +130,17 @@ class Chart(Renderable):
             self._opts["width"], self._opts["height"] = width, height
         return self
 
-    def legend(self, position: Any = "auto") -> "Chart":
+    def legend(self, position: Any = "auto") -> Chart:
         """auto | top | bottom | right | direct | readout | none."""
         self._opts["legend"] = position
         return self
 
-    def palette(self, colors: Any) -> "Chart":
+    def palette(self, colors: Any) -> Chart:
         """A list of colours, a {series: colour} dict, or one colour for everything."""
         self._opts["palette"] = colors
         return self
 
-    def highlight(self, *keys) -> "Chart":
+    def highlight(self, *keys) -> Chart:
         """Emphasise some series/categories/nodes; everything else is muted."""
         flat = []
         for k in keys:
@@ -144,106 +148,132 @@ class Chart(Renderable):
         self._opts["highlight"] = flat
         return self
 
-    def x_axis(self, **options) -> "Chart":
+    def x_axis(self, **options) -> Chart:
+        """Set x-axis options (``label``, ``scale``, ``range``, ``ticks``, ``format``, ``zero``, ``grid``, ``reverse``, ``visible``)."""
         self._x = replace(self._x, **options)
         return self
 
-    def y_axis(self, **options) -> "Chart":
+    def y_axis(self, **options) -> Chart:
+        """Set y-axis options (same names as ``x_axis``)."""
         self._y = replace(self._y, **options)
         return self
 
-    def hline(self, y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> "Chart":
+    def hline(self, y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> Chart:
         """Horizontal reference line, e.g. a target. ``y="mean"`` uses the data mean."""
         self._annotations.append({"kind": "hline", "at": y, "label": label, "color": color, "dash": dash})
         return self
 
-    def vline(self, x: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> "Chart":
+    def vline(self, x: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> Chart:
+        """Vertical reference line; ``x="mean"`` uses the data mean."""
         self._annotations.append({"kind": "vline", "at": x, "label": label, "color": color, "dash": dash})
         return self
 
-    def band(self, x: Any = None, y: Any = None, label: Optional[str] = None, *, color: Optional[str] = None) -> "Chart":
+    def band(self, x: Any = None, y: Any = None, label: Optional[str] = None, *, color: Optional[str] = None) -> Chart:
         """Shade a range, e.g. ``band(x=("2024-06-01", "2024-08-31"), label="Summer")``."""
         self._annotations.append({"kind": "band", "x": x, "y": y, "label": label, "color": color})
         return self
 
-    def annotate(self, x: Any, y: Any, text: str, *, dx: float = 8, dy: float = -8) -> "Chart":
+    def annotate(self, x: Any, y: Any, text: str, *, dx: float = 8, dy: float = -8) -> Chart:
         """Text note pointing at a data position."""
         self._annotations.append({"kind": "text", "x": x, "y": y, "text": text, "dx": dx, "dy": dy})
         return self
 
     # ------------------------------------------------------------------ layers
 
-    def _add(self, layer) -> "Chart":
+    def _add(self, layer) -> Chart:
         self._layers.append(layer)
         return self
 
-    def line(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
+    def line(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a line layer. Takes the same options as ``lv.line()``."""
         return self._add(layer_class("line")(self._d(data), x, y, color, **kw))
 
-    def area(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
+    def area(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a area layer. Takes the same options as ``lv.area()``."""
         return self._add(layer_class("area")(self._d(data), x, y, color, **kw))
 
-    def scatter(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
+    def scatter(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a scatter layer. Takes the same options as ``lv.scatter()``."""
         return self._add(layer_class("scatter")(self._d(data), x, y, color, **kw))
 
-    def bar(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+    def bar(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a bar layer. Takes the same options as ``lv.bar()``."""
         return self._add(layer_class("bar")(self._d(data), x, y, color, **kw))
 
-    def histogram(self, data=None, x=None, color=None, **kw) -> "Chart":
+    def histogram(self, data=None, x=None, color=None, **kw) -> Chart:
+        """Add a histogram layer. Takes the same options as ``lv.histogram()``."""
         return self._add(layer_class("histogram")(self._d(data), x, color, **kw))
 
-    def heatmap(self, data=None, x=None, y=None, value=None, **kw) -> "Chart":
+    def heatmap(self, data=None, x=None, y=None, value=None, **kw) -> Chart:
+        """Add a heatmap layer. Takes the same options as ``lv.heatmap()``."""
         return self._add(layer_class("heatmap")(self._d(data), x, y, value, **kw))
 
-    def box(self, data=None, x=None, y=None, **kw) -> "Chart":
+    def box(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a box layer. Takes the same options as ``lv.box()``."""
         return self._add(layer_class("box")(self._d(data), x, y, **kw))
 
-    def violin(self, data=None, x=None, y=None, **kw) -> "Chart":
+    def violin(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a violin layer. Takes the same options as ``lv.violin()``."""
         return self._add(layer_class("violin")(self._d(data), x, y, **kw))
 
-    def ridgeline(self, data=None, x=None, y=None, **kw) -> "Chart":
+    def ridgeline(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a ridgeline layer. Takes the same options as ``lv.ridgeline()``."""
         return self._add(layer_class("ridgeline")(self._d(data), x, y, **kw))
 
-    def network(self, data=None, **kw) -> "Chart":
+    def network(self, data=None, **kw) -> Chart:
+        """Add a network layer. Takes the same options as ``lv.network()``."""
         return self._add(layer_class("network")(self._d(data), **kw))
 
-    def pie(self, data=None, x=None, y=None, **kw) -> "Chart":
+    def pie(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a pie layer. Takes the same options as ``lv.pie()``."""
         return self._add(layer_class("pie")(self._d(data), x, y, **kw))
 
-    def dumbbell(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+    def dumbbell(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a dumbbell layer. Takes the same options as ``lv.dumbbell()``."""
         return self._add(layer_class("dumbbell")(self._d(data), x, y, color, **kw))
 
-    def slope(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+    def slope(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a slope layer. Takes the same options as ``lv.slope()``."""
         return self._add(layer_class("slope")(self._d(data), x, y, color, **kw))
 
-    def waterfall(self, data=None, x=None, y=None, **kw) -> "Chart":
+    def waterfall(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a waterfall layer. Takes the same options as ``lv.waterfall()``."""
         return self._add(layer_class("waterfall")(self._d(data), x, y, **kw))
 
-    def candlestick(self, data=None, x=None, **kw) -> "Chart":
+    def candlestick(self, data=None, x=None, **kw) -> Chart:
+        """Add a candlestick layer. Takes the same options as ``lv.candlestick()``."""
         return self._add(layer_class("candlestick")(self._d(data), x, **kw))
 
-    def treemap(self, data=None, **kw) -> "Chart":
+    def treemap(self, data=None, **kw) -> Chart:
+        """Add a treemap layer. Takes the same options as ``lv.treemap()``."""
         return self._add(layer_class("treemap")(self._d(data), **kw))
 
-    def sankey(self, data=None, **kw) -> "Chart":
+    def sankey(self, data=None, **kw) -> Chart:
+        """Add a sankey layer. Takes the same options as ``lv.sankey()``."""
         return self._add(layer_class("sankey")(self._d(data), **kw))
 
-    def radar(self, data=None, **kw) -> "Chart":
+    def radar(self, data=None, **kw) -> Chart:
+        """Add a radar layer. Takes the same options as ``lv.radar()``."""
         return self._add(layer_class("radar")(self._d(data), **kw))
 
-    def density(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
+    def density(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a density layer. Takes the same options as ``lv.density()``."""
         return self._add(layer_class("density")(self._d(data), x, y, color, **kw))
 
-    def timeline(self, data=None, **kw) -> "Chart":
+    def timeline(self, data=None, **kw) -> Chart:
+        """Add a timeline layer. Takes the same options as ``lv.timeline()``."""
         return self._add(layer_class("timeline")(self._d(data), **kw))
 
-    def calendar(self, data=None, x=None, y=None, **kw) -> "Chart":
+    def calendar(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a calendar layer. Takes the same options as ``lv.calendar()``."""
         return self._add(layer_class("calendar")(self._d(data), x, y, **kw))
 
-    def sparkline(self, data=None, x=None, **kw) -> "Chart":
+    def sparkline(self, data=None, x=None, **kw) -> Chart:
+        """Add a sparkline layer. Takes the same options as ``lv.sparkline()``."""
         return self._add(layer_class("sparkline")(self._d(data), x, **kw))
 
-    def stat(self, value=None, **kw) -> "Chart":
+    def stat(self, value=None, **kw) -> Chart:
+        """Add a stat layer. Takes the same options as ``lv.stat()``."""
         return self._add(layer_class("stat")(self._d(value), **kw))
 
     def _d(self, data):
@@ -259,7 +289,7 @@ class Chart(Renderable):
     def resolved_theme(self):
         return themes.get(self._opts["theme"])
 
-    def facet(self, column: Any, cols: Any = "auto", share: str = "both") -> "Chart":
+    def facet(self, column: Any, cols: Any = "auto", share: str = "both") -> Chart:
         """Small multiples: one panel per value of ``column``, with shared axes and one legend."""
         self._opts.update(facet=column, facet_cols=cols, share=share)
         return self
@@ -594,7 +624,10 @@ class Chart(Renderable):
         spacing = 90 if horizontal else 48
         count = max(2.0, length / spacing)
         if kind == "log":
-            lo = lo if lo > 0 else (dom.lo if dom.lo > 0 else 1e-3)
+            if lo <= 0:   # zero can't be shown on a log axis: start at the smallest positive value
+                pos = getattr(dom, "min_positive", None)
+                lo = pos if pos else (dom.lo if dom.lo > 0 else hi / 1e3 if hi > 0 else 1e-3)
+                lo = lo * 0.5            # so the smallest bar/point is still visible above the axis
             if dom.pad and hi > lo:
                 f = (hi / lo) ** dom.pad
                 lo = lo / f if user_lo is None else lo
@@ -859,7 +892,7 @@ class Chart(Renderable):
             ys = [y - overflow for y in ys]
             for i in range(len(ys) - 2, -1, -1):
                 ys[i] = min(ys[i], ys[i + 1] - gap)
-        for (key, label, x, y0), y in zip(labels, ys):
+        for (_key, label, x, y0), y in zip(labels, ys):
             if abs(y - y0) > 3:
                 ctx.scene.add(S.Line(x + 3, y0, x + 7, y, theme.ink_muted, 0.7))
             ctx.scene.add(S.Text(x + 9, y, label, size, theme.ink, baseline="middle", italic=theme.italic_labels))
@@ -988,6 +1021,9 @@ def _range_ticks(scale, vals, labels, a, b):
     if isinstance(scale, TimeScale):
         keep = [(v, l) for v, l in zip(vals, labels) if a - 1 <= v <= b + 1]
         return [v for v, _ in keep], [l for _, l in keep]
+    if scale.kind == "log":
+        inner = [(v, l) for v, l in zip(vals, labels) if a * 1.4 < v < b / 1.4]
+        return [a] + [v for v, _ in inner] + [b], [format_value(a)] + [l for _, l in inner] + [format_value(b)]
     step = getattr(scale, "step", None) or ((b - a) / 4 or 1)
     inner = [(v, l) for v, l in zip(vals, labels) if a + step * 0.35 < v < b - step * 0.35]
     out_v = [a] + [v for v, _ in inner] + [b]

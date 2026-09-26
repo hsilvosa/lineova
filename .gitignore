@@ -1,11 +1,73 @@
+# --- Python -----------------------------------------------------------------
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+*.egg
 *.egg-info/
+.eggs/
 build/
 dist/
-.pytest_cache/
+wheels/
+pip-wheel-metadata/
+*.whl
+
+# --- Environments -------------------------------------------------------------
 .venv/
 venv/
-*.png
-!docs/**/*.png
+env/
+.env
+.envrc
+.python-version
+.conda/
+
+# --- Tests, coverage, linters, type checkers --------------------------------------
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+.hypothesis/
+.benchmarks/
+
+# --- Docs build ---------------------------------------------------------------
+site/
+
+# --- Notebooks ----------------------------------------------------------------
+.ipynb_checkpoints/
+
+# --- Editors and OS -----------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Local data and outputs (datasets are never committed) ----------------------
+.data/
+data/
+datasets/
+*.parquet
+*.npz
+*.npy
+*.csv
+*.feather
+*.arrow
 out/
+output/
+tmp/
+
+# Rendered charts: only the curated gallery in docs/ is committed
+*.png
+*.pdf
+*.html
+!docs/**/*.svg
+docs/gallery/**/*.pdf
+docs/gallery/**/*.html

@@ -82,7 +82,7 @@ class Theme:
     padding: float = 16.0
     extra: dict = field(default_factory=dict, compare=False, hash=False)
 
-    def replace(self, **changes) -> "Theme":
+    def replace(self, **changes) -> Theme:
         """Return a copy with some fields changed."""
         valid = {f.name for f in fields(self)}
         unknown = set(changes) - valid
@@ -158,7 +158,7 @@ _REGISTRY: dict[str, Theme] = {t.name: t for t in (FOLIO, LEDGER, INSTRUMENT, FJ
 DEFAULT = "ledger"
 
 
-def get(theme: "str | Theme | None") -> Theme:
+def get(theme: str | Theme | None) -> Theme:
     """Resolve a theme name (or pass a Theme through)."""
     if theme is None:
         return _REGISTRY[DEFAULT]

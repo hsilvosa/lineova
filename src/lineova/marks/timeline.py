@@ -7,10 +7,9 @@ import datetime as _dt
 import numpy as np
 
 from .. import scene as S
-from .._color import mix, readable_on
+from .._color import mix
 from .._data import (DataError, as_float, columns_of, factorize, get_column, is_auto, is_frame, to_array,
                      value_kind)
-from .._text import text_width
 from ._base import Domain, DrawContext, Layer, LegendItem
 from ._geom import rounded_bar
 

@@ -138,7 +138,7 @@ def layered(n: int, src: np.ndarray, dst: np.ndarray) -> np.ndarray:
     n_layers = int(layer.max()) + 1
     rank = np.zeros(n)
     members = [list(np.flatnonzero(layer == L)) for L in range(n_layers)]
-    for L, mem in enumerate(members):
+    for mem in members:
         for i, v in enumerate(mem):
             rank[v] = i
     preds: list[list[int]] = [[] for _ in range(n)]
