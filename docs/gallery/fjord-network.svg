@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Cheapest route A → I</desc>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Cheapest route A → I</text>
+<path d="M223.64,362.4Q140.89,296.68,37.6,274.34" fill="none" stroke="#a9b7be" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>A – B: 4</title></path>
+<path d="M37.6,274.34Q126.65,267.72,202.99,221.41" fill="none" stroke="#a9b7be" stroke-width="2.12" stroke-linecap="round" stroke-linejoin="round"><title>B – D: 5</title></path>
+<path d="M37.6,274.34Q50.62,221.68,38.33,168.85" fill="none" stroke="#a9b7be" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"><title>B – E: 6</title></path>
+<path d="M472.93,284.07Q536.92,246.65,576.97,184.27" fill="none" stroke="#a9b7be" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"><title>C – F: 6</title></path>
+<path d="M202.99,221.41Q126.96,175.37,38.33,168.85" fill="none" stroke="#a9b7be" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>D – E: 4</title></path>
+<path d="M38.33,168.85Q64.96,123.6,68.15,71.19" fill="none" stroke="#a9b7be" stroke-width="2.12" stroke-linecap="round" stroke-linejoin="round"><title>E – H: 5</title></path>
+<path d="M38.33,168.85Q196.78,169.17,348.05,122.02" fill="none" stroke="#a9b7be" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"><title>E – G: 2</title></path>
+<path d="M348.05,122.02Q456.21,176.31,576.97,184.27" fill="none" stroke="#a9b7be" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>G – F: 4</title></path>
+<path d="M348.05,122.02Q212.39,72.99,68.15,71.19" fill="none" stroke="#a9b7be" stroke-width="1.24" stroke-linecap="round" stroke-linejoin="round"><title>G – H: 3</title></path>
+<path d="M576.97,184.27Q599.55,146.23,602.4,102.08" fill="none" stroke="#a9b7be" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><title>F – I: 7</title></path>
+<path d="M223.64,362.4Q355.48,346.13,472.93,284.07" fill="none" stroke="#e0673f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>A – C: 3</title></path>
+<path d="M472.93,284.07Q343.38,229.36,202.99,221.41" fill="none" stroke="#e0673f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>C – D: 2</title></path>
+<path d="M202.99,221.41Q287.44,189.12,348.05,122.02" fill="none" stroke="#e0673f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>D – G: 3</title></path>
+<path d="M348.05,122.02Q477.1,135.98,602.4,102.08" fill="none" stroke="#e0673f" stroke-width="3.12" stroke-linecap="round" stroke-linejoin="round"><title>G – I: 5</title></path>
+<text x="135.76" y="311.2" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">4</text>
+<text x="351.88" y="338.36" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<text x="123.47" y="261.47" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">5</text>
+<text x="44.29" y="225.32" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">6</text>
+<text x="340.67" y="244.72" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2</text>
+<text x="530.93" y="244.09" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">6</text>
+<text x="123.81" y="188.92" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">4</text>
+<text x="281.48" y="184.09" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<text x="59.1" y="125.49" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">5</text>
+<text x="194.98" y="160.98" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2</text>
+<text x="459.36" y="168.4" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">4</text>
+<text x="210.25" y="88.48" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<text x="476.16" y="127.69" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">5</text>
+<text x="594.62" y="148.38" font-size="10.5" fill="#43565f" text-anchor="middle" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">7</text>
+<g stroke="#eef2f4" stroke-width="2.2">
+<circle cx="223.64" cy="362.4" r="12.29" fill="#e0673f"><title>A · degree 2</title></circle>
+<circle cx="37.6" cy="274.34" r="13.57" fill="#008c9e"><title>B · degree 3</title></circle>
+<circle cx="472.93" cy="284.07" r="13.57" fill="#e0673f"><title>C · degree 3</title></circle>
+<circle cx="202.99" cy="221.41" r="14.65" fill="#e0673f"><title>D · degree 4</title></circle>
+<circle cx="38.33" cy="168.85" r="14.65" fill="#008c9e"><title>E · degree 4</title></circle>
+<circle cx="348.05" cy="122.02" r="15.6" fill="#e0673f"><title>G · degree 5</title></circle>
+<circle cx="576.97" cy="184.27" r="13.57" fill="#008c9e"><title>F · degree 3</title></circle>
+<circle cx="68.15" cy="71.19" r="12.29" fill="#008c9e"><title>H · degree 2</title></circle>
+<circle cx="602.4" cy="102.08" r="12.29" fill="#e0673f"><title>I · degree 2</title></circle>
+</g>
+<g fill="none" stroke="#17262e" stroke-width="1.6">
+<circle cx="223.64" cy="362.4" r="15.29"/>
+<circle cx="472.93" cy="284.07" r="16.57"/>
+<circle cx="202.99" cy="221.41" r="17.65"/>
+<circle cx="348.05" cy="122.02" r="18.6"/>
+<circle cx="602.4" cy="102.08" r="15.29"/>
+</g>
+<text x="223.64" y="366.6" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">A</text>
+<text x="37.6" y="278.54" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">B</text>
+<text x="472.93" y="288.27" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">C</text>
+<text x="202.99" y="225.61" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">D</text>
+<text x="38.33" y="173.05" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">E</text>
+<text x="348.05" y="126.22" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">G</text>
+<text x="576.97" y="188.47" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">F</text>
+<text x="68.15" y="75.39" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">H</text>
+<text x="602.4" y="106.28" font-size="12" fill="#111111" text-anchor="middle" font-weight="700">I</text>
+</svg>

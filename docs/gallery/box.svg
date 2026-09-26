@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img">
+<desc>Daily capacity factor</desc>
+<defs><clipPath id="lv6200a3c1"><rect x="35" y="51.3" width="590" height="312.7"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#0f1a24"/>
+<text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">DAILY CAPACITY FACTOR</text>
+<text x="624" y="23.9" font-size="10" fill="#62788a" text-anchor="end" letter-spacing="0.4">%</text>
+<line x1="0" y1="33.9" x2="640" y2="33.9" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="36" y1="311.22" x2="624" y2="311.22" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="36" y1="259.43" x2="624" y2="259.43" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="36" y1="207.65" x2="624" y2="207.65" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="36" y1="155.87" x2="624" y2="155.87" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="36" y1="104.08" x2="624" y2="104.08" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<g clip-path="url(#lv6200a3c1)">
+<line x1="78" y1="222.14" x2="78" y2="169.13" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="78" y1="132.96" x2="78" y2="80.22" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="67.84" y1="222.14" x2="88.16" y2="222.14" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="67.84" y1="80.22" x2="88.16" y2="80.22" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="54.9" y="132.96" width="46.2" height="36.17" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Alta Ridge: median 40.7, IQR 37.4–44.4, n = 300</title></rect>
+<line x1="54.9" y1="152.28" x2="101.1" y2="152.28" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="78" cy="223.63" r="2.4"/>
+<circle cx="78" cy="66.61" r="2.4"/>
+<circle cx="78" cy="59.54" r="2.4"/>
+<circle cx="78" cy="236.38" r="2.4"/>
+<circle cx="78" cy="76.69" r="2.4"/>
+<circle cx="78" cy="239.5" r="2.4"/>
+</g>
+<line x1="162" y1="229.82" x2="162" y2="184.15" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="162" y1="150.9" x2="162" y2="104.48" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="151.84" y1="229.82" x2="172.16" y2="229.82" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="151.84" y1="104.48" x2="172.16" y2="104.48" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="138.9" y="150.9" width="46.2" height="33.26" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Brennmoor: median 37.7, IQR 34.5–41, n = 300</title></rect>
+<line x1="138.9" y1="167.73" x2="185.1" y2="167.73" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="162" cy="235.89" r="2.4"/>
+<circle cx="162" cy="91.44" r="2.4"/>
+<circle cx="162" cy="92.04" r="2.4"/>
+</g>
+<line x1="246" y1="250.83" x2="246" y2="199.89" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="246" y1="163.98" x2="246" y2="116.18" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="235.84" y1="250.83" x2="256.16" y2="250.83" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="235.84" y1="116.18" x2="256.16" y2="116.18" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="222.9" y="163.98" width="46.2" height="35.9" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Cala Serena: median 35.2, IQR 31.5–38.4, n = 300</title></rect>
+<line x1="222.9" y1="180.93" x2="269.1" y2="180.93" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="246" cy="108.51" r="2.4"/>
+<circle cx="246" cy="272.7" r="2.4"/>
+</g>
+<line x1="330" y1="269.54" x2="330" y2="218.89" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="330" y1="181.77" x2="330" y2="137.96" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="319.84" y1="269.54" x2="340.16" y2="269.54" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="319.84" y1="137.96" x2="340.16" y2="137.96" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="306.9" y="181.77" width="46.2" height="37.12" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Dunhollow: median 31.6, IQR 27.8–35, n = 300</title></rect>
+<line x1="306.9" y1="199.38" x2="353.1" y2="199.38" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="330" cy="279.16" r="2.4"/>
+</g>
+<line x1="414" y1="279.58" x2="414" y2="231.36" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="414" y1="196.94" x2="414" y2="146.74" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="403.84" y1="279.58" x2="424.16" y2="279.58" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="403.84" y1="146.74" x2="424.16" y2="146.74" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="390.9" y="196.94" width="46.2" height="34.42" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Eskvale: median 28.6, IQR 25.4–32.1, n = 300</title></rect>
+<line x1="390.9" y1="214.91" x2="437.1" y2="214.91" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="414" cy="144.55" r="2.4"/>
+<circle cx="414" cy="120.84" r="2.4"/>
+<circle cx="414" cy="287.51" r="2.4"/>
+<circle cx="414" cy="287.47" r="2.4"/>
+</g>
+<line x1="498" y1="305.99" x2="498" y2="252.01" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="498" y1="216.01" x2="498" y2="172.6" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="487.84" y1="305.99" x2="508.16" y2="305.99" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="487.84" y1="172.6" x2="508.16" y2="172.6" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="474.9" y="216.01" width="46.2" height="36" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Ferrow Point: median 24.8, IQR 21.4–28.4, n = 300</title></rect>
+<line x1="474.9" y1="234.67" x2="521.1" y2="234.67" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="498" cy="140.27" r="2.4"/>
+<circle cx="498" cy="133.2" r="2.4"/>
+</g>
+<line x1="582" y1="312.12" x2="582" y2="267.49" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="582" y1="233.49" x2="582" y2="184.41" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="571.84" y1="312.12" x2="592.16" y2="312.12" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<line x1="571.84" y1="184.41" x2="592.16" y2="184.41" fill="none" stroke="#2a9cc4" stroke-width="1.2"/>
+<rect x="558.9" y="233.49" width="46.2" height="34" fill="none" stroke="#2a9cc4" stroke-width="1.2"><title>Gallan Flats: median 21.6, IQR 18.4–25, n = 300</title></rect>
+<line x1="558.9" y1="251.26" x2="605.1" y2="251.26" fill="none" stroke="#c08418" stroke-width="2.4"/>
+<g fill="#0f1a24" stroke="#2a9cc4" stroke-width="1">
+<circle cx="582" cy="326.31" r="2.4"/>
+<circle cx="582" cy="319.6" r="2.4"/>
+</g>
+</g>
+<rect x="36" y="52.3" width="588" height="310.7" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="78" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Alta Ridge</text>
+<text x="162" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Brennmoor</text>
+<text x="246" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Cala Serena</text>
+<text x="330" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Dunhollow</text>
+<text x="414" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Eskvale</text>
+<text x="498" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Ferrow Point</text>
+<text x="582" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">Gallan Flats</text>
+<line x1="36" y1="363" x2="41" y2="363" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="363" x2="619" y2="363" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="366.5" font-size="10" fill="#62788a" text-anchor="end">0</text>
+<line x1="36" y1="311.22" x2="41" y2="311.22" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="311.22" x2="619" y2="311.22" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="314.72" font-size="10" fill="#62788a" text-anchor="end">10</text>
+<line x1="36" y1="259.43" x2="41" y2="259.43" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="259.43" x2="619" y2="259.43" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="262.93" font-size="10" fill="#62788a" text-anchor="end">20</text>
+<line x1="36" y1="207.65" x2="41" y2="207.65" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="207.65" x2="619" y2="207.65" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="211.15" font-size="10" fill="#62788a" text-anchor="end">30</text>
+<line x1="36" y1="155.87" x2="41" y2="155.87" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="155.87" x2="619" y2="155.87" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="159.37" font-size="10" fill="#62788a" text-anchor="end">40</text>
+<line x1="36" y1="104.08" x2="41" y2="104.08" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="104.08" x2="619" y2="104.08" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="107.58" font-size="10" fill="#62788a" text-anchor="end">50</text>
+<line x1="36" y1="52.3" x2="41" y2="52.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="624" y1="52.3" x2="619" y2="52.3" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="29" y="55.8" font-size="10" fill="#62788a" text-anchor="end">60</text>
+</svg>
