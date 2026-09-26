@@ -32,7 +32,7 @@ dependencies = ["numpy>=1.23"]
 [project.optional-dependencies]
 png = ["resvg-py>=0.1"]
 pandas = ["pandas>=1.5"]
-dev = ["pytest>=7", "pandas>=1.5", "networkx>=3", "ruff>=0.5"]
+dev = ["pytest>=7", "pandas>=1.5", "networkx>=3", "scipy>=1.10", "ruff>=0.5"]  # scipy: networkx.pagerank in the tests
 docs = ["mkdocs-material>=9.5"]
 
 [project.urls]
