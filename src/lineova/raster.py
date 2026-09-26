@@ -39,7 +39,7 @@ def encode_png(rgba: np.ndarray, level: int = 6) -> bytes:
 # --------------------------------------------------------------------------- binning
 
 def bin_points(x, y, xlim, ylim, shape, *, categories=None, n_categories: int = 0,
-               x_transform=None, y_transform=None) -> np.ndarray:
+               x_transform=None, y_transform=None, weights=None) -> np.ndarray:
     """Count points per pixel.
 
     Returns ``(rows, cols)`` counts, or ``(n_categories, rows, cols)`` when
@@ -53,7 +53,7 @@ def bin_points(x, y, xlim, ylim, shape, *, categories=None, n_categories: int = 
     sy = rows / (y1 - y0) if y1 != y0 else 0.0
     ncell = rows * cols
     size = ncell * max(1, n_categories) if categories is not None else ncell
-    total = np.zeros(size, dtype=np.int64)
+    total = np.zeros(size, dtype=np.int64 if weights is None else np.float64)
     n = len(x)
     for s in range(0, n, CHUNK):
         xc = np.asarray(x[s:s + CHUNK], dtype=np.float64)
@@ -70,7 +70,10 @@ def bin_points(x, y, xlim, ylim, shape, *, categories=None, n_categories: int = 
         if categories is not None:
             cc = np.asarray(categories[s:s + CHUNK], dtype=np.int64)[ok]
             idx = cc * ncell + idx
-        total += np.bincount(idx, minlength=size)
+        if weights is not None:
+            total += np.bincount(idx, np.asarray(weights[s:s + CHUNK], np.float64)[ok], minlength=size)
+        else:
+            total += np.bincount(idx, minlength=size)
     if categories is not None:
         return total.reshape(max(1, n_categories), rows, cols)
     return total.reshape(rows, cols)

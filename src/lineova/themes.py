@@ -46,6 +46,8 @@ class Theme:
     muted: str = "#c9d0dc"               # non-highlighted marks
     sequential: tuple[str, ...] = ("#eef2fc", "#9fb4ec", "#2f5bd3", "#172d6e")
     diverging: tuple[str, str, str] = ("#c2410c", "#f1f1ef", "#2f5bd3")
+    positive: str = "#17a38b"            # increases (waterfall, candles, deltas)
+    negative: str = "#d0527a"            # decreases
     # --- axes & grid ------------------------------------------------------
     axis_style: AxisStyle = "baseline"
     grid: GridStyle = "y"
@@ -80,7 +82,7 @@ class Theme:
     padding: float = 16.0
     extra: dict = field(default_factory=dict, compare=False, hash=False)
 
-    def replace(self, **changes) -> "Theme":
+    def replace(self, **changes) -> Theme:
         """Return a copy with some fields changed."""
         valid = {f.name for f in fields(self)}
         unknown = set(changes) - valid
@@ -103,6 +105,7 @@ FOLIO = Theme(
     accent="#1e2229", muted="#c7cbd1",
     sequential=("#f4f5f7", "#b9bec7", "#6b7382", "#1e2229"),
     diverging=("#a3263b", "#f2f2f2", "#2f5e8c"),
+    positive="#8b929c", negative="#1e2229",
     axis_style="range", grid="none", grid_dash=None, tick_direction="out", tick_length=4, axis_width=0.9,
     line_width=1.4, dashes=(None, (6, 3), (1.5, 3), (8, 3, 2, 3), (3, 3), (10, 4), (1.5, 2, 5, 2), (4, 2)),
     series_markers=("circle", "square", "triangle", "diamond", "circle", "square", "triangle", "diamond"),
@@ -125,6 +128,7 @@ INSTRUMENT = Theme(
     accent="#c08418", muted="#3f5467",
     sequential=("#13222f", "#1d5c78", "#2a9cc4", "#b9ecfb"),
     diverging=("#d2567f", "#1b2a37", "#2a9cc4"),
+    positive="#62a846", negative="#d2567f",
     axis_style="box", grid="xy", grid_dash=(1, 3), tick_direction="in", tick_length=5,
     line_width=1.6, marker_size=4.0, scatter_style="cross", end_markers=False,
     area_opacity=0.18, bar_radius=0, bar_gap=0.3, bar_value_labels="outside",
@@ -142,6 +146,7 @@ FJORD = Theme(
     accent="#e0673f", muted="#b8c6cc",
     sequential=("#e3ecef", "#8fc7cf", "#008c9e", "#0b4750"),
     diverging=("#e0673f", "#f4f1ee", "#008c9e"),
+    positive="#008c9e", negative="#e0673f",
     axis_style="none", grid="y", grid_dash=None, tick_direction="none",
     line_width=2.6, curve="smooth", marker_size=5.0, scatter_style="bubble",
     area_opacity=0.3, lead_area=True, bar_radius=999, bar_gap=0.26, bar_value_labels="inside",
@@ -153,7 +158,7 @@ _REGISTRY: dict[str, Theme] = {t.name: t for t in (FOLIO, LEDGER, INSTRUMENT, FJ
 DEFAULT = "ledger"
 
 
-def get(theme: "str | Theme | None") -> Theme:
+def get(theme: str | Theme | None) -> Theme:
     """Resolve a theme name (or pass a Theme through)."""
     if theme is None:
         return _REGISTRY[DEFAULT]

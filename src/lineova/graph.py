@@ -9,7 +9,8 @@ from __future__ import annotations
 
 import heapq
 from collections import deque
-from typing import Hashable, Iterable, Iterator, Optional
+from typing import Optional
+from collections.abc import Hashable, Iterable, Iterator
 
 import numpy as np
 
@@ -33,12 +34,12 @@ class Graph:
 
     # ------------------------------------------------------------------ building
     @classmethod
-    def from_edges(cls, edges: Iterable, *, directed: bool = False) -> "Graph":
+    def from_edges(cls, edges: Iterable, *, directed: bool = False) -> Graph:
         """Edges as (u, v) or (u, v, weight) tuples, or an (m, 2|3) array."""
         return cls(edges, directed=directed)
 
     @classmethod
-    def from_adjacency(cls, adjacency: dict, *, directed: bool = False) -> "Graph":
+    def from_adjacency(cls, adjacency: dict, *, directed: bool = False) -> Graph:
         """``{'A': ['B', 'C']}`` or ``{'A': {'B': 2.5}}``."""
         g = cls(directed=directed)
         for u, nbrs in adjacency.items():
@@ -52,7 +53,7 @@ class Graph:
         return g
 
     @classmethod
-    def from_networkx(cls, G) -> "Graph":
+    def from_networkx(cls, G) -> Graph:
         g = cls(directed=G.is_directed())
         for n, attrs in G.nodes(data=True):
             g.add_node(n, **attrs)
@@ -60,7 +61,8 @@ class Graph:
             g.add_edge(u, v, d.get("weight", 1.0))
         return g
 
-    def add_node(self, n: Node, **attrs) -> "Graph":
+    def add_node(self, n: Node, **attrs) -> Graph:
+        """Add a node (if new) and set attributes, e.g. ``pos=(x, y)`` or ``label=``."""
         if n not in self._adj:
             self._adj[n] = {}
             if self.directed:
@@ -69,7 +71,8 @@ class Graph:
             self._attrs.setdefault(n, {}).update(attrs)
         return self
 
-    def add_edge(self, u: Node, v: Node, weight: float = 1.0) -> "Graph":
+    def add_edge(self, u: Node, v: Node, weight: float = 1.0) -> Graph:
+        """Add an edge (and its nodes). Adding it again replaces the weight."""
         w = float(weight)
         if w != w:
             raise GraphError(f"Edge {u!r}–{v!r} has a NaN weight.")
@@ -82,7 +85,8 @@ class Graph:
             self._adj[v][u] = w
         return self
 
-    def add_edges(self, edges: Iterable) -> "Graph":
+    def add_edges(self, edges: Iterable) -> Graph:
+        """Add many ``(u, v)`` or ``(u, v, weight)`` edges."""
         if isinstance(edges, np.ndarray):
             edges = edges.tolist()
         for e in edges:
@@ -94,7 +98,8 @@ class Graph:
                 raise GraphError(f"Edge {e!r} must be (u, v) or (u, v, weight).")
         return self
 
-    def remove_edge(self, u: Node, v: Node) -> "Graph":
+    def remove_edge(self, u: Node, v: Node) -> Graph:
+        """Remove one edge. Raises ``GraphError`` if it doesn't exist."""
         try:
             del self._adj[u][v]
             if self.directed:
@@ -105,7 +110,8 @@ class Graph:
             raise GraphError(f"No edge {u!r}–{v!r}.") from None
         return self
 
-    def remove_node(self, n: Node) -> "Graph":
+    def remove_node(self, n: Node) -> Graph:
+        """Remove a node and every edge touching it."""
         if n not in self._adj:
             raise GraphError(f"No node {n!r}.")
         for v in list(self._adj[n]):
@@ -151,6 +157,7 @@ class Graph:
         return f"<Graph {kind}, {len(self)} nodes, {self.number_of_edges()} edges>"
 
     def number_of_edges(self) -> int:
+        """Number of edges (self-loops count once)."""
         m = sum(len(nb) for nb in self._adj.values())
         if not self.directed:
             loops = sum(1 for u, nb in self._adj.items() if u in nb)
@@ -158,17 +165,21 @@ class Graph:
         return m
 
     def neighbors(self, n: Node) -> list:
+        """Nodes reachable from ``n`` in one step."""
         self._check(n)
         return list(self._adj[n])
 
     def predecessors(self, n: Node) -> list:
+        """Nodes with an edge into ``n`` (same as neighbors for undirected graphs)."""
         self._check(n)
         return list(self._pred[n])
 
     def has_edge(self, u, v) -> bool:
+        """True if there is an edge from ``u`` to ``v``."""
         return u in self._adj and v in self._adj[u]
 
     def weight(self, u, v) -> float:
+        """Weight of the edge ``u``–``v``."""
         try:
             return self._adj[u][v]
         except KeyError:
@@ -182,9 +193,11 @@ class Graph:
         return {k: self.degree(k) for k in self._adj}
 
     def attrs(self, n: Node) -> dict:
+        """A copy of the node's attributes."""
         return dict(self._attrs.get(n, {}))
 
     def is_weighted(self) -> bool:
+        """True unless every edge has weight 1."""
         ws = {w for nb in self._adj.values() for w in nb.values()}
         return len(ws) > 1 or (len(ws) == 1 and ws != {1.0})
 
@@ -260,12 +273,14 @@ class Graph:
         return path[::-1]
 
     def distance(self, source: Node, target: Node, weighted: bool = True) -> float:
+        """Cost of the cheapest path, or ``inf`` if unreachable."""
         dist, _ = self.shortest_paths(source, weighted)
         if target not in dist:
             return float("inf")
         return dist[target]
 
     def path_weight(self, path: list) -> float:
+        """Sum of the edge weights along ``path``."""
         return sum(self.weight(a, b) for a, b in zip(path, path[1:]))
 
     # ------------------------------------------------------------------ structure
@@ -289,6 +304,7 @@ class Graph:
         return sorted(comps, key=len, reverse=True)
 
     def is_connected(self) -> bool:
+        """True if every node can reach every other (ignoring direction)."""
         return len(self) > 0 and len(self.connected_components()) == 1
 
     def topological_sort(self) -> list:
@@ -310,6 +326,7 @@ class Graph:
         return order
 
     def has_cycle(self) -> bool:
+        """True if the graph contains a cycle (directed or undirected)."""
         if self.directed:
             try:
                 self.topological_sort()
@@ -333,7 +350,7 @@ class Graph:
             parent[ru] = rv
         return False
 
-    def minimum_spanning_tree(self) -> "Graph":
+    def minimum_spanning_tree(self) -> Graph:
         """Kruskal. For a disconnected graph, returns a spanning forest."""
         if self.directed:
             raise GraphError("Minimum spanning trees are defined for undirected graphs.")
@@ -388,7 +405,218 @@ class Graph:
             groups.setdefault(l, set()).add(n)
         return sorted(groups.values(), key=len, reverse=True)
 
-    def subgraph(self, nodes: Iterable) -> "Graph":
+    # ------------------------------------------------------------------ centrality & flows
+    def pagerank(self, damping: float = 0.85, tol: float = 1e-10, max_iter: int = 200) -> dict:
+        """PageRank (power iteration, vectorised). Edge weights are used as link strength."""
+        nodes, src, dst, w = self.to_arrays()
+        n = len(nodes)
+        if n == 0:
+            return {}
+        if not self.directed:
+            src, dst, w = np.concatenate([src, dst]), np.concatenate([dst, src]), np.concatenate([w, w])
+        out_w = np.bincount(src, w, minlength=n)
+        dangling = out_w == 0
+        r = np.full(n, 1.0 / n)
+        for _ in range(max_iter):
+            share = np.where(dangling, 0.0, r / np.where(out_w == 0, 1, out_w))
+            new = np.bincount(dst, share[src] * w, minlength=n)
+            new = damping * (new + r[dangling].sum() / n) + (1 - damping) / n
+            if np.abs(new - r).sum() < tol * n:
+                r = new
+                break
+            r = new
+        return dict(zip(nodes, (r / r.sum()).tolist()))
+
+    def betweenness(self, weighted: bool = True, normalized: bool = True) -> dict:
+        """Betweenness centrality (Brandes): how often a node lies on shortest paths."""
+        nodes = self.nodes
+        bc = dict.fromkeys(nodes, 0.0)
+        use_w = weighted and self.is_weighted()
+        for s in nodes:
+            stack, pred = [], {v: [] for v in nodes}
+            sigma = dict.fromkeys(nodes, 0.0)
+            sigma[s] = 1.0
+            dist = {s: 0.0}
+            if use_w:
+                heap, seen, c = [(0.0, 0, s, s)], set(), 1
+                while heap:
+                    d, _, pr, v = heapq.heappop(heap)
+                    if v in seen:
+                        continue
+                    if pr != v:
+                        sigma[v] += sigma[pr]
+                    seen.add(v)
+                    stack.append(v)
+                    for u, wt in self._adj[v].items():
+                        nd = d + wt
+                        if u not in seen and (u not in dist or nd < dist[u] - 1e-12):
+                            dist[u] = nd
+                            heapq.heappush(heap, (nd, c, v, u))
+                            c += 1
+                            sigma[u] = 0.0
+                            pred[u] = [v]
+                        elif u not in seen and abs(nd - dist[u]) <= 1e-12:
+                            sigma[u] += sigma[v]
+                            pred[u].append(v)
+            else:
+                q = deque([s])
+                while q:
+                    v = q.popleft()
+                    stack.append(v)
+                    for u in self._adj[v]:
+                        if u not in dist:
+                            dist[u] = dist[v] + 1
+                            q.append(u)
+                        if dist[u] == dist[v] + 1:
+                            sigma[u] += sigma[v]
+                            pred[u].append(v)
+            delta = dict.fromkeys(nodes, 0.0)
+            while stack:
+                w_ = stack.pop()
+                for v in pred[w_]:
+                    delta[v] += sigma[v] / sigma[w_] * (1 + delta[w_]) if sigma[w_] else 0.0
+                if w_ != s:
+                    bc[w_] += delta[w_]
+        n = len(nodes)
+        if not self.directed:
+            bc = {k: v / 2 for k, v in bc.items()}
+        if normalized and n > 2:
+            scale = 1 / ((n - 1) * (n - 2)) * (1 if self.directed else 2)
+            bc = {k: v * scale for k, v in bc.items()}
+        return bc
+
+    def closeness(self, weighted: bool = True) -> dict:
+        """Closeness centrality (Wasserman–Faust, handles disconnected graphs)."""
+        n = len(self)
+        out = {}
+        for v in self._adj:
+            dist, _ = self.shortest_paths(v, weighted and self.is_weighted())
+            reach = len(dist) - 1
+            total = sum(dist.values())
+            out[v] = (reach / total) * (reach / (n - 1)) if total > 0 and n > 1 else 0.0
+        return out
+
+    def strongly_connected_components(self) -> list[set]:
+        """Tarjan's algorithm (iterative). For undirected graphs this equals connected_components()."""
+        if not self.directed:
+            return self.connected_components()
+        index, low, on, stack, comps = {}, {}, set(), [], []
+        counter = 0
+        for root in self._adj:
+            if root in index:
+                continue
+            work = [(root, iter(self._adj[root]))]
+            index[root] = low[root] = counter
+            counter += 1
+            stack.append(root)
+            on.add(root)
+            while work:
+                v, it = work[-1]
+                advanced = False
+                for u in it:
+                    if u not in index:
+                        index[u] = low[u] = counter
+                        counter += 1
+                        stack.append(u)
+                        on.add(u)
+                        work.append((u, iter(self._adj[u])))
+                        advanced = True
+                        break
+                    if u in on:
+                        low[v] = min(low[v], index[u])
+                if advanced:
+                    continue
+                work.pop()
+                if work:
+                    low[work[-1][0]] = min(low[work[-1][0]], low[v])
+                if low[v] == index[v]:
+                    comp = set()
+                    while True:
+                        u = stack.pop()
+                        on.discard(u)
+                        comp.add(u)
+                        if u == v:
+                            break
+                    comps.append(comp)
+        return sorted(comps, key=len, reverse=True)
+
+    def max_flow(self, source: Node, sink: Node) -> tuple[float, dict]:
+        """Maximum flow (Edmonds–Karp); edge weights are capacities. Returns (value, {(u, v): flow})."""
+        self._check(source)
+        self._check(sink)
+        cap: dict = {}
+        for u, nb in self._adj.items():
+            for v, w in nb.items():
+                cap[(u, v)] = cap.get((u, v), 0.0) + w
+        res = dict(cap)
+        adj: dict = {u: set() for u in self._adj}
+        for u, v in cap:
+            adj[u].add(v)
+            adj[v].add(u)
+            res.setdefault((v, u), 0.0)
+        value = 0.0
+        while True:
+            parent = {source: None}
+            q = deque([source])
+            while q and sink not in parent:
+                u = q.popleft()
+                for v in adj[u]:
+                    if v not in parent and res[(u, v)] > 1e-12:
+                        parent[v] = u
+                        q.append(v)
+            if sink not in parent:
+                break
+            f, v = float("inf"), sink
+            while parent[v] is not None:
+                f = min(f, res[(parent[v], v)])
+                v = parent[v]
+            v = sink
+            while parent[v] is not None:
+                res[(parent[v], v)] -= f
+                res[(v, parent[v])] += f
+                v = parent[v]
+            value += f
+        flow = {e: c - res[e] for e, c in cap.items() if c - res[e] > 1e-12}
+        return value, flow
+
+    def astar(self, source: Node, target: Node, heuristic=None) -> list:
+        """A* shortest path. ``heuristic(node, target)`` must never overestimate the remaining cost.
+        Without one, nodes' ``pos=(x, y)`` attributes give a Euclidean heuristic; otherwise it's Dijkstra."""
+        self._check(source)
+        self._check(target)
+        if heuristic is None:
+            if all("pos" in self._attrs.get(n, {}) for n in (source, target)):
+                tp = self._attrs[target]["pos"]
+
+                def heuristic(n, _t):
+                    p = self._attrs.get(n, {}).get("pos")
+                    return float(np.hypot(p[0] - tp[0], p[1] - tp[1])) if p is not None else 0.0
+            else:
+                def heuristic(n, _t):
+                    return 0.0
+        g = {source: 0.0}
+        prev: dict = {}
+        heap, c = [(heuristic(source, target), 0, source)], 1
+        done = set()
+        while heap:
+            _, _, u = heapq.heappop(heap)
+            if u == target:
+                path = [u]
+                while path[-1] != source:
+                    path.append(prev[path[-1]])
+                return path[::-1]
+            if u in done:
+                continue
+            done.add(u)
+            for v, w in self._adj[u].items():
+                nd = g[u] + w
+                if nd < g.get(v, float("inf")):
+                    g[v], prev[v] = nd, u
+                    heapq.heappush(heap, (nd + heuristic(v, target), c, v))
+                    c += 1
+        raise GraphError(f"No path from {source!r} to {target!r}.")
+
+    def subgraph(self, nodes: Iterable) -> Graph:
         keep = set(nodes)
         g = Graph(directed=self.directed)
         for n in keep:

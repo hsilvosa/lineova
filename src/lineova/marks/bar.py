@@ -38,8 +38,9 @@ def _looks_ordered(labels: list[str]) -> bool:
 class BarLayer(Layer):
     def __init__(self, data=None, x=None, y=None, color=None, *, orientation=_AUTO, stack=_AUTO,
                  normalize=False, sort=_AUTO, agg="sum", top=_AUTO, labels=_AUTO, format=None,
-                 reference=None, label=None):
+                 reference=None, label=None, error=None):
         self.data, self.x, self.y, self.color = data, x, y, color
+        self.error = error
         self.orientation, self.stack, self.normalize = orientation, stack, normalize
         self.sort, self.agg, self.top, self.labels, self.fmt = sort, agg, top, labels, format
         self.reference, self.label = reference, label
@@ -48,6 +49,7 @@ class BarLayer(Layer):
     def prepare(self, chart) -> None:
         self.theme = theme = chart.resolved_theme
         cats, series, xl, yl, ordered = self._resolve()
+        self._input_order = list(cats)
         if self.label and len(series) == 1:
             series = [(str(self.label), series[0][1])]
         values = np.vstack([v for _, v in series]) if series else np.zeros((0, 0))
@@ -89,12 +91,54 @@ class BarLayer(Layer):
         self.names = [n for n, _ in series]
         self.horizontal = horizontal
         self.x_label, self.y_label = xl, yl
-        if self.reference is not None:
+        self.errors = self._errors() if self.error is not None else {}
+        if self.reference is not None and not getattr(self, "_ref_added", False):
+            self._ref_added = True
             val = float(np.nanmean(values)) if self.reference == "mean" else (
                 float(np.nanmedian(values)) if self.reference == "median" else float(self.reference))
             label = f"{'Mean' if self.reference == 'mean' else 'Median' if self.reference == 'median' else 'Target'} " \
                     f"{self._fmt(val)}"
             (chart.vline if horizontal else chart.hline)(val, label)
+
+    def _raw_xy(self):
+        """Ungrouped (labels, values) rows, for error statistics."""
+        data, x, y = self.data, self.x, self.y
+        if is_frame(data) and isinstance(x, str) and isinstance(y, str):
+            return to_array(get_column(data, x)), to_array(get_column(data, y))
+        if x is not None and y is not None and not isinstance(x, str):
+            return to_array(x), to_array(y)
+        return None
+
+    def _errors(self) -> dict:
+        """{category: (low, high)} absolute bounds for single-series bars."""
+        err, cats = self.error, self.cats
+        if len(self.names) != 1:
+            raise DataError("error= works on single-series bars; for grouped data use one chart per group or facet=.")
+        v = self.values[0]
+        if isinstance(err, str):
+            raw = self._raw_xy()
+            if raw is None:
+                raise DataError(f"error={err!r} needs raw rows: pass bar(df, x='group', y='value', error={err!r}).")
+            names, sd = aggregate(raw[0], raw[1], "std")
+            _, n = aggregate(raw[0], raw[1], "count")
+            stat = dict(zip(names, sd))
+            cnt = dict(zip(names, n))
+            k = {"std": lambda c: stat[c], "sem": lambda c: stat[c] / np.sqrt(cnt[c]),
+                 "ci": lambda c: 1.96 * stat[c] / np.sqrt(cnt[c])}
+            if err not in k:
+                raise DataError("error= must be 'std', 'sem', 'ci', an array, a {category: value} dict or (low, high).")
+            return {c: (vi - k[err](c), vi + k[err](c)) for c, vi in zip(cats, v) if c in stat}
+        if isinstance(err, tuple) and len(err) == 2:
+            lo, hi = (np.asarray(list(e.values()) if isinstance(e, dict) else e, float) for e in err)
+            order = list(err[0].keys()) if isinstance(err[0], dict) else None
+            base = [str(k) for k in order] if order else self._input_order
+            return {c: (lo[i], hi[i]) for i, c in enumerate(base)}
+        if isinstance(err, dict):
+            by_name = {str(k): abs(float(e)) for k, e in err.items()}
+            return {c: (vi - by_name[c], vi + by_name[c]) for c, vi in zip(cats, v) if c in by_name}
+        e = np.abs(np.asarray(err, float))
+        vals = dict(zip(cats, v))
+        return {c: (vals[c] - e[i], vals[c] + e[i]) for i, c in enumerate(self._input_order) if c in vals}
 
     def _resolve(self):
         data, x, y, color, agg = self.data, self.x, self.y, self.color, self.agg
@@ -149,7 +193,8 @@ class BarLayer(Layer):
         # plain arrays
         if data is not None and y is None and x is None:
             arr = data
-            if type(arr).__module__.split(".")[0] == "pandas" and hasattr(arr, "index"):
+            if type(arr).__module__.split(".")[0] == "pandas" and hasattr(arr, "index") and \
+                    value_kind(to_array(arr)) != "cat":
                 cats = [str(v) for v in to_array(arr.index)]
                 return cats, [(series_name(arr) or "value", as_float(to_array(arr), "num"))], \
                     series_name(arr.index), series_name(arr), _looks_ordered(cats)
@@ -214,9 +259,14 @@ class BarLayer(Layer):
             with np.errstate(invalid="ignore"):
                 lo = float(np.nanmin(v)) if v.size else 0.0
                 hi = float(np.nanmax(v)) if v.size else 1.0
+        if self.errors:
+            bounds = np.array(list(self.errors.values()), float)
+            lo, hi = min(lo, float(np.nanmin(bounds))), max(hi, float(np.nanmax(bounds)))
         if self.normalize:
             return Domain("num", 0.0, 1.0, zero=True, nice=False)
-        return Domain("num", lo, hi, zero=True, nice=True, extent=(min(lo, 0), max(hi, 0)))
+        pos = v[np.isfinite(v) & (v > 0)]
+        return Domain("num", lo, hi, zero=True, nice=True, extent=(min(lo, 0), max(hi, 0)),
+                      min_positive=float(pos.min()) if pos.size else None)
 
     def _cat_domain(self):
         cats = list(reversed(self.cats)) if self.horizontal else list(self.cats)
@@ -257,7 +307,8 @@ class BarLayer(Layer):
         val_scale = ctx.xs if self.horizontal else ctx.ys
         k = len(self.names)
         band = cat_scale.bandwidth
-        base_px = val_scale.scalar(0.0)
+        base_px = val_scale.scalar(0.0) if val_scale.kind != "log" else \
+            (val_scale.r0 if not self.horizontal else val_scale.r0)
         single = k == 1
         hl = ctx.highlight
         hatch = theme.bar_highlight == "hatch"
@@ -309,11 +360,13 @@ class BarLayer(Layer):
                     pos0 = b0 if (single or self.stacked) else b0 + si * (thickness + 2)
                 end = ("both" if pill else (("right" if v >= 0 else "left") if self.horizontal
                                             else ("top" if v >= 0 else "bottom"))) if outer else "none"
-                path = self._bar(ctx, p0, p1, pos0, thickness, color, end, radius=radius if outer else 0,
+                self._bar(ctx, p0, p1, pos0, thickness, color, end, radius=radius if outer else 0,
                                  hatch=theme.ink if (single and on and hatch) else None,
                                  stroke=theme.ink if (single and on and hatch) else None,
                                  sep=self.stacked, title=f"{cat} · {name}: {self._fmt(v)}" if k > 1 else f"{cat}: {self._fmt(v)}")
-                if show_labels and not self.stacked:
+                if single and cat in self.errors:
+                    self._whisker(ctx, val_scale, *self.errors[cat], pos0 + thickness / 2, min(thickness * 0.3, 8))
+                if show_labels and not self.stacked and not self.errors:
                     self._value_label(ctx, v, p0, p1, pos0, thickness, color, label_mode, size,
                                       bold=(single and on) or pill)
                 elif show_labels and self.stacked and abs(p1 - p0) > text_width(self._fmt(v), size - 1, theme.font_kind) + 8 \
@@ -341,6 +394,17 @@ class BarLayer(Layer):
         ctx.scene.add(S.Path(cmds, fill=color, stroke=stroke or (theme.background if sep else None),
                              stroke_width=0.9 if stroke else 1.0, hatch=hatch, title=title))
 
+    def _whisker(self, ctx, scale, lo, hi, c, cap):
+        theme = ctx.theme
+        a, b = scale.scalar(lo), scale.scalar(hi)
+        col = theme.ink if not theme.dark else theme.ink_secondary
+        if self.horizontal:
+            segs = [(a, c, b, c), (a, c - cap, a, c + cap), (b, c - cap, b, c + cap)]
+        else:
+            segs = [(c, a, c, b), (c - cap, a, c + cap, a), (c - cap, b, c + cap, b)]
+        for x1, y1, x2, y2 in segs:
+            ctx.scene.add(S.Line(x1, y1, x2, y2, col, 1.1))
+
     def _value_label(self, ctx, v, p0, p1, pos0, thick, color, mode, size, bold=False):
         theme = ctx.theme
         text = self._fmt(v)
@@ -353,20 +417,20 @@ class BarLayer(Layer):
         weight = 600 if bold else 400
         if self.horizontal:
             if mode == "inside" and length > tw + 18 and thick >= size + 2:
-                ctx.scene.add(S.Text(p1 - sign * 10, cy, text, size, readable_on(color), anchor="end" if sign > 0 else "start",
+                ctx.overlay.append(S.Text(p1 - sign * 10, cy, text, size, readable_on(color), anchor="end" if sign > 0 else "start",
                                      baseline="middle", weight=700))
             else:
-                ctx.scene.add(S.Text(p1 + sign * 6, cy, text, size, theme.ink if bold else theme.ink_secondary,
+                ctx.overlay.append(S.Text(p1 + sign * 6, cy, text, size, theme.ink if bold else theme.ink_secondary,
                                      anchor="start" if sign > 0 else "end", baseline="middle", weight=weight))
         else:
             if thick < tw * 0.8 and thick < 16:
                 return
             if mode == "inside" and length > size * 2.2 and thick > tw + 6:
-                ctx.scene.add(S.Text(pos0 + thick / 2, p1 + (size + 4 if v >= 0 else -6), text, size, readable_on(color),
+                ctx.overlay.append(S.Text(pos0 + thick / 2, p1 + (size + 4 if v >= 0 else -6), text, size, readable_on(color),
                                      anchor="middle", weight=700))
             else:
                 y = p1 - 6 if v >= 0 else p1 + size + 4
-                ctx.scene.add(S.Text(pos0 + thick / 2, y, text, size, theme.ink if bold else theme.ink_secondary,
+                ctx.overlay.append(S.Text(pos0 + thick / 2, y, text, size, theme.ink if bold else theme.ink_secondary,
                                      anchor="middle", weight=weight))
 
     def legend_items(self, ctx):

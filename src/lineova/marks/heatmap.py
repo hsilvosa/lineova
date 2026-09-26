@@ -8,7 +8,7 @@ from .. import scene as S
 from .._color import ramp_lut, to_hex
 from .._data import (aggregate, as_float, DataError, factorize, get_column, is_auto, is_frame,
                      ordered_categories, to_array)
-from .._text import format_number, text_width
+from .._text import decimals_for_step, text_width
 from ..raster import block_reduce, colormap
 from ..scales import nice_step
 from ._base import Domain, DrawContext, Layer
@@ -110,7 +110,8 @@ class HeatmapLayer(Layer):
     def _fmt(self, v):
         if self.fmt is not None:
             return self.fmt(v) if callable(self.fmt) else (self.fmt.format(v) if "{" in self.fmt else format(v, self.fmt))
-        return format_number(v, nice_step((self.hi - self.lo) or 1.0, 25))
+        d = decimals_for_step(nice_step((self.hi - self.lo) or 1.0, 25))
+        return f"{v:,.{d}f}".replace("-", "\u2212")
 
     def draw(self, ctx: DrawContext) -> None:
         theme = ctx.theme

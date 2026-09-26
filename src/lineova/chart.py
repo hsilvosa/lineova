@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import difflib
 import math
-import os
 import warnings
 from dataclasses import dataclass, fields, replace
 from typing import Any, Optional
@@ -18,8 +17,10 @@ import numpy as np
 
 from . import scene as S
 from . import themes
+from ._output import Renderable
 from ._color import ramp_lut
 from ._text import format_value, text_width, truncate, wrap
+from .marks import layer_class
 from .marks._base import Domain, DrawContext, LegendItem, Plot
 from .scales import BandScale, LinearScale, LogScale, TimeScale, nice_domain
 
@@ -50,12 +51,12 @@ class Axis:
 
 _CHART_KEYS = {
     "title", "subtitle", "caption", "source", "theme", "width", "height", "size", "legend",
-    "palette", "highlight", "number", "background", "notes",
+    "palette", "highlight", "number", "background", "notes", "facet", "facet_cols", "share",
 }
 _AXIS_KEYS = {f.name for f in fields(Axis)}
 
 
-class Chart:
+class Chart(Renderable):
     """A figure made of one or more layers (line, bar, scatter, ...)."""
 
     def __init__(self, data: Any = None, **options):
@@ -65,14 +66,15 @@ class Chart:
         self._opts: dict = {"theme": None, "title": None, "subtitle": None, "caption": None,
                             "source": None, "width": "auto", "height": "auto", "size": None,
                             "legend": "auto", "palette": "auto", "highlight": None, "number": None,
-                            "background": None, "notes": True}
+                            "background": None, "notes": True, "facet": None, "facet_cols": "auto",
+                            "share": "both", "panel": None}
         self._x = Axis()
         self._y = Axis()
         self.set(**options)
 
     # ------------------------------------------------------------------ configuration
 
-    def set(self, **options) -> "Chart":
+    def set(self, **options) -> Chart:
         """Set any chart option by keyword. Axis options use ``x_``/``y_`` prefixes."""
         for key, value in options.items():
             if key == "highlight" and isinstance(value, (str, int, float)):
@@ -91,31 +93,36 @@ class Chart:
                 raise TypeError(f"Unknown option {key!r}.{hint}")
         return self
 
-    def title(self, text: str, subtitle: Optional[str] = None) -> "Chart":
+    def title(self, text: str, subtitle: Optional[str] = None) -> Chart:
+        """Main heading, optionally with a subtitle."""
         self._opts["title"] = text
         if subtitle is not None:
             self._opts["subtitle"] = subtitle
         return self
 
-    def subtitle(self, text: str) -> "Chart":
+    def subtitle(self, text: str) -> Chart:
+        """Second heading line."""
         self._opts["subtitle"] = text
         return self
 
-    def caption(self, text: str, number: Optional[int] = None) -> "Chart":
+    def caption(self, text: str, number: Optional[int] = None) -> Chart:
+        """Paragraph under the chart. ``number`` adds 'Figure N.' (Folio)."""
         self._opts["caption"] = text
         if number is not None:
             self._opts["number"] = number
         return self
 
-    def source(self, text: str) -> "Chart":
+    def source(self, text: str) -> Chart:
+        """'Source: …' line under the chart."""
         self._opts["source"] = text
         return self
 
-    def theme(self, theme) -> "Chart":
+    def theme(self, theme) -> Chart:
+        """Use a theme by name or a ``Theme`` object."""
         self._opts["theme"] = theme
         return self
 
-    def size(self, width: Any = "auto", height: Any = "auto") -> "Chart":
+    def size(self, width: Any = "auto", height: Any = "auto") -> Chart:
         """``size(800, 450)``, ``size(width=600)`` or a preset: ``size("column")``."""
         if isinstance(width, str) and width in SIZES:
             self._opts["size"] = width
@@ -123,17 +130,17 @@ class Chart:
             self._opts["width"], self._opts["height"] = width, height
         return self
 
-    def legend(self, position: Any = "auto") -> "Chart":
+    def legend(self, position: Any = "auto") -> Chart:
         """auto | top | bottom | right | direct | readout | none."""
         self._opts["legend"] = position
         return self
 
-    def palette(self, colors: Any) -> "Chart":
+    def palette(self, colors: Any) -> Chart:
         """A list of colours, a {series: colour} dict, or one colour for everything."""
         self._opts["palette"] = colors
         return self
 
-    def highlight(self, *keys) -> "Chart":
+    def highlight(self, *keys) -> Chart:
         """Emphasise some series/categories/nodes; everything else is muted."""
         flat = []
         for k in keys:
@@ -141,128 +148,136 @@ class Chart:
         self._opts["highlight"] = flat
         return self
 
-    def x_axis(self, **options) -> "Chart":
+    def x_axis(self, **options) -> Chart:
+        """Set x-axis options (``label``, ``scale``, ``range``, ``ticks``, ``format``, ``zero``, ``grid``, ``reverse``, ``visible``)."""
         self._x = replace(self._x, **options)
         return self
 
-    def y_axis(self, **options) -> "Chart":
+    def y_axis(self, **options) -> Chart:
+        """Set y-axis options (same names as ``x_axis``)."""
         self._y = replace(self._y, **options)
         return self
 
-    def hline(self, y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> "Chart":
+    def hline(self, y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> Chart:
         """Horizontal reference line, e.g. a target. ``y="mean"`` uses the data mean."""
         self._annotations.append({"kind": "hline", "at": y, "label": label, "color": color, "dash": dash})
         return self
 
-    def vline(self, x: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> "Chart":
+    def vline(self, x: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> Chart:
+        """Vertical reference line; ``x="mean"`` uses the data mean."""
         self._annotations.append({"kind": "vline", "at": x, "label": label, "color": color, "dash": dash})
         return self
 
-    def band(self, x: Any = None, y: Any = None, label: Optional[str] = None, *, color: Optional[str] = None) -> "Chart":
+    def band(self, x: Any = None, y: Any = None, label: Optional[str] = None, *, color: Optional[str] = None) -> Chart:
         """Shade a range, e.g. ``band(x=("2024-06-01", "2024-08-31"), label="Summer")``."""
         self._annotations.append({"kind": "band", "x": x, "y": y, "label": label, "color": color})
         return self
 
-    def annotate(self, x: Any, y: Any, text: str, *, dx: float = 8, dy: float = -8) -> "Chart":
+    def annotate(self, x: Any, y: Any, text: str, *, dx: float = 8, dy: float = -8) -> Chart:
         """Text note pointing at a data position."""
         self._annotations.append({"kind": "text", "x": x, "y": y, "text": text, "dx": dx, "dy": dy})
         return self
 
     # ------------------------------------------------------------------ layers
 
-    def _add(self, layer) -> "Chart":
+    def _add(self, layer) -> Chart:
         self._layers.append(layer)
         return self
 
-    def line(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
-        from .marks.line import LineLayer
-        return self._add(LineLayer(self._d(data), x, y, color, **kw))
+    def line(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a line layer. Takes the same options as ``lv.line()``."""
+        return self._add(layer_class("line")(self._d(data), x, y, color, **kw))
 
-    def area(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
-        from .marks.line import AreaLayer
-        return self._add(AreaLayer(self._d(data), x, y, color, **kw))
+    def area(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a area layer. Takes the same options as ``lv.area()``."""
+        return self._add(layer_class("area")(self._d(data), x, y, color, **kw))
 
-    def scatter(self, data=None, x=None, y=None, color="auto", **kw) -> "Chart":
-        from .marks.scatter import ScatterLayer
-        return self._add(ScatterLayer(self._d(data), x, y, color, **kw))
+    def scatter(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a scatter layer. Takes the same options as ``lv.scatter()``."""
+        return self._add(layer_class("scatter")(self._d(data), x, y, color, **kw))
 
-    def bar(self, data=None, x=None, y=None, color=None, **kw) -> "Chart":
-        from .marks.bar import BarLayer
-        return self._add(BarLayer(self._d(data), x, y, color, **kw))
+    def bar(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a bar layer. Takes the same options as ``lv.bar()``."""
+        return self._add(layer_class("bar")(self._d(data), x, y, color, **kw))
 
-    def histogram(self, data=None, x=None, color=None, **kw) -> "Chart":
-        from .marks.histogram import HistogramLayer
-        return self._add(HistogramLayer(self._d(data), x, color, **kw))
+    def histogram(self, data=None, x=None, color=None, **kw) -> Chart:
+        """Add a histogram layer. Takes the same options as ``lv.histogram()``."""
+        return self._add(layer_class("histogram")(self._d(data), x, color, **kw))
 
-    def heatmap(self, data=None, x=None, y=None, value=None, **kw) -> "Chart":
-        from .marks.heatmap import HeatmapLayer
-        return self._add(HeatmapLayer(self._d(data), x, y, value, **kw))
+    def heatmap(self, data=None, x=None, y=None, value=None, **kw) -> Chart:
+        """Add a heatmap layer. Takes the same options as ``lv.heatmap()``."""
+        return self._add(layer_class("heatmap")(self._d(data), x, y, value, **kw))
 
-    def box(self, data=None, x=None, y=None, **kw) -> "Chart":
-        from .marks.box import BoxLayer
-        return self._add(BoxLayer(self._d(data), x, y, **kw))
+    def box(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a box layer. Takes the same options as ``lv.box()``."""
+        return self._add(layer_class("box")(self._d(data), x, y, **kw))
 
-    def network(self, data=None, **kw) -> "Chart":
-        from .marks.network import NetworkLayer
-        return self._add(NetworkLayer(self._d(data), **kw))
+    def violin(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a violin layer. Takes the same options as ``lv.violin()``."""
+        return self._add(layer_class("violin")(self._d(data), x, y, **kw))
+
+    def ridgeline(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a ridgeline layer. Takes the same options as ``lv.ridgeline()``."""
+        return self._add(layer_class("ridgeline")(self._d(data), x, y, **kw))
+
+    def network(self, data=None, **kw) -> Chart:
+        """Add a network layer. Takes the same options as ``lv.network()``."""
+        return self._add(layer_class("network")(self._d(data), **kw))
+
+    def pie(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a pie layer. Takes the same options as ``lv.pie()``."""
+        return self._add(layer_class("pie")(self._d(data), x, y, **kw))
+
+    def dumbbell(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a dumbbell layer. Takes the same options as ``lv.dumbbell()``."""
+        return self._add(layer_class("dumbbell")(self._d(data), x, y, color, **kw))
+
+    def slope(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a slope layer. Takes the same options as ``lv.slope()``."""
+        return self._add(layer_class("slope")(self._d(data), x, y, color, **kw))
+
+    def waterfall(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a waterfall layer. Takes the same options as ``lv.waterfall()``."""
+        return self._add(layer_class("waterfall")(self._d(data), x, y, **kw))
+
+    def candlestick(self, data=None, x=None, **kw) -> Chart:
+        """Add a candlestick layer. Takes the same options as ``lv.candlestick()``."""
+        return self._add(layer_class("candlestick")(self._d(data), x, **kw))
+
+    def treemap(self, data=None, **kw) -> Chart:
+        """Add a treemap layer. Takes the same options as ``lv.treemap()``."""
+        return self._add(layer_class("treemap")(self._d(data), **kw))
+
+    def sankey(self, data=None, **kw) -> Chart:
+        """Add a sankey layer. Takes the same options as ``lv.sankey()``."""
+        return self._add(layer_class("sankey")(self._d(data), **kw))
+
+    def radar(self, data=None, **kw) -> Chart:
+        """Add a radar layer. Takes the same options as ``lv.radar()``."""
+        return self._add(layer_class("radar")(self._d(data), **kw))
+
+    def density(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
+        """Add a density layer. Takes the same options as ``lv.density()``."""
+        return self._add(layer_class("density")(self._d(data), x, y, color, **kw))
+
+    def timeline(self, data=None, **kw) -> Chart:
+        """Add a timeline layer. Takes the same options as ``lv.timeline()``."""
+        return self._add(layer_class("timeline")(self._d(data), **kw))
+
+    def calendar(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a calendar layer. Takes the same options as ``lv.calendar()``."""
+        return self._add(layer_class("calendar")(self._d(data), x, y, **kw))
+
+    def sparkline(self, data=None, x=None, **kw) -> Chart:
+        """Add a sparkline layer. Takes the same options as ``lv.sparkline()``."""
+        return self._add(layer_class("sparkline")(self._d(data), x, **kw))
+
+    def stat(self, value=None, **kw) -> Chart:
+        """Add a stat layer. Takes the same options as ``lv.stat()``."""
+        return self._add(layer_class("stat")(self._d(value), **kw))
 
     def _d(self, data):
         return self.data if data is None else data
-
-    # ------------------------------------------------------------------ output
-
-    def to_svg(self) -> str:
-        from .backends import svg
-        return svg.render(self.build())
-
-    def to_pdf(self) -> bytes:
-        from .backends import pdf
-        return pdf.render(self.build())
-
-    def to_png(self, scale: Optional[float] = None, dpi: Optional[float] = None) -> bytes:
-        from .backends import png
-        s = scale if scale is not None else (dpi / 96 if dpi else 2.0)
-        return png.render(self.build(raster_scale=max(1.0, s)), s)
-
-    def save(self, path: str | os.PathLike, *, dpi: Optional[float] = None, scale: Optional[float] = None,
-             format: Optional[str] = None) -> str:
-        """Save to .svg, .pdf or .png (format from the extension). Returns the path.
-
-        PNG defaults to 2x resolution (192 dpi). ``dpi=300`` for print.
-        """
-        path = os.fspath(path)
-        fmt = (format or os.path.splitext(path)[1].lstrip(".") or "svg").lower()
-        if fmt == "svg":
-            data = self.to_svg().encode("utf-8")
-        elif fmt == "pdf":
-            data = self.to_pdf()
-        elif fmt == "png":
-            data = self.to_png(scale=scale, dpi=dpi)
-        else:
-            raise ValueError(f"Unsupported format {fmt!r}. Use .svg, .png or .pdf.")
-        with open(path, "wb") as fh:
-            fh.write(data)
-        return path
-
-    def show(self) -> None:
-        """Display in a notebook, or open in the default browser."""
-        try:
-            from IPython import get_ipython
-            from IPython.display import SVG, display
-            if get_ipython() is not None:
-                display(SVG(self.to_svg()))
-                return
-        except ImportError:
-            pass
-        import tempfile
-        import webbrowser
-        fd, path = tempfile.mkstemp(suffix=".svg", prefix="lineova-")
-        with os.fdopen(fd, "w", encoding="utf-8") as fh:
-            fh.write(self.to_svg())
-        webbrowser.open("file://" + path)
-
-    def _repr_svg_(self) -> str:
-        return self.to_svg()
 
     def __repr__(self) -> str:
         kinds = ", ".join(type(l).__name__.replace("Layer", "").lower() for l in self._layers) or "empty"
@@ -274,19 +289,30 @@ class Chart:
     def resolved_theme(self):
         return themes.get(self._opts["theme"])
 
+    def facet(self, column: Any, cols: Any = "auto", share: str = "both") -> Chart:
+        """Small multiples: one panel per value of ``column``, with shared axes and one legend."""
+        self._opts.update(facet=column, facet_cols=cols, share=share)
+        return self
+
     def build(self, raster_scale: float = 2.0) -> S.Scene:
         """Lay out and draw the chart into a backend-neutral ``Scene``."""
+        if self._opts.get("facet") is not None:
+            from .figure import facet_grid
+            return facet_grid(self).build(raster_scale)
         if not self._layers:
             if self.data is None:
                 raise ValueError("The chart has no layers. Add one, e.g. Chart(df).line(x='t', y='v').")
             self.line()
+        for layer in self._layers:
+            layer.prepare(self)
+        return self._build_prepared(raster_scale)
+
+    def _build_prepared(self, raster_scale: float = 2.0) -> S.Scene:
+        """Draw, assuming every layer's ``prepare`` has already run."""
         theme = self.resolved_theme
         if self._opts["background"]:
             theme = theme.replace(background=self._opts["background"])
         self._theme = theme
-        for layer in self._layers:
-            layer.prepare(self)
-
         W, H = self._resolve_size(theme)
         scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind,
                         description=self._opts["title"] or "")
@@ -328,9 +354,11 @@ class Chart:
         if all(l.cartesian for l in self._layers):
             self._draw_cartesian(scene, theme, region, colors, highlight, raster_scale, mode)
         else:
-            ctx = DrawContext(scene, theme, region, None, None, colors, highlight, raster_scale, dict(self._opts))
+            ctx = DrawContext(scene, theme, region, None, None, colors, highlight, raster_scale,
+                              dict(self._opts, _legend_mode=mode))
             for layer in self._layers:
                 layer.draw(ctx)
+            scene.extend(ctx.overlay)
         return scene
 
     # ------------------------------------------------------------------ sizing & colour
@@ -381,8 +409,9 @@ class Chart:
         limit = len(base)
         if len(free) > limit:
             keep, others = free[: limit - 1], free[limit - 1:]
-            warnings.warn(f"{len(free)} series but only {limit} distinct colours; the last {len(others)} are "
-                          "drawn muted as 'Other'. Use highlight=... or split into several charts.", stacklevel=3)
+            if not all(getattr(l, "own_legend", False) for l in self._layers):
+                warnings.warn(f"{len(free)} series but only {limit} distinct colours; the last {len(others)} are "
+                              "drawn muted as 'Other'. Use highlight=... or split into several charts.", stacklevel=3)
         else:
             keep = free
         for i, k in enumerate(keep):
@@ -397,6 +426,8 @@ class Chart:
             return "none"
         if mode != "auto":
             return mode
+        if all(getattr(l, "own_legend", False) for l in self._layers):
+            return "none"            # the layer labels itself (pie, treemap, sankey, ...)
         visible_keys = [k for k in keys if not k.startswith("__")]
         if len(visible_keys) <= 1 and not any(getattr(l, "force_legend", False) for l in self._layers):
             return "none"
@@ -411,9 +442,18 @@ class Chart:
 
     def _draw_header(self, scene, theme, W, top) -> float:
         title, subtitle = self._opts["title"], self._opts["subtitle"]
+        pad = theme.padding
+        panel = self._opts.get("panel")
+        if panel is not None and title:
+            # a panel inside a grid: small heading; Folio uses the (a), (b) convention
+            size = theme.subtitle_size + 0.5
+            spans = None
+            if theme.caption_style == "figure":
+                spans = [(f"({panel}) ", 700, False, theme.ink), (str(title), 400, True, theme.ink)]
+            scene.add(S.Text(pad, top + size, str(title), size, theme.ink, weight=theme.title_weight, spans=spans))
+            return top + size + 10
         if theme.caption_style == "figure" or not (title or subtitle):
             return top
-        pad = theme.padding
         if theme.uppercase_header:
             y = pad + theme.title_size * 0.4
             if title:
@@ -444,6 +484,8 @@ class Chart:
 
     def _draw_footer(self, scene, theme, W, bottom) -> float:
         pad = theme.padding
+        if self._opts.get("panel") is not None:
+            return bottom
         width = W - 2 * pad
         size = theme.font_size + (1.5 if theme.caption_style == "figure" else 0)
         lines: list[tuple[str, str, bool]] = []   # (text, colour, first-line-has-prefix)
@@ -469,9 +511,11 @@ class Chart:
         y = bottom - lh * (len(lines) - 1)
         for ln, col, has_prefix in lines:
             if has_prefix and ln.startswith(prefix):
-                scene.add(S.Text(pad, y, prefix, size, theme.ink, weight=700))
-                off = text_width(prefix + " ", size, theme.font_kind, True)
-                scene.add(S.Text(pad + off, y, ln[len(prefix):].lstrip(), size, col))
+                # one text element with two runs: the renderer places the second run
+                # right after the first, so spacing is correct whatever font is used
+                rest = ln[len(prefix):].lstrip()
+                spans = [(prefix, 700, False, theme.ink)] + ([(" " + rest, 400, False, col)] if rest else [])
+                scene.add(S.Text(pad, y, ln, size, col, spans=spans))
             else:
                 scene.add(S.Text(pad, y, ln, size, col))
             y += lh
@@ -546,6 +590,9 @@ class Chart:
     # ------------------------------------------------------------------ cartesian
 
     def _domain(self, which: str) -> Domain:
+        forced = getattr(self, "_forced", None)
+        if forced and which in forced:
+            return forced[which]
         dom = None
         for layer in self._layers:
             d = layer.x_domain() if which == "x" else layer.y_domain()
@@ -577,7 +624,10 @@ class Chart:
         spacing = 90 if horizontal else 48
         count = max(2.0, length / spacing)
         if kind == "log":
-            lo = lo if lo > 0 else (dom.lo if dom.lo > 0 else 1e-3)
+            if lo <= 0:   # zero can't be shown on a log axis: start at the smallest positive value
+                pos = getattr(dom, "min_positive", None)
+                lo = pos if pos else (dom.lo if dom.lo > 0 else hi / 1e3 if hi > 0 else 1e-3)
+                lo = lo * 0.5            # so the smallest bar/point is still visible above the axis
             if dom.pad and hi > lo:
                 f = (hi / lo) ** dom.pad
                 lo = lo / f if user_lo is None else lo
@@ -823,7 +873,7 @@ class Chart:
                     scene.add(S.Line(plot.right, py, plot.right - tl, py, ink, theme.axis_width))
                 tx = base - (tl if tdir == "out" else 0) - 7
                 is_hl = isinstance(ys, BandScale) and lab in {str(h) for h in (self._opts["highlight"] or [])}
-                lab_txt = truncate(lab, plot.x - theme.padding - 8, size, kind) if isinstance(ys, BandScale) else lab
+                lab_txt = truncate(lab, tx - theme.padding + 2, size, kind) if isinstance(ys, BandScale) else lab
                 scene.add(S.Text(tx, py, lab_txt, size, theme.ink if is_hl else lab_col, anchor="end",
                                  baseline="middle", weight=600 if is_hl else 400))
 
@@ -842,7 +892,7 @@ class Chart:
             ys = [y - overflow for y in ys]
             for i in range(len(ys) - 2, -1, -1):
                 ys[i] = min(ys[i], ys[i + 1] - gap)
-        for (key, label, x, y0), y in zip(labels, ys):
+        for (_key, label, x, y0), y in zip(labels, ys):
             if abs(y - y0) > 3:
                 ctx.scene.add(S.Line(x + 3, y0, x + 7, y, theme.ink_muted, 0.7))
             ctx.scene.add(S.Text(x + 9, y, label, size, theme.ink, baseline="middle", italic=theme.italic_labels))
@@ -971,6 +1021,9 @@ def _range_ticks(scale, vals, labels, a, b):
     if isinstance(scale, TimeScale):
         keep = [(v, l) for v, l in zip(vals, labels) if a - 1 <= v <= b + 1]
         return [v for v, _ in keep], [l for _, l in keep]
+    if scale.kind == "log":
+        inner = [(v, l) for v, l in zip(vals, labels) if a * 1.4 < v < b / 1.4]
+        return [a] + [v for v, _ in inner] + [b], [format_value(a)] + [l for _, l in inner] + [format_value(b)]
     step = getattr(scale, "step", None) or ((b - a) / 4 or 1)
     inner = [(v, l) for v, l in zip(vals, labels) if a + step * 0.35 < v < b - step * 0.35]
     out_v = [a] + [v for v, _ in inner] + [b]

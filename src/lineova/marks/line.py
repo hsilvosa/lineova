@@ -5,12 +5,12 @@ from __future__ import annotations
 import numpy as np
 
 from .. import scene as S
-from .._data import is_auto, resolve_xy
+from .._data import Chunks, interval_bounds, interval_spec, is_auto, resolve_xy
 from .._text import format_value
-from ..reduce import is_sorted, m4
+from ..reduce import is_sorted, m4, minmax_envelope
 from ..scales import BandScale
 from ._base import Domain, DrawContext, Layer, LegendItem
-from ._geom import finite_runs, monotone_path
+from ._geom import finite_runs, monotone_path, spread_labels
 
 _AUTO = "auto"
 
@@ -34,14 +34,26 @@ class LineLayer(Layer):
     legend_shape = "line"
 
     def __init__(self, data=None, x=None, y=None, color=_AUTO, *, width=_AUTO, curve=_AUTO, markers=_AUTO,
-                 dash=None, label=None, render=_AUTO, values=_AUTO):
+                 dash=None, label=None, render=_AUTO, values=_AUTO, band=None):
         self.data, self.x, self.y, self.color = data, x, y, color
+        self.band = band
         self.width, self.curve, self.markers, self.dash = width, curve, markers, dash
         self.label, self.render, self.values = label, render, values
 
     # ---------------------------------------------------------------- data
     def prepare(self, chart) -> None:
-        xy = resolve_xy(self.data, self.x, self.y, self.color)
+        data, x, y, color = self.data, self.x, self.y, self.color
+        if isinstance(data, Chunks):
+            from .. import stream
+            xv, yv, _ = stream.line(data, x, y)
+            if x is not None and stream.first_kind(data, x) == "time":
+                xv = xv.astype(np.int64).astype("datetime64[ns]")
+            data, x, y, color = None, xv, yv, None
+        xy = resolve_xy(data, x, y, color, extra=interval_spec(self.band))
+        if isinstance(self.data, Chunks) and isinstance(self.y, str):
+            xy.series[0].name = self.label or str(self.y)
+            xy.y_label = str(self.y)
+            xy.x_label = str(self.x) if isinstance(self.x, str) else None
         if self.label and len(xy.series) == 1:
             xy.series[0].name = str(self.label)
         for s in xy.series:
@@ -49,9 +61,14 @@ class LineLayer(Layer):
                 bad = np.isnan(s.x)
                 if bad.any():
                     s.x, s.y = s.x[~bad], s.y[~bad]
+                    s.extra = {k: v[~bad] for k, v in s.extra.items()}
                 if not is_sorted(s.x):
                     order = np.argsort(s.x, kind="stable")
                     s.x, s.y = s.x[order], s.y[order]
+                    s.extra = {k: v[order] for k, v in s.extra.items()}
+            b = interval_bounds(s.y, s.extra)
+            if b is not None:
+                s.extra["_lo"], s.extra["_hi"] = b
         self.xy = xy
         self.theme = chart.resolved_theme
 
@@ -66,8 +83,38 @@ class LineLayer(Layer):
         return Domain(xy.x_kind, lo, hi, nice=False, extent=(lo, hi))
 
     def y_domain(self):
-        lo, hi = _nanrange(s.y for s in self.xy.series)
+        arrays = [s.y for s in self.xy.series] + [s.extra[k] for s in self.xy.series for k in ("_lo", "_hi")
+                                                   if k in s.extra]
+        lo, hi = _nanrange(arrays)
         return Domain("num", lo, hi, nice=True, extent=(lo, hi))
+
+    def _draw_bands(self, ctx: DrawContext) -> None:
+        """Shaded interval (confidence band, min-max range) under each line."""
+        theme = ctx.theme
+        xs, ys = ctx.xs, ctx.ys
+        for i, s in enumerate(self.xy.series):
+            if "_lo" not in s.extra:
+                continue
+            color = ctx.color(s.name, i)
+            lo, hi = s.extra["_lo"], s.extra["_hi"]
+            if isinstance(xs, BandScale):
+                idx = np.array([xs.index.get(v, -1) for v in s.x])
+                ok = idx >= 0
+                px, lo, hi = xs.center(idx[ok]).astype(float), lo[ok], hi[ok]
+            else:
+                x = s.x
+                cols = max(32, int(ctx.plot.w * ctx.raster_scale))
+                if len(x) > 4 * cols and self.render != "exact":
+                    xlim = (min(xs.d0, xs.d1), max(xs.d0, xs.d1))
+                    x, lo, _ = minmax_envelope(x, lo, xlim, cols)
+                    _, _, hi = minmax_envelope(s.x, hi, xlim, cols)
+                px = xs(x)
+            fill = theme.ink if theme.name == "folio" and len(self.xy.series) == 1 else color
+            op = 0.12 if theme.name == "folio" else theme.area_opacity * (0.9 if theme.dark else 0.8)
+            for a, b in finite_runs(px, (lo + hi)):
+                pxs = np.concatenate((px[a:b], px[a:b][::-1]))
+                pys = np.concatenate((ys(hi[a:b]), ys(lo[a:b])[::-1]))
+                ctx.scene.add(S.Polyline(pxs, pys, fill=fill, fill_opacity=op, closed=True))
 
     def axis_labels(self):
         y = self.xy.y_label if (len(self.xy.series) == 1 or self.xy.grouped_by) else None
@@ -96,12 +143,14 @@ class LineLayer(Layer):
         return sorted(items, key=lambda it: 0 if ctx.color(it[1].name, it[0]) == muted else 1)
 
     def draw(self, ctx: DrawContext) -> None:
+        self._draw_bands(ctx)
         theme = ctx.theme
         n_series = len(self.xy.series)
         lw = theme.line_width if is_auto(self.width) else float(self.width)
         smooth = (theme.curve == "smooth") if is_auto(self.curve) else self.curve in (True, "smooth")
         legend_mode = ctx.options.get("_legend_mode")
         self._last = {}
+        end_vals: list = []
         for i, s in self._order(ctx):
             color = ctx.color(s.name, i)
             is_muted = color == theme.muted and n_series > 1
@@ -131,10 +180,15 @@ class LineLayer(Layer):
                 ctx.scene.add(S.Markers(np.array([lx]), np.array([ly]), "circle", 4.0, fill=color,
                                         stroke=theme.background, stroke_width=2))
                 if self._show_values(theme, legend_mode):
-                    ctx.overlay.append(S.Text(lx + 8, ly, format_value(self._last[s.name][2]), theme.font_size,
-                                         theme.ink, baseline="middle", weight=600, halo=theme.background))
+                    end_vals.append((lx, ly, format_value(self._last[s.name][2])))
             if legend_mode == "direct":
                 ctx.end_labels.append((s.name, s.name, lx, ly))
+        if end_vals:
+            size = theme.font_size
+            ys = spread_labels([v[1] for v in end_vals], size * 1.2, ctx.plot.y, ctx.plot.bottom)
+            for (lx, _ly, txt), y in zip(end_vals, ys):
+                ctx.overlay.append(S.Text(lx + 8, y, txt, size, theme.ink, baseline="middle", weight=600,
+                                          halo=theme.background))
 
     def _show_values(self, theme, legend_mode) -> bool:
         n = len(self.xy.series)

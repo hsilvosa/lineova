@@ -13,7 +13,7 @@ import numpy as np
 
 from .. import scene as S
 from .._color import parse
-from .._text import text_width
+from .._text import KIND_FACTOR, text_width
 from .svg import baseline_shift
 
 PT = 0.75
@@ -232,6 +232,11 @@ class _Writer:
             o.append(f"q {_n(op.x)} {_n(op.y)} {_n(op.w)} {_n(op.h)} re W n")
         elif t is S.EndClip:
             o.append("Q")
+        elif t is S.Group:
+            o.append(f"q 1 0 0 1 {_n(op.dx)} {_n(op.dy)} cm")
+            for child in op.ops:
+                self.op(child)
+            o.append("Q")
 
     def arrow(self, op: S.Path):
         pts = [(c[-2], c[-1]) for c in op.cmds if c[0] != "Z"]
@@ -273,9 +278,9 @@ class _Writer:
         if not op.text:
             return
         kind = self.scene.font_kind if self.scene.font_kind in _FAMILIES else "sans"
-        bold = op.weight >= 600
-        font = {(False, False): "F1", (True, False): "F2", (False, True): "F3", (True, True): "F4"}[(bold, op.italic)]
-        w = text_width(op.text, op.size, kind, bold) / {"sans": 1.04, "serif": 1.06, "mono": 1.0}[kind]
+        factor = KIND_FACTOR[kind]
+        runs = op.spans or [(op.text, op.weight, op.italic, None)]
+        w = sum(text_width(t, op.size, kind, wt >= 600) for t, wt, _, _ in runs) / factor
         w += op.letter_spacing * max(0, len(op.text) - 1)
         shift = {"start": 0.0, "middle": -w / 2, "end": -w}[op.anchor]
         th = math.radians(op.rotate)
@@ -284,17 +289,28 @@ class _Writer:
         # offset along the rotated baseline and perpendicular to it
         x = op.x + shift * c - by * s
         y = op.y + shift * s + by * c
-        body = f"({_enc(op.text).decode('latin-1')}) Tj"
         tm = f"{_n(c)} {_n(s)} {_n(s)} {_n(-c)} {_n(x)} {_n(y)} Tm"
         spacing = f"{_n(op.letter_spacing)} Tc " if op.letter_spacing else ""
+
+        def body(with_color: bool) -> str:
+            parts = []
+            for t, wt, it, col in runs:
+                font = {(False, False): "F1", (True, False): "F2", (False, True): "F3", (True, True): "F4"}[(wt >= 600, it)]
+                if with_color:
+                    r, g, b, _ = parse(col or op.color)
+                    parts.append(f"{_n(r)} {_n(g)} {_n(b)} rg")
+                # Tj advances the text position, so runs flow one after another
+                parts.append(f"/{font} {_n(op.size)} Tf ({_enc(t).decode('latin-1')}) Tj")
+            return " ".join(parts)
+
         if op.halo:
             self.out.append("q")
             self.stroke_color(op.halo)
-            self.out.append(f"BT /{font} {_n(op.size)} Tf {spacing}1 Tr 3 w 1 j {tm} {body} ET Q")
+            self.out.append(f"BT {spacing}1 Tr 3 w 1 j {tm} {body(False)} ET Q")
         self.out.append("q")
-        a = self.fill_color(op.color)
+        a = parse(op.color)[3]
         self.alpha(a, 1.0)
-        self.out.append(f"BT /{font} {_n(op.size)} Tf {spacing}{tm} {body} ET Q")
+        self.out.append(f"BT {spacing}{tm} {body(True)} ET Q")
 
 
 def render(scene: S.Scene) -> bytes:

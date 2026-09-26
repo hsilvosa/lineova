@@ -7,7 +7,7 @@ import math
 import numpy as np
 
 from .. import scene as S
-from .._data import (as_float, columns_of, DataError, factorize, get_column, is_auto, is_frame, series_name,
+from .._data import (Chunks, as_float, columns_of, DataError, factorize, get_column, is_auto, is_frame, series_name,
                      to_array, value_kind)
 from .._text import format_value
 from ..raster import CHUNK
@@ -19,7 +19,7 @@ from ._geom import rounded_bar
 _AUTO = "auto"
 
 
-def auto_edges(groups: list[np.ndarray], bins=_AUTO, rng=None) -> np.ndarray:
+def auto_edges(groups: list[np.ndarray], bins=_AUTO, rng=None, n_total: int | None = None) -> np.ndarray:
     """Round-numbered bin edges. Freedman–Diaconis on a sample, snapped to a 1-2-2.5-5 step."""
     if isinstance(bins, (list, tuple, np.ndarray)):
         return np.asarray(bins, dtype=float)
@@ -36,7 +36,7 @@ def auto_edges(groups: list[np.ndarray], bins=_AUTO, rng=None) -> np.ndarray:
         return np.array([0.0, 1.0])
     if lo == hi:
         return np.array([lo - 0.5, hi + 0.5])
-    n = sum(len(g) for g in groups)
+    n = n_total or sum(len(g) for g in groups)
     sample = np.concatenate([g[sample_indices(len(g), max(1, 1_000_000 * len(g) // max(n, 1)))] for g in groups])
     sample = sample[np.isfinite(sample)]
     span = hi - lo
@@ -90,7 +90,47 @@ class HistogramLayer(Layer):
         self.data, self.x, self.color = data, x, color
         self.bins, self.range, self.stat, self.cumulative, self.label = bins, range, stat, cumulative, label
 
+    def _prepare_chunked(self, chart) -> None:
+        """Two passes over a Chunks source: range + sample, then counts."""
+        data, x = self.data, self.x
+        lo = hi = None
+        sample, have, n = [], 0, 0
+        for (v,) in data.columns(x):
+            n += len(v)
+            if len(v):
+                with np.errstate(invalid="ignore"):
+                    a, b = np.nanmin(v), np.nanmax(v)
+                if np.isfinite(a):
+                    lo = a if lo is None else min(lo, a)
+                    hi = b if hi is None else max(hi, b)
+            if have < 1_000_000:
+                sample.append(v[: 1_000_000 - have])
+                have += len(sample[-1])
+        if lo is None:
+            raise DataError("No finite values in the chunked source.")
+        s = np.concatenate(sample)
+        self.edges = auto_edges([s], self.bins, self.range or (lo, hi), n_total=n)
+        counts = np.zeros(len(self.edges) - 1)
+        finite = 0
+        for (v,) in data.columns(x):
+            counts += count_bins(v, self.edges)
+            finite += int(np.isfinite(v).sum())
+        if self.stat == "percent":
+            counts = counts / (finite or 1) * 100
+        elif self.stat == "density":
+            counts = counts / ((finite or 1) * np.diff(self.edges))
+        if self.cumulative:
+            counts = np.cumsum(counts)
+        name = self.label or (str(x) if x is not None else "values")
+        self.groups = [(name, s)]
+        self.counts = [counts]
+        self.x_label = str(x) if x is not None else None
+        self.y_label = {"count": "Count", "percent": "Percent", "density": "Density"}[self.stat]
+        self.theme = chart.resolved_theme
+
     def prepare(self, chart) -> None:
+        if isinstance(self.data, Chunks):
+            return self._prepare_chunked(chart)
         data, x = self.data, self.x
         groups: list[tuple[str, np.ndarray]] = []
         xl = None
@@ -153,7 +193,8 @@ class HistogramLayer(Layer):
 
     def y_domain(self):
         hi = max((float(c.max()) for c in self.counts if len(c)), default=1.0)
-        return Domain("num", 0.0, hi, zero=True, nice=True)
+        pos = [float(c[c > 0].min()) for c in self.counts if (c > 0).any()]
+        return Domain("num", 0.0, hi, zero=True, nice=True, min_positive=min(pos) if pos else None)
 
     def axis_labels(self):
         return self.x_label, self.y_label
@@ -165,7 +206,7 @@ class HistogramLayer(Layer):
         theme = ctx.theme
         overlay = len(self.groups) > 1
         xe = ctx.xs(self.edges)
-        base = ctx.ys.scalar(0.0)
+        base = ctx.plot.bottom if ctx.ys.kind == "log" else ctx.ys.scalar(0.0)
         nb = len(self.edges) - 1
         gap = 1.0 if (xe[-1] - xe[0]) / max(nb, 1) > 4 else 0.0
         for gi, (name, _) in enumerate(self.groups):

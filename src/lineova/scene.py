@@ -8,7 +8,8 @@ pixels with the origin at the top-left.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Optional, Sequence
+from typing import Any, Optional
+from collections.abc import Sequence
 
 import numpy as np
 
@@ -106,6 +107,7 @@ class Text:
     baseline: str = "alphabetic"     # alphabetic | middle | hanging
     letter_spacing: float = 0.0
     halo: Optional[str] = None       # background-coloured outline for legibility
+    spans: Optional[list] = None     # rich text: [(text, weight, italic, colour|None), ...]; overrides ``text``
 
 
 @dataclass(slots=True)
@@ -129,6 +131,14 @@ class Clip:
 @dataclass(slots=True)
 class EndClip:
     pass
+
+
+@dataclass(slots=True)
+class Group:
+    """Ops drawn translated by (dx, dy): used to compose several charts into one figure."""
+    dx: float
+    dy: float
+    ops: list
 
 
 @dataclass

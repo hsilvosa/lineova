@@ -1,139 +1,157 @@
-# lineova
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_map.svg" alt="Map of 207,221 earthquakes around Iberia drawn with lineova" width="640">
+</p>
 
-Clean, fast charts with good defaults. Lineova has four house styles, handles data of any size, and needs one dependency (NumPy).
+<h1 align="center">lineova</h1>
+
+<p align="center">
+  <b>Clean, fast charts from Python, with good defaults and one dependency.</b><br>
+  23 chart types · four house styles · SVG, PDF, PNG and interactive HTML · from 10 rows to 100 million
+</p>
+
+<p align="center">
+  <a href="https://github.com/hsilvosa/lineova/actions/workflows/tests.yml"><img alt="Tests" src="https://github.com/hsilvosa/lineova/actions/workflows/tests.yml/badge.svg"></a>
+  <a href="https://pypi.org/project/lineova/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lineova"></a>
+  <img alt="Python" src="https://img.shields.io/badge/python-3.10%E2%80%933.13-blue">
+  <a href="https://github.com/hsilvosa/lineova/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
+  <a href="https://hsilvosa.github.io/lineova/"><img alt="Docs" src="https://img.shields.io/badge/docs-online-informational"></a>
+</p>
+
+---
 
 ```python
 import lineova as lv
 
-lv.line(df, x="date", y="sales").save("sales.png")
+lv.line(df, x="date", y="price", color="market").save("prices.svg")
 ```
 
-That one call picks the chart size, the ticks and number formats, the colours, the legend (or labels at the line ends), and how to draw the data (vector marks for small data, pixel-exact reduction for millions of points). Every one of those choices can be overridden.
+That one call chooses the size, the ticks, number and date formats, the colours, the legend, and how to draw the data: vector marks for small data, pixel-exact reduction for millions of points. Every choice can be overridden, one option at a time.
 
-| Folio (academic) | Ledger (enterprise) |
-|---|---|
-| ![](docs/gallery/folio-line.svg) | ![](docs/gallery/ledger-bar.svg) |
-| **Instrument (technical)** | **Fjord (reports)** |
-| ![](docs/gallery/instrument-scatter.svg) | ![](docs/gallery/fjord-network.svg) |
+## Why lineova
 
-## Install
+- **Good output with no tuning.** Readable ticks, labels that don't collide, colour palettes checked for colour-blind readers, captions and sources where they belong.
+- **Four house styles** for four kinds of document: *Folio* for papers and theses, *Ledger* for business reports and dashboards, *Instrument* for engineering and monitoring, *Fjord* for public-facing reports and teaching.
+- **Any data size.** 100 million points render in about 2 seconds, and data larger than memory can be streamed in chunks. What a chart costs depends on its pixels, not its rows.
+- **One dependency.** Only NumPy is required. pandas, polars and pyarrow data are accepted as they are.
+- **Publication formats built in.** Vector SVG and PDF (text stays selectable), high-DPI PNG, and a self-contained interactive HTML page.
+- **Graphs as data, too.** A `Graph` class with shortest paths, centrality, communities, flows and more, tested against networkx.
+
+## Installation
 
 ```bash
-pip install lineova            # SVG and PDF output
-pip install "lineova[png]"     # + PNG output (resvg, no system dependencies)
+pip install lineova              # SVG, PDF and HTML output
+pip install "lineova[png]"       # adds PNG export (resvg, no system libraries)
 ```
 
-Requires Python 3.10+ and NumPy. pandas and polars inputs work if you have them installed; they are never required.
+Until the first PyPI release, install from GitHub:
 
-## Two ways to use it
+```bash
+pip install "git+https://github.com/hsilvosa/lineova.git"
+```
 
-**1. One call: say what you want and let it decide the rest.**
+Requires Python 3.10+. See [Installation](https://github.com/hsilvosa/lineova/blob/main/docs/installation.md) for optional extras and development setup.
+
+## Quick start
 
 ```python
-lv.line(df, x="month", y="gwh")               # grouped automatically by a text column like "source"
-lv.bar({"Rome": 34, "Paris": 51, "Oslo": 12})  # sorted, oriented and labelled for you
-lv.scatter(df, x="sun", y="kw", size="temp", fit=True)
-lv.histogram(values)                          # round-numbered bins chosen from the data
-lv.heatmap(matrix)                            # or a DataFrame, or long x/y/value columns
-lv.box(df, x="group", y="value")
-lv.network(edges, path=("A", "Z"))            # the shortest path is highlighted
-lv.area(df, x="month", y="gwh")               # stacked; normalize=True for 100%
+import lineova as lv
+
+# 1. One call: lineova decides the rest
+lv.bar({"Solar": 31, "Wind": 27, "Hydro": 18}, title="Electricity mix (%)").save("mix.svg")
+
+# 2. Chained: set only what you care about
+(lv.Chart(df, theme="folio")
+   .line(x="year", y="value", color="country")
+   .title("Renewable share")
+   .y_axis(range=(0, 100), label="%")
+   .caption("Source: national statistics.", number=3)
+   .save("figure3.pdf"))
 ```
 
-**2. Chained: set the details you care about, leave the rest on `"auto"`.**
+A typo gets a suggestion (`titel=` → *Did you mean 'title'?*), and every option defaults to `"auto"`. The [Quick start](https://github.com/hsilvosa/lineova/blob/main/docs/quickstart.md) walks through both styles.
 
-```python
-chart = (
-    lv.Chart(df, theme="fjord")
-      .line(x="month", y="gwh", color="source")
-      .title("Energy output", subtitle="GWh per month")
-      .y_axis(range=(0, 150), label="GWh", format="{:,.0f}")
-      .x_axis(ticks=6)
-      .band(x=("2025-06-01", "2025-08-31"), label="Summer")
-      .hline(120, "Target")
-      .highlight("Solar")
-      .legend("top")
-      .source("Grid operator")
-      .size("wide")
-)
-chart.save("energy.pdf")
-```
+## Real data examples
 
-Any chained option also works as a keyword in the one-call form (`lv.line(df, y_range=(0, 150), highlight="Solar")`). A typo gets a suggestion: `titel=` → *Did you mean 'title'?*
+These charts were made from two public datasets: the IGN Spanish earthquake catalogue (207,221 events, 1373–2026) and the OMIE Iberian electricity market (hourly prices 2023–2026 and 17 million bids from 2024). The code is in [`examples/real_data.py`](https://github.com/hsilvosa/lineova/blob/main/examples/real_data.py).
 
-See **[docs/guide.md](docs/guide.md)** for every option.
+| | |
+|---|---|
+| ![La Palma eruption](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_la_palma.svg) | ![Price by hour and month](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_heatmap.svg) |
+| ![Magnitudes, log scale](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_magnitudes.svg) | ![Supply and demand curves](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/bids_curves.svg) |
+| ![Depth by region](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_depth_regions.svg) | ![Daily price with range](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_daily.svg) |
+| ![Price by hour 2023 vs 2025](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_by_hour.svg) | ![Weekday distribution](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_weekday.svg) |
+
+More in the [gallery](https://github.com/hsilvosa/lineova/blob/main/docs/gallery.md).
+
+## Use cases
+
+| You are… | Typical charts | Style | See |
+|---|---|---|---|
+| Writing a paper or thesis | line with bands, bar with CI, box/violin, histogram, small multiples | `folio` → PDF | [Academic figures](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#academic-papers-and-theses) |
+| Building a business report or dashboard | bar, waterfall, stat tiles, sparklines, donut | `ledger` → SVG/HTML | [Business reporting](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#business-reports-and-dashboards) |
+| Monitoring sensors, markets or systems | long time series, candlestick, calendar, density | `instrument` | [Engineering](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#engineering-and-monitoring) |
+| Explaining data to the public | area, treemap, sankey, slope, radar | `fjord` | [Public reports](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#public-reports-and-teaching) |
+| Exploring very large data | scatter density, histogram, line from `lv.Chunks` | any | [Big data](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#exploring-very-large-data) |
+| Analysing networks | network drawings, shortest paths, centrality | any | [Graphs](https://github.com/hsilvosa/lineova/blob/main/docs/graphs.md) |
 
 ## Chart types
 
-`line`, `area`, `bar` (grouped, stacked, 100%, horizontal), `scatter` (bubbles, colour scales, trend line), `histogram`, `heatmap`, `box` and `network`.
+| Compare | Distribution | Composition | Change & time | Relationships | Flows & structure | Dashboards |
+|---|---|---|---|---|---|---|
+| `bar` | `histogram` | `pie` / `donut` | `line` | `scatter` | `network` | `stat` |
+| `dumbbell` | `box` | `treemap` | `area` | `density` | `sankey` | `sparkline` |
+| `slope` | `violin` | `waterfall` | `candlestick` | `heatmap` | `timeline` | `grid` |
+| `radar` | `ridgeline` | | `calendar` | | | `facet=` |
 
-![](docs/gallery/area.svg) ![](docs/gallery/histogram.svg)
+Error bars and confidence bands, reference lines, shaded ranges, annotations, log and date axes, and small multiples work across chart types. See the [user guide](https://github.com/hsilvosa/lineova/blob/main/docs/guide.md).
 
-## Big data
+## The four styles
 
-The work a chart does scales with the number of pixels, not the number of rows:
+| Folio: academic | Ledger: business |
+|---|---|
+| ![](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/folio-line.svg) | ![](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/ledger-bar.svg) |
+| **Instrument: technical** | **Fjord: public reports** |
+| ![](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/instrument-scatter.svg) | ![](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/fjord-network.svg) |
 
-- **Lines** are reduced per pixel column (M4 aggregation: first, last, min, max). The result looks identical to drawing every point.
-- **Scatter plots** above 50,000 points switch to a density image. Categories blend their colours, and the axes, labels and legend stay vector.
-- **Histograms, heatmaps and box plots** use chunked NumPy passes (`bincount`, block means, partition-based quantiles).
-- **Networks** use an FFT-accelerated force layout for large graphs and rasterise the edges when there are too many to draw one by one.
+Themes are plain dataclasses, so you can derive your own brand theme in a few lines. See [Themes](https://github.com/hsilvosa/lineova/blob/main/docs/themes.md).
 
-Memory stays bounded because data is processed in chunks. Memory-mapped arrays (`np.memmap`) work directly.
+## Performance
 
-Measured on a 2-core cloud VM (full pipeline, data → finished SVG):
+Full pipeline (data → finished SVG) on a 2-core cloud machine:
 
-| Input | Time | SVG size |
-|---|---|---|
-| line, 10 million points | 0.12 s | 70 KB |
-| line, 100 million points | 1.5 s | 70 KB |
-| scatter, 10 million points | 0.35 s | 320 KB |
-| scatter, 100 million points | 1.9 s | 630 KB |
-| histogram, 100 million values | 1.3 s | 20 KB |
-| heatmap, 4,000 × 4,000 | 0.5 s | 390 KB |
-| network, 40,000 nodes / 200,000 edges | 4 s | 700 KB |
+| Input | Time |
+|---|---|
+| Line chart, 100 million points | 1.5 s |
+| Scatter (density), 100 million points | 1.9 s |
+| Histogram, 17 million real market bids streamed from 6 files | 0.3 s |
+| Violin, 10 million values | 1.9 s |
+| Network, 40,000 nodes / 200,000 edges | 3 s |
 
-Run `python benchmarks/bench.py` (add `--big` for 100M) to reproduce.
+How it works and how to benchmark it yourself: [Performance](https://github.com/hsilvosa/lineova/blob/main/docs/performance.md).
 
-![](docs/gallery/big-scatter.svg)
+## Documentation
 
-## Output
+- [Installation](https://github.com/hsilvosa/lineova/blob/main/docs/installation.md)
+- [Quick start](https://github.com/hsilvosa/lineova/blob/main/docs/quickstart.md)
+- [User guide](https://github.com/hsilvosa/lineova/blob/main/docs/guide.md): every chart and option
+- [Use cases](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md)
+- [Gallery](https://github.com/hsilvosa/lineova/blob/main/docs/gallery.md)
+- [Themes](https://github.com/hsilvosa/lineova/blob/main/docs/themes.md)
+- [Graphs](https://github.com/hsilvosa/lineova/blob/main/docs/graphs.md)
+- [Performance](https://github.com/hsilvosa/lineova/blob/main/docs/performance.md)
+- [API reference](https://github.com/hsilvosa/lineova/blob/main/docs/api.md)
+- [FAQ](https://github.com/hsilvosa/lineova/blob/main/docs/faq.md)
 
-| Format | How | Notes |
-|---|---|---|
-| SVG | `.save("x.svg")` / `.to_svg()` | No dependencies. Hover tooltips on marks. |
-| PDF | `.save("x.pdf")` / `.to_pdf()` | Built-in vector writer. Text stays selectable. Journal-ready. |
-| PNG | `.save("x.png", dpi=300)` | Needs `lineova[png]`, `cairosvg` or `playwright`. Defaults to 2× resolution. |
-| Jupyter | just display the chart | Rendered inline as SVG. |
+## Contributing
 
-## Graphs (the data structure)
+Bug reports, ideas and pull requests are welcome. [CONTRIBUTING.md](https://github.com/hsilvosa/lineova/blob/main/CONTRIBUTING.md) explains the branch model (`main`, `develop`, `release/*`, `feature/*`), how to run the tests and how releases are made. See the [roadmap](https://github.com/hsilvosa/lineova/blob/main/ROADMAP.md) for what's planned.
 
-```python
-g = lv.Graph.from_edges([("A", "B", 4), ("A", "C", 3), ("C", "D", 2)])
-g.shortest_path("A", "D")        # ['A', 'C', 'D']
-g.bfs("A"), g.dfs("A")
-g.connected_components(), g.minimum_spanning_tree(), g.communities()
-lv.Graph.from_edges(deps, directed=True).topological_sort()
-g.draw(path=("A", "D")).save("route.svg")
-```
+## Citing lineova
 
-## Themes
+If lineova helps your research, you can cite it using [CITATION.cff](https://github.com/hsilvosa/lineova/blob/main/CITATION.cff) (GitHub shows a "Cite this repository" button).
 
-`folio` · `ledger` (default) · `instrument` · `fjord`. Themes are plain dataclasses, so you can derive your own:
+## License
 
-```python
-brand = lv.themes.get("ledger").replace(accent="#0f766e", palette=("#0f766e", "#b45309", "#6d28d9"))
-lv.themes.register("brand", brand)
-lv.themes.set_default("brand")
-```
+[MIT](https://github.com/hsilvosa/lineova/blob/main/LICENSE) © 2026 Hugo Silvosa Cuervo.
 
-The categorical palettes were checked for colour-blind separation against each theme's background. Folio also encodes series by line pattern and marker shape, so it survives black-and-white printing.
-
-## Development
-
-```bash
-pip install -e ".[dev]"
-pytest
-python examples/gallery.py        # rebuild the images above
-```
-
-MIT licensed. See [ROADMAP.md](ROADMAP.md) for what's next.
+The example datasets are not part of this repository and keep their own terms: the earthquake catalogue is published by the [Instituto Geográfico Nacional](https://doi.org/10.7419/162.03.2022), and the electricity market data by [OMIE](https://www.omie.es) (attribution required).

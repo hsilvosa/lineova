@@ -6,7 +6,7 @@ import numpy as np
 
 from .. import scene as S
 from .._color import rgb_array, ramp_lut
-from .._data import (as_float, columns_of, DataError, factorize, get_column, guess_group, is_auto, is_frame,
+from .._data import (Chunks, as_float, interval_bounds, interval_spec, columns_of, DataError, factorize, get_column, guess_group, is_auto, is_frame,
                      resolve_xy, to_array, value_kind)
 from .._text import format_value
 from ..raster import CHUNK, bin_points, shade
@@ -18,10 +18,11 @@ DENSITY_THRESHOLD = 50_000
 
 
 class _Group:
-    __slots__ = ("name", "x", "y", "size", "value")
+    __slots__ = ("name", "x", "y", "size", "value", "extra")
 
-    def __init__(self, name, x, y, size=None, value=None):
+    def __init__(self, name, x, y, size=None, value=None, extra=None):
         self.name, self.x, self.y, self.size, self.value = name, x, y, size, value
+        self.extra = extra or {}
 
 
 def _column_or_array(data, spec):
@@ -36,23 +37,42 @@ class ScatterLayer(Layer):
     legend_shape = "circle"
 
     def __init__(self, data=None, x=None, y=None, color=_AUTO, *, size=None, label=None, fit=False,
-                 render=_AUTO, opacity=_AUTO, marker=_AUTO, tooltips=_AUTO, shade=_AUTO, sizes=(2.5, 16.0)):
+                 render=_AUTO, opacity=_AUTO, marker=_AUTO, tooltips=_AUTO, shade=_AUTO, sizes=(2.5, 16.0),
+                 error=None, x_error=None):
         self.data, self.x, self.y, self.color = data, x, y, color
+        self.error, self.x_error = error, x_error
         self.size, self.label, self.fit, self.render = size, label, fit, render
         self.opacity, self.marker, self.tooltips = opacity, marker, tooltips
         self.shade_how = "eq_hist" if is_auto(shade) else shade
         self.size_range = sizes
 
     # ---------------------------------------------------------------- data
+    def _prepare_chunked(self, chart) -> None:
+        from .. import stream
+        cx, cy, w, n, _ = stream.points(self.data, self.x, self.y, xlim=chart._x.range, ylim=chart._y.range)
+        name = self.label or (str(self.y) if isinstance(self.y, str) else "points")
+        self.groups = [_Group(name, cx, cy, extra={"_w": w})]
+        self.n = n
+        self.x_kind = "num"
+        self.x_label = str(self.x) if isinstance(self.x, str) else None
+        self.y_label = str(self.y) if isinstance(self.y, str) else None
+        self.continuous = None
+        self.size_lim = None
+        self.density = True
+        self.fit_result = None
+
     def prepare(self, chart) -> None:
         self.theme = chart.resolved_theme
+        if isinstance(self.data, Chunks):
+            return self._prepare_chunked(chart)
         data, color = self.data, self.color
         if is_auto(color):
             color = guess_group(data, columns_of(data), {v for v in (self.x, self.y, self.size) if isinstance(v, str)}) if (
                 is_frame(data) and isinstance(self.y, str)) else None
         cvals = _column_or_array(data, color) if color is not None and not (
             isinstance(color, str) and color.startswith("#")) else None
-        xy = resolve_xy(data, self.x, self.y, None)
+        extra = {**interval_spec(self.error), **interval_spec(self.x_error, "x")}
+        xy = resolve_xy(data, self.x, self.y, None, extra=extra)
         if xy.x_kind == "cat":
             raise DataError("Scatter plots need numeric or date x values. For categories use bar() or box().")
         self.x_kind = xy.x_kind
@@ -67,7 +87,7 @@ class ScatterLayer(Layer):
             if cvals is not None and value_kind(cvals) == "num":
                 v = as_float(cvals, "num")
                 self.continuous = (float(np.nanmin(v)), float(np.nanmax(v)), str(color) if isinstance(color, str) else "")
-                groups.append(_Group(self.label or s.name, s.x, s.y, size, v))
+                groups.append(_Group(self.label or s.name, s.x, s.y, size, v, s.extra))
             elif cvals is not None:
                 codes, names = factorize(cvals)
                 order = np.argsort(codes, kind="stable")
@@ -76,12 +96,20 @@ class ScatterLayer(Layer):
                 for i, nm in enumerate(names):
                     sel = order[start:start + counts[i]]
                     start += counts[i]
-                    groups.append(_Group(nm, s.x[sel], s.y[sel], None if size is None else size[sel]))
+                    groups.append(_Group(nm, s.x[sel], s.y[sel], None if size is None else size[sel],
+                                         extra={k: v[sel] for k, v in s.extra.items()}))
                 self.group_label = str(color) if isinstance(color, str) else None
             else:
-                groups.append(_Group(self.label or s.name, s.x, s.y, size))
+                groups.append(_Group(self.label or s.name, s.x, s.y, size, extra=s.extra))
         else:
-            groups = [_Group(s.name, s.x, s.y) for s in xy.series]
+            groups = [_Group(s.name, s.x, s.y, extra=s.extra) for s in xy.series]
+        for g in groups:
+            yb = interval_bounds(g.y, g.extra)
+            xb = interval_bounds(g.x, g.extra, "x")
+            if yb is not None:
+                g.extra["_lo"], g.extra["_hi"] = yb
+            if xb is not None:
+                g.extra["_xlo"], g.extra["_xhi"] = xb
         self.groups = groups
         self.n = sum(len(g.x) for g in groups)
         if size is not None:
@@ -97,11 +125,13 @@ class ScatterLayer(Layer):
         return [g.name for g in self.groups]
 
     def x_domain(self):
-        lo, hi = _nanrange(g.x for g in self.groups)
+        lo, hi = _nanrange([g.x for g in self.groups] + [g.extra[k] for g in self.groups for k in ("_xlo", "_xhi")
+                                                            if k in g.extra])
         return Domain(self.x_kind, lo, hi, nice=self.x_kind != "time", pad=self._pad(), extent=(lo, hi))
 
     def y_domain(self):
-        lo, hi = _nanrange(g.y for g in self.groups)
+        lo, hi = _nanrange([g.y for g in self.groups] + [g.extra[k] for g in self.groups for k in ("_lo", "_hi")
+                                                            if k in g.extra])
         return Domain("num", lo, hi, nice=True, pad=self._pad(), extent=(lo, hi))
 
     def _pad(self) -> float:
@@ -138,6 +168,36 @@ class ScatterLayer(Layer):
         if self.fit_result:
             self._draw_fit(ctx)
 
+    def _draw_errors(self, ctx, g, color):
+        """Error bars as one path per group (NaN-separated segments)."""
+        ok = np.isfinite(g.x) & np.isfinite(g.y)
+        n = int(ok.sum())
+        caps = n <= 200
+        for lo_k, hi_k, vertical in (("_lo", "_hi", True), ("_xlo", "_xhi", False)):
+            if lo_k not in g.extra:
+                continue
+            lo, hi = g.extra[lo_k][ok], g.extra[hi_k][ok]
+            px, py = ctx.xs(g.x[ok]), ctx.ys(g.y[ok])
+            if vertical:
+                a, b = ctx.ys(lo), ctx.ys(hi)
+                xs = np.column_stack((px, px, np.full(n, np.nan))).ravel()
+                ys = np.column_stack((a, b, np.full(n, np.nan))).ravel()
+                if caps:
+                    c = 3.0
+                    xs = np.concatenate((xs, np.column_stack((px - c, px + c, np.full(n, np.nan), px - c, px + c,
+                                                              np.full(n, np.nan))).ravel()))
+                    ys = np.concatenate((ys, np.column_stack((a, a, np.full(n, np.nan), b, b, np.full(n, np.nan))).ravel()))
+            else:
+                a, b = ctx.xs(lo), ctx.xs(hi)
+                ys = np.column_stack((py, py, np.full(n, np.nan))).ravel()
+                xs = np.column_stack((a, b, np.full(n, np.nan))).ravel()
+                if caps:
+                    c = 3.0
+                    ys = np.concatenate((ys, np.column_stack((py - c, py + c, np.full(n, np.nan), py - c, py + c,
+                                                              np.full(n, np.nan))).ravel()))
+                    xs = np.concatenate((xs, np.column_stack((a, a, np.full(n, np.nan), b, b, np.full(n, np.nan))).ravel()))
+            ctx.scene.add(S.Polyline(xs, ys, stroke=color, stroke_width=1.0, opacity=0.75, cap="butt"))
+
     def _draw_vector(self, ctx):
         theme = ctx.theme
         style = theme.scatter_style if is_auto(self.marker) else self.marker
@@ -151,6 +211,8 @@ class ScatterLayer(Layer):
         for i in order:
             g = self.groups[i]
             color = ctx.color(g.name, i) if not self.continuous else theme.accent
+            if g.extra:
+                self._draw_errors(ctx, g, color if theme.name != "folio" else theme.ink_secondary)
             ok = np.isfinite(g.x) & np.isfinite(g.y)
             px, py = ctx.xs(g.x[ok]), ctx.ys(g.y[ok])
             r = self._radius(g, theme)
@@ -205,7 +267,6 @@ class ScatterLayer(Layer):
         ctx.overlay.append(S.Polyline(xs2, ys2, stroke=color, stroke_width=1.0, opacity=0.7, cap="butt"))
 
     def _draw_density(self, ctx):
-        theme = ctx.theme
         xs, ys = ctx.xs, ctx.ys
         rs = ctx.raster_scale
         rows, cols = max(1, int(round(ctx.plot.h * rs))), max(1, int(round(ctx.plot.w * rs)))
@@ -213,8 +274,8 @@ class ScatterLayer(Layer):
         ylim = (min(ys.d0, ys.d1), max(ys.d0, ys.d1))
         xt = xs.transform if xs.kind == "log" else None
         yt = ys.transform if ys.kind == "log" else None
-        grids = [bin_points(g.x, g.y, xlim, ylim, (rows, cols), x_transform=xt, y_transform=yt)
-                 for g in self.groups]
+        grids = [bin_points(g.x, g.y, xlim, ylim, (rows, cols), x_transform=xt, y_transform=yt,
+                            weights=g.extra.get("_w")) for g in self.groups]
         colors = rgb_array([ctx.color(g.name, i) for i, g in enumerate(self.groups)])
         if len(grids) == 1:
             img = shade(grids[0], colors[0], self.shade_how)
