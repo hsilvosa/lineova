@@ -3,6 +3,8 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Fixed
+- CI: install SciPy with the `dev` extra (networkx needs it for PageRank in the tests); GitHub Actions updated to Node 24 versions.
 
 ## [0.2.0] — 2026-09-26
 - New charts: pie/donut, violin, ridgeline, dumbbell, slope, waterfall, candlestick/OHLC, treemap, sankey, radar,
