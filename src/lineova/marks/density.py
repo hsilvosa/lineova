@@ -10,11 +10,11 @@ from __future__ import annotations
 import numpy as np
 
 from .. import scene as S
-from .._color import ramp_lut, rgb_array
-from .._data import DataError, factorize, is_auto
+from .._color import ramp_lut
+from .._data import DataError, is_auto
 from ..raster import bin_points
 from ..reduce import sample_indices
-from ._base import Domain, DrawContext, Layer, LegendItem
+from ._base import DrawContext, LegendItem
 from .scatter import ScatterLayer
 
 _AUTO = "auto"

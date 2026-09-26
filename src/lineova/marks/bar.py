@@ -264,7 +264,9 @@ class BarLayer(Layer):
             lo, hi = min(lo, float(np.nanmin(bounds))), max(hi, float(np.nanmax(bounds)))
         if self.normalize:
             return Domain("num", 0.0, 1.0, zero=True, nice=False)
-        return Domain("num", lo, hi, zero=True, nice=True, extent=(min(lo, 0), max(hi, 0)))
+        pos = v[np.isfinite(v) & (v > 0)]
+        return Domain("num", lo, hi, zero=True, nice=True, extent=(min(lo, 0), max(hi, 0)),
+                      min_positive=float(pos.min()) if pos.size else None)
 
     def _cat_domain(self):
         cats = list(reversed(self.cats)) if self.horizontal else list(self.cats)
@@ -305,7 +307,8 @@ class BarLayer(Layer):
         val_scale = ctx.xs if self.horizontal else ctx.ys
         k = len(self.names)
         band = cat_scale.bandwidth
-        base_px = val_scale.scalar(0.0)
+        base_px = val_scale.scalar(0.0) if val_scale.kind != "log" else \
+            (val_scale.r0 if not self.horizontal else val_scale.r0)
         single = k == 1
         hl = ctx.highlight
         hatch = theme.bar_highlight == "hatch"
@@ -357,7 +360,7 @@ class BarLayer(Layer):
                     pos0 = b0 if (single or self.stacked) else b0 + si * (thickness + 2)
                 end = ("both" if pill else (("right" if v >= 0 else "left") if self.horizontal
                                             else ("top" if v >= 0 else "bottom"))) if outer else "none"
-                path = self._bar(ctx, p0, p1, pos0, thickness, color, end, radius=radius if outer else 0,
+                self._bar(ctx, p0, p1, pos0, thickness, color, end, radius=radius if outer else 0,
                                  hatch=theme.ink if (single and on and hatch) else None,
                                  stroke=theme.ink if (single and on and hatch) else None,
                                  sep=self.stacked, title=f"{cat} · {name}: {self._fmt(v)}" if k > 1 else f"{cat}: {self._fmt(v)}")

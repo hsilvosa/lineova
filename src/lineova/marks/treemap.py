@@ -6,9 +6,9 @@ import numpy as np
 
 from .. import scene as S
 from .._color import mix, readable_on
-from .._data import DataError, aggregate, as_float, factorize, get_column, is_frame, to_array
+from .._data import DataError, aggregate, as_float, get_column, is_frame, to_array
 from .._text import format_value, text_width, truncate
-from ._base import DrawContext, Layer, LegendItem
+from ._base import DrawContext, Layer
 
 _AUTO = "auto"
 
@@ -28,7 +28,7 @@ def squarify(values, x, y, w, h) -> list[tuple[float, float, float, float]]:
         row = [areas[i]]
         j = i + 1
 
-        def worst(r):
+        def worst(r, short=short):
             s = sum(r)
             return max(max(s * s / (short * short * a), short * short * a / (s * s)) for a in r if a > 0) if s else 1e9
 
@@ -87,7 +87,7 @@ class TreemapLayer(Layer):
             tree = data
         else:
             try:
-                idx = getattr(data, "index")
+                idx = data.index
                 tree = dict(zip(map(str, idx), to_array(data)))
             except AttributeError:
                 raise DataError("Pass {label: value}, {group: {label: value}}, or a DataFrame with path= and value=.") \
