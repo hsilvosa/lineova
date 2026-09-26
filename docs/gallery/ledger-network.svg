@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Cheapest route A → I</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Cheapest route A → I</text>
+<path d="M223.44,366L37,275" fill="none" stroke="#cdd3de" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>A – B: 4</title></path>
+<path d="M37,275L202.74,220.29" fill="none" stroke="#cdd3de" stroke-width="2.12" stroke-linecap="round" stroke-linejoin="round"><title>B – D: 5</title></path>
+<path d="M37,275L37.73,165.98" fill="none" stroke="#cdd3de" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"><title>B – E: 6</title></path>
+<path d="M473.25,285.05L577.51,181.92" fill="none" stroke="#cdd3de" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"><title>C – F: 6</title></path>
+<path d="M202.74,220.29L37.73,165.98" fill="none" stroke="#cdd3de" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>D – E: 4</title></path>
+<path d="M37.73,165.98L67.62,65.05" fill="none" stroke="#cdd3de" stroke-width="2.12" stroke-linecap="round" stroke-linejoin="round"><title>E – H: 5</title></path>
+<path d="M37.73,165.98L348.11,117.59" fill="none" stroke="#cdd3de" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"><title>E – G: 2</title></path>
+<path d="M348.11,117.59L577.51,181.92" fill="none" stroke="#cdd3de" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>G – F: 4</title></path>
+<path d="M348.11,117.59L67.62,65.05" fill="none" stroke="#cdd3de" stroke-width="1.24" stroke-linecap="round" stroke-linejoin="round"><title>G – H: 3</title></path>
+<path d="M577.51,181.92L603,96.97" fill="none" stroke="#cdd3de" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><title>F – I: 7</title></path>
+<path d="M223.44,366L473.25,285.05" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>A – C: 3</title></path>
+<path d="M473.25,285.05L202.74,220.29" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>C – D: 2</title></path>
+<path d="M202.74,220.29L348.11,117.59" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>D – G: 3</title></path>
+<path d="M348.11,117.59L603,96.97" fill="none" stroke="#2f5bd3" stroke-width="3.12" stroke-linecap="round" stroke-linejoin="round"><title>G – I: 5</title></path>
+<rect x="122.22" y="312.5" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="130.22" y="324" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">4</text>
+<rect x="340.34" y="317.52" width="16" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="348.34" y="329.02" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">3</text>
+<rect x="111.87" y="239.64" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="119.87" y="251.14" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">5</text>
+<rect x="29.36" y="212.49" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="37.36" y="223.99" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">6</text>
+<rect x="329.99" y="244.67" width="16" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="337.99" y="256.17" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">2</text>
+<rect x="517.38" y="225.48" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="525.38" y="236.98" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">6</text>
+<rect x="112.23" y="185.13" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="120.23" y="196.63" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">4</text>
+<rect x="267.42" y="160.94" width="16" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="275.42" y="172.44" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">3</text>
+<rect x="44.67" y="107.51" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="52.67" y="119.01" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">5</text>
+<rect x="184.92" y="133.78" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="192.92" y="145.28" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">2</text>
+<rect x="454.81" y="141.75" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="462.81" y="153.25" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">4</text>
+<rect x="199.86" y="83.32" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="207.86" y="94.82" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">3</text>
+<rect x="467.55" y="99.28" width="16" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="475.55" y="110.78" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">5</text>
+<rect x="582.26" y="131.44" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="590.26" y="142.94" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">7</text>
+<rect x="208.44" y="354" width="30" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>A · degree 2</title></rect>
+<text x="223.44" y="370.2" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">A</text>
+<rect x="22" y="263" width="30" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>B · degree 3</title></rect>
+<text x="37" y="279.2" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">B</text>
+<rect x="458.25" y="273.05" width="30" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>C · degree 3</title></rect>
+<text x="473.25" y="289.25" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">C</text>
+<rect x="187.74" y="208.29" width="30" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>D · degree 4</title></rect>
+<text x="202.74" y="224.49" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">D</text>
+<rect x="22.73" y="153.98" width="30" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>E · degree 4</title></rect>
+<text x="37.73" y="170.18" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">E</text>
+<rect x="333.11" y="105.59" width="30" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>G · degree 5</title></rect>
+<text x="348.11" y="121.79" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">G</text>
+<rect x="562.51" y="169.92" width="30" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>F · degree 3</title></rect>
+<text x="577.51" y="186.12" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">F</text>
+<rect x="52.62" y="53.05" width="30" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>H · degree 2</title></rect>
+<text x="67.62" y="69.25" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">H</text>
+<rect x="588" y="84.97" width="30" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>I · degree 2</title></rect>
+<text x="603" y="101.17" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">I</text>
+</svg>

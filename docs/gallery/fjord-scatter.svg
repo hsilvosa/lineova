@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
+<desc>Output vs irradiance</desc>
+<defs><clipPath id="lv45ef46c1"><rect x="36.3" y="69.29" width="573.74" height="271.76"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Output vs irradiance</text>
+<line x1="37.3" y1="340.05" x2="609.04" y2="340.05" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="301.51" x2="609.04" y2="301.51" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="262.98" x2="609.04" y2="262.98" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="224.44" x2="609.04" y2="224.44" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="185.9" x2="609.04" y2="185.9" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="147.36" x2="609.04" y2="147.36" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="108.83" x2="609.04" y2="108.83" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="37.3" y1="70.29" x2="609.04" y2="70.29" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<g clip-path="url(#lv45ef46c1)">
+<g fill="#008c9e" fill-opacity="0.3" stroke="#008c9e" stroke-width="1.2">
+<circle cx="565.45" cy="95.3" r="16"><title>x: 931 · y: 83.5</title></circle>
+<circle cx="529.88" cy="115.58" r="15.88"><title>x: 875 · y: 78.2</title></circle>
+<circle cx="459.77" cy="139.4" r="15.68"><title>x: 765 · y: 72.1</title></circle>
+<circle cx="511.63" cy="122.08" r="15.63"><title>x: 847 · y: 76.6</title></circle>
+<circle cx="470.37" cy="89.2" r="14.84"><title>x: 782 · y: 85.1</title></circle>
+<circle cx="508.27" cy="124.19" r="14.81"><title>x: 841 · y: 76</title></circle>
+<circle cx="495.18" cy="126.45" r="14.59"><title>x: 821 · y: 75.4</title></circle>
+<circle cx="568.69" cy="75.17" r="14.53"><title>x: 936 · y: 88.7</title></circle>
+<circle cx="519.99" cy="137.07" r="14.39"><title>x: 860 · y: 72.7</title></circle>
+<circle cx="482.34" cy="124.54" r="14.31"><title>x: 801 · y: 75.9</title></circle>
+<circle cx="392.4" cy="191.51" r="13.94"><title>x: 659 · y: 58.5</title></circle>
+<circle cx="387.2" cy="215.54" r="13.89"><title>x: 651 · y: 52.3</title></circle>
+<circle cx="468.18" cy="154.54" r="13.83"><title>x: 778 · y: 68.1</title></circle>
+<circle cx="442.97" cy="121.35" r="13.72"><title>x: 739 · y: 76.8</title></circle>
+<circle cx="486.71" cy="154.93" r="13.62"><title>x: 807 · y: 68</title></circle>
+<circle cx="418.32" cy="139.52" r="13.45"><title>x: 700 · y: 72</title></circle>
+<circle cx="385.15" cy="159.42" r="13.39"><title>x: 648 · y: 66.9</title></circle>
+<circle cx="328.02" cy="204.75" r="13.13"><title>x: 558 · y: 55.1</title></circle>
+<circle cx="383.71" cy="172.82" r="13.1"><title>x: 645 · y: 63.4</title></circle>
+<circle cx="349.68" cy="172.45" r="12.95"><title>x: 592 · y: 63.5</title></circle>
+<circle cx="343.56" cy="190.57" r="12.75"><title>x: 582 · y: 58.8</title></circle>
+<circle cx="378.93" cy="189" r="12.51"><title>x: 638 · y: 59.2</title></circle>
+<circle cx="213.38" cy="247.93" r="12.3"><title>x: 377 · y: 43.9</title></circle>
+<circle cx="295.95" cy="214.89" r="12.29"><title>x: 507 · y: 52.5</title></circle>
+<circle cx="330.16" cy="218.02" r="12.27"><title>x: 561 · y: 51.7</title></circle>
+<circle cx="307.28" cy="222.74" r="12.19"><title>x: 525 · y: 50.4</title></circle>
+<circle cx="306.42" cy="217.89" r="12.15"><title>x: 524 · y: 51.7</title></circle>
+<circle cx="330.55" cy="191.43" r="12.14"><title>x: 562 · y: 58.6</title></circle>
+<circle cx="321.62" cy="189.92" r="12.11"><title>x: 548 · y: 59</title></circle>
+<circle cx="325.42" cy="199.93" r="12.07"><title>x: 554 · y: 56.4</title></circle>
+<circle cx="225.57" cy="257.06" r="11.73"><title>x: 396 · y: 41.5</title></circle>
+<circle cx="182.1" cy="287.13" r="11.56"><title>x: 328 · y: 33.7</title></circle>
+<circle cx="258.52" cy="209.71" r="11.43"><title>x: 448 · y: 53.8</title></circle>
+<circle cx="187.01" cy="296.87" r="11.24"><title>x: 336 · y: 31.2</title></circle>
+<circle cx="174.82" cy="282.68" r="10.6"><title>x: 316 · y: 34.9</title></circle>
+<circle cx="120.75" cy="302.76" r="10.48"><title>x: 231 · y: 29.7</title></circle>
+<circle cx="81.26" cy="292.49" r="10.35"><title>x: 169 · y: 32.3</title></circle>
+<circle cx="198.06" cy="297.27" r="10.3"><title>x: 353 · y: 31.1</title></circle>
+<circle cx="208.01" cy="216.46" r="10.24"><title>x: 369 · y: 52.1</title></circle>
+<circle cx="201.71" cy="238.39" r="9.84"><title>x: 359 · y: 46.4</title></circle>
+<circle cx="151.95" cy="246.82" r="9.75"><title>x: 280 · y: 44.2</title></circle>
+<circle cx="224.15" cy="280.04" r="9.6"><title>x: 394 · y: 35.6</title></circle>
+<circle cx="170.75" cy="300.39" r="9.57"><title>x: 310 · y: 30.3</title></circle>
+<circle cx="97.19" cy="279.32" r="9.56"><title>x: 194 · y: 35.8</title></circle>
+<circle cx="78.02" cy="327.1" r="9.08"><title>x: 164 · y: 23.4</title></circle>
+<circle cx="154.8" cy="261.23" r="7.9"><title>x: 285 · y: 40.5</title></circle>
+<circle cx="77.27" cy="302.45" r="7.87"><title>x: 163 · y: 29.8</title></circle>
+<circle cx="93.1" cy="286.95" r="2.5"><title>x: 188 · y: 33.8</title></circle>
+</g>
+<path d="M77.27,300.76L85.07,297.57L92.87,294.38L100.67,291.18L108.47,287.98L116.27,284.77L124.07,281.57L131.87,278.35L139.67,275.14L147.47,271.92L155.27,268.7L163.07,265.47L170.87,262.23L178.67,258.99L186.47,255.75L194.27,252.49L202.07,249.23L209.87,245.96L217.67,242.68L225.47,239.39L233.27,236.1L241.07,232.79L248.88,229.46L256.68,226.13L264.48,222.78L272.28,219.42L280.08,216.04L287.88,212.65L295.68,209.24L303.48,205.82L311.28,202.38L319.08,198.92L326.88,195.44L334.68,191.95L342.48,188.44L350.28,184.92L358.08,181.38L365.88,177.82L373.68,174.25L381.48,170.67L389.28,167.07L397.08,163.46L404.88,159.84L412.68,156.21L420.48,152.57L428.28,148.92L436.09,145.26L443.89,141.59L451.69,137.92L459.49,134.24L467.29,130.55L475.09,126.86L482.89,123.17L490.69,119.46L498.49,115.76L506.29,112.05L514.09,108.33L521.89,104.62L529.69,100.89L537.49,97.17L545.29,93.44L553.09,89.71L560.89,85.98L568.69,82.25L568.69,105.75L560.89,108.93L553.09,112.13L545.29,115.32L537.49,118.51L529.69,121.71L521.89,124.92L514.09,128.12L506.29,131.33L498.49,134.54L490.69,137.76L482.89,140.98L475.09,144.2L467.29,147.43L459.49,150.67L451.69,153.91L443.89,157.16L436.09,160.42L428.28,163.68L420.48,166.96L412.68,170.24L404.88,173.53L397.08,176.83L389.28,180.15L381.48,183.47L373.68,186.81L365.88,190.16L358.08,193.53L350.28,196.91L342.48,200.31L334.68,203.72L326.88,207.15L319.08,210.6L311.28,214.06L303.48,217.54L295.68,221.04L287.88,224.56L280.08,228.09L272.28,231.63L264.48,235.19L256.68,238.77L248.88,242.36L241.07,245.96L233.27,249.57L225.47,253.2L217.67,256.83L209.87,260.48L202.07,264.13L194.27,267.79L186.47,271.46L178.67,275.13L170.87,278.82L163.07,282.5L155.27,286.2L147.47,289.9L139.67,293.6L131.87,297.31L124.07,301.02L116.27,304.73L108.47,308.45L100.67,312.17L92.87,315.9L85.07,319.63L77.27,323.36Z" fill="#17262e" fill-opacity="0.08"/>
+<path d="M77.27,312.06L85.07,308.6L92.87,305.14L100.67,301.68L108.47,298.21L116.27,294.75L124.07,291.29L131.87,287.83L139.67,284.37L147.47,280.91L155.27,277.45L163.07,273.99L170.87,270.52L178.67,267.06L186.47,263.6L194.27,260.14L202.07,256.68L209.87,253.22L217.67,249.76L225.47,246.3L233.27,242.83L241.07,239.37L248.88,235.91L256.68,232.45L264.48,228.99L272.28,225.53L280.08,222.07L287.88,218.6L295.68,215.14L303.48,211.68L311.28,208.22L319.08,204.76L326.88,201.3L334.68,197.84L342.48,194.38L350.28,190.91L358.08,187.45L365.88,183.99L373.68,180.53L381.48,177.07L389.28,173.61L397.08,170.15L404.88,166.69L412.68,163.22L420.48,159.76L428.28,156.3L436.09,152.84L443.89,149.38L451.69,145.92L459.49,142.46L467.29,138.99L475.09,135.53L482.89,132.07L490.69,128.61L498.49,125.15L506.29,121.69L514.09,118.23L521.89,114.77L529.69,111.3L537.49,107.84L545.29,104.38L553.09,100.92L560.89,97.46L568.69,94" fill="none" stroke="#e0673f" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<text x="37.3" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">100</text>
+<text x="100.83" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">200</text>
+<text x="164.35" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">300</text>
+<text x="227.88" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">400</text>
+<text x="291.41" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">500</text>
+<text x="354.93" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">600</text>
+<text x="418.46" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">700</text>
+<text x="481.99" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">800</text>
+<text x="545.51" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">900</text>
+<text x="609.04" y="355.02" font-size="11.5" fill="#6e8088" text-anchor="middle">1,000</text>
+<text x="30.3" y="344.07" font-size="11.5" fill="#6e8088" text-anchor="end">20</text>
+<text x="30.3" y="305.54" font-size="11.5" fill="#6e8088" text-anchor="end">30</text>
+<text x="30.3" y="267" font-size="11.5" fill="#6e8088" text-anchor="end">40</text>
+<text x="30.3" y="228.46" font-size="11.5" fill="#6e8088" text-anchor="end">50</text>
+<text x="30.3" y="189.93" font-size="11.5" fill="#6e8088" text-anchor="end">60</text>
+<text x="30.3" y="151.39" font-size="11.5" fill="#6e8088" text-anchor="end">70</text>
+<text x="30.3" y="112.85" font-size="11.5" fill="#6e8088" text-anchor="end">80</text>
+<text x="30.3" y="74.32" font-size="11.5" fill="#6e8088" text-anchor="end">90</text>
+<text x="609.04" y="382" font-size="11.5" fill="#6e8088" text-anchor="end">Irradiance (W/m²)</text>
+<text x="16" y="59.94" font-size="11.5" fill="#6e8088">Output (kW)</text>
+<text x="45.3" y="84.29" font-size="11.5" fill="#43565f" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">y = 0.0731x + 15.3 · R² = 0.91</text>
+</svg>
