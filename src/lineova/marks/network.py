@@ -221,7 +221,10 @@ class NetworkLayer(Layer):
         if self.node_size in ("pagerank", "betweenness", "closeness"):
             if self.graph is None:
                 raise DataError(f"node_size={self.node_size!r} needs the graph structure; pass a lv.Graph.")
-            scores = getattr(self.graph, self.node_size)()
+            if self.node_size == "betweenness" and n > 2000:
+                scores = self.graph.betweenness(k=min(n, 400))   # sampled: exact is O(n·m)
+            else:
+                scores = getattr(self.graph, self.node_size)()
             measure = np.array([scores[nn] for nn in self.nodes], float)
         sized = style == "sized" or self.node_size in ("degree", "pagerank", "betweenness", "closeness")
         if sized and n:
