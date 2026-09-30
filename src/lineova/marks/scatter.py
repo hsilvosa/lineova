@@ -34,6 +34,7 @@ def _column_or_array(data, spec):
 
 
 class ScatterLayer(Layer):
+    emphasize_zero = False
     legend_shape = "circle"
 
     def __init__(self, data=None, x=None, y=None, color=_AUTO, *, size=None, label=None, fit=False,

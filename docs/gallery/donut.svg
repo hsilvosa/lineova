@@ -15,9 +15,9 @@
 <path d="M187.09,151.26L154.32,159.25L151.32,159.25" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="148.32" y="157.05" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Gas</text>
 <text x="148.32" y="170.8" font-size="11" fill="#475467" text-anchor="end">14%</text>
-<path d="M255.42,87.09L154.32,101.5L151.32,101.5" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="148.32" y="99.3" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Coal</text>
-<text x="148.32" y="113.05" font-size="11" fill="#475467" text-anchor="end">6%</text>
+<path d="M255.42,87.09L154.32,104.25L151.32,104.25" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="148.32" y="102.05" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Coal</text>
+<text x="148.32" y="115.8" font-size="11" fill="#475467" text-anchor="end">6%</text>
 <path d="M300.99,73.85L154.32,75.65L151.32,75.65" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="148.32" y="73.45" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Nuclear</text>
 <text x="148.32" y="87.2" font-size="11" fill="#475467" text-anchor="end">4%</text>

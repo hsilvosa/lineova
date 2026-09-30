@@ -155,7 +155,11 @@ def format_value(value: float) -> str:
         return "0" if v == 0 else str(v)
     mag = abs(v)
     if mag >= 1e4:
-        return format_number(v, 10 ** math.floor(math.log10(mag)) / 100, compact=True)
+        s = format_number(v, 10 ** math.floor(math.log10(mag)) / 100, compact=True)
+        num, suffix = s[:-1], s[-1]
+        if "." in num:                      # 12.0k -> 12k, 2.50M -> 2.5M
+            num = num.rstrip("0").rstrip(".")
+        return num + suffix
     digits = max(0, 2 - math.floor(math.log10(mag)))
     s = f"{mag:,.{digits}f}"
     if "." in s:

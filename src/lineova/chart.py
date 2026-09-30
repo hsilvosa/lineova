@@ -491,8 +491,10 @@ class Chart(Renderable):
         lines: list[tuple[str, str, bool]] = []   # (text, colour, first-line-has-prefix)
         prefix = ""
         if theme.caption_style == "figure":
-            parts = [p for p in (self._opts["title"], self._opts["subtitle"], self._opts["caption"]) if p]
-            text = " ".join(p if p.rstrip().endswith((".", "?", "!", ":")) else p + "." for p in map(str, parts))
+            parts = [str(p).strip() for p in (self._opts["title"], self._opts["subtitle"], self._opts["caption"]) if p]
+            # each part becomes a sentence: "Forecast." + "with 90% interval" -> "Forecast. With 90% interval."
+            parts = [p[:1].upper() + p[1:] if i and p[:1].islower() else p for i, p in enumerate(parts)]
+            text = " ".join(p if p.endswith((".", "?", "!", ":")) else p + "." for p in parts)
             if self._opts["number"] is not None:
                 prefix = f"Figure {self._opts['number']}."
             if text or prefix:
@@ -640,7 +642,13 @@ class Chart(Renderable):
             if lo == hi:
                 lo, hi = lo - 43200e9, hi + 43200e9
             return TimeScale((lo, hi), (r0, r1))
-        if dom.nice and user_lo is None and user_hi is None:
+        if (theme.axis_style == "range" and dom.nice and dom.kind == "num" and user_lo is None
+                and user_hi is None and hi > lo):
+            # range frames show the data extent, so round-number padding would only leave empty space
+            p = (hi - lo) * max(dom.pad, 0.04)
+            lo = lo if (zero and lo == 0) else lo - p
+            hi = hi if (zero and hi == 0) else hi + p
+        elif dom.nice and user_lo is None and user_hi is None:
             lo, hi, _ = nice_domain(lo, hi, count)
         else:
             if lo == hi:
@@ -798,7 +806,7 @@ class Chart(Renderable):
                 py = ys.scalar(v)
                 if box and (abs(py - plot.y) < 1 or abs(py - plot.bottom) < 1):
                     continue
-                zero = v == 0 and theme.axis_style == "none"
+                zero = v == 0 and theme.axis_style == "none" and all(getattr(l, "emphasize_zero", True) for l in self._layers)
                 scene.add(S.Line(plot.x, py, plot.right, py, theme.axis_color if zero else theme.grid_color,
                                  1.5 if zero else theme.grid_width, dash=None if zero else theme.grid_dash))
         if gx and not isinstance(xs, BandScale):
@@ -821,7 +829,9 @@ class Chart(Renderable):
             scene.add(S.Rect(plot.x, plot.y, plot.w, plot.h, stroke=ink, stroke_width=theme.axis_width))
         elif style == "baseline":
             if not isinstance(ys, BandScale):
-                y0 = ys.scalar(0) if ys.kind == "linear" and min(ys.d0, ys.d1) <= 0 <= max(ys.d0, ys.d1) else plot.bottom
+                at_zero = ys.kind == "linear" and min(ys.d0, ys.d1) <= 0 <= max(ys.d0, ys.d1) \
+                    and all(getattr(l, "emphasize_zero", True) for l in self._layers)
+                y0 = ys.scalar(0) if at_zero else plot.bottom
                 scene.add(S.Line(plot.x, y0, plot.right, y0, ink, theme.axis_width))
             elif not isinstance(xs, BandScale):
                 x0 = xs.scalar(0) if xs.kind == "linear" and min(xs.d0, xs.d1) <= 0 <= max(xs.d0, xs.d1) else plot.x
@@ -831,20 +841,23 @@ class Chart(Renderable):
                 a, b = _extent(xd, xs)
                 by = plot.bottom + offset
                 scene.add(S.Line(xs.scalar(a), by, xs.scalar(b), by, ink, theme.axis_width))
-                xv, xl = _range_ticks(xs, xv, xl, a, b)
+                xv, xl = _range_ticks(xs, xv, xl, a, b, True, size, kind)
             if self._y.visible and not isinstance(ys, BandScale):
                 a, b = _extent(yd, ys)
                 ax = plot.x - offset
                 scene.add(S.Line(ax, ys.scalar(a), ax, ys.scalar(b), ink, theme.axis_width))
-                yv, yl = _range_ticks(ys, yv, yl, a, b)
+                yv, yl = _range_ticks(ys, yv, yl, a, b, False, size, kind)
             if isinstance(ys, BandScale) and not isinstance(xs, BandScale):
                 x0 = xs.scalar(0) if min(xs.d0, xs.d1) <= 0 <= max(xs.d0, xs.d1) else plot.x
                 scene.add(S.Line(x0, plot.y, x0, plot.bottom, ink, theme.axis_width))
 
         # --- x ticks & labels
+        # a y label sitting on the bottom edge collides with a centred first x label
+        y_at_bottom = self._y.visible and not isinstance(ys, BandScale) and any(
+            abs(ys.scalar(v) - plot.bottom) < size for v in yv)
         if self._x.visible:
             base = plot.bottom + offset
-            for v, lab in zip(xv, xl):
+            for i, (v, lab) in enumerate(zip(xv, xl)):
                 px = xs.center(v) if isinstance(xs, BandScale) else xs.scalar(v)
                 if not (plot.x - 1 <= px <= plot.right + 1):
                     continue
@@ -857,6 +870,9 @@ class Chart(Renderable):
                 if x_rot:
                     scene.add(S.Text(px + 3, ty, truncate(lab, 120, size, kind), size, lab_col, anchor="end",
                                      rotate=-40, baseline="hanging"))
+                elif (i == 0 and y_at_bottom and not isinstance(xs, BandScale)
+                      and px - text_width(lab, size, kind) / 2 < plot.x - offset - 3):
+                    scene.add(S.Text(px - 2, ty, lab, size, lab_col, anchor="start", baseline="hanging"))
                 else:
                     scene.add(S.Text(px, ty, lab, size, lab_col, anchor="middle", baseline="hanging"))
         # --- y ticks & labels
@@ -926,8 +942,15 @@ class Chart(Renderable):
                 opacity = 0.14 if theme.dark else 0.07
                 scene.add(S.Rect(x0, y0, x1 - x0, y1 - y0, fill=col, opacity=opacity))
                 if a["label"]:
-                    scene.add(S.Text((x0 + x1) / 2, plot.y + size + 2, a["label"], size, theme.ink_secondary,
-                                     anchor="middle", weight=500, halo=theme.background))
+                    # drawn over the data (overlay) so a line crossing the band can't hide it
+                    tw = text_width(str(a["label"]), size, theme.font_kind)
+                    tx, anchor = (x0 + x1) / 2, "middle"
+                    if tx + tw / 2 > plot.right:
+                        tx, anchor = min(x1, plot.right) - 2, "end"
+                    elif tx - tw / 2 < plot.x:
+                        tx, anchor = max(x0, plot.x) + 2, "start"
+                    ctx.overlay.append(S.Text(tx, plot.y + size + 2, a["label"], size, theme.ink_secondary,
+                                              anchor=anchor, weight=500, halo=theme.background))
             elif not under and kind in ("hline", "vline"):
                 col = a["color"] or theme.ink
                 if kind == "hline":
@@ -1011,23 +1034,43 @@ def _extent(dom: Domain, scale):
         a, b = dom.lo, dom.hi
     lo, hi = min(scale.d0, scale.d1), max(scale.d0, scale.d1)
     if scale.kind == "log":
+        if a <= 0 and dom.min_positive:        # bars/histograms start at 0; the frame starts at the first value
+            a = dom.min_positive
         a, b = math.log10(max(a, 1e-300)), math.log10(max(b, 1e-300))
         return 10 ** max(lo, a), 10 ** min(hi, b)
     return max(lo, a), min(hi, b)
 
 
-def _range_ticks(scale, vals, labels, a, b):
-    """Range-frame ticks: the data extremes plus the round ticks between them."""
+def _range_ticks(scale, vals, labels, a, b, horizontal=True, size=11.0, kind="sans"):
+    """Range-frame ticks: the data extremes plus the round ticks between them.
+
+    Extremes are rounded to one decimal more than the tick step, and round ticks
+    whose labels would touch an extreme's label are dropped.
+    """
     if isinstance(scale, TimeScale):
         keep = [(v, l) for v, l in zip(vals, labels) if a - 1 <= v <= b + 1]
         return [v for v, _ in keep], [l for _, l in keep]
-    if scale.kind == "log":
-        inner = [(v, l) for v, l in zip(vals, labels) if a * 1.4 < v < b / 1.4]
-        return [a] + [v for v, _ in inner] + [b], [format_value(a)] + [l for _, l in inner] + [format_value(b)]
-    step = getattr(scale, "step", None) or ((b - a) / 4 or 1)
-    inner = [(v, l) for v, l in zip(vals, labels) if a + step * 0.35 < v < b - step * 0.35]
-    out_v = [a] + [v for v, _ in inner] + [b]
-    out_l = [format_value(a)] + [l for _, l in inner] + [format_value(b)]
     if a == b:
         return [a], [format_value(a)]
-    return out_v, out_l
+    if scale.kind == "log":
+        inner = [(v, l) for v, l in zip(vals, labels) if a * 1.4 < v < b / 1.4]
+        la, lb = format_value(a), format_value(b)
+    else:
+        step = getattr(scale, "step", None) or ((b - a) / 4 or 1)
+        digits = max(0, 1 - math.floor(math.log10(abs(step)))) if step else 2
+        la, lb = _round_label(a, digits), _round_label(b, digits)
+        inner = [(v, l) for v, l in zip(vals, labels) if a + step * 0.2 < v < b - step * 0.2]
+
+    def clear(v, l, ev, el):
+        d = abs(scale.scalar(v) - scale.scalar(ev))
+        need = (text_width(l, size, kind) + text_width(el, size, kind)) / 2 + 6 if horizontal else size * 1.6
+        return d >= need
+
+    inner = [(v, l) for v, l in inner if clear(v, l, a, la) and clear(v, l, b, lb)]
+    return [a] + [v for v, _ in inner] + [b], [la] + [l for _, l in inner] + [lb]
+
+
+def _round_label(v, digits):
+    r = round(float(v), digits)
+    txt = format_value(r)
+    return txt

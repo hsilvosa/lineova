@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
 <desc>Energy output by source</desc>
-<defs><clipPath id="lv4fe1297dc1"><rect x="43.14" y="113.94" width="549.72" height="247.81"/></clipPath></defs>
+<defs><clipPath id="lv241e458cc1"><rect x="43.14" y="113.94" width="549.72" height="247.81"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#eef2f4"/>
 <text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Energy output by source</text>
 <text x="16" y="52.72" font-size="12.5" fill="#43565f">Monthly, GWh</text>
@@ -16,7 +16,7 @@
 <line x1="44.14" y1="213.26" x2="591.86" y2="213.26" fill="none" stroke="#d5dde1" stroke-width="1"/>
 <line x1="44.14" y1="164.1" x2="591.86" y2="164.1" fill="none" stroke="#d5dde1" stroke-width="1"/>
 <line x1="44.14" y1="114.94" x2="591.86" y2="114.94" fill="none" stroke="#d5dde1" stroke-width="1"/>
-<g clip-path="url(#lv4fe1297dc1)">
+<g clip-path="url(#lv241e458cc1)">
 <path d="M44.14,327.32C61.09,318.8,78.03,314.36,94.98,301.76C110.28,290.37,125.59,269.39,140.89,256.53C157.84,242.28,174.78,234.48,191.73,221.13C208.13,208.21,224.53,189.2,240.93,177.87C257.87,166.16,274.82,158.93,291.76,152.3C308.16,145.89,324.56,138.54,340.96,138.54C357.9,138.54,374.85,147.39,391.79,160.17C408.74,172.95,425.69,196.91,442.63,215.23C459.03,232.96,475.43,251.86,491.83,268.33C508.77,285.34,525.72,304.27,542.66,315.52C559.06,326.41,575.46,328.63,591.86,335.19L591.86,360.75L44.14,360.75Z" fill="#008c9e" fill-opacity="0.22"/>
 <path d="M44.14,327.32C61.09,318.8,78.03,314.36,94.98,301.76C110.28,290.37,125.59,269.39,140.89,256.53C157.84,242.28,174.78,234.48,191.73,221.13C208.13,208.21,224.53,189.2,240.93,177.87C257.87,166.16,274.82,158.93,291.76,152.3C308.16,145.89,324.56,138.54,340.96,138.54C357.9,138.54,374.85,147.39,391.79,160.17C408.74,172.95,425.69,196.91,442.63,215.23C459.03,232.96,475.43,251.86,491.83,268.33C508.77,285.34,525.72,304.27,542.66,315.52C559.06,326.41,575.46,328.63,591.86,335.19" fill="none" stroke="#008c9e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
 <g fill="#008c9e" stroke="#eef2f4" stroke-width="2">
@@ -34,7 +34,7 @@
 <text x="599.86" y="339.21" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">38</text>
 <text x="599.86" y="181.89" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">118</text>
 <text x="599.86" y="272.35" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">72</text>
-<text x="44.14" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Jan 2025</text>
+<text x="42.14" y="375.72" font-size="11.5" fill="#6e8088">Jan 2025</text>
 <text x="140.89" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Mar</text>
 <text x="240.93" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">May</text>
 <text x="340.96" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Jul</text>

@@ -349,7 +349,9 @@ class NetworkLayer(Layer):
         size = theme.font_size - 1
         if theme.node_style == "box":
             r = 8
-            ctx.scene.add(S.Rect(x - r, y - r, 2 * r, 2 * r, fill=hl_col if on else mix(theme.background, theme.ink, 0.05),
+            half = max(r, text_width(txt, size, theme.font_kind, True) / 2 + 4)   # pill grows with the text
+            ctx.scene.add(S.Rect(x - half, y - r, 2 * half, 2 * r,
+                                 fill=hl_col if on else mix(theme.background, theme.ink, 0.05),
                                  stroke=theme.background, stroke_width=2, rx=r))
             ctx.scene.add(S.Text(x, y, txt, size, readable_on(hl_col) if on else theme.ink_secondary,
                                  anchor="middle", baseline="middle", weight=600))
@@ -418,7 +420,7 @@ class NetworkLayer(Layer):
             if inside:
                 fill = fills[i] if style == "circle" else colors[i]
                 col = readable_on(fill) if fill != theme.background else theme.ink
-                ctx.scene.add(S.Text(px[i], py[i], lab if style == "sized" else lab.lower() if theme.italic_labels else lab,
+                ctx.scene.add(S.Text(px[i], py[i], lab,
                                      size + (1.5 if style == "circle" else 0.5), col, anchor="middle", baseline="middle",
                                      italic=theme.italic_labels, weight=700 if style == "sized" else 400))
             else:

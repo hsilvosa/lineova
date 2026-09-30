@@ -96,6 +96,7 @@ class Layer:
     legend_shape = "square"
     supports_direct_labels = False
     wants_readout = False
+    emphasize_zero = True      # draw y = 0 as a baseline (off for point clouds)
 
     def prepare(self, chart) -> None:            # resolve data; called once per build
         raise NotImplementedError

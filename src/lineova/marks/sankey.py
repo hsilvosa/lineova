@@ -169,7 +169,14 @@ class SankeyLayer(Layer):
             tx = x + nw + 6                  # right of the node (space for the last column is reserved)
             anchor = "start"
             cy = y[i] + heights[i] / 2
-            ctx.scene.add(S.Text(tx, cy - (size * 0.45 if heights[i] > size * 2 else 0), self.nodes[i], size, theme.ink,
+            if heights[i] <= size * 2:           # thin node: name and value on one line
+                val = self._fmt(self.value[i])
+                ctx.scene.add(S.Text(tx, cy, f"{self.nodes[i]}  {val}", size, theme.ink, anchor=anchor,
+                                     baseline="middle", halo=theme.background,
+                                     spans=[(self.nodes[i], 600, False, theme.ink),
+                                            ("  " + val, 400, False, theme.ink_secondary)]))
+                continue
+            ctx.scene.add(S.Text(tx, cy - size * 0.45, self.nodes[i], size, theme.ink,
                                  anchor=anchor, baseline="middle", weight=600, halo=theme.background))
             if heights[i] > size * 2:
                 ctx.scene.add(S.Text(tx, cy + size * 0.75, self._fmt(self.value[i]), size - 0.5, theme.ink_secondary,

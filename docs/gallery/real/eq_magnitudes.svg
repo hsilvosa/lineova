@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
 <desc>Earthquakes by magnitude</desc>
-<defs><clipPath id="lv49ae9ccdc1"><rect x="80.32" y="19" width="664.68" height="308.7"/></clipPath></defs>
+<defs><clipPath id="lv901e1815c1"><rect x="80.32" y="19" width="664.68" height="308.7"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="406.5" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 1.</tspan><tspan> Earthquakes by magnitude. The count falls roughly tenfold per unit of magnitude (Gutenberg–Richter). Log scale.</tspan></text>
 <text x="16" y="424" font-size="12.5" fill="#7b828e">Source: IGN, Catálogo de terremotos (doi:10.7419/162.03.2022)</text>
-<g clip-path="url(#lv49ae9ccdc1)">
+<g clip-path="url(#lv901e1815c1)">
 <path d="M89.35,124.9L95.88,124.9L95.88,326.7L89.35,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>0.05 – 0.15: 381</title></path>
 <path d="M96.88,110.99L103.41,110.99L103.41,326.7L96.88,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>0.15 – 0.25: 602</title></path>
 <path d="M104.41,98.46L110.94,98.46L110.94,326.7L104.41,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>0.25 – 0.35: 909</title></path>
@@ -20,7 +20,7 @@
 <path d="M179.72,25.82L186.25,25.82L186.25,326.7L179.72,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.25 – 1.35: 9,907</title></path>
 <path d="M187.25,21.2L193.78,21.2L193.78,326.7L187.25,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.35 – 1.45: 11.5k</title></path>
 <path d="M194.78,23.34L201.31,23.34L201.31,326.7L194.78,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.45 – 1.55: 10.7k</title></path>
-<path d="M202.31,20L208.84,20L208.84,326.7L202.31,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.55 – 1.65: 12.0k</title></path>
+<path d="M202.31,20L208.84,20L208.84,326.7L202.31,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.55 – 1.65: 12k</title></path>
 <path d="M209.84,24.66L216.37,24.66L216.37,326.7L209.84,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.65 – 1.75: 10.3k</title></path>
 <path d="M217.37,24.26L223.9,24.26L223.9,326.7L217.37,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.75 – 1.85: 10.4k</title></path>
 <path d="M224.9,24.67L231.43,24.67L231.43,326.7L224.9,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>1.85 – 1.95: 10.3k</title></path>
@@ -77,9 +77,9 @@
 <path d="M721.91,305.62L728.44,305.62L728.44,326.7L721.91,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>8.45 – 8.55: 1</title></path>
 </g>
 <line x1="81.32" y1="334.7" x2="744" y2="334.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
-<line x1="73.32" y1="326.7" x2="73.32" y2="20" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<line x1="73.32" y1="305.62" x2="73.32" y2="20" fill="none" stroke="#1e2229" stroke-width="0.9"/>
 <line x1="81.32" y1="334.7" x2="81.32" y2="338.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
-<text x="81.32" y="353.28" font-size="11" fill="#4b5260" text-anchor="middle">−0.05</text>
+<text x="81.32" y="353.28" font-size="11" fill="#4b5260" text-anchor="middle">−0.1</text>
 <line x1="160.39" y1="334.7" x2="160.39" y2="338.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
 <text x="160.39" y="353.28" font-size="11" fill="#4b5260" text-anchor="middle">1</text>
 <line x1="235.69" y1="334.7" x2="235.69" y2="338.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
@@ -97,9 +97,7 @@
 <line x1="687.52" y1="334.7" x2="687.52" y2="338.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
 <text x="687.52" y="353.28" font-size="11" fill="#4b5260" text-anchor="middle">8</text>
 <line x1="744" y1="334.7" x2="744" y2="338.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
-<text x="744" y="353.28" font-size="11" fill="#4b5260" text-anchor="middle">8.75</text>
-<line x1="69.32" y1="326.7" x2="73.32" y2="326.7" fill="none" stroke="#1e2229" stroke-width="0.9"/>
-<text x="62.32" y="330.55" font-size="11" fill="#4b5260" text-anchor="end">0.5</text>
+<text x="744" y="353.28" font-size="11" fill="#4b5260" text-anchor="middle">8.8</text>
 <line x1="69.32" y1="305.62" x2="73.32" y2="305.62" fill="none" stroke="#1e2229" stroke-width="0.9"/>
 <text x="62.32" y="309.47" font-size="11" fill="#4b5260" text-anchor="end">1</text>
 <line x1="69.32" y1="235.6" x2="73.32" y2="235.6" fill="none" stroke="#1e2229" stroke-width="0.9"/>
@@ -109,7 +107,7 @@
 <line x1="69.32" y1="95.55" x2="73.32" y2="95.55" fill="none" stroke="#1e2229" stroke-width="0.9"/>
 <text x="62.32" y="99.4" font-size="11" fill="#4b5260" text-anchor="end">1,000</text>
 <line x1="69.32" y1="20" x2="73.32" y2="20" fill="none" stroke="#1e2229" stroke-width="0.9"/>
-<text x="62.32" y="23.85" font-size="11" fill="#4b5260" text-anchor="end">12.0k</text>
+<text x="62.32" y="23.85" font-size="11" fill="#4b5260" text-anchor="end">12k</text>
 <text x="412.66" y="379" font-size="11" fill="#4b5260" text-anchor="middle" font-style="italic">Magnitude</text>
 <text x="22.6" y="177.2" font-size="11" fill="#4b5260" text-anchor="middle" font-style="italic" transform="rotate(-90 22.6 173.35)">Count</text>
 </svg>

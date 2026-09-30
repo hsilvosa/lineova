@@ -105,7 +105,7 @@ class PieLayer(Layer):
             a += sweep
         # labels: left and right columns, pushed apart so they never overlap
         if show_labels:
-            gap = size * 2.35
+            gap = size * 2.6
             for side in (-1, 1):
                 idx = [i for i, (m, _, _) in enumerate(mids) if (math.cos(m) >= 0) == (side > 0)]
                 want = [cy + math.sin(mids[i][0]) * r * 1.08 for i in idx]
