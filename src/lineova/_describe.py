@@ -159,6 +159,7 @@ def _tree(layer, kind) -> str:
 
 
 def _hexbin(layer) -> str:
+    layer._ensure()
     return (f"Hexbin of {layer.n:,} points in {len(layer.val)} hexagons, {layer.cbar_label} from "
             f"{format_value(layer.vmin)} to {format_value(layer.vmax)}.")
 

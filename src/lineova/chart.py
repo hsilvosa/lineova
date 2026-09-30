@@ -375,7 +375,7 @@ class Chart(Renderable):
         self._theme = theme
         W, H = self._resolve_size(theme)
         scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind,
-                        description=self._description(), title=str(self._opts["title"] or "Chart"))
+                        title=str(self._opts["title"] or "Chart"))
         keys = list(dict.fromkeys(k for layer in self._layers for k in layer.keys()))
         colors, others = self._assign_colors(theme, keys)
         self._legend_keys = list(colors)
@@ -399,7 +399,7 @@ class Chart(Renderable):
             top = self._draw_legend_row(scene, theme, items, pad, top, W - 2 * pad)
         # the colour bar is drawn after the plot (a layer may settle its value range while drawing,
         # e.g. hexbin bins at the final pixel size); its space is reserved here
-        cbar_layer = next((l for l in self._layers if l.colorbar()), None)
+        cbar_layer = next((l for l in self._layers if l.has_colorbar()), None)
         cbar_top = top
         if cbar_layer is not None:
             top += 24
@@ -425,6 +425,7 @@ class Chart(Renderable):
             scene.extend(ctx.overlay)
         if cbar_layer is not None:
             self._draw_colorbar(scene, theme, cbar_layer.colorbar(), pad, cbar_top)
+        scene.description = self._description()      # after drawing: some layers settle their data in draw()
         return scene
 
     # ------------------------------------------------------------------ sizing & colour
@@ -970,7 +971,7 @@ class Chart(Renderable):
         if not labels:
             return
         ys = [t[3] for t in labels]
-        gap = size * 1.2
+        gap = size * 1.4
         for i in range(1, len(ys)):             # push apart downward
             ys[i] = max(ys[i], ys[i - 1] + gap)
         overflow = ys[-1] - ctx.plot.bottom

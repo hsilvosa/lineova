@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
-<desc>Electricity mix</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv26956f56t lv26956f56d">
+<title id="lv26956f56t">Electricity mix</title>
+<desc id="lv26956f56d">Electricity mix. Share of generation, %. Donut chart: Solar 31%, Wind 27%, Hydro 18%, Gas 14%, Coal 6%, Nuclear 4%.</desc>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Electricity mix</text>
 <text x="16" y="49.65" font-size="12" fill="#475467">Share of generation, %</text>

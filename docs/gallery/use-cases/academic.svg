@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Symptom score by treatment arm</desc>
-<defs><clipPath id="lva10b09a7c1"><rect x="64.92" y="19" width="493.49" height="286.2"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lvbddae98bt lvbddae98bd">
+<title id="lvbddae98bt">Symptom score by treatment arm</title>
+<desc id="lvbddae98bd">Symptom score by treatment arm. Line chart of 3 series (High dose, Low dose and Placebo), day from 0 to 28. High dose: from 30.7 to 49.3, last 30.7, down 38% from the start. Low dose: from 38.7 to 51, last 38.7, down 23% from the start. Placebo: from 48.9 to 51.3, last 50.6, up 2% from the start.</desc>
+<defs><clipPath id="lvbddae98bc1"><rect x="64.92" y="19" width="493.49" height="286.2"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 2.</tspan><tspan> Symptom score by treatment arm. Mean and 95% confidence interval, n = 40 per arm.</tspan></text>
-<g clip-path="url(#lva10b09a7c1)">
+<g clip-path="url(#lvbddae98bc1)">
 <path d="M65.92,50.73L101.03,61.69L136.13,65.5L171.24,90.59L206.35,102.54L241.45,132.46L276.56,141.79L311.67,168.67L346.77,166.71L381.88,187.68L416.98,182.32L452.09,214.53L487.2,232.33L522.3,239.81L557.41,248.67L557.41,293.67L522.3,282.35L487.2,272.41L452.09,258.7L416.98,223.61L381.88,225.5L346.77,206.36L311.67,205L276.56,190.47L241.45,168.65L206.35,138.67L171.24,139.86L136.13,111.43L101.03,109.31L65.92,89.07Z" fill="#1e2229" fill-opacity="0.12"/>
 <path d="M65.92,38.42L101.03,30.84L136.13,53.31L171.24,61.76L206.35,94.88L241.45,77.93L276.56,88.18L311.67,104.32L346.77,114.27L381.88,119.14L416.98,110.95L452.09,124.41L487.2,118.51L522.3,143.15L557.41,167.6L557.41,202.25L522.3,176.03L487.2,160.04L452.09,162.86L416.98,147.9L381.88,154.1L346.77,149.81L311.67,133.1L276.56,133.71L241.45,121.62L206.35,143.15L171.24,113.16L136.13,97.11L101.03,71.84L65.92,75.59Z" fill="#56647a" fill-opacity="0.12"/>
 <path d="M65.92,46.39L101.03,50.22L136.13,47.11L171.24,38.26L206.35,39.64L241.45,44.95L276.56,43.74L311.67,45.64L346.77,43.5L381.88,52.31L416.98,53.28L452.09,41.28L487.2,30.53L522.3,47.82L557.41,37.93L557.41,74.25L522.3,89.12L487.2,64.45L452.09,80.31L416.98,88.85L381.88,96.2L346.77,86.09L311.67,87.26L276.56,77.56L241.45,81.1L206.35,83.26L171.24,82.26L136.13,83.53L101.03,84.83L65.92,92.35Z" fill="#a3263b" fill-opacity="0.12"/>

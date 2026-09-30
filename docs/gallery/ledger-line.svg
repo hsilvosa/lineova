@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
-<desc>Energy output by source</desc>
-<defs><clipPath id="lv1c195d41c1"><rect x="42.27" y="109" width="551.47" height="253.5"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv1cda6f18t lv1cda6f18d">
+<title id="lv1cda6f18t">Energy output by source</title>
+<desc id="lv1cda6f18d">Energy output by source. Monthly, GWh. Line chart of 3 series (Solar, Wind and Hydro), x from 2025-01-01 to 2025-12-01. Solar: from 38 to 138, last 38, down 10% from the start. Wind: from 62 to 118, last 118, up 5% from the start. Hydro: from 60 to 95, last 72, up 3% from the start.</desc>
+<defs><clipPath id="lv1cda6f18c1"><rect x="42.27" y="109" width="551.47" height="253.5"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Energy output by source</text>
 <text x="16" y="49.65" font-size="12" fill="#475467">Monthly, GWh</text>
@@ -16,7 +17,7 @@
 <line x1="43.27" y1="210.6" x2="592.73" y2="210.6" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
 <line x1="43.27" y1="160.3" x2="592.73" y2="160.3" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
 <line x1="43.27" y1="110" x2="592.73" y2="110" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
-<g clip-path="url(#lv1c195d41c1)">
+<g clip-path="url(#lv1cda6f18c1)">
 <path d="M43.27,327.3L94.26,301.14L140.33,254.86L191.33,218.65L240.68,174.38L291.68,148.23L341.03,134.14L392.03,156.28L443.03,212.61L492.38,266.94L543.38,315.22L592.73,335.34" fill="none" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <g fill="#2f5bd3" stroke="#ffffff" stroke-width="2">
 <circle cx="592.73" cy="335.34" r="4"/>

@@ -1,10 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Earthquakes by magnitude</desc>
-<defs><clipPath id="lv901e1815c1"><rect x="80.32" y="19" width="664.68" height="308.7"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv3f4e3f99t lv3f4e3f99d">
+<title id="lv3f4e3f99t">Earthquakes by magnitude</title>
+<desc id="lv3f4e3f99d">Earthquakes by magnitude. Histogram of magnitude, 88 bins from −0.05 to 8.75. magnitude: most common 1.55–1.65 (12k).</desc>
+<defs><clipPath id="lv3f4e3f99c1"><rect x="80.32" y="19" width="664.68" height="308.7"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="406.5" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 1.</tspan><tspan> Earthquakes by magnitude. The count falls roughly tenfold per unit of magnitude (Gutenberg–Richter). Log scale.</tspan></text>
 <text x="16" y="424" font-size="12.5" fill="#7b828e">Source: IGN, Catálogo de terremotos (doi:10.7419/162.03.2022)</text>
-<g clip-path="url(#lv901e1815c1)">
+<g clip-path="url(#lv3f4e3f99c1)">
 <path d="M89.35,124.9L95.88,124.9L95.88,326.7L89.35,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>0.05 – 0.15: 381</title></path>
 <path d="M96.88,110.99L103.41,110.99L103.41,326.7L96.88,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>0.15 – 0.25: 602</title></path>
 <path d="M104.41,98.46L110.94,98.46L110.94,326.7L104.41,326.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>0.25 – 0.35: 909</title></path>

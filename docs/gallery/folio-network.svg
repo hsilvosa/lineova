@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Cheapest route A → I</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv491e8b69t lv491e8b69d">
+<title id="lv491e8b69t">Cheapest route A → I</title>
+<desc id="lv491e8b69d">Cheapest route A → I. Network chart.</desc>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 4.</tspan><tspan> Cheapest route A → I.</tspan></text>
 <path d="M222.41,340.5L34,247.82" fill="none" stroke="#8b919b" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>A – B: 4</title></path>
@@ -41,13 +42,13 @@
 <circle cx="64.94" cy="34" r="12" fill="#ffffff"><title>H · degree 2</title></circle>
 <circle cx="606" cy="66.51" r="12" fill="#1e2229"><title>I · degree 2</title></circle>
 </g>
-<text x="222.41" y="344.88" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">a</text>
-<text x="34" y="252.19" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">b</text>
-<text x="474.88" y="262.43" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">c</text>
-<text x="201.49" y="196.48" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">d</text>
-<text x="34.74" y="141.17" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">e</text>
-<text x="348.41" y="91.88" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">g</text>
-<text x="580.24" y="157.4" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">f</text>
-<text x="64.94" y="38.38" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">h</text>
-<text x="606" y="70.88" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">i</text>
+<text x="222.41" y="344.88" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">A</text>
+<text x="34" y="252.19" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">B</text>
+<text x="474.88" y="262.43" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">C</text>
+<text x="201.49" y="196.48" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">D</text>
+<text x="34.74" y="141.17" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">E</text>
+<text x="348.41" y="91.88" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">G</text>
+<text x="580.24" y="157.4" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">F</text>
+<text x="64.94" y="38.38" font-size="12.5" fill="#1e2229" text-anchor="middle" font-style="italic">H</text>
+<text x="606" y="70.88" font-size="12.5" fill="#ffffff" text-anchor="middle" font-style="italic">I</text>
 </svg>

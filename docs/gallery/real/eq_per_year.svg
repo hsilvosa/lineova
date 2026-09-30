@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
-<desc>Recorded earthquakes per year</desc>
-<defs><clipPath id="lva9b96499c1"><rect x="51.9" y="67.65" width="652.2" height="311.45"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvd73b6a29t lvd73b6a29d">
+<title id="lvd73b6a29t">Recorded earthquakes per year</title>
+<desc id="lvd73b6a29d">Recorded earthquakes per year. Growth reflects more seismometers, not more earthquakes. Line chart of events per year, t from 1900-01-01 to 2026-01-01. events per year: from 12 to 22.3k, last 6,482, up 53917% from the start.</desc>
+<defs><clipPath id="lvd73b6a29c1"><rect x="51.9" y="67.65" width="652.2" height="311.45"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Recorded earthquakes per year</text>
 <text x="16" y="49.65" font-size="12" fill="#475467">Growth reflects more seismometers, not more earthquakes</text>
@@ -16,7 +17,7 @@
 <line x1="52.9" y1="103.03" x2="703.1" y2="103.03" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
 <line x1="52.9" y1="68.65" x2="703.1" y2="68.65" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
 <rect x="677.3" y="68.65" width="10.3" height="309.45" fill="#2f5bd3" opacity="0.07"/>
-<g clip-path="url(#lva9b96499c1)">
+<g clip-path="url(#lvd73b6a29c1)">
 <path d="M52.9,377.93L58.05,377.93L63.21,377.8L68.37,377.62L73.53,377.81L78.7,377.87L83.85,377.82L89.01,377.66L94.17,377.32L99.34,375.62L104.5,376.99L109.65,376.61L114.81,377.22L119.98,377.38L125.14,377.32L130.29,377.25L135.45,377.59L140.62,377.58L145.78,377.38L150.94,377.37L156.09,377.4L161.26,377.6L166.42,377.45L171.58,377.36L176.73,377.43L181.9,377.51L187.06,377.38L192.22,377.3L197.38,377.48L202.55,377.52L207.7,377L212.86,377.54L218.02,377.65L223.19,377.69L228.34,377.6L233.5,377.48L238.66,376.5L243.83,377.73L248.99,377.91L254.14,376.46L259.3,377.6L264.47,377.41L269.63,377.26L274.78,377.47L279.94,377.59L285.11,377.49L290.27,377.45L295.43,377.36L300.58,377.51L305.75,376.78L310.91,377.11L316.07,377.22L321.22,377.33L326.4,377.29L331.55,377.07L336.71,376.74L341.87,376.86L347.04,376.89L352.19,376.74L357.35,377.15L362.51,377L367.68,377.54L372.84,377.3L377.99,377.37L383.15,376.59L388.32,376.99L393.48,376.81L398.63,376.46L403.79,375.9L408.96,375.53L414.12,374.99L419.28,374.04L424.43,376.71L429.6,376.3L434.76,376.09L439.92,375.78L445.07,376.96L450.25,376.86L455.4,375.97L460.56,373.25L465.72,372.27L470.89,372.94L476.04,374.36L481.2,376.16L486.36,375.8L491.53,373.34L496.69,374.17L501.84,374.07L507,372.76L512.17,371.15L517.33,372.46L522.48,373.74L527.64,370.95L532.81,369.55L537.97,359.79L543.13,364.54L548.28,362.89L553.45,360.17L558.61,356.63L563.77,359.02L568.92,357.72L574.1,356.62L579.25,345.78L584.41,331.2L589.57,317.19L594.74,320.07L599.89,327.56L605.05,304.31L610.21,307.3L615.38,315.81L620.54,318.77L625.69,148.71L630.85,245.53L636.02,225.77L641.18,303.78L646.33,315.27L651.49,275.29L656.66,301.14L661.82,292.88L666.98,280.22L672.13,265.35L677.3,71.58L682.46,208.38L687.62,274.65L692.77,284.18L697.95,267.96L703.1,288.95" fill="none" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <g fill="#2f5bd3" stroke="#ffffff" stroke-width="2">
 <circle cx="703.1" cy="288.95" r="4"/>

@@ -29,13 +29,28 @@ def hex_bin(x, y, x0, y0, dx, dy, weights=None, values=None, agg="count"):
     """Assign points to a pointy-top hex lattice.
 
     ``dx`` is the hexagon width (data units of x); ``dy`` the row spacing (data units of y).
-    Returns ``(col, row, aggregate)`` for every non-empty hexagon.
+    Returns ``(col, row, aggregate)`` for every non-empty hexagon. Each chunk is accumulated into
+    a dense (rows x columns) grid with ``bincount``, so the cost is one linear pass and no sort.
     """
-    keys_all, w_all, v_all = [], [], []
     n = len(x)
+    if n == 0:
+        return np.array([], np.int64), np.array([], np.int64), np.array([])
+    # lattice extent from the data range (finite values only)
+    fx = np.asarray(x, dtype=np.float64)
+    fy = np.asarray(y, dtype=np.float64)
+    with np.errstate(invalid="ignore"):
+        xmax, ymax = np.nanmax(fx), np.nanmax(fy)
+    ncol = int(np.ceil((xmax - x0) / dx)) + 3
+    nrow = int(np.ceil((ymax - y0) / dy)) + 3
+    size = nrow * ncol
+    cnt = np.zeros(size)
+    tot = np.zeros(size) if values is not None and agg in ("sum", "mean") else None
+    ext = None
+    if values is not None and agg in ("max", "min"):
+        ext = np.full(size, -np.inf if agg == "max" else np.inf)
     for s in range(0, n, CHUNK):
-        xc = np.asarray(x[s:s + CHUNK], dtype=np.float64)
-        yc = np.asarray(y[s:s + CHUNK], dtype=np.float64)
+        xc = fx[s:s + CHUNK]
+        yc = fy[s:s + CHUNK]
         ok = np.isfinite(xc) & np.isfinite(yc)
         # regular coordinates: hexagon width 1, rows sqrt(3)/2 apart
         X = (xc[ok] - x0) / dx
@@ -43,42 +58,35 @@ def hex_bin(x, y, x0, y0, dx, dy, weights=None, values=None, agg="count"):
         # two offset rectangular lattices (even and odd rows); the nearer centre wins
         ia, ja = np.rint(X), np.rint(Y / SQ3)
         ib, jb = np.rint(X - 0.5), np.rint((Y - SQ3 / 2) / SQ3)
-        da = (X - ia) ** 2 + (Y - ja * SQ3) ** 2
-        db = (X - ib - 0.5) ** 2 + (Y - jb * SQ3 - SQ3 / 2) ** 2
-        use_a = da <= db
-        col = np.where(use_a, ia, ib).astype(np.int64)
-        row = np.where(use_a, 2 * ja, 2 * jb + 1).astype(np.int64)
-        keys_all.append((row << 32) + (col + (1 << 31)))
-        if weights is not None:
-            w_all.append(np.asarray(weights[s:s + CHUNK], np.float64)[ok])
-        if values is not None:
-            v_all.append(np.asarray(values[s:s + CHUNK], np.float64)[ok])
-    if not keys_all:
-        return np.array([], np.int64), np.array([], np.int64), np.array([])
-    keys = np.concatenate(keys_all)
-    uniq, inv = np.unique(keys, return_inverse=True)
-    w = np.concatenate(w_all) if w_all else None
-    if agg == "count" or values is None:
-        out = np.bincount(inv, weights=w, minlength=len(uniq))
-    else:
-        v = np.concatenate(v_all)
-        good = np.isfinite(v)
-        inv, v = inv[good], v[good]
-        if agg in ("sum", "mean"):
-            tot = np.bincount(inv, weights=v, minlength=len(uniq))
-            if agg == "sum":
-                out = tot
-            else:
-                cnt = np.bincount(inv, minlength=len(uniq))
-                with np.errstate(invalid="ignore", divide="ignore"):
-                    out = tot / cnt
+        use_a = (X - ia) ** 2 + (Y - ja * SQ3) ** 2 <= (X - ib - 0.5) ** 2 + (Y - jb * SQ3 - SQ3 / 2) ** 2
+        col = np.where(use_a, ia, ib).astype(np.int64) + 1
+        row = np.where(use_a, 2 * ja, 2 * jb + 1).astype(np.int64) + 1
+        inside = (col >= 0) & (col < ncol) & (row >= 0) & (row < nrow)
+        key = (row * ncol + col)[inside]
+        w = np.asarray(weights[s:s + CHUNK], np.float64)[ok][inside] if weights is not None else None
+        v = np.asarray(values[s:s + CHUNK], np.float64)[ok][inside] if values is not None else None
+        if v is not None:
+            good = np.isfinite(v)
+            key_v, v = key[good], v[good]
+            if tot is not None:
+                tot += np.bincount(key_v, weights=v, minlength=size)
+            if ext is not None:
+                (np.maximum if agg == "max" else np.minimum).at(ext, key_v, v)
+            cnt += np.bincount(key_v, minlength=size)
         else:
-            out = np.full(len(uniq), -np.inf if agg == "max" else np.inf)
-            (np.maximum if agg == "max" else np.minimum).at(out, inv, v)
-            out[~np.isfinite(out)] = np.nan
-    row = uniq >> 32
-    col = (uniq & 0xFFFFFFFF) - (1 << 31)
-    return col, row, out
+            cnt += np.bincount(key, weights=w, minlength=size)
+    nz = np.flatnonzero(cnt)
+    if agg == "count" or values is None:
+        out = cnt[nz]
+    elif agg == "sum":
+        out = tot[nz]
+    elif agg == "mean":
+        out = tot[nz] / cnt[nz]
+    else:
+        out = ext[nz]
+    row = nz // ncol - 1
+    col = nz % ncol - 1
+    return col.astype(np.int64), row.astype(np.int64), out
 
 
 class HexbinLayer(Layer):
@@ -119,6 +127,19 @@ class HexbinLayer(Layer):
                 values = as_float(to_array(self.value), "num")
             if len(values) != len(xs):
                 raise DataError("value must have one entry per point.")
+        # axis ranges focus the binning (points outside them would only make hexagons nobody sees)
+        keep = np.ones(len(xs), bool)
+        for arr, rng_ in ((xs, chart._x.range), (ys, chart._y.range)):
+            if rng_ is not None:
+                lo_r, hi_r = rng_
+                if lo_r is not None:
+                    keep &= arr >= float(lo_r)
+                if hi_r is not None:
+                    keep &= arr <= float(hi_r)
+        if not keep.all():
+            xs, ys = xs[keep], ys[keep]
+            weights = weights[keep] if weights is not None else None
+            values = values[keep] if values is not None else None
         self.n = helper.n
         self.x_label, self.y_label = helper.x_label, helper.y_label
         fin = np.isfinite(xs) & np.isfinite(ys)
@@ -128,22 +149,31 @@ class HexbinLayer(Layer):
         self.agg_name = agg
         self._theme = theme
         self.data_ext = (float(np.min(xs[fin])), float(np.max(xs[fin])), float(np.min(ys[fin])), float(np.max(ys[fin])))
-        # first pass at the expected plot size (the axes need an extent); draw() re-bins at the real size
+        # hexagon size at the expected plot size, for the axis extent; binning waits for draw(),
+        # which knows the real plot size (or runs on demand for describe()/colorbar())
         W, H = chart._resolve_size(theme)
-        self._bin(max(W - 2 * theme.padding - 60, 100), max(H - 150, 100),
-                  self.data_ext[1] - self.data_ext[0], self.data_ext[3] - self.data_ext[2])
+        self._est = (max(W - 2 * theme.padding - 60, 100), max(H - 150, 100),
+                     self.data_ext[1] - self.data_ext[0], self.data_ext[3] - self.data_ext[2])
+        dx, dy = self._geometry(*self._est)
+        self.val = None
         x_lo, x_hi, y_lo, y_hi = self.data_ext
-        self.ext = (x_lo - self.dx / 2, x_hi + self.dx / 2, y_lo - self.dy * 2 / 3, y_hi + self.dy * 2 / 3)
+        self.ext = (x_lo - dx / 2, x_hi + dx / 2, y_lo - dy * 2 / 3, y_hi + dy * 2 / 3)
+
+    def _geometry(self, pw, ph, x_span, y_span):
+        g = int(self.gridsize) if not is_auto(self.gridsize) else int(np.clip(pw / 15, 12, 80))
+        px_w = pw / g                                   # hexagon width on screen
+        return px_w * (x_span or 1.0) / pw, (SQ3 / 2) * px_w * (y_span or 1.0) / ph
+
+    def _ensure(self):
+        if self.val is None:
+            self._bin(*self._est)
 
     def _bin(self, pw: float, ph: float, x_span: float, y_span: float) -> None:
         """Bin for a plot ``pw`` x ``ph`` pixels showing ``x_span`` x ``y_span`` data units."""
         theme, agg = self._theme, self.agg_name
         xs, ys, weights, values = self._xs, self._ys, self._w, self._v
         x_lo, _, y_lo, _ = self.data_ext
-        g = int(self.gridsize) if not is_auto(self.gridsize) else int(np.clip(pw / 15, 12, 80))
-        px_w = pw / g                                   # hexagon width on screen
-        dx = px_w * (x_span or 1.0) / pw
-        dy = (SQ3 / 2) * px_w * (y_span or 1.0) / ph   # rows are sqrt(3)/2 widths apart on screen
+        dx, dy = self._geometry(pw, ph, x_span, y_span)
         col, row, val = hex_bin(xs, ys, x_lo, y_lo, dx, dy, weights, values, agg)
         if agg == "count":
             keep = val >= self.mincount
@@ -189,7 +219,11 @@ class HexbinLayer(Layer):
         return self.x_label, self.y_label
 
     def colorbar(self):
+        self._ensure()
         return (self.stops, self.vmin, self.vmax, self.cbar_label)
+
+    def has_colorbar(self) -> bool:
+        return True
 
     def values_for_reference(self, axis):
         return []

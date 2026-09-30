@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvad0d53f0t lvad0d53f0d">
+<title id="lvad0d53f0t">Metropolitan population</title>
+<desc id="lvad0d53f0d">Metropolitan population. millions, three levels. Treemap of 232 in total, 3 level(s): America 45%, Asia 37%, Europe 18%.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Metropolitan population</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">millions, three levels</text>
+<rect x="17" y="65.65" width="270.9" height="317.35" fill="#dae1f7"><title>America: 104</title></rect>
+<text x="22" y="79.65" font-size="11" fill="#1a2233" font-weight="700">America  104</text>
+<rect x="19.5" y="87.15" width="140.96" height="216.65" fill="#b0c1ee"><title>America › USA: 40.9</title></rect>
+<text x="25" y="99.65" font-size="10" fill="#1a2233" font-weight="600">USA  40.9</text>
+<rect x="22" y="107.65" width="135.96" height="91.28" rx="3" fill="#2f5bd3"><title>America › USA › New York: 19.5</title></rect>
+<text x="28" y="122.65" font-size="11" fill="#ffffff" font-weight="600">New York</text>
+<text x="28" y="136.95" font-size="10.5" fill="#ffffff">19.5</text>
+<rect x="22" y="200.93" width="78.58" height="100.37" rx="3" fill="#597cdc"><title>America › USA › Los Angeles: 12.5</title></rect>
+<text x="28" y="215.93" font-size="11" fill="#111111" font-weight="600">Los Angel…</text>
+<text x="28" y="230.23" font-size="10.5" fill="#111111">12.5</text>
+<rect x="102.58" y="200.93" width="55.37" height="100.37" rx="3" fill="#829de5"><title>America › USA › Chicago: 8.9</title></rect>
+<text x="108.58" y="215.93" font-size="11" fill="#111111" font-weight="600">Chica…</text>
+<text x="108.58" y="230.23" font-size="10.5" fill="#111111">8.9</text>
+<rect x="161.46" y="87.15" width="123.95" height="216.65" fill="#b0c1ee"><title>America › Brazil: 36</title></rect>
+<text x="166.96" y="99.65" font-size="10" fill="#1a2233" font-weight="600">Brazil  36</text>
+<rect x="163.96" y="107.65" width="118.95" height="119.74" rx="3" fill="#2f5bd3"><title>America › Brazil › São Paulo: 22.4</title></rect>
+<text x="169.96" y="122.65" font-size="11" fill="#ffffff" font-weight="600">São Paulo</text>
+<text x="169.96" y="136.95" font-size="10.5" fill="#ffffff">22.4</text>
+<rect x="163.96" y="229.39" width="118.95" height="71.91" rx="3" fill="#6d8ce0"><title>America › Brazil › Rio: 13.6</title></rect>
+<text x="169.96" y="244.39" font-size="11" fill="#111111" font-weight="600">Rio</text>
+<text x="169.96" y="258.69" font-size="10.5" fill="#111111">13.6</text>
+<rect x="19.5" y="304.8" width="265.9" height="75.7" fill="#b0c1ee"><title>America › Mexico: 27.1</title></rect>
+<text x="25" y="317.3" font-size="10" fill="#1a2233" font-weight="600">Mexico  27.1</text>
+<rect x="22" y="325.3" width="209.49" height="52.7" rx="3" fill="#2f5bd3"><title>America › Mexico › Mexico City: 21.8</title></rect>
+<text x="28" y="340.3" font-size="11" fill="#ffffff" font-weight="600">Mexico City</text>
+<text x="28" y="354.6" font-size="10.5" fill="#ffffff">21.8</text>
+<rect x="233.49" y="325.3" width="49.42" height="52.7" rx="3" fill="#6d8ce0"><title>America › Mexico › Guadalajara: 5.3</title></rect>
+<text x="239.49" y="340.3" font-size="11" fill="#111111" font-weight="600">Guad…</text>
+<text x="239.49" y="354.6" font-size="10.5" fill="#111111">5.3</text>
+<rect x="289.9" y="65.65" width="221.31" height="317.35" fill="#d5eeea"><title>Asia: 85.1</title></rect>
+<text x="294.9" y="79.65" font-size="11" fill="#1a2233" font-weight="700">Asia  85.1</text>
+<rect x="292.4" y="87.15" width="216.31" height="193.39" fill="#a7dcd3"><title>Asia › Japan: 56.2</title></rect>
+<text x="297.9" y="99.65" font-size="10" fill="#1a2233" font-weight="600">Japan  56.2</text>
+<rect x="294.9" y="107.65" width="139.19" height="170.39" rx="3" fill="#17a38b"><title>Asia › Japan › Tokyo: 37.2</title></rect>
+<text x="300.9" y="122.65" font-size="11" fill="#111111" font-weight="600">Tokyo</text>
+<text x="300.9" y="136.95" font-size="10.5" fill="#111111">37.2</text>
+<rect x="436.1" y="107.65" width="70.12" height="170.39" rx="3" fill="#5dbfae"><title>Asia › Japan › Osaka: 19</title></rect>
+<text x="442.1" y="122.65" font-size="11" fill="#111111" font-weight="600">Osaka</text>
+<text x="442.1" y="136.95" font-size="10.5" fill="#111111">19</text>
+<rect x="292.4" y="281.54" width="216.31" height="98.96" fill="#a7dcd3"><title>Asia › Korea: 28.9</title></rect>
+<text x="297.9" y="294.04" font-size="10" fill="#1a2233" font-weight="600">Korea  28.9</text>
+<rect x="294.9" y="302.04" width="186.21" height="75.96" rx="3" fill="#17a38b"><title>Asia › Korea › Seoul: 25.5</title></rect>
+<text x="300.9" y="317.04" font-size="11" fill="#111111" font-weight="600">Seoul</text>
+<text x="300.9" y="331.34" font-size="10.5" fill="#111111">25.5</text>
+<rect x="483.12" y="302.04" width="23.1" height="75.96" rx="3" fill="#5dbfae"><title>Asia › Korea › Busan: 3.4</title></rect>
+<rect x="513.21" y="65.65" width="109.79" height="317.35" fill="#f9ebdc"><title>Europe: 42.6</title></rect>
+<text x="518.21" y="79.65" font-size="11" fill="#1a2233" font-weight="700">Europe  42.6</text>
+<rect x="515.71" y="87.15" width="104.79" height="115.08" fill="#f3d5b4"><title>Europe › Spain: 16.8</title></rect>
+<text x="521.21" y="99.65" font-size="10" fill="#1a2233" font-weight="600">Spain  16.8</text>
+<rect x="518.21" y="107.65" width="73.13" height="49.59" rx="3" fill="#e0913a"><title>Europe › Spain › Madrid: 6.8</title></rect>
+<text x="524.21" y="122.65" font-size="11" fill="#111111" font-weight="600">Madrid</text>
+<text x="524.21" y="136.95" font-size="10.5" fill="#111111">6.8</text>
+<rect x="518.21" y="159.24" width="73.13" height="40.49" rx="3" fill="#e5a258"><title>Europe › Spain › Barcelona: 5.6</title></rect>
+<text x="524.21" y="174.24" font-size="11" fill="#111111" font-weight="600">Barcelona</text>
+<text x="524.21" y="188.54" font-size="10.5" fill="#111111">5.6</text>
+<rect x="593.34" y="107.65" width="24.66" height="51.46" rx="3" fill="#e9b275"><title>Europe › Spain › Valencia: 2.5</title></rect>
+<rect x="593.34" y="161.11" width="24.66" height="38.63" rx="3" fill="#eec293"><title>Europe › Spain › Seville: 1.9</title></rect>
+<rect x="515.71" y="203.23" width="104.79" height="105.41" fill="#f3d5b4"><title>Europe › France: 15.4</title></rect>
+<text x="521.21" y="215.73" font-size="10" fill="#1a2233" font-weight="600">France  15.4</text>
+<rect x="518.21" y="223.73" width="72.03" height="82.41" rx="3" fill="#e0913a"><title>Europe › France › Paris: 11.2</title></rect>
+<text x="524.21" y="238.73" font-size="11" fill="#111111" font-weight="600">Paris</text>
+<text x="524.21" y="253.03" font-size="10.5" fill="#111111">11.2</text>
+<rect x="592.24" y="223.73" width="25.76" height="44.22" rx="3" fill="#e6a761"><title>Europe › France › Lyon: 2.3</title></rect>
+<rect x="592.24" y="269.96" width="25.76" height="36.18" rx="3" fill="#ecbd89"><title>Europe › France › Marseille: 1.9</title></rect>
+<rect x="515.71" y="309.64" width="104.79" height="70.86" fill="#f3d5b4"><title>Europe › Italy: 10.4</title></rect>
+<text x="521.21" y="322.14" font-size="10" fill="#1a2233" font-weight="600">Italy  10.4</text>
+<rect x="518.21" y="330.14" width="40.08" height="47.86" rx="3" fill="#e0913a"><title>Europe › Italy › Rome: 4.3</title></rect>
+<text x="524.21" y="345.14" font-size="11" fill="#111111" font-weight="600">Ro…</text>
+<text x="524.21" y="359.44" font-size="10.5" fill="#111111">4.3</text>
+<rect x="560.3" y="330.14" width="28.34" height="47.86" rx="3" fill="#e6a761"><title>Europe › Italy › Milan: 3.1</title></rect>
+<rect x="590.64" y="330.14" width="27.36" height="47.86" rx="3" fill="#ecbd89"><title>Europe › Italy › Naples: 3</title></rect>
+</svg>

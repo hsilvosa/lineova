@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>Clean, fast charts from Python, with good defaults and one dependency.</b><br>
-  23 chart types · four house styles · SVG, PDF, PNG and interactive HTML · from 10 rows to 100 million
+  27 chart types · four house styles and their dark variants · SVG, PDF, PNG and interactive HTML · from 10 rows to 100 million
 </p>
 
 <p align="center">
@@ -34,10 +34,12 @@ That one call chooses the size, the ticks, number and date formats, the colours,
 ## What it offers
 
 - **Good output with no tuning.** Readable ticks, labels that don't collide, colour palettes checked for colour-blind readers, captions and sources where they belong.
-- **Four house styles** for four kinds of document: *Folio* for papers and theses, *Ledger* for business reports and dashboards, *Instrument* for engineering and monitoring, *Fjord* for public-facing reports and teaching.
-- **Any data size.** 100 million points render in about 2 seconds, and data larger than memory can be streamed in chunks. What a chart costs depends on its pixels, not its rows.
+- **Four house styles** for four kinds of document: *Folio* for papers and theses, *Ledger* for business reports and dashboards, *Instrument* for engineering and monitoring, *Fjord* for public-facing reports and teaching. Each has a dark (or light) variant, and `lv.themes.from_brand("#0f766e")` builds a checked palette around your own colour.
+- **Accessible by default.** Every chart carries a generated text description (`chart.describe()`, written into the SVG) and a data table (`chart.table()`); `texture=True` adds patterns as a second encoding.
+- **Any data size.** 100 million points render in about 2 seconds, and data larger than memory can be streamed in chunks, including group-bys for bars and heatmaps and quantile sketches for box plots. What a chart costs depends on its pixels, not its rows.
 - **One dependency.** Only NumPy is required. pandas, polars and pyarrow data are accepted as they are.
-- **Publication formats built in.** Vector SVG and PDF (text stays selectable), high-DPI PNG, and a self-contained interactive HTML page.
+- **Publication formats built in.** Vector SVG and PDF (text stays selectable), high-DPI PNG, and a self-contained interactive HTML page with tooltips, a crosshair readout and the data behind the chart.
+- **Maps without GIS dependencies.** GeoJSON choropleths, point maps of any size, and tile maps of Spanish provinces and regions.
 - **Graphs as data, too.** A `Graph` class with shortest paths, centrality, communities, flows and more, tested against networkx.
 
 ## Installation
@@ -84,6 +86,7 @@ These charts were made from two public datasets: the IGN Spanish earthquake cata
 | ![Magnitudes, log scale](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_magnitudes.svg) | ![Supply and demand curves](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/bids_curves.svg) |
 | ![Depth by region](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_depth_regions.svg) | ![Daily price with range](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_daily.svg) |
 | ![Price by hour 2023 vs 2025](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_by_hour.svg) | ![Weekday distribution](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/power_weekday.svg) |
+| ![Earthquakes by province](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/eq_tilemap.svg) | ![Sell offers by month and hour](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/real/bids_offer_heatmap.svg) |
 
 More in the [gallery](https://github.com/hsilvosa/lineova/blob/main/docs/gallery.md).
 
@@ -94,18 +97,18 @@ More in the [gallery](https://github.com/hsilvosa/lineova/blob/main/docs/gallery
 | Writing a paper or thesis | line with bands, bar with CI, box/violin, histogram, small multiples | `folio` → PDF | [Academic figures](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#academic-papers-and-theses) |
 | Building a business report or dashboard | bar, waterfall, stat tiles, sparklines, donut | `ledger` → SVG/HTML | [Business reporting](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#business-reports-and-dashboards) |
 | Monitoring sensors, markets or systems | long time series, candlestick, calendar, density | `instrument` | [Engineering](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#engineering-and-monitoring) |
-| Explaining data to the public | area, treemap, sankey, slope, radar | `fjord` | [Public reports](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#public-reports-and-teaching) |
-| Exploring very large data | scatter density, histogram, line from `lv.Chunks` | any | [Big data](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#exploring-very-large-data) |
+| Explaining data to the public | area, treemap, sunburst, maps, sankey, slope | `fjord` | [Public reports](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#public-reports-and-teaching) |
+| Exploring very large data | scatter density, hexbin, histogram, line, bar and box from `lv.Chunks` | any | [Big data](https://github.com/hsilvosa/lineova/blob/main/docs/use-cases.md#exploring-very-large-data) |
 | Analysing networks | network drawings, shortest paths, centrality | any | [Graphs](https://github.com/hsilvosa/lineova/blob/main/docs/graphs.md) |
 
 ## Chart types
 
-| Compare | Distribution | Composition | Change & time | Relationships | Flows & structure | Dashboards |
-|---|---|---|---|---|---|---|
-| `bar` | `histogram` | `pie` / `donut` | `line` | `scatter` | `network` | `stat` |
-| `dumbbell` | `box` | `treemap` | `area` | `density` | `sankey` | `sparkline` |
-| `slope` | `violin` | `waterfall` | `candlestick` | `heatmap` | `timeline` | `grid` |
-| `radar` | `ridgeline` | | `calendar` | | | `facet=` |
+| Compare | Distribution | Composition | Change & time | Relationships | Flows & structure | Maps | Dashboards |
+|---|---|---|---|---|---|---|---|
+| `bar` | `histogram` | `pie` / `donut` | `line` | `scatter` | `network` | `map` (GeoJSON) | `stat` |
+| `dumbbell` | `box` | `treemap` | `area` | `density` | `sankey` | `map` (points) | `sparkline` |
+| `slope` | `violin` | `sunburst` | `candlestick` | `hexbin` | `timeline` | `tilemap` | `grid` |
+| `radar` | `ridgeline` | `waterfall` | `calendar` | `heatmap` | | | `facet=` |
 
 Error bars and confidence bands, reference lines, shaded ranges, annotations, log and date axes, and small multiples work across chart types. See the [user guide](https://github.com/hsilvosa/lineova/blob/main/docs/guide.md).
 
@@ -117,7 +120,7 @@ Error bars and confidence bands, reference lines, shaded ranges, annotations, lo
 | **Instrument: technical** | **Fjord: public reports** |
 | ![](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/instrument-scatter.svg) | ![](https://raw.githubusercontent.com/hsilvosa/lineova/main/docs/gallery/fjord-network.svg) |
 
-Themes are plain dataclasses, so you can derive your own brand theme in a few lines. See [Themes](https://github.com/hsilvosa/lineova/blob/main/docs/themes.md).
+Dark variants (`ledger-dark`, `fjord-dark`, `folio-dark`) and `instrument-light` keep each series' colour. Themes are plain dataclasses; `lv.themes.from_brand(colour)` builds one around your brand colour with a palette checked for colour-blind readers. See [Themes](https://github.com/hsilvosa/lineova/blob/main/docs/themes.md).
 
 ## Performance
 
@@ -130,6 +133,8 @@ Full pipeline (data → finished SVG) on a 2-core cloud machine:
 | Histogram, 17 million real market bids streamed from 6 files | 0.3 s |
 | Violin, 10 million values | 1.9 s |
 | Network, 40,000 nodes / 200,000 edges | 3 s |
+| Hexbin, 10 million points | 1.0 s |
+| Heatmap of 12 million real market offers, streamed group-by | 2.3 s |
 
 How it works and how to benchmark it yourself: [Performance](https://github.com/hsilvosa/lineova/blob/main/docs/performance.md).
 

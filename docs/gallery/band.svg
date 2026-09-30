@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Forecast</desc>
-<defs><clipPath id="lv0a289262c1"><rect x="56.56" y="19" width="568.44" height="306"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lvcb0347b4t lvcb0347b4d">
+<title id="lvcb0347b4t">Forecast</title>
+<desc id="lvcb0347b4d">Forecast. with 90% interval. Line chart of Series 1, x from 0 to 23. Series 1: from 14.3 to 25.7, last 16.2, down 16% from the start.</desc>
+<defs><clipPath id="lvcb0347b4c1"><rect x="56.56" y="19" width="568.44" height="306"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 7.</tspan><tspan> Forecast. With 90% interval.</tspan></text>
-<g clip-path="url(#lv0a289262c1)">
+<g clip-path="url(#lvcb0347b4c1)">
 <path d="M57.56,143L82.19,100.31L106.82,75.29L131.44,78.08L156.07,78.48L180.7,31.26L205.33,42.22L229.95,50.26L254.58,70.24L279.21,56.24L303.84,80.75L328.47,74.8L353.09,119.95L377.72,142.85L402.35,179.98L426.98,200.64L451.61,191.23L476.23,216.34L500.86,232.84L525.49,206.91L550.12,179.94L574.74,220.39L599.37,186.82L624,198.92L624,278.82L599.37,266.73L574.74,300.29L550.12,259.84L525.49,286.82L500.86,312.74L476.23,296.25L451.61,271.14L426.98,280.55L402.35,259.88L377.72,222.75L353.09,199.85L328.47,154.71L303.84,160.65L279.21,136.15L254.58,150.14L229.95,130.17L205.33,122.13L180.7,111.16L156.07,158.38L131.44,157.98L106.82,155.19L82.19,180.22L57.56,222.9Z" fill="#1e2229" fill-opacity="0.12"/>
 <path d="M57.56,187.39L82.19,144.71L106.82,119.68L131.44,122.47L156.07,122.87L180.7,75.65L205.33,86.61L229.95,94.66L254.58,114.63L279.21,100.63L303.84,125.14L328.47,119.2L353.09,164.34L377.72,187.24L402.35,224.37L426.98,245.03L451.61,235.62L476.23,260.74L500.86,277.23L525.49,251.3L550.12,224.33L574.74,264.78L599.37,231.21L624,243.31" fill="none" stroke="#1e2229" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
 <g fill="#ffffff" stroke="#1e2229" stroke-width="1.12">

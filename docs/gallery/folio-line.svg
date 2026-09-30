@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Energy output by source</desc>
-<defs><clipPath id="lve5b4df8bc1"><rect x="71.08" y="19" width="507.01" height="306"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lva9f9e48at lva9f9e48ad">
+<title id="lva9f9e48at">Energy output by source</title>
+<desc id="lva9f9e48ad">Energy output by source. Monthly, GWh. Line chart of 3 series (Solar, Wind and Hydro), x from 2025-01-01 to 2025-12-01. Solar: from 38 to 138, last 38, down 10% from the start. Wind: from 62 to 118, last 118, up 5% from the start. Hydro: from 60 to 95, last 72, up 3% from the start.</desc>
+<defs><clipPath id="lva9f9e48ac1"><rect x="71.08" y="19" width="507.01" height="306"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 1.</tspan><tspan> Energy output by source. Monthly, GWh.</tspan></text>
-<g clip-path="url(#lve5b4df8bc1)">
+<g clip-path="url(#lva9f9e48ac1)">
 <path d="M72.08,301.48L118.95,264.89L161.29,200.15L208.16,149.48L253.52,87.56L300.39,50.96L345.75,31.26L392.63,62.22L439.5,141.04L484.86,217.04L531.73,284.59L577.09,312.74" fill="none" stroke="#1e2229" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
 <g fill="#ffffff" stroke="#1e2229" stroke-width="1.12">
 <circle cx="72.08" cy="301.48" r="3"/>

@@ -135,6 +135,9 @@ class Layer:
     def colorbar(self):                          # (lut_stops, vmin, vmax, label) or None
         return None
 
+    def has_colorbar(self) -> bool:              # cheap check before drawing (colorbar() may need draw())
+        return self.colorbar() is not None
+
     def default_size(self, theme: Theme) -> Optional[tuple[float, float]]:
         return None
 

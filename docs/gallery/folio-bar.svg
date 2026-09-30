@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Capacity factor by site</desc>
-<defs><clipPath id="lv235df472c1"><rect x="47.32" y="19" width="577.68" height="306"/></clipPath><pattern id="lv235df472h1e2229" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1e2229" stroke-width="1.4"/></pattern></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv0e712886t lv0e712886d">
+<title id="lv0e712886t">Capacity factor by site</title>
+<desc id="lv0e712886d">Capacity factor by site. Bar chart of value for 7 categories. Highest: Alta Ridge (41.2); lowest: Gallan Flats (21.3).</desc>
+<defs><clipPath id="lv0e712886c1"><rect x="47.32" y="19" width="577.68" height="306"/></clipPath><pattern id="lv0e712886h1e2229d" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1e2229" stroke-width="1.4"/></pattern></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 2.</tspan><tspan> Capacity factor by site.</tspan></text>
-<g clip-path="url(#lv235df472c1)">
+<g clip-path="url(#lv0e712886c1)">
 <path d="M66.82,31.69L112.06,31.69L112.06,324L66.82,324Z" fill="#c7cbd1"><title>Alta Ridge: 41.2%</title></path>
 <path d="M149.06,55.81L194.3,55.81L194.3,324L149.06,324Z" fill="#c7cbd1"><title>Brennmoor: 37.8%</title></path>
 <path d="M231.3,79.23L276.54,79.23L276.54,324L231.3,324Z" fill="#ffffff" stroke="#1e2229" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"><title>Cala Serena: 34.5%</title></path>
-<path d="M231.3,79.23L276.54,79.23L276.54,324L231.3,324Z" fill="url(#lv235df472h1e2229)" pointer-events="none"/>
+<path d="M231.3,79.23L276.54,79.23L276.54,324L231.3,324Z" fill="url(#lv0e712886h1e2229d)" pointer-events="none"/>
 <path d="M313.54,104.06L358.78,104.06L358.78,324L313.54,324Z" fill="#c7cbd1"><title>Dunhollow: 31.0%</title></path>
 <path d="M395.78,121.09L441.02,121.09L441.02,324L395.78,324Z" fill="#c7cbd1"><title>Eskvale: 28.6%</title></path>
 <path d="M478.02,147.34L523.26,147.34L523.26,324L478.02,324Z" fill="#c7cbd1"><title>Ferrow Point: 24.9%</title></path>

@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img">
-<desc>Bid prices in the Iberian day-ahead market, 2024</desc>
-<defs><clipPath id="lv376425e3c1"><rect x="78.95" y="19" width="656.81" height="291.2"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv5e35a718t lv5e35a718d">
+<title id="lv5e35a718t">Bid prices in the Iberian day-ahead market, 2024</title>
+<desc id="lv5e35a718d">Bid prices in the Iberian day-ahead market, 2024. Histogram of values, 100 bins from −100 to 400. values: most common −5–0 (3.93M).</desc>
+<defs><clipPath id="lv5e35a718c1"><rect x="78.95" y="19" width="656.81" height="291.2"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="389" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 2.</tspan><tspan> Bid prices in the Iberian day-ahead market, 2024. All 17,093,765 buy and sell bids on 182 days, €/MWh, read in</tspan></text>
 <text x="16" y="406.5" font-size="12.5" fill="#4b5260">chunks.</text>
 <text x="16" y="424" font-size="12.5" fill="#7b828e">Source: OMIE, Mercado diario</text>
-<g clip-path="url(#lv376425e3c1)">
+<g clip-path="url(#lv5e35a718c1)">
 <path d="M80.45,304.58L86,304.58L86,309.2L80.45,309.2Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>−100 – −95: 65.3k</title></path>
 <path d="M87,309.2L92.55,309.2L92.55,309.7L87,309.7Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>−95 – −90: 25</title></path>
 <path d="M93.55,309.18L99.1,309.18L99.1,309.68L93.55,309.68Z" fill="#c7cbd1" stroke="#1e2229" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>−90 – −85: 220</title></path>
