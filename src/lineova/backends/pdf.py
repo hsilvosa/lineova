@@ -71,7 +71,8 @@ class _Writer:
         if dash:
             self.out.append(f"[{' '.join(_n(d) for d in dash)}] 0 d")
 
-    def paint(self, fill, stroke, width=1.0, opacity=1.0, fill_opacity=1.0, dash=None, cap="butt", join="miter"):
+    def paint(self, fill, stroke, width=1.0, opacity=1.0, fill_opacity=1.0, dash=None, cap="butt", join="miter",
+              evenodd=False):
         fa = sa = opacity
         if fill:
             fa *= self.fill_color(fill) * fill_opacity
@@ -80,9 +81,9 @@ class _Writer:
             self.stroke_style(width, dash, cap, join)
         self.alpha(fa, sa)
         if fill and stroke:
-            self.out.append("B")
+            self.out.append("B*" if evenodd else "B")
         elif fill:
-            self.out.append("f")
+            self.out.append("f*" if evenodd else "f")
         elif stroke:
             self.out.append("S")
         else:
@@ -251,7 +252,8 @@ class _Writer:
         elif t is S.Path:
             o.append("q")
             self.cmds_path(op.cmds)
-            self.paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
+            self.paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join,
+                       evenodd=op.evenodd)
             o.append("Q")
             if op.hatch:
                 xs = [v for c in op.cmds for v in c[1::2]]

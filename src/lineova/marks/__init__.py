@@ -26,6 +26,8 @@ REGISTRY = {
     "radar": ("radar", "RadarLayer"),
     "density": ("density", "DensityLayer"),
     "hexbin": ("hexbin", "HexbinLayer"),
+    "map": ("geo", "MapLayer"),
+    "tilemap": ("geo", "TileMapLayer"),
     "timeline": ("timeline", "TimelineLayer"),
     "calendar": ("calendar", "CalendarLayer"),
     "sparkline": ("tiles", "SparklineLayer"),

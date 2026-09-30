@@ -269,6 +269,14 @@ class Chart(Renderable):
         """Add a hexbin layer. Takes the same options as ``lv.hexbin()``."""
         return self._add(layer_class("hexbin")(self._d(data), x, y, **kw))
 
+    def map(self, data=None, geo=None, **kw) -> Chart:
+        """Add a map layer. Takes the same options as ``lv.map()``."""
+        return self._add(layer_class("map")(self._d(data), geo, **kw))
+
+    def tilemap(self, data=None, **kw) -> Chart:
+        """Add a tile-map layer. Takes the same options as ``lv.tilemap()``."""
+        return self._add(layer_class("tilemap")(self._d(data), **kw))
+
     def timeline(self, data=None, **kw) -> Chart:
         """Add a timeline layer. Takes the same options as ``lv.timeline()``."""
         return self._add(layer_class("timeline")(self._d(data), **kw))

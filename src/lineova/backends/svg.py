@@ -157,7 +157,8 @@ def render(scene: S.Scene) -> str:
                 title = f"<title>{escape(op.title)}</title>" if op.title else ""
                 arrow = f' marker-end="url(#{arrow_id(op.stroke)})"' if op.arrow and op.stroke else ""
                 paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
-                body = f'<path d="{_path_d(op.cmds)}"{paint}{arrow}'
+                rule = ' fill-rule="evenodd"' if op.evenodd else ""
+                body = f'<path d="{_path_d(op.cmds)}"{paint}{rule}{arrow}'
                 out.append(body + (f">{title}</path>" if title else "/>"))
                 if op.hatch:
                     out.append(f'<path d="{_path_d(op.cmds)}" fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')

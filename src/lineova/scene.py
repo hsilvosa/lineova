@@ -78,6 +78,7 @@ class Path:
     hatch: Optional[str] = None
     title: Optional[str] = None
     arrow: bool = False              # arrowhead at the end (networks)
+    evenodd: bool = False            # even-odd fill rule (polygons with holes, e.g. maps)
 
 
 @dataclass(slots=True)
