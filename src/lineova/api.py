@@ -160,8 +160,19 @@ def candlestick(data: Any = None, x: Any = None, **options) -> Chart:
 
 
 def treemap(data: Any = None, **options) -> Chart:
-    """Treemap: ``treemap({"A": 10, "B": 4})``, nested dicts, or ``treemap(df, path=["region", "city"], value="pop")``."""
+    """Treemap: ``treemap({"A": 10, "B": 4})``, nested dicts of any depth, or
+    ``treemap(df, path=["region", "country", "city"], value="pop")``. ``depth=`` limits the levels drawn."""
     return _make("treemap", data, {}, options)
+
+
+def sunburst(data: Any = None, **options) -> Chart:
+    """Sunburst: a hierarchy as rings, the angle proportional to value.
+
+    ``data`` is nested dicts of any depth ({"Europe": {"Spain": {"Madrid": 7}}}) or a DataFrame with
+    ``path=["region", "country", "city"]`` and ``value=``. Options: ``depth=`` (rings to show),
+    ``labels=``, ``format=``, ``center=`` (text in the middle; the total by default).
+    """
+    return _make("sunburst", data, {}, options)
 
 
 def sankey(data: Any = None, **options) -> Chart:
@@ -177,6 +188,16 @@ def radar(data: Any = None, **options) -> Chart:
 def density(data: Any = None, x: Any = None, y: Any = None, color: Any = None, **options) -> Chart:
     """2-D density with contour lines (for very many points, or to compare groups' shapes)."""
     return _make("density", data, {"x": x, "y": y, "color": color}, options)
+
+
+def hexbin(data: Any = None, x: Any = None, y: Any = None, **options) -> Chart:
+    """Hexagonal binning of a point cloud: how many points (or the mean of ``value``) fall in each hexagon.
+
+    Works for millions of rows and for ``lv.Chunks``. Options: ``value=`` (column to aggregate),
+    ``agg="count" | "sum" | "mean" | "max" | "min"``, ``gridsize=`` (hexagons across), ``mincount=1``,
+    ``log="auto"`` (log colour scale for skewed counts), ``cmap=`` (colour stops), ``label=``.
+    """
+    return _make("hexbin", data, {"x": x, "y": y}, options)
 
 
 def timeline(data: Any = None, **options) -> Chart:

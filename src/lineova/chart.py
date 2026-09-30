@@ -248,6 +248,10 @@ class Chart(Renderable):
         """Add a treemap layer. Takes the same options as ``lv.treemap()``."""
         return self._add(layer_class("treemap")(self._d(data), **kw))
 
+    def sunburst(self, data=None, **kw) -> Chart:
+        """Add a sunburst layer. Takes the same options as ``lv.sunburst()``."""
+        return self._add(layer_class("sunburst")(self._d(data), **kw))
+
     def sankey(self, data=None, **kw) -> Chart:
         """Add a sankey layer. Takes the same options as ``lv.sankey()``."""
         return self._add(layer_class("sankey")(self._d(data), **kw))
@@ -259,6 +263,10 @@ class Chart(Renderable):
     def density(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
         """Add a density layer. Takes the same options as ``lv.density()``."""
         return self._add(layer_class("density")(self._d(data), x, y, color, **kw))
+
+    def hexbin(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a hexbin layer. Takes the same options as ``lv.hexbin()``."""
+        return self._add(layer_class("hexbin")(self._d(data), x, y, **kw))
 
     def timeline(self, data=None, **kw) -> Chart:
         """Add a timeline layer. Takes the same options as ``lv.timeline()``."""

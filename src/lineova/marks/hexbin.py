@@ -1,0 +1,222 @@
+"""Hexagonal binning: counts (or an aggregated value) per hexagon.
+
+Binning is one vectorised pass over the points (chunked, and streamed for
+``lv.Chunks``), so the cost is linear in the rows and the drawing cost depends
+only on the number of hexagons. The lattice is laid out in data units but
+shaped from the expected plot size, so hexagons come out regular on screen.
+"""
+
+from __future__ import annotations
+
+import math
+
+import numpy as np
+
+from .. import scene as S
+from .._color import ramp_lut, to_hex
+from .._data import Chunks, DataError, as_float, get_column, is_auto, is_frame, to_array
+from .._text import format_value
+from ..raster import CHUNK
+from ._base import Domain, DrawContext, Layer
+from .scatter import ScatterLayer
+
+_AUTO = "auto"
+SQ3 = math.sqrt(3.0)
+AGGS = ("count", "sum", "mean", "max", "min")
+
+
+def hex_bin(x, y, x0, y0, dx, dy, weights=None, values=None, agg="count"):
+    """Assign points to a pointy-top hex lattice.
+
+    ``dx`` is the hexagon width (data units of x); ``dy`` the row spacing (data units of y).
+    Returns ``(col, row, aggregate)`` for every non-empty hexagon.
+    """
+    keys_all, w_all, v_all = [], [], []
+    n = len(x)
+    for s in range(0, n, CHUNK):
+        xc = np.asarray(x[s:s + CHUNK], dtype=np.float64)
+        yc = np.asarray(y[s:s + CHUNK], dtype=np.float64)
+        ok = np.isfinite(xc) & np.isfinite(yc)
+        # regular coordinates: hexagon width 1, rows sqrt(3)/2 apart
+        X = (xc[ok] - x0) / dx
+        Y = (yc[ok] - y0) / dy * (SQ3 / 2)
+        # two offset rectangular lattices (even and odd rows); the nearer centre wins
+        ia, ja = np.rint(X), np.rint(Y / SQ3)
+        ib, jb = np.rint(X - 0.5), np.rint((Y - SQ3 / 2) / SQ3)
+        da = (X - ia) ** 2 + (Y - ja * SQ3) ** 2
+        db = (X - ib - 0.5) ** 2 + (Y - jb * SQ3 - SQ3 / 2) ** 2
+        use_a = da <= db
+        col = np.where(use_a, ia, ib).astype(np.int64)
+        row = np.where(use_a, 2 * ja, 2 * jb + 1).astype(np.int64)
+        keys_all.append((row << 32) + (col + (1 << 31)))
+        if weights is not None:
+            w_all.append(np.asarray(weights[s:s + CHUNK], np.float64)[ok])
+        if values is not None:
+            v_all.append(np.asarray(values[s:s + CHUNK], np.float64)[ok])
+    if not keys_all:
+        return np.array([], np.int64), np.array([], np.int64), np.array([])
+    keys = np.concatenate(keys_all)
+    uniq, inv = np.unique(keys, return_inverse=True)
+    w = np.concatenate(w_all) if w_all else None
+    if agg == "count" or values is None:
+        out = np.bincount(inv, weights=w, minlength=len(uniq))
+    else:
+        v = np.concatenate(v_all)
+        good = np.isfinite(v)
+        inv, v = inv[good], v[good]
+        if agg in ("sum", "mean"):
+            tot = np.bincount(inv, weights=v, minlength=len(uniq))
+            if agg == "sum":
+                out = tot
+            else:
+                cnt = np.bincount(inv, minlength=len(uniq))
+                with np.errstate(invalid="ignore", divide="ignore"):
+                    out = tot / cnt
+        else:
+            out = np.full(len(uniq), -np.inf if agg == "max" else np.inf)
+            (np.maximum if agg == "max" else np.minimum).at(out, inv, v)
+            out[~np.isfinite(out)] = np.nan
+    row = uniq >> 32
+    col = (uniq & 0xFFFFFFFF) - (1 << 31)
+    return col, row, out
+
+
+class HexbinLayer(Layer):
+    """Hexagon density map for large point clouds, or an aggregated value per hexagon."""
+
+    emphasize_zero = False
+
+    def __init__(self, data=None, x=None, y=None, *, value=None, agg=_AUTO, gridsize=_AUTO, mincount=1,
+                 log=_AUTO, cmap=_AUTO, label=None, border=_AUTO):
+        self.data, self.x, self.y = data, x, y
+        self.value, self.agg, self.gridsize, self.mincount = value, agg, gridsize, mincount
+        self.log, self.cmap, self.label, self.border = log, cmap, label, border
+
+    # ---------------------------------------------------------------- data
+    def prepare(self, chart) -> None:
+        theme = chart.resolved_theme
+        agg = ("mean" if self.value is not None else "count") if is_auto(self.agg) else str(self.agg)
+        if agg not in AGGS:
+            raise DataError(f"hexbin agg must be one of {', '.join(AGGS)}; got {agg!r}.")
+        if agg != "count" and self.value is None:
+            raise DataError(f"agg={agg!r} needs value='column' to aggregate.")
+        helper = ScatterLayer(self.data, self.x, self.y, None, render="vector")
+        helper.prepare(chart)
+        if helper.x_kind != "num":
+            raise DataError("Hexbin needs numeric x and y.")
+        xs = np.concatenate([g.x for g in helper.groups])
+        ys = np.concatenate([g.y for g in helper.groups])
+        weights = None
+        if isinstance(self.data, Chunks):
+            if self.value is not None:
+                raise DataError("hexbin(value=...) isn't available for chunked data yet; counts are.")
+            weights = np.concatenate([g.extra["_w"] for g in helper.groups])
+        values = None
+        if self.value is not None:
+            if isinstance(self.value, str) and is_frame(self.data):
+                values = as_float(to_array(get_column(self.data, self.value)), "num")
+            else:
+                values = as_float(to_array(self.value), "num")
+            if len(values) != len(xs):
+                raise DataError("value must have one entry per point.")
+        self.n = helper.n
+        self.x_label, self.y_label = helper.x_label, helper.y_label
+        fin = np.isfinite(xs) & np.isfinite(ys)
+        if not fin.any():
+            raise DataError("No finite x/y points to bin.")
+        # lattice: gridsize hexagons across the x range, shaped for the expected plot size
+        x_lo, x_hi = float(np.min(xs[fin])), float(np.max(xs[fin]))
+        y_lo, y_hi = float(np.min(ys[fin])), float(np.max(ys[fin]))
+        W, H = chart._resolve_size(theme)
+        pw, ph = max(W - 2 * theme.padding - 50, 100), max(H - 130, 80)
+        g = int(self.gridsize) if not is_auto(self.gridsize) else int(np.clip(pw / 15, 12, 80))
+        xr = (x_hi - x_lo) or 1.0
+        yr = (y_hi - y_lo) or 1.0
+        dx = xr / g
+        px_w = pw / g                                   # hexagon width on screen
+        dy = (SQ3 / 2) * px_w * yr / ph                 # row spacing in y units: rows sqrt(3)/2 widths apart
+        col, row, val = hex_bin(xs, ys, x_lo, y_lo, dx, dy, weights, values, agg)
+        if agg == "count":
+            keep = val >= self.mincount
+        else:
+            cnt = hex_bin(xs, ys, x_lo, y_lo, dx, dy, weights)[2]
+            keep = (cnt >= self.mincount) & np.isfinite(val)
+        self.col, self.row, self.val = col[keep], row[keep], val[keep]
+        self.x0, self.y0, self.dx, self.dy = x_lo, y_lo, dx, dy
+        self.agg_name = agg
+        self.ext = (x_lo - dx / 2, x_hi + dx / 2, y_lo - dy * 2 / 3, y_hi + dy * 2 / 3)
+        v = self.val[np.isfinite(self.val)]
+        self.vmin = float(v.min()) if len(v) else 0.0
+        self.vmax = float(v.max()) if len(v) else 1.0
+        positive = len(v) and self.vmin > 0
+        self.use_log = bool(positive and self.vmax / max(np.median(v), 1e-12) > 30) if is_auto(self.log) \
+            else bool(self.log and positive)
+        if self.label:
+            self.cbar_label = str(self.label)
+        elif agg == "count":
+            self.cbar_label = "count"
+        else:
+            self.cbar_label = f"{agg} of {self.value}" if isinstance(self.value, str) else agg
+        if self.use_log:
+            self.cbar_label += " (log)"
+        lo, hi = self.vmin, self.vmax
+        self.diverging = self.cmap == "diverging" or (
+            is_auto(self.cmap) and agg != "count" and lo < 0 < hi and min(-lo, hi) / max(-lo, hi) > 0.2)
+        if isinstance(self.cmap, (list, tuple)):
+            self.stops = tuple(self.cmap)
+        elif self.diverging:
+            self.stops = tuple(theme.diverging)
+            m = max(abs(lo), abs(hi))
+            self.vmin, self.vmax, self.use_log = -m, m, False
+        else:
+            self.stops = tuple(theme.sequential)
+
+    # ---------------------------------------------------------------- axes
+    def x_domain(self):
+        return Domain("num", self.ext[0], self.ext[1], nice=True, pad=0.01, extent=(self.ext[0], self.ext[1]))
+
+    def y_domain(self):
+        return Domain("num", self.ext[2], self.ext[3], nice=True, pad=0.01, extent=(self.ext[2], self.ext[3]))
+
+    def axis_labels(self):
+        return self.x_label, self.y_label
+
+    def colorbar(self):
+        return (self.stops, self.vmin, self.vmax, self.cbar_label)
+
+    def values_for_reference(self, axis):
+        return []
+
+    # ---------------------------------------------------------------- draw
+    def _t(self, v):
+        if self.use_log:
+            lo, hi = math.log10(self.vmin), math.log10(self.vmax)
+            return (np.log10(np.maximum(v, self.vmin)) - lo) / ((hi - lo) or 1.0)
+        return (v - self.vmin) / ((self.vmax - self.vmin) or 1.0)
+
+    def draw(self, ctx: DrawContext) -> None:
+        theme = ctx.theme
+        if not len(self.val):
+            return
+        lut = ramp_lut(self.stops)
+        t = np.clip(self._t(self.val), 0, 1)
+        # a floor so the faintest hexagons stay visible on the background
+        idx = (t if self.diverging else 0.12 + 0.88 * t) * (len(lut) - 1)
+        cols = lut[np.nan_to_num(idx).astype(int)]
+        # centres in data units, then pixels
+        cx = self.x0 + (self.col + 0.5 * (self.row & 1)) * self.dx
+        cy = self.y0 + self.row * self.dy
+        px, py = ctx.xs(cx), ctx.ys(cy)
+        # corner offsets in pixels: pointy-top hexagon of width dx, circumradius = dy * 2/3 in y
+        hw = abs(ctx.xs.scalar(self.x0 + self.dx / 2) - ctx.xs.scalar(self.x0))
+        hr = abs(ctx.ys.scalar(self.y0 + self.dy * 2 / 3) - ctx.ys.scalar(self.y0))
+        offs = [(0, -hr), (hw, -hr / 2), (hw, hr / 2), (0, hr), (-hw, hr / 2), (-hw, -hr / 2)]
+        border = (len(self.val) < 2500) if is_auto(self.border) else bool(self.border)
+        titles = len(self.val) <= 4000
+        label = "count" if self.agg_name == "count" else self.agg_name
+        for i in range(len(self.val)):
+            x, y = float(px[i]), float(py[i])
+            cmds = [("M", x + offs[0][0], y + offs[0][1])] + [("L", x + a, y + b) for a, b in offs[1:]] + [("Z",)]
+            ctx.scene.add(S.Path(cmds, fill=to_hex(cols[i] / 255.0), stroke=theme.background if border else None,
+                                 stroke_width=0.6, join="miter",
+                                 title=f"{label}: {format_value(self.val[i])}" if titles else None))
