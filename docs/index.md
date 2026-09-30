@@ -9,7 +9,7 @@ import lineova as lv
 lv.line(df, x="date", y="price", color="market").save("prices.svg")
 ```
 
-lineova turns data into publication-quality charts with one call, and lets you adjust any detail when you need to. It has 23 chart types, four house styles, vector and raster output, and handles anything from ten rows to a hundred million.
+lineova turns data into publication-quality charts with one call, and lets you adjust any detail when you need to. It has 27 chart types (including maps), four house styles with dark variants, vector and raster output, and handles anything from ten rows to a hundred million.
 
 <div class="grid cards" markdown>
 

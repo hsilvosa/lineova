@@ -98,12 +98,27 @@ def render(scene: S.Scene) -> str:
     clip_n = 0
     uid = "\x00U\x00"   # replaced by a content hash at the end: stable across runs, unique across charts
 
-    def hatch_id(color: str) -> str:
-        key = f"{uid}h" + color.lstrip("#")
+    def hatch_id(spec: str) -> str:
+        color, _, kind = spec.partition("|")
+        kind = kind or "/"
+        names = {"/": "d", "\\": "b", "x": "x", "-": "h", "|": "v", ".": "o"}
+        key = f"{uid}h" + color.lstrip("#") + names.get(kind, "d")
         if key not in defs:
-            defs[key] = (f'<pattern id="{key}" width="5" height="5" patternUnits="userSpaceOnUse" '
-                         f'patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" '
-                         f'stroke="{color}" stroke-width="1.4"/></pattern>')
+            line = f'stroke="{color}" stroke-width="1.4"'
+            if kind == ".":
+                body, size, rot = f'<circle cx="2.5" cy="2.5" r="1.1" fill="{color}"/>', 5, 0
+            elif kind == "-":
+                body, size, rot = f'<line x1="0" y1="3" x2="6" y2="3" {line}/>', 6, 0
+            elif kind == "|":
+                body, size, rot = f'<line x1="3" y1="0" x2="3" y2="6" {line}/>', 6, 0
+            elif kind == "x":
+                body, size, rot = (f'<line x1="0" y1="0" x2="0" y2="6" {line}/>'
+                                   f'<line x1="0" y1="0" x2="6" y2="0" {line}/>'), 6, 45
+            else:
+                body, size, rot = f'<line x1="0" y1="0" x2="0" y2="5" {line}/>', 5, (-45 if kind == "\\" else 45)
+            tf = f' patternTransform="rotate({rot})"' if rot else ""
+            defs[key] = (f'<pattern id="{key}" width="{size}" height="{size}" patternUnits="userSpaceOnUse"{tf}>'
+                         f'{body}</pattern>')
         return key
 
     def arrow_id(color: str) -> str:
@@ -136,11 +151,14 @@ def render(scene: S.Scene) -> str:
                 d = "".join(r + ("Z" if op.closed else "") for r in runs)
                 paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
                 out.append(f'<path d="{d}"{paint}/>')
+                if op.hatch and op.closed:
+                    out.append(f'<path d="{d}" fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
             elif t is S.Path:
                 title = f"<title>{escape(op.title)}</title>" if op.title else ""
                 arrow = f' marker-end="url(#{arrow_id(op.stroke)})"' if op.arrow and op.stroke else ""
                 paint = _paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
-                body = f'<path d="{_path_d(op.cmds)}"{paint}{arrow}'
+                rule = ' fill-rule="evenodd"' if op.evenodd else ""
+                body = f'<path d="{_path_d(op.cmds)}"{paint}{rule}{arrow}'
                 out.append(body + (f">{title}</path>" if title else "/>"))
                 if op.hatch:
                     out.append(f'<path d="{_path_d(op.cmds)}" fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
@@ -192,10 +210,11 @@ def render(scene: S.Scene) -> str:
 
     font = escape(scene.font, quote=True)
     head = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{_f(w)}" height="{_f(h)}" '
-            f'viewBox="0 0 {_f(w)} {_f(h)}" font-family="{font}" role="img">')
-    parts = [head]
+            f'viewBox="0 0 {_f(w)} {_f(h)}" font-family="{font}" role="img" '
+            f'aria-labelledby="{uid}t {uid}d">')
+    parts = [head, f'<title id="{uid}t">{escape(scene.title or "Chart")}</title>']
     if scene.description:
-        parts.append(f"<desc>{escape(scene.description)}</desc>")
+        parts.append(f'<desc id="{uid}d">{escape(scene.description)}</desc>')
     if defs:
         parts.append("<defs>" + "".join(defs.values()) + "</defs>")
     parts.append(f'<rect width="100%" height="100%" fill="{scene.background}"/>')

@@ -71,7 +71,8 @@ class _Writer:
         if dash:
             self.out.append(f"[{' '.join(_n(d) for d in dash)}] 0 d")
 
-    def paint(self, fill, stroke, width=1.0, opacity=1.0, fill_opacity=1.0, dash=None, cap="butt", join="miter"):
+    def paint(self, fill, stroke, width=1.0, opacity=1.0, fill_opacity=1.0, dash=None, cap="butt", join="miter",
+              evenodd=False):
         fa = sa = opacity
         if fill:
             fa *= self.fill_color(fill) * fill_opacity
@@ -80,9 +81,9 @@ class _Writer:
             self.stroke_style(width, dash, cap, join)
         self.alpha(fa, sa)
         if fill and stroke:
-            self.out.append("B")
+            self.out.append("B*" if evenodd else "B")
         elif fill:
-            self.out.append("f")
+            self.out.append("f*" if evenodd else "f")
         elif stroke:
             self.out.append("S")
         else:
@@ -140,19 +141,51 @@ class _Writer:
                 o.append("h")
                 cur = start
 
-    def hatch(self, color, bbox, clip_fn):
+    def hatch(self, spec, bbox, clip_fn):
+        """Texture inside a shape: 45° lines (default) or ``colour|kind`` with kind in / \\ x - | ."""
+        color, _, kind = spec.partition("|")
+        kind = kind or "/"
         x0, y0, x1, y1 = bbox
         self.out.append("q")
         clip_fn()
         self.out.append("W n")
+        w, h = x1 - x0, y1 - y0
+        if kind == ".":
+            self.fill_color(color)
+            step = 5.0
+            yy = y0 + 2.5
+            while yy < y1:
+                xx = x0 + 2.5
+                while xx < x1:
+                    self.out.append(f"{_n(xx - 0.9)} {_n(yy - 0.9)} 1.8 1.8 re")
+                    xx += step
+                yy += step
+            self.out.append("f Q")
+            return
         self.stroke_color(color)
         self.stroke_style(1.2)
-        step = 5 / math.sqrt(2) * 2
-        span = (x1 - x0) + (y1 - y0)
-        t = -span
-        while t < span:
-            self.out.append(f"{_n(x0 + t)} {_n(y1)} m {_n(x0 + t + (y1 - y0))} {_n(y0)} l")
-            t += step
+        lines = []
+        if kind in ("/", "x"):
+            step, span, t = 5 / math.sqrt(2) * 2, w + h, -(w + h)
+            while t < span:
+                lines.append(f"{_n(x0 + t)} {_n(y1)} m {_n(x0 + t + h)} {_n(y0)} l")
+                t += step
+        if kind in ("\\", "x"):
+            step, span, t = 5 / math.sqrt(2) * 2, w + h, -(w + h)
+            while t < span:
+                lines.append(f"{_n(x0 + t)} {_n(y0)} m {_n(x0 + t + h)} {_n(y1)} l")
+                t += step
+        if kind == "-":
+            yy = y0 + 3
+            while yy < y1:
+                lines.append(f"{_n(x0)} {_n(yy)} m {_n(x1)} {_n(yy)} l")
+                yy += 6
+        if kind == "|":
+            xx = x0 + 3
+            while xx < x1:
+                lines.append(f"{_n(xx)} {_n(y0)} m {_n(xx)} {_n(y1)} l")
+                xx += 6
+        self.out.extend(lines)
         self.out.append("S Q")
 
     def marker(self, shape, x, y, r):
@@ -209,10 +242,18 @@ class _Writer:
                 o.append("h")
             self.paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
             o.append("Q")
+            if op.hatch and op.closed:
+                px, py = xs[ok], ys[ok]
+
+                def poly():
+                    o.append(f"{_n(px[0])} {_n(py[0])} m " + " ".join(f"{_n(a)} {_n(b)} l" for a, b in
+                                                                      zip(px[1:].tolist(), py[1:].tolist())) + " h")
+                self.hatch(op.hatch, (float(px.min()), float(py.min()), float(px.max()), float(py.max())), poly)
         elif t is S.Path:
             o.append("q")
             self.cmds_path(op.cmds)
-            self.paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join)
+            self.paint(op.fill, op.stroke, op.stroke_width, op.opacity, op.fill_opacity, op.dash, op.cap, op.join,
+                       evenodd=op.evenodd)
             o.append("Q")
             if op.hatch:
                 xs = [v for c in op.cmds for v in c[1::2]]

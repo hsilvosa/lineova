@@ -160,8 +160,19 @@ def candlestick(data: Any = None, x: Any = None, **options) -> Chart:
 
 
 def treemap(data: Any = None, **options) -> Chart:
-    """Treemap: ``treemap({"A": 10, "B": 4})``, nested dicts, or ``treemap(df, path=["region", "city"], value="pop")``."""
+    """Treemap: ``treemap({"A": 10, "B": 4})``, nested dicts of any depth, or
+    ``treemap(df, path=["region", "country", "city"], value="pop")``. ``depth=`` limits the levels drawn."""
     return _make("treemap", data, {}, options)
+
+
+def sunburst(data: Any = None, **options) -> Chart:
+    """Sunburst: a hierarchy as rings, the angle proportional to value.
+
+    ``data`` is nested dicts of any depth ({"Europe": {"Spain": {"Madrid": 7}}}) or a DataFrame with
+    ``path=["region", "country", "city"]`` and ``value=``. Options: ``depth=`` (rings to show),
+    ``labels=``, ``format=``, ``center=`` (text in the middle; the total by default).
+    """
+    return _make("sunburst", data, {}, options)
 
 
 def sankey(data: Any = None, **options) -> Chart:
@@ -177,6 +188,43 @@ def radar(data: Any = None, **options) -> Chart:
 def density(data: Any = None, x: Any = None, y: Any = None, color: Any = None, **options) -> Chart:
     """2-D density with contour lines (for very many points, or to compare groups' shapes)."""
     return _make("density", data, {"x": x, "y": y, "color": color}, options)
+
+
+def hexbin(data: Any = None, x: Any = None, y: Any = None, **options) -> Chart:
+    """Hexagonal binning of a point cloud: how many points (or the mean of ``value``) fall in each hexagon.
+
+    Works for millions of rows and for ``lv.Chunks``. Options: ``value=`` (column to aggregate),
+    ``agg="count" | "sum" | "mean" | "max" | "min"``, ``gridsize=`` (hexagons across), ``mincount=1``,
+    ``log="auto"`` (log colour scale for skewed counts), ``cmap=`` (colour stops), ``label=``.
+    """
+    return _make("hexbin", data, {"x": x, "y": y}, options)
+
+
+def map(data: Any = None, geo: Any = None, **options) -> Chart:  # noqa: A001 - lv.map reads naturally
+    """Maps from GeoJSON and/or points.
+
+    * Choropleth: ``lv.map(values, geo="regions.geojson", key="name")`` where ``values`` is
+      {region: number}, a Series, or a DataFrame with ``id=`` and ``value=`` columns;
+      or ``lv.map(geojson, value="population")`` to colour by a feature property.
+    * Points: ``lv.map(df, lon="lon", lat="lat", size="mag", color="depth")``, optionally over
+      ``geo=`` as a basemap. Above 50,000 points they are drawn as a density image.
+
+    Options: ``projection="auto" | "equirectangular" | "mercator"``, ``cmap=``, ``vmin=``, ``vmax=``,
+    ``labels=``, ``format=``, ``graticule=``, ``label=`` (colour-bar title).
+    """
+    return _make("map", data, {"geo": geo}, options)
+
+
+def tilemap(data: Any = None, **options) -> Chart:
+    """Tile map: one equal square per region, placed roughly as on the map, so every region is
+    equally visible. ``lv.tilemap({"M": 6.8, "B": 5.7}, layout="es-provinces")``.
+
+    Built-in layouts: ``"es-provinces"`` (52 Spanish provinces; plate codes, INE numbers or names)
+    and ``"es-regions"`` (19 autonomous communities; ISO codes or names). A custom layout is
+    ``{code: (column, row, name)}``. Options: ``id=``/``value=`` for DataFrames, ``cmap=``,
+    ``format=``, ``labels=``, ``names=`` (full names instead of codes on large tiles).
+    """
+    return _make("tilemap", data, {}, options)
 
 
 def timeline(data: Any = None, **options) -> Chart:

@@ -60,7 +60,7 @@ class PieLayer(Layer):
             values = np.append(values[keep], values[rest].sum())
         self.cats, self.values = cats, values
         self.total = float(values.sum())
-        self.is_donut = (theme.name != "folio") if is_auto(self.donut) else bool(self.donut)
+        self.is_donut = (theme.family != "folio") if is_auto(self.donut) else bool(self.donut)
 
     def keys(self):
         return list(self.cats)
@@ -99,13 +99,14 @@ class PieLayer(Layer):
                 color = theme.muted
             if share > 0:
                 ctx.scene.add(S.Path(wedge(cx, cy, r, r_in, a, a + sweep), fill=color, stroke=theme.background,
+                                     hatch=ctx.texture(c, i),
                                      stroke_width=2 if len(self.cats) > 1 else 0, join="round",
                                      title=f"{c}: {self._fmt(self.values[i])} ({share:.1%})"))
             mids.append((a + sweep / 2, share, color))
             a += sweep
         # labels: left and right columns, pushed apart so they never overlap
         if show_labels:
-            gap = size * 2.35
+            gap = size * 2.6
             for side in (-1, 1):
                 idx = [i for i, (m, _, _) in enumerate(mids) if (math.cos(m) >= 0) == (side > 0)]
                 want = [cy + math.sin(mids[i][0]) * r * 1.08 for i in idx]

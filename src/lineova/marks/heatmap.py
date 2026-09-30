@@ -6,7 +6,7 @@ import numpy as np
 
 from .. import scene as S
 from .._color import ramp_lut, to_hex
-from .._data import (aggregate, as_float, DataError, factorize, get_column, is_auto, is_frame,
+from .._data import (Chunks, aggregate, as_float, DataError, factorize, get_column, is_auto, is_frame,
                      ordered_categories, to_array)
 from .._text import decimals_for_step, text_width
 from ..raster import block_reduce, colormap
@@ -28,7 +28,24 @@ class HeatmapLayer(Layer):
     def prepare(self, chart) -> None:
         data = self.data
         xl = yl = None
-        if is_frame(data) and self.value is not None:
+        if isinstance(data, Chunks):
+            # streaming group-by over (y, x): counts, or agg of value per cell
+            from .. import stream
+            if not (isinstance(self.x, str) and isinstance(self.y, str)):
+                raise DataError("Chunked heatmaps need x='column' and y='column' (and value='column' or counts).")
+            agg = "count" if self.value is None else self.agg
+            st = stream.group_stats(data, [self.y, self.x], self.value, need_minmax=agg in ("min", "max"))
+            yn = list(dict.fromkeys(t[0] for t in st))
+            xn = list(dict.fromkeys(t[1] for t in st))
+            from .bar import natural_order
+            xn, yn = natural_order(xn), natural_order(yn)
+            mat = np.full((len(yn), len(xn)), np.nan)
+            xi, yi = {n: i for i, n in enumerate(xn)}, {n: i for i, n in enumerate(yn)}
+            for (a, b), v in st.items():
+                mat[yi[a], xi[b]] = stream.finish(v, agg)
+            xl, yl = str(self.x), str(self.y)
+            self.label = self.label or (str(self.value) if self.value else "count")
+        elif is_frame(data) and self.value is not None:
             xv = to_array(get_column(data, self.x))
             yv = to_array(get_column(data, self.y))
             vv = to_array(get_column(data, self.value))
