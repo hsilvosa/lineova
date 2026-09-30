@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img">
-<desc>Daily price candles, 2025</desc>
-<defs><clipPath id="lv295890f5c1"><rect x="41" y="51.3" width="680" height="330.7"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img" aria-labelledby="lv7110b9d5t lv7110b9d5d">
+<title id="lv7110b9d5t">Daily price candles, 2025</title>
+<desc id="lv7110b9d5d">Daily price candles, 2025. €/MWh. Candlestick chart of Up and Down.</desc>
+<defs><clipPath id="lv7110b9d5c1"><rect x="41" y="51.3" width="680" height="330.7"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#0f1a24"/>
 <text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">DAILY PRICE CANDLES, 2025</text>
 <text x="744" y="23.9" font-size="10" fill="#62788a" text-anchor="end" letter-spacing="0.4">€/MWH</text>
@@ -17,7 +18,7 @@
 <line x1="379.15" y1="52.3" x2="379.15" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
 <line x1="494" y1="52.3" x2="494" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
 <line x1="607" y1="52.3" x2="607" y2="381" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
-<g clip-path="url(#lv295890f5c1)">
+<g clip-path="url(#lv7110b9d5c1)">
 <path d="M45.7,149.7L45.7,303.66M56.82,171.43L56.82,311.96M62.38,168.13L62.38,322.92M67.93,79.69L67.93,216.65M73.49,124.26L73.49,209.53M95.72,179.56L95.72,326.22M101.28,124.09L101.28,320.67M106.84,63.26L106.84,293.35M112.39,73.12L112.39,276.87M117.95,107.08L117.95,256.09M123.51,105.26L123.51,265.96M129.07,90.08L129.07,313.07M140.18,178.63L140.18,322.36M145.74,79.69L145.74,290.45M156.85,162.96L156.85,296.09M167.97,159.62L167.97,326.19M179.08,172.82L179.08,326.22M190.2,214.9L190.2,326.23M195.75,129.98L195.75,326.22M206.87,110.1L206.87,330.6M217.98,221.46L217.98,327.9M229.1,239.66L229.1,326.23M240.21,208.43L240.21,327.9M245.77,150.91L245.77,331.68M251.33,183.74L251.33,326.22M262.44,237.69L262.44,328.96M268,256.51L268,325.92M273.56,254.87L273.56,319.54M284.67,192.51L284.67,326.22M295.79,263.63L295.79,327.31M301.34,267.05L301.34,324.57M306.9,269.24L306.9,325.5M312.46,204.42L312.46,326.22M318.02,178.31L318.02,315.8M329.13,170.6L329.13,320.74M340.25,178.3L340.25,325.01M351.36,96.13L351.36,326.22M356.92,113.04L356.92,282.38M362.48,111.72L362.48,327.54M373.59,156.91L373.59,325.29M384.7,169.99L384.7,322.36M395.82,139.95L395.82,287.76M406.93,133.94L406.93,293.4M418.05,140.83L418.05,320.62M429.16,213.07L429.16,326.87M434.72,200.82L434.72,322.36M440.28,142.12L440.28,328.52M451.39,176.25L451.39,326.9M479.18,170.63L479.18,326.33M495.85,150.91L495.85,326.22M506.97,194.74L506.97,326.22M512.52,169.37L512.52,326.22M523.64,90.65L523.64,319.91M534.75,198.99L534.75,326.23M540.31,134.46L540.31,319.64M545.87,107.81L545.87,316.87M551.43,74.21L551.43,318.91M568.1,189.93L568.1,326.04M573.66,137.4L573.66,260.37M590.33,145.56L590.33,326.22M595.89,151.06L595.89,325.13M608.85,154.03L608.85,326.22M619.97,191.52L619.97,325.5M631.08,245.73L631.08,320.62M636.64,156.96L636.64,326.22M654.24,152.9L654.24,325.5M677.39,167.35L677.39,319.91M694.07,159.04L694.07,297.73M705.18,216.51L705.18,315.6" fill="none" stroke="#62a846" stroke-width="1" stroke-linejoin="round"/>
 <rect x="43.82" y="176.75" width="3.78" height="2.11" fill="#62a846"><title>O 134  H 161  L 20.6  C 136</title></rect>
 <rect x="54.93" y="215.55" width="3.78" height="4.08" fill="#62a846"><title>O 97.3  H 141  L 13  C 101</title></rect>
@@ -145,7 +146,7 @@
 <rect x="42" y="52.3" width="678" height="328.7" fill="none" stroke="#3a5063" stroke-width="1"/>
 <line x1="43.85" y1="381" x2="43.85" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
 <line x1="43.85" y1="52.3" x2="43.85" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
-<text x="43.85" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Jan 2025</text>
+<text x="41.85" y="394.8" font-size="10" fill="#62788a">Jan 2025</text>
 <line x1="153.15" y1="381" x2="153.15" y2="376" fill="none" stroke="#3a5063" stroke-width="1"/>
 <line x1="153.15" y1="52.3" x2="153.15" y2="57.3" fill="none" stroke="#3a5063" stroke-width="1"/>
 <text x="153.15" y="394.8" font-size="10" fill="#62788a" text-anchor="middle">Mar</text>

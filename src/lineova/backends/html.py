@@ -25,11 +25,27 @@ _PAGE = """<!doctype html>
   #lv-tip.on{{opacity:1}}
   [data-tip]:hover{{filter:brightness(1.12)}}
   @media (prefers-reduced-motion:reduce){{#lv-tip{{transition:none}}}}
+  #lv-tip .lv-x{{font-weight:600;margin-bottom:3px}}
+  #lv-tip .lv-row{{display:flex;gap:6px;align-items:center;white-space:nowrap}}
+  #lv-tip .lv-sw{{width:9px;height:9px;border-radius:2px;flex:none}}
+  #lv-tip .lv-v{{margin-left:auto;padding-left:12px;font-variant-numeric:tabular-nums;font-weight:600}}
+  details.lv-data{{margin-top:14px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:10px 14px}}
+  details.lv-data summary{{cursor:pointer;font-weight:600;color:#333}}
+  .lv-desc{{color:#444;margin:10px 0}}
+  .lv-table{{max-height:360px;overflow:auto}}
+  .lv-table table{{border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}}
+  .lv-table th,.lv-table td{{border-bottom:1px solid #e6e6e6;padding:3px 10px;text-align:right}}
+  .lv-table th:first-child,.lv-table td:first-child{{text-align:left}}
+  .lv-table caption{{caption-side:bottom;color:#777;text-align:left;padding-top:6px}}
+  .lv-csv{{display:inline-block;margin-top:8px;color:#2f5bd3}}
+  .lv-th{{margin:16px 0 6px;font-size:13px}}
 </style></head>
 <body><main>
 <div class="lv-frame" id="lv-frame">{svg}</div>
 <div class="lv-hint">Hover for values · scroll to zoom · drag to pan · double-click to reset</div>
+{data}
 </main>
+<script type="application/json" id="lv-meta">{meta}</script>
 <div id="lv-tip" role="tooltip"></div>
 <script>
 (function(){{
@@ -61,14 +77,73 @@ _PAGE = """<!doctype html>
   function end(){{drag=null; frame.classList.remove('dragging');}}
   frame.addEventListener('pointerup',end); frame.addEventListener('pointercancel',end);
   frame.addEventListener('dblclick',function(){{vb=base.slice(); apply();}});
+  // crosshair readout for line charts: nearest sample of every series under the pointer
+  var meta=[]; try{{meta=JSON.parse(document.getElementById('lv-meta').textContent)||[];}}catch(err){{}}
+  if(meta.length){{
+    var NS='http://www.w3.org/2000/svg', layer=document.createElementNS(NS,'g');
+    layer.setAttribute('pointer-events','none'); svg.appendChild(layer);
+    function near(a,v){{var lo=0,hi=a.length-1; while(hi-lo>1){{var m=(lo+hi)>>1; if(a[m]<v)lo=m; else hi=m;}}
+      return Math.abs(a[lo]-v)<=Math.abs(a[hi]-v)?lo:hi;}}
+    function clear(){{while(layer.firstChild)layer.removeChild(layer.firstChild);}}
+    svg.addEventListener('pointermove',function(e){{
+      if(drag)return; var p=toSvg(e), hit=null;
+      meta.forEach(function(m){{var r=m.plot; if(p[0]>=r[0]&&p[0]<=r[0]+r[2]&&p[1]>=r[1]&&p[1]<=r[1]+r[3])hit=m;}});
+      clear();
+      if(!hit){{return;}}
+      var best=null;
+      hit.series.forEach(function(sr){{if(!sr.px.length)return; var i=near(sr.px,p[0]);
+        if(!best||Math.abs(sr.px[i]-p[0])<Math.abs(best.sr.px[best.i]-p[0]))best={{sr:sr,i:i}};}});
+      if(!best)return;
+      var x=best.sr.px[best.i], r=hit.plot, ln=document.createElementNS(NS,'line');
+      ln.setAttribute('x1',x);ln.setAttribute('x2',x);ln.setAttribute('y1',r[1]);ln.setAttribute('y2',r[1]+r[3]);
+      ln.setAttribute('stroke',hit.ink);ln.setAttribute('stroke-opacity','0.35');ln.setAttribute('stroke-width','1');
+      layer.appendChild(ln);
+      tip.textContent=''; var head=document.createElement('div'); head.className='lv-x'; head.textContent=best.sr.x[best.i];
+      tip.appendChild(head);
+      hit.series.forEach(function(sr){{if(!sr.px.length)return; var i=near(sr.px,x);
+        if(Math.abs(sr.px[i]-x)>6)return;
+        var c=document.createElementNS(NS,'circle'); c.setAttribute('cx',sr.px[i]); c.setAttribute('cy',sr.py[i]);
+        c.setAttribute('r','4'); c.setAttribute('fill',sr.color); c.setAttribute('stroke',hit.bg); c.setAttribute('stroke-width','2');
+        layer.appendChild(c);
+        var row=document.createElement('div'); row.className='lv-row';
+        var sw=document.createElement('span'); sw.className='lv-sw'; sw.style.background=sr.color;
+        var nm=document.createElement('span'); nm.textContent=sr.name;
+        var v=document.createElement('span'); v.className='lv-v'; v.textContent=sr.y[i];
+        row.appendChild(sw); row.appendChild(nm); row.appendChild(v); tip.appendChild(row);}});
+      tip.classList.add('on'); place(e);
+    }});
+    svg.addEventListener('pointerleave',function(){{clear(); tip.classList.remove('on');}});
+  }}
 }})();
 </script>
 </body></html>
 """
 
 
-def render(svg: str, title: str | None = None) -> str:
+def _data_block(description: str, tables) -> str:
+    """Accessible extras below the chart: the text description and the data table(s), with CSV."""
+    from urllib.parse import quote
+    parts = []
+    if description:
+        parts.append(f'<p class="lv-desc">{escape(description)}</p>')
+    for t in tables:
+        if t is None or not len(t.columns):
+            continue
+        csv = t.to_csv()
+        link = (f'<a class="lv-csv" download="{escape(t.name or "data")}.csv" '
+                f'href="data:text/csv;charset=utf-8,{quote(csv)}">Download CSV</a>') if len(csv) < 2_000_000 else ""
+        head = f'<h4 class="lv-th">{escape(t.title)}</h4>' if getattr(t, "title", "") and len(tables) > 1 else ""
+        parts.append(f'{head}<div class="lv-table">{t.to_html()}</div>{link}')
+    if not parts:
+        return ""
+    return '<details class="lv-data"><summary>Description and data</summary>' + "".join(parts) + "</details>"
+
+
+def render(svg: str, title: str | None = None, meta=None, description: str = "", tables=()) -> str:
+    import json
     import re
     m = re.search(r'width="([\d.]+)"', svg)
     width = int(float(m.group(1))) + 32 if m else 900
-    return _PAGE.format(svg=svg, title=escape(title or "Chart"), width=max(width, 360))
+    meta_json = json.dumps(meta or [], separators=(",", ":")).replace("</", "<\\/")
+    return _PAGE.format(svg=svg, title=escape(title or "Chart"), width=max(width, 360),
+                        data=_data_block(description, tables), meta=meta_json)

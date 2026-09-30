@@ -1,11 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
-<desc>Largest earthquakes since 1950</desc>
-<defs><clipPath id="lv444dfc8cc1"><rect x="210.44" y="67.65" width="531.34" height="261.45"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="390" viewBox="0 0 760 390" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv8fea66c2t lv8fea66c2d">
+<title id="lv8fea66c2t">Largest earthquakes since 1950</title>
+<desc id="lv8fea66c2d">Largest earthquakes since 1950. Magnitude. Bar chart of value for 10 categories. Highest: Durcal.Gr (1954) (7.8); lowest: Golfo De Cádiz (1964) (6.2).</desc>
+<defs><clipPath id="lv8fea66c2c1"><rect x="210.44" y="67.65" width="531.34" height="261.45"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Largest earthquakes since 1950</text>
 <text x="16" y="49.65" font-size="12" fill="#475467">Magnitude</text>
 <text x="16" y="374" font-size="11" fill="#8a94a6">Source: IGN, Catálogo de terremotos (doi:10.7419/162.03.2022)</text>
-<g clip-path="url(#lv444dfc8cc1)">
+<g clip-path="url(#lv8fea66c2c1)">
 <path d="M211.44,90.96L727.56,90.96L727.56,72.28L211.44,72.28Z" fill="#2f5bd3"><title>Durcal.Gr (1954): 7.8</title></path>
 <path d="M211.44,116.91L727.56,116.91L727.56,98.23L211.44,98.23Z" fill="#2f5bd3"><title>Sw Cabo De San Vicente (1969): 7.8</title></path>
 <path d="M211.44,142.85L727.56,142.85L727.56,124.17L211.44,124.17Z" fill="#2f5bd3"><title>Azores-Cabo De San Vicente (1975): 7.8</title></path>

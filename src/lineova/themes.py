@@ -21,6 +21,7 @@ LegendStyle = Literal["direct", "top", "right", "readout"]
 @dataclass(frozen=True)
 class Theme:
     name: str
+    family: str = ""                     # the built-in style this theme derives from (folio, ledger, ...)
     # --- type -------------------------------------------------------------
     font: str = "'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif"
     font_kind: Literal["sans", "serif", "mono"] = "sans"
@@ -81,6 +82,10 @@ class Theme:
     # --- spacing ----------------------------------------------------------
     padding: float = 16.0
     extra: dict = field(default_factory=dict, compare=False, hash=False)
+
+    def __post_init__(self):
+        if not self.family:
+            object.__setattr__(self, "family", self.name)
 
     def replace(self, **changes) -> Theme:
         """Return a copy with some fields changed."""
@@ -154,7 +159,55 @@ FJORD = Theme(
     node_style="sized", edge_style="curved", edge_color="#a9b7be",
 )
 
-_REGISTRY: dict[str, Theme] = {t.name: t for t in (FOLIO, LEDGER, INSTRUMENT, FJORD)}
+# --- dark variants: same hue order as the light themes (a series keeps its colour), lightness
+# re-stepped for a dark surface and validated with check_palette (CVD ΔE >= 8, contrast >= 3:1)
+LEDGER_DARK = LEDGER.replace(
+    name="ledger-dark", family="ledger",
+    background="#141a23", ink="#e6ebf2", ink_secondary="#aab4c3", ink_muted="#7a8698",
+    axis_color="#4a5566", grid_color="#262f3c", dark=True,
+    palette=("#4676f1", "#12ab92", "#b46d16", "#896ad0", "#cb4e76", "#73a545", "#1e8bb7", "#b66b19"),
+    accent="#4676f1", muted="#3b4556",
+    sequential=("#141e36", "#254cba", "#6593fe", "#cfdefd"),
+    diverging=("#d0714a", "#2a3240", "#6593fe"),
+    positive="#12ab92", negative="#cb4e76", edge_color="#3a4454",
+)
+
+FOLIO_DARK = FOLIO.replace(
+    name="folio-dark", family="folio",
+    background="#17191d", ink="#e4e6ea", ink_secondary="#b3b8c1", ink_muted="#868c97",
+    axis_color="#c9cdd3", grid_color="#2c2f35", dark=True,
+    palette=("#e4e6ea", "#9aa6b8", "#ce4f5d", "#3a84ca", "#8c9e36", "#886ec4", "#b66c16", "#1e938c"),
+    accent="#e4e6ea", muted="#3d4047",
+    sequential=("#1e1f22", "#515866", "#9199a7", "#d8deea"),
+    diverging=("#ce4f5d", "#2a2c31", "#3a84ca"),
+    positive="#868c97", negative="#e4e6ea", edge_color="#7d838e",
+)
+
+FJORD_DARK = FJORD.replace(
+    name="fjord-dark", family="fjord",
+    background="#0f2129", ink="#e3eef1", ink_secondary="#a9bdc4", ink_muted="#7892a0",
+    axis_color="#3e5660", grid_color="#1f3842", dark=True,
+    palette=("#1e8fa1", "#cd562d", "#577cd4", "#b38f18", "#ac5fa7", "#409551", "#3a9cdc", "#cd4f61"),
+    accent="#cd562d", muted="#3a525c",
+    sequential=("#102326", "#0b6370", "#43a8b9", "#a6ecf9"),
+    diverging=("#cd562d", "#2a3f47", "#43a8b9"),
+    positive="#1e8fa1", negative="#cd562d", edge_color="#3e5660",
+)
+
+# a light counterpart for the (dark) technical theme
+INSTRUMENT_LIGHT = INSTRUMENT.replace(
+    name="instrument-light", family="instrument",
+    background="#f7f9fa", ink="#16222c", ink_secondary="#40535f", ink_muted="#6c7e8a",
+    axis_color="#9aabb7", grid_color="#dde4e9", dark=False,
+    palette=("#017faa", "#b57709", "#a92c59", "#5a993f", "#6350af", "#1a9c81", "#a24111", "#b660b5"),
+    accent="#b57709", muted="#c3cdd4",
+    sequential=("#eaf3f7", "#9fcbe0", "#017faa", "#0d3a4d"),
+    diverging=("#a92c59", "#eef0f1", "#017faa"),
+    positive="#5a993f", negative="#a92c59", edge_color="#b5c3cc",
+)
+
+_REGISTRY: dict[str, Theme] = {t.name: t for t in (FOLIO, LEDGER, INSTRUMENT, FJORD, LEDGER_DARK, FOLIO_DARK,
+                                                   FJORD_DARK, INSTRUMENT_LIGHT)}
 DEFAULT = "ledger"
 
 
@@ -171,8 +224,11 @@ def get(theme: str | Theme | None) -> Theme:
 
 
 def register(name: str, theme: Theme) -> None:
-    """Make ``theme`` available by ``name`` everywhere a theme is accepted."""
-    _REGISTRY[name.lower()] = theme.replace(name=name.lower())
+    """Make ``theme`` available by ``name`` everywhere a theme is accepted.
+
+    The theme keeps its ``family`` (the built-in style it derives from), so charts keep that style.
+    """
+    _REGISTRY[name.lower()] = theme.replace(name=name.lower(), family=theme.family)
 
 
 def names() -> list[str]:
@@ -184,3 +240,64 @@ def set_default(name: str) -> None:
     global DEFAULT
     get(name)
     DEFAULT = name.lower()
+
+
+# ------------------------------------------------------------------ theme builder
+
+_DARK_OF = {"ledger": "ledger-dark", "folio": "folio-dark", "fjord": "fjord-dark", "instrument": "instrument"}
+_LIGHT_OF = {"ledger": "ledger", "folio": "folio", "fjord": "fjord", "instrument": "instrument-light"}
+
+
+def dark(theme: str | Theme) -> Theme:
+    """The dark variant of a theme's family (``dark("ledger")`` -> ledger-dark)."""
+    return get(_DARK_OF.get(get(theme).family, "ledger-dark"))
+
+
+def light(theme: str | Theme) -> Theme:
+    """The light variant of a theme's family."""
+    return get(_LIGHT_OF.get(get(theme).family, "ledger"))
+
+
+def check_palette(colors, background: str = "#ffffff"):
+    """Check a categorical palette against a background: lightness band, chroma, colour-blind
+    separation of neighbours, normal-vision separation and contrast. Returns a printable report
+    with ``.ok``. ``check_palette(theme)`` checks a theme's own palette."""
+    from ._palette import check_palette as _check
+    if isinstance(colors, (Theme, str)) and not (isinstance(colors, str) and colors.startswith("#")):
+        t = get(colors)
+        return _check(t.palette, t.background)
+    return _check(colors, background)
+
+
+def from_brand(color: str, base: str | Theme = "ledger", *, dark: bool = False, name: str | None = None,
+               background: str | None = None, n: int = 8) -> Theme:
+    """Build a theme around a brand colour.
+
+    The brand colour leads the categorical palette; the other colours are generated to stay
+    distinguishable for colour-blind readers and to contrast with the background (see
+    ``check_palette``). Sequential and diverging ramps, accent and highlight colours follow.
+    Everything else (type, axes, marks) comes from ``base``. Pass ``name=`` to register it::
+
+        lv.themes.from_brand("#0f766e", base="fjord", name="acme")
+        lv.bar(data, theme="acme")
+    """
+    from ._palette import _hex_rgb, generate, oklch, ramp
+    from ._color import mix
+    b = get(base)
+    b = globals()["dark"](b) if dark else (light(b) if b.dark and not dark else b)
+    bg = background or b.background
+    pal = generate(color, bg, n=n)
+    lead = pal[0]
+    # the negative pole of the diverging ramp: the palette colour whose hue is farthest from the brand
+    h0 = oklch(lead)[2]
+    far = max(pal[1:], key=lambda c: abs(((oklch(c)[2] - h0 + 180) % 360) - 180)) if len(pal) > 1 else b.diverging[0]
+    mid = mix(bg, b.ink, 0.08)
+    _hex_rgb(lead)  # validates the colour string early
+    t = b.replace(
+        name=(name or f"{b.family}-brand").lower(), family=b.family, background=bg,
+        palette=pal, accent=lead if b.family != "folio" else b.accent,
+        sequential=ramp(lead, bg, 4), diverging=(far, mid, lead),
+    )
+    if name:
+        register(name, t)
+    return t

@@ -6,8 +6,8 @@
 
 from . import themes
 from ._data import Chunks, DataError
-from .api import (area, bar, box, calendar, candlestick, density, donut, dumbbell, heatmap, histogram, line,
-                  network, pie, radar, ridgeline, sankey, scatter, slope, sparkline, stat, timeline, treemap,
+from .api import (area, bar, box, calendar, candlestick, density, donut, dumbbell, heatmap, hexbin, histogram, line, map,
+                  network, pie, radar, ridgeline, sankey, scatter, slope, sparkline, stat, sunburst, tilemap, timeline, treemap,
                   violin, waterfall)
 from .chart import SIZES, Axis, Chart
 from .figure import Grid, grid
@@ -19,6 +19,6 @@ __version__ = "0.2.0"
 __all__ = [
     "Chart", "Axis", "Grid", "grid", "Chunks", "Graph", "GraphError", "DataError", "Theme", "themes", "SIZES",
     "line", "area", "bar", "scatter", "histogram", "heatmap", "box", "network", "__version__",
-    "pie", "donut", "violin", "ridgeline", "dumbbell", "slope", "waterfall", "candlestick", "treemap",
-    "sankey", "radar", "density", "timeline", "calendar", "sparkline", "stat",
+    "pie", "donut", "violin", "ridgeline", "dumbbell", "slope", "waterfall", "candlestick", "treemap", "sunburst",
+    "sankey", "radar", "density", "hexbin", "map", "tilemap", "timeline", "calendar", "sparkline", "stat",
 ]

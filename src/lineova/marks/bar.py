@@ -8,7 +8,7 @@ import numpy as np
 
 from .. import scene as S
 from .._color import mix, readable_on
-from .._data import (aggregate, as_float, columns_of, DataError, factorize, get_column, is_auto, is_frame,
+from .._data import (Chunks, aggregate, as_float, columns_of, DataError, factorize, get_column, is_auto, is_frame,
                      ordered_categories, series_name, to_array, value_kind)
 from .._text import format_value, text_width
 from ._base import Domain, DrawContext, Layer, LegendItem
@@ -33,6 +33,22 @@ def _looks_ordered(labels: list[str]) -> bool:
     if all(re.match(r"^(q[1-4]|h[12]|fy\s?\d+|\d{4}[-/ ]?(q[1-4]|\d{1,2})?)$", l) for l in low):
         return True
     return False
+
+
+_DAY_SEQ = "mon tue wed thu fri sat sun".split()
+_MONTH_SEQ = "jan feb mar apr may jun jul aug sep oct nov dec".split()
+
+
+def natural_order(labels: list[str]) -> list[str]:
+    """Calendar order for weekdays/months (short or long names), numeric order for numbers."""
+    low = [l.strip().lower() for l in labels]
+    for names, seq in ((_DAYS, _DAY_SEQ), (_MONTHS, _MONTH_SEQ)):
+        if low and all(l in names for l in low):
+            return sorted(labels, key=lambda l: seq.index(l.strip().lower()[:3]))
+    try:
+        return sorted(labels, key=lambda l: float(l.replace(",", "").replace("\u2212", "-")))
+    except ValueError:
+        return labels
 
 
 class BarLayer(Layer):
@@ -115,6 +131,19 @@ class BarLayer(Layer):
         if len(self.names) != 1:
             raise DataError("error= works on single-series bars; for grouped data use one chart per group or facet=.")
         v = self.values[0]
+        if isinstance(err, str) and getattr(self, "_chunk_stats", None) is not None:
+            from .. import stream
+            out = {}
+            for c, val in zip(cats, v):
+                st = self._chunk_stats.get((c,))
+                if st is None or st[0] < 2:
+                    continue
+                sd = stream.finish(st, "std")
+                half = {"std": sd, "sem": sd / np.sqrt(st[0]), "ci": 1.96 * sd / np.sqrt(st[0])}.get(err)
+                if half is None:
+                    raise DataError(f"error={err!r}: use 'std', 'sem' or 'ci'.")
+                out[c] = (val - half, val + half)
+            return out
         if isinstance(err, str):
             raw = self._raw_xy()
             if raw is None:
@@ -140,8 +169,32 @@ class BarLayer(Layer):
         vals = dict(zip(cats, v))
         return {c: (vals[c] - e[i], vals[c] + e[i]) for i, c in enumerate(self._input_order) if c in vals}
 
+    def _resolve_chunked(self):
+        """Group-by over lv.Chunks: one streaming pass, memory per category."""
+        from .. import stream
+        x, y, color, agg = self.x, self.y, self.color, self.agg
+        if not isinstance(x, str):
+            raise DataError("Chunked bars need x='category column'.")
+        if y is not None and not isinstance(y, str):
+            raise DataError("Chunked bars take one value column: y='column' (or none to count rows).")
+        agg = "count" if y is None else agg
+        keys = [x] + ([color] if isinstance(color, str) else [])
+        st = stream.group_stats(self.data, keys, y, need_minmax=agg in ("min", "max"))
+        self._chunk_stats = st
+        cats = natural_order(list(dict.fromkeys(t[0] for t in st)))
+        if len(keys) == 2:
+            groups = list(dict.fromkeys(t[1] for t in st))
+            series = [(g, np.array([stream.finish(st[(c, g)], agg) if (c, g) in st else np.nan for c in cats]))
+                      for g in groups]
+        else:
+            series = [(str(y) if y else "count", np.array([stream.finish(st[(c,)], agg) for c in cats]))]
+        return cats, series, str(x), (str(y) if y and len(keys) == 1 else ("count" if not y else None)), \
+            _looks_ordered(cats)
+
     def _resolve(self):
         data, x, y, color, agg = self.data, self.x, self.y, self.color, self.agg
+        if isinstance(data, Chunks):
+            return self._resolve_chunked()
         # {category: number}
         if isinstance(data, dict) and x is None and y is None and data and \
                 all(np.ndim(v) == 0 and not isinstance(v, dict) for v in data.values()):
@@ -321,6 +374,13 @@ class BarLayer(Layer):
         if single and pill:
             thickness = min(thickness, 26.0)
         radius = min(theme.bar_radius, thickness / 2)
+        if show_labels and is_auto(self.labels) and not self.horizontal and not self.stacked:
+            # labels above side-by-side bars must fit the bar (plus its gap), or they collide
+            widest = max((text_width(self._fmt(v), size, theme.font_kind) for v in self.values.ravel()
+                          if np.isfinite(v)), default=0)
+            room = thickness + (2 if k > 1 else band * 0.25)
+            if widest > room + 2:
+                show_labels = False
         track = pill and single and self.horizontal and not self.normalize
         for ci, cat in enumerate(self.cats):
             pos_i = cat_scale.index[cat]
@@ -361,7 +421,7 @@ class BarLayer(Layer):
                 end = ("both" if pill else (("right" if v >= 0 else "left") if self.horizontal
                                             else ("top" if v >= 0 else "bottom"))) if outer else "none"
                 self._bar(ctx, p0, p1, pos0, thickness, color, end, radius=radius if outer else 0,
-                                 hatch=theme.ink if (single and on and hatch) else None,
+                                 hatch=theme.ink if (single and on and hatch) else (ctx.texture(name, si) if k > 1 else None),
                                  stroke=theme.ink if (single and on and hatch) else None,
                                  sep=self.stacked, title=f"{cat} · {name}: {self._fmt(v)}" if k > 1 else f"{cat}: {self._fmt(v)}")
                 if single and cat in self.errors:
@@ -375,7 +435,7 @@ class BarLayer(Layer):
                     cy = pos0 + thickness / 2
                     x, yy = (cx, cy) if self.horizontal else (cy, cx)
                     ctx.scene.add(S.Text(x, yy, self._fmt(v), size - 1, readable_on(color), anchor="middle",
-                                         baseline="middle"))
+                                         baseline="middle", halo=color if ctx.options.get("texture") else None))
 
     def _bar(self, ctx, p0, p1, pos0, thick, color, end, radius=None, hatch=None, stroke=None, sep=False, title=None):
         theme = ctx.theme

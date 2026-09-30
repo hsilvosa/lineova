@@ -88,7 +88,7 @@ class WaterfallLayer(Layer):
         band = xs.bandwidth
         size = theme.font_size - 0.5
         show = self.labels is True or (is_auto(self.labels) and len(self.steps) <= 20)
-        total_col = theme.ink_secondary if theme.name != "instrument" else theme.ink_muted
+        total_col = theme.ink_secondary if theme.family != "instrument" else theme.ink_muted
         prev_end = None
         for i, (label, kind, lo, hi, value) in enumerate(self.steps):
             x0 = xs.band(i)
@@ -97,10 +97,10 @@ class WaterfallLayer(Layer):
             color = {"up": theme.positive, "down": theme.negative, "total": total_col}[kind]
             end = "top" if hi >= lo else "bottom"
             r = min(theme.bar_radius, 3.0, band / 2)
-            hatch = theme.ink if (theme.name == "folio" and kind == "down") else None
-            fill = mix(theme.ink, theme.background, 0.75) if (theme.name == "folio" and kind == "down") else color
+            hatch = theme.ink if (theme.family == "folio" and kind == "down") else None
+            fill = mix(theme.ink, theme.background, 0.75) if (theme.family == "folio" and kind == "down") else color
             ctx.scene.add(S.Path(rounded_bar(x0, top, band, h, r if kind == "total" else 0, end), fill=fill,
-                                 hatch=hatch, stroke=theme.ink if theme.name == "folio" else None, stroke_width=0.7,
+                                 hatch=hatch, stroke=theme.ink if theme.family == "folio" else None, stroke_width=0.7,
                                  title=f"{label}: {self._fmt(value, kind != 'total')}"))
             if prev_end is not None:
                 px, pyv = prev_end

@@ -24,6 +24,7 @@ import glob
 import os
 import sys
 import time
+import warnings
 from pathlib import Path
 
 import numpy as np
@@ -173,6 +174,29 @@ save(lv.violin(pr, x="weekday", y="price_es", theme="fjord", title="Weekends are
 save(lv.calendar(day[day.index.year == 2024].reset_index(), x="date", y="mean", agg="mean", theme="ledger",
                  title="Daily mean price, 2024", label="€/MWh", source=OMIE, width=860), "power_calendar", 366 * 24)
 
+# 16b. magnitude against depth: 200k events as hexagons (log colour scale)
+known = eq.dropna(subset=["magnitude", "depth_km"])
+save(lv.hexbin(known, x="magnitude", y="depth_km", theme="ledger", gridsize=36, y_range=(0, 60),
+               title="Most earthquakes are small and shallow", subtitle="Magnitude against depth (km), top 60 km",
+               source=IGN, **W), "eq_hexbin", len(known))
+
+# 16c. events per province as a tile map (the catalogue tags each event with a province code)
+code = eq["location"].astype(str).str.extract(r"\.(\w+)\s*$")[0]
+islands = {"IHI": "TF", "ILP": "TF", "IGM": "TF", "IGC": "GC", "IFV": "GC", "ILZ": "GC",
+           "IMA": "PM", "IME": "PM", "IBZ": "PM", "IB": "PM", "MENORCA": "PM"}
+per_prov = code.replace(islands).value_counts()
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")          # codes outside Spain (FRA, POR, ...) are left out on purpose
+    save(lv.tilemap(per_prov, layout="es-provinces", theme="ledger", label="events",
+                    title="Recorded earthquakes by province", subtitle="Each province is one tile; El Hierro and "
+                    "La Palma (S. C. de Tenerife) dominate", source=IGN, width=640), "eq_tilemap", int(per_prov.sum()))
+
+# 16d. the larger events on a map: size = magnitude, colour = depth
+big = eq[eq["magnitude"] >= 4].dropna(subset=["depth_km"])
+save(lv.map(big, lon="lon", lat="lat", size="magnitude", color="depth_km", theme="fjord", label="depth (km)",
+            title="Earthquakes of magnitude 4 or more", subtitle=f"{len(big):,} events, 1373–2026",
+            source=IGN, width=760, height=560), "eq_map_m4", len(big))
+
 # ---------------------------------------------------------------- 17 million bids (streamed)
 files = sorted(glob.glob(str(DATA / "curves_*.npz")))
 if files:
@@ -187,6 +211,22 @@ if files:
                       title="Bid prices in the Iberian day-ahead market, 2024",
                       caption=f"All {n_bids:,} buy and sell bids on 182 days, €/MWh, read in chunks.",
                       x_label="€/MWh", source=OMIE, **W), "bids_histogram", n_bids)
+
+    # 16e. sell offers by month and hour: a streamed group-by over all files
+    months = np.array(["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"])
+
+    def offer_chunks():
+        for f in files:
+            with np.load(f) as z:
+                ok = (z["side"] == 1) & (z["price"] > -100) & (z["price"] < 500)
+                yield {"month": months[(z["day"][ok] // 100) % 100], "hour": z["hour"][ok].astype(np.int64),
+                       "price": z["price"][ok].astype(np.float64)}
+
+    n_offers = sum(len(c["price"]) for c in offer_chunks())
+    save(lv.heatmap(lv.Chunks(offer_chunks), x="hour", y="month", value="price", theme="ledger", format="{:.0f}",
+                    title="Sell offers are cheapest around midday", label="mean offer, €/MWh",
+                    subtitle=f"Mean price of {n_offers:,} sell offers by month and hour, Jan–Jun 2024 · streamed",
+                    source=OMIE, width=860, height=380), "bids_offer_heatmap", n_offers)
 
     # 17. supply and demand curves for one hour
     with np.load(files[0]) as z:

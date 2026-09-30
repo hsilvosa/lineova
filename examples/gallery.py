@@ -131,4 +131,43 @@ panel = pd.DataFrame({"month": np.tile(pd.date_range("2025-01-01", periods=12, f
 lv.line(panel, x="month", y="gwh", color="source", facet="region", title="Output by region", subtitle="GWh",
         theme="fjord", width=860).save(OUT / "facets.svg")
 
+# 0.3 chart types and features
+n = 1_000_000
+hx = np.r_[rng.normal(0, 1, n // 2), rng.normal(2.5, 1.2, n // 2)]
+hy = np.r_[rng.normal(0, 0.8, n // 2), rng.normal(1.5, 1, n // 2)]
+lv.hexbin(x=hx, y=hy, title="One million points in hexagons", subtitle="Log colour scale for skewed counts",
+          theme="ledger", **size).save(OUT / "hexbin.svg")
+world = {"Europe": {"Spain": {"Madrid": 6.8, "Barcelona": 5.6, "Valencia": 2.5, "Seville": 1.9},
+                    "France": {"Paris": 11.2, "Lyon": 2.3, "Marseille": 1.9},
+                    "Italy": {"Rome": 4.3, "Milan": 3.1, "Naples": 3.0}},
+         "Asia": {"Japan": {"Tokyo": 37.2, "Osaka": 19.0}, "Korea": {"Seoul": 25.5, "Busan": 3.4}},
+         "America": {"USA": {"New York": 19.5, "Los Angeles": 12.5, "Chicago": 8.9},
+                     "Mexico": {"Mexico City": 21.8, "Guadalajara": 5.3},
+                     "Brazil": {"São Paulo": 22.4, "Rio": 13.6}}}
+lv.sunburst(world, title="Metropolitan population", subtitle="millions, three levels", theme="fjord",
+            width=560, height=520).save(OUT / "sunburst.svg")
+lv.treemap(world, title="Metropolitan population", subtitle="millions, three levels", theme="ledger", **size) \
+    .save(OUT / "treemap-deep.svg")
+quarters = {"North": {"Q1": 3.1, "Q2": 4.0, "Q3": 5.2, "Q4": 6.0}, "South": {"Q1": 4.2, "Q2": 3.3, "Q3": 5.0, "Q4": 4.1},
+            "East": {"Q1": 2.0, "Q2": 3.1, "Q3": 3.9, "Q4": 5.2}}
+lv.bar(quarters, title="Textures as a second encoding", subtitle="texture=True: readable in greyscale and for "
+       "colour-blind readers", texture=True, theme="ledger", **size).save(OUT / "textures.svg")
+months = pd.date_range("2025-01-01", periods=36, freq="MS")
+dark_df = pd.DataFrame({"month": np.tile(months, 3), "source": np.repeat(["Solar", "Wind", "Hydro"], 36),
+                        "twh": np.r_[4 + 3 * np.sin(np.arange(36) / 1.9), 5 + 1.5 * np.cos(np.arange(36) / 1.9),
+                                     3 + rng.normal(0, 0.3, 36).cumsum() * 0.2]})
+for name in ("ledger-dark", "fjord-dark", "folio-dark"):
+    lv.line(dark_df, x="month", y="twh", color="source", title="Monthly generation", subtitle="TWh",
+            theme=name, **size).save(OUT / f"{name}-line.svg")
+acme = lv.themes.from_brand("#0f766e", base="ledger", name="acme")
+lv.grid([lv.bar(quarters, title="Sales by quarter"),
+         lv.line(dark_df, x="month", y="twh", color="source", title="Generation")],
+        cols=2, title="A theme built from one brand colour", subtitle="lv.themes.from_brand('#0f766e')",
+        theme="acme").save(OUT / "brand-theme.svg")
+regions = {"AN": 8.6, "CT": 8.0, "MD": 7.0, "VC": 5.3, "GA": 2.7, "CL": 2.4, "PV": 2.2, "CN": 2.2, "CM": 2.1,
+           "MC": 1.5, "AR": 1.3, "IB": 1.2, "EX": 1.1, "AS": 1.0, "NC": 0.7, "CB": 0.6, "RI": 0.3, "CE": 0.08,
+           "ML": 0.09}
+lv.tilemap(regions, layout="es-regions", names=True, title="Population by autonomous community",
+           subtitle="millions (approximate)", label="millions", theme="fjord", width=640).save(OUT / "tilemap.svg")
+
 print("wrote", len(list(OUT.glob("*.svg"))), "files to", OUT)

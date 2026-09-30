@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="520" viewBox="0 0 560 520" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv768bb628t lv768bb628d">
+<title id="lv768bb628t">Metropolitan population</title>
+<desc id="lv768bb628d">Metropolitan population. millions, three levels. Sunburst of 232 in total, 3 level(s): America 45%, Asia 37%, Europe 18%.</desc>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Metropolitan population</text>
+<text x="16" y="52.72" font-size="12.5" fill="#43565f">millions, three levels</text>
+<path d="M280,183.16C330.41,183.16,373.37,219.72,381.43,269.48C389.5,319.24,360.28,367.5,312.46,383.42L294.88,330.61C316.8,323.31,330.19,301.19,326.49,278.39C322.79,255.58,303.1,238.82,280,238.82Z" fill="#008c9e" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America: 104 (44.9%)</title></path>
+<text x="353.96" y="277.78" font-size="11" fill="#111111" text-anchor="middle" font-weight="600" transform="rotate(80.79 353.96 273.93)">America</text>
+<path d="M280,127.5C340.12,127.5,395.05,161.53,421.83,215.35L372,240.15C354.63,205.23,318.99,183.16,280,183.16Z" fill="#30a0af" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › USA: 40.9 (17.7%)</title></path>
+<text x="348.76" y="178.75" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(31.77 348.76 174.9)">USA</text>
+<path d="M280,71.84C317.96,71.84,355.23,81.93,388,101.08L359.92,149.14C335.67,134.97,308.09,127.5,280,127.5Z" fill="#5fb5c0" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › USA › New York: 19.5 (8.4%)</title></path>
+<text x="328.67" y="109.99" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(15.15 328.67 106.14)">New York</text>
+<path d="M388,101.08C408.94,113.31,427.64,129.01,443.32,147.51L400.86,183.5C389.26,169.81,375.41,158.19,359.92,149.14Z" fill="#73bdc8" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › USA › Los Angeles: 12.5 (5.4%)</title></path>
+<text x="399.74" y="147.11" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(310.01 399.74 143.26)">Los An…</text>
+<path d="M443.32,147.51C454.47,160.67,463.99,175.12,471.67,190.56L421.83,215.35C416.15,203.93,409.11,193.23,400.86,183.5Z" fill="#87c6cf" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › USA › Chicago: 8.9 (3.8%)</title></path>
+<text x="435.55" y="187.33" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(326.63 435.55 183.48)">Chicago</text>
+<path d="M421.83,215.35C445.26,262.45,443.79,318.1,417.91,363.89L369.45,336.49C386.24,306.79,387.2,270.69,372,240.15Z" fill="#43a9b6" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › Brazil: 36 (15.5%)</title></path>
+<text x="410.54" y="293.22" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(-88.49 410.54 289.37)">Brazil</text>
+<path d="M471.67,190.56C491.13,229.67,498.15,273.79,491.81,317.01L436.74,308.93C441.43,276.95,436.23,244.29,421.83,215.35Z" fill="#5fb5c0" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › Brazil › São Paulo: 22.4 (9.7%)</title></path>
+<text x="463.93" y="260.47" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(80.95 463.93 256.62)">São Paulo</text>
+<path d="M491.81,317.01C487.98,343.13,479.35,368.3,466.36,391.28L417.91,363.89C427.52,346.88,433.9,328.25,436.74,308.93Z" fill="#7dc2cb" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › Brazil › Rio: 13.6 (5.9%)</title></path>
+<text x="456.19" y="350.15" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(-71.08 456.19 346.3)">Rio</text>
+<path d="M417.91,363.89C398.59,398.05,367.28,423.83,330.04,436.23L312.46,383.42C336.61,375.38,356.92,358.66,369.45,336.49Z" fill="#57b1be" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › Mexico: 27.1 (11.7%)</title></path>
+<text x="363" y="390.59" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(-39.46 363 386.74)">Mexico</text>
+<path d="M466.36,391.28C445.44,428.27,413.99,458.2,376.01,477.26L351.05,427.51C379.16,413.41,402.43,391.26,417.91,363.89Z" fill="#5fb5c0" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › Mexico › Mexico City: 21.8 (9.4%)</title></path>
+<text x="408.4" y="424.69" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(-43.58 408.4 420.84)">Mexico City</text>
+<path d="M376.01,477.26C366.84,481.86,357.35,485.8,347.62,489.04L330.04,436.23C337.24,433.83,344.26,430.92,351.05,427.51Z" fill="#7dc2cb" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>America › Mexico › Guadalajara: 5.3 (2.3%)</title></path>
+<text x="351.36" y="461.81" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(67.47 351.36 457.96)">Guadal…</text>
+<path d="M312.46,383.42C273.88,396.26,231.36,385.15,204,355.08C176.63,325.01,169.57,281.63,185.99,244.43L236.91,266.91C229.39,283.95,232.62,303.83,245.17,317.62C257.71,331.4,277.19,336.49,294.88,330.61Z" fill="#e0673f" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia: 85.1 (36.7%)</title></path>
+<text x="224.58" y="340.2" font-size="11" fill="#111111" text-anchor="middle" font-weight="600" transform="rotate(47.7 224.58 336.35)">Asia</text>
+<path d="M330.04,436.23C249.75,462.95,162.64,421.87,132.19,342.93L184.13,322.9C203.88,374.11,260.38,400.75,312.46,383.42Z" fill="#e38363" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia › Japan: 56.2 (24.3%)</title></path>
+<text x="224.3" y="407.88" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(25.25 224.3 404.03)">Japan</text>
+<path d="M347.62,489.04C277.83,512.27,201,498.05,144.15,451.38L179.47,408.36C221.54,442.9,278.39,453.42,330.04,436.23Z" fill="#e69f87" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia › Japan › Tokyo: 37.2 (16.1%)</title></path>
+<text x="246.1" y="472.91" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(10.49 246.1 469.06)">Tokyo</text>
+<path d="M144.15,451.38C115.58,427.92,93.57,397.46,80.26,362.96L132.19,342.93C142.04,368.46,158.33,391,179.47,408.36Z" fill="#e7b09e" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia › Japan › Osaka: 19 (8.2%)</title></path>
+<text x="129.04" y="398.86" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(54.15 129.04 395.01)">Osaka</text>
+<path d="M132.19,342.93C117.11,303.82,118.14,260.32,135.07,221.96L185.99,244.43C175.01,269.31,174.34,297.53,184.13,322.9Z" fill="#e5947a" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia › Korea: 28.9 (12.5%)</title></path>
+<text x="149.45" y="286.67" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(271.36 149.45 282.82)">Korea</text>
+<path d="M80.26,362.96C62.33,316.46,61.18,265.15,77.02,217.89L129.79,235.58C118.07,270.55,118.92,308.52,132.19,342.93Z" fill="#e69f87" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia › Korea › Seoul: 25.5 (11.0%)</title></path>
+<text x="93.8" y="293.94" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(88.72 93.8 290.09)">Seoul</text>
+<path d="M77.02,217.89C79.11,211.65,81.49,205.51,84.14,199.49L135.07,221.96C133.1,226.42,131.34,230.96,129.79,235.58Z" fill="#e7b09e" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Asia › Korea › Busan: 3.4 (1.5%)</title></path>
+<text x="106.32" y="222.51" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(21.17 106.32 218.66)">Busan</text>
+<path d="M185.99,244.43C202.42,207.19,239.29,183.16,280,183.16L280,238.82C261.34,238.82,244.44,249.84,236.91,266.91Z" fill="#4062b8" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe: 42.6 (18.4%)</title></path>
+<text x="239.09" y="227" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600" transform="rotate(326.91 239.09 223.15)">Europe</text>
+<path d="M135.07,221.96C144.82,199.86,159.5,180.28,177.99,164.72L213.83,207.3C201.84,217.39,192.32,230.1,185.99,244.43Z" fill="#637fc4" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Spain: 16.8 (7.3%)</title></path>
+<text x="175.52" y="211.43" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(306.86 175.52 207.58)">Spain</text>
+<path d="M84.14,199.49C89.46,187.44,95.87,175.91,103.31,165.04L149.25,196.47C143.75,204.51,139,213.05,135.07,221.96Z" fill="#869cd0" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Spain › Madrid: 6.8 (2.9%)</title></path>
+<text x="117.25" y="199.21" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(29.09 117.25 195.36)">Madrid</text>
+<path d="M103.31,165.04C109.43,156.1,116.22,147.63,123.63,139.71L164.29,177.72C158.81,183.58,153.78,189.85,149.25,196.47Z" fill="#90a5d4" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Spain › Barcelona: 5.6 (2.4%)</title></path>
+<text x="134.7" y="173.25" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(38.73 134.7 169.4)">Barcelo…</text>
+<path d="M123.63,139.71C126.93,136.17,130.36,132.75,133.89,129.45L171.88,170.13C169.26,172.58,166.73,175.11,164.29,177.72Z" fill="#9baed8" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Spain › Valencia: 2.5 (1.1%)</title></path>
+<path d="M133.89,129.45C136.58,126.94,139.33,124.5,142.15,122.13L177.99,164.72C175.91,166.47,173.87,168.27,171.88,170.13Z" fill="#a6b7db" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Spain › Seville: 1.9 (0.8%)</title></path>
+<path d="M177.99,164.72C194.92,150.46,214.65,139.92,235.91,133.76L251.4,187.22C237.61,191.22,224.81,198.06,213.83,207.3Z" fill="#718bc9" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › France: 15.4 (6.6%)</title></path>
+<text x="218.45" y="174.6" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(331.88 218.45 170.75)">France</text>
+<path d="M142.15,122.13C158.76,108.15,177.4,96.78,197.44,88.4L218.9,139.76C204.08,145.95,190.28,154.37,177.99,164.72Z" fill="#869cd0" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › France › Paris: 11.2 (4.8%)</title></path>
+<text x="183" y="130.77" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(328.61 183 126.92)">Paris</text>
+<path d="M197.44,88.4C201.55,86.68,205.7,85.1,209.91,83.64L228.13,136.23C225.02,137.31,221.94,138.49,218.9,139.76Z" fill="#94a8d5" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › France › Lyon: 2.3 (1.0%)</title></path>
+<path d="M209.91,83.64C213.38,82.43,216.89,81.32,220.42,80.3L235.91,133.76C233.3,134.52,230.7,135.34,228.13,136.23Z" fill="#a3b4da" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › France › Marseille: 1.9 (0.8%)</title></path>
+<path d="M235.91,133.76C250.24,129.61,265.08,127.5,280,127.5L280,183.16C270.32,183.16,260.7,184.53,251.4,187.22Z" fill="#8097ce" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Italy: 10.4 (4.5%)</title></path>
+<text x="261.65" y="160.48" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(351.92 261.65 156.63)">Italy</text>
+<path d="M220.42,80.3C228.42,77.98,236.54,76.13,244.75,74.76L253.91,129.66C247.84,130.68,241.83,132.05,235.91,133.76Z" fill="#869cd0" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Italy › Rome: 4.3 (1.9%)</title></path>
+<text x="238.68" y="108.16" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(77.18 238.68 104.31)">Rome</text>
+<path d="M244.75,74.76C250.67,73.77,256.62,73.04,262.6,72.55L267.13,128.02C262.7,128.39,258.29,128.93,253.91,129.66Z" fill="#94a8d5" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Italy › Milan: 3.1 (1.3%)</title></path>
+<text x="257.08" y="104.94" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(82.93 257.08 101.09)">Milan</text>
+<path d="M262.6,72.55C268.39,72.08,274.19,71.84,280,71.84L280,127.5C275.7,127.5,271.41,127.68,267.13,128.02Z" fill="#a3b4da" stroke="#eef2f4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><title>Europe › Italy › Naples: 3 (1.3%)</title></path>
+<text x="272.43" y="103.67" font-size="11" fill="#111111" text-anchor="middle" transform="rotate(87.67 272.43 99.82)">Naples</text>
+<text x="280" y="297.58" font-size="25.9" fill="#17262e" text-anchor="middle" font-weight="700">232</text>
+<text x="280" y="313.08" font-size="11" fill="#6e8088" text-anchor="middle">total</text>
+</svg>

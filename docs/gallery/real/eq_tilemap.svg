@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="704" viewBox="0 0 640 704" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv589b31bbt lv589b31bbd">
+<title id="lv589b31bbt">Recorded earthquakes by province</title>
+<desc id="lv589b31bbd">Recorded earthquakes by province. Each province is one tile; El Hierro and La Palma (S. C. de Tenerife) dominate. Tilemap chart.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Recorded earthquakes by province</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">Each province is one tile; El Hierro and La Palma (S. C. de Tenerife) dominate</text>
+<text x="16" y="688" font-size="11" fill="#8a94a6">Source: IGN, Catálogo de terremotos (doi:10.7419/162.03.2022)</text>
+<rect x="17.82" y="92.69" width="57.15" height="57.15" rx="4" fill="#3762d5"><title>A Coruña: 706</title></rect>
+<text x="46.4" y="119.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">C</text>
+<text x="46.4" y="131.92" font-size="10" fill="#ffffff" text-anchor="middle">706</text>
+<rect x="78.62" y="92.69" width="57.15" height="57.15" rx="4" fill="#284db5"><title>Lugo: 2,460</title></rect>
+<text x="107.2" y="119.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">LU</text>
+<text x="107.2" y="131.92" font-size="10" fill="#ffffff" text-anchor="middle">2,460</text>
+<rect x="139.42" y="92.69" width="57.15" height="57.15" rx="4" fill="#537adc"><title>Asturias: 276</title></rect>
+<text x="168" y="119.07" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">O</text>
+<text x="168" y="131.92" font-size="10" fill="#111111" text-anchor="middle">276</text>
+<rect x="200.22" y="92.69" width="57.15" height="57.15" rx="4" fill="#7a99e5"><title>Cantabria: 78</title></rect>
+<text x="228.8" y="119.07" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">S</text>
+<text x="228.8" y="131.92" font-size="10" fill="#111111" text-anchor="middle">78</text>
+<rect x="261.02" y="92.69" width="57.15" height="57.15" rx="4" fill="#819ee7"><title>Bizkaia: 64</title></rect>
+<text x="289.6" y="119.07" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">BI</text>
+<text x="289.6" y="131.92" font-size="10" fill="#111111" text-anchor="middle">64</text>
+<rect x="321.82" y="92.69" width="57.15" height="57.15" rx="4" fill="#537adc"><title>Gipuzkoa: 280</title></rect>
+<text x="350.4" y="119.07" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">SS</text>
+<text x="350.4" y="131.92" font-size="10" fill="#111111" text-anchor="middle">280</text>
+<rect x="382.62" y="92.69" width="57.15" height="57.15" rx="4" fill="#203f95"><title>Navarra: 7,837</title></rect>
+<text x="411.2" y="119.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">NA</text>
+<text x="411.2" y="131.92" font-size="10" fill="#ffffff" text-anchor="middle">7,837</text>
+<rect x="443.42" y="92.69" width="57.15" height="57.15" rx="4" fill="#2e58cd"><title>Huesca: 1,114</title></rect>
+<text x="472" y="119.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">HU</text>
+<text x="472" y="131.92" font-size="10" fill="#ffffff" text-anchor="middle">1,114</text>
+<rect x="504.22" y="92.69" width="57.15" height="57.15" rx="4" fill="#2345a2"><title>Lleida: 4,840</title></rect>
+<text x="532.8" y="119.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">L</text>
+<text x="532.8" y="131.92" font-size="10" fill="#ffffff" text-anchor="middle">4,840</text>
+<rect x="565.02" y="92.69" width="57.15" height="57.15" rx="4" fill="#284db4"><title>Girona: 2,616</title></rect>
+<text x="593.6" y="119.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">GI</text>
+<text x="593.6" y="131.92" font-size="10" fill="#ffffff" text-anchor="middle">2,616</text>
+<rect x="17.82" y="153.49" width="57.15" height="57.15" rx="4" fill="#2f5ad2"><title>Pontevedra: 935</title></rect>
+<text x="46.4" y="179.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">PO</text>
+<text x="46.4" y="192.72" font-size="10" fill="#ffffff" text-anchor="middle">935</text>
+<rect x="78.62" y="153.49" width="57.15" height="57.15" rx="4" fill="#2950bb"><title>Ourense: 2,007</title></rect>
+<text x="107.2" y="179.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">OU</text>
+<text x="107.2" y="192.72" font-size="10" fill="#ffffff" text-anchor="middle">2,007</text>
+<rect x="139.42" y="153.49" width="57.15" height="57.15" rx="4" fill="#4f77db"><title>León: 320</title></rect>
+<text x="168" y="179.87" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">LE</text>
+<text x="168" y="192.72" font-size="10" fill="#111111" text-anchor="middle">320</text>
+<rect x="200.22" y="153.49" width="57.15" height="57.15" rx="4" fill="#97aeeb"><title>Palencia: 32</title></rect>
+<text x="228.8" y="179.87" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">P</text>
+<text x="228.8" y="192.72" font-size="10" fill="#111111" text-anchor="middle">32</text>
+<rect x="261.02" y="153.49" width="57.15" height="57.15" rx="4" fill="#7091e3"><title>Burgos: 111</title></rect>
+<text x="289.6" y="179.87" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">BU</text>
+<text x="289.6" y="192.72" font-size="10" fill="#111111" text-anchor="middle">111</text>
+<rect x="321.82" y="153.49" width="57.15" height="57.15" rx="4" fill="#85a1e7"><title>Araba/Álava: 57</title></rect>
+<text x="350.4" y="179.87" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">VI</text>
+<text x="350.4" y="192.72" font-size="10" fill="#111111" text-anchor="middle">57</text>
+<rect x="382.62" y="153.49" width="57.15" height="57.15" rx="4" fill="#6186e0"><title>La Rioja: 172</title></rect>
+<text x="411.2" y="179.87" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">LO</text>
+<text x="411.2" y="192.72" font-size="10" fill="#111111" text-anchor="middle">172</text>
+<rect x="443.42" y="153.49" width="57.15" height="57.15" rx="4" fill="#6085e0"><title>Zaragoza: 180</title></rect>
+<text x="472" y="179.87" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">Z</text>
+<text x="472" y="192.72" font-size="10" fill="#111111" text-anchor="middle">180</text>
+<rect x="504.22" y="153.49" width="57.15" height="57.15" rx="4" fill="#466fd9"><title>Tarragona: 431</title></rect>
+<text x="532.8" y="179.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">T</text>
+<text x="532.8" y="192.72" font-size="10" fill="#ffffff" text-anchor="middle">431</text>
+<rect x="565.02" y="153.49" width="57.15" height="57.15" rx="4" fill="#325dd4"><title>Barcelona: 849</title></rect>
+<text x="593.6" y="179.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">B</text>
+<text x="593.6" y="192.72" font-size="10" fill="#ffffff" text-anchor="middle">849</text>
+<rect x="78.62" y="214.29" width="57.15" height="57.15" rx="4" fill="#557cdd"><title>Zamora: 261</title></rect>
+<text x="107.2" y="240.67" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">ZA</text>
+<text x="107.2" y="253.52" font-size="10" fill="#111111" text-anchor="middle">261</text>
+<rect x="139.42" y="214.29" width="57.15" height="57.15" rx="4" fill="#d6e0f8"><title>Valladolid: 2</title></rect>
+<text x="168" y="240.67" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">VA</text>
+<text x="168" y="253.52" font-size="10" fill="#111111" text-anchor="middle">2</text>
+<rect x="200.22" y="214.29" width="57.15" height="57.15" rx="4" fill="#afc1f0"><title>Segovia: 12</title></rect>
+<text x="228.8" y="240.67" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">SG</text>
+<text x="228.8" y="253.52" font-size="10" fill="#111111" text-anchor="middle">12</text>
+<rect x="261.02" y="214.29" width="57.15" height="57.15" rx="4" fill="#6186e0"><title>Soria: 174</title></rect>
+<text x="289.6" y="240.67" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">SO</text>
+<text x="289.6" y="253.52" font-size="10" fill="#111111" text-anchor="middle">174</text>
+<rect x="321.82" y="214.29" width="57.15" height="57.15" rx="4" fill="#416bd8"><title>Guadalajara: 509</title></rect>
+<text x="350.4" y="240.67" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">GU</text>
+<text x="350.4" y="253.52" font-size="10" fill="#ffffff" text-anchor="middle">509</text>
+<rect x="382.62" y="214.29" width="57.15" height="57.15" rx="4" fill="#416bd8"><title>Teruel: 500</title></rect>
+<text x="411.2" y="240.67" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">TE</text>
+<text x="411.2" y="253.52" font-size="10" fill="#ffffff" text-anchor="middle">500</text>
+<rect x="443.42" y="214.29" width="57.15" height="57.15" rx="4" fill="#456ed9"><title>Castellón: 449</title></rect>
+<text x="472" y="240.67" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">CS</text>
+<text x="472" y="253.52" font-size="10" fill="#ffffff" text-anchor="middle">449</text>
+<rect x="78.62" y="275.09" width="57.15" height="57.15" rx="4" fill="#88a3e8"><title>Salamanca: 51</title></rect>
+<text x="107.2" y="301.47" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">SA</text>
+<text x="107.2" y="314.31" font-size="10" fill="#111111" text-anchor="middle">51</text>
+<rect x="139.42" y="275.09" width="57.15" height="57.15" rx="4" fill="#acbeef"><title>Ávila: 14</title></rect>
+<text x="168" y="301.47" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">AV</text>
+<text x="168" y="314.31" font-size="10" fill="#111111" text-anchor="middle">14</text>
+<rect x="200.22" y="275.09" width="57.15" height="57.15" rx="4" fill="#597fde"><title>Madrid: 224</title></rect>
+<text x="228.8" y="301.47" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">M</text>
+<text x="228.8" y="314.31" font-size="10" fill="#111111" text-anchor="middle">224</text>
+<rect x="261.02" y="275.09" width="57.15" height="57.15" rx="4" fill="#436dd9"><title>Cuenca: 454</title></rect>
+<text x="289.6" y="301.47" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">CU</text>
+<text x="289.6" y="314.31" font-size="10" fill="#ffffff" text-anchor="middle">454</text>
+<rect x="321.82" y="275.09" width="57.15" height="57.15" rx="4" fill="#2b53c2"><title>Valencia: 1,666</title></rect>
+<text x="350.4" y="301.47" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">V</text>
+<text x="350.4" y="314.31" font-size="10" fill="#ffffff" text-anchor="middle">1,666</text>
+<rect x="443.42" y="275.09" width="57.15" height="57.15" rx="4" fill="#89a4e8"><title>Illes Balears: 49</title></rect>
+<text x="472" y="301.47" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">PM</text>
+<text x="472" y="314.31" font-size="10" fill="#111111" text-anchor="middle">49</text>
+<rect x="78.62" y="335.89" width="57.15" height="57.15" rx="4" fill="#7a99e5"><title>Cáceres: 79</title></rect>
+<text x="107.2" y="362.27" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">CC</text>
+<text x="107.2" y="375.12" font-size="10" fill="#111111" text-anchor="middle">79</text>
+<rect x="139.42" y="335.89" width="57.15" height="57.15" rx="4" fill="#5f84df"><title>Toledo: 187</title></rect>
+<text x="168" y="362.27" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">TO</text>
+<text x="168" y="375.12" font-size="10" fill="#111111" text-anchor="middle">187</text>
+<rect x="200.22" y="335.89" width="57.15" height="57.15" rx="4" fill="#3460d4"><title>Ciudad Real: 783</title></rect>
+<text x="228.8" y="362.27" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">CR</text>
+<text x="228.8" y="375.12" font-size="10" fill="#ffffff" text-anchor="middle">783</text>
+<rect x="261.02" y="335.89" width="57.15" height="57.15" rx="4" fill="#2f5bd3"><title>Albacete: 917</title></rect>
+<text x="289.6" y="362.27" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">AB</text>
+<text x="289.6" y="375.12" font-size="10" fill="#ffffff" text-anchor="middle">917</text>
+<rect x="321.82" y="335.89" width="57.15" height="57.15" rx="4" fill="#2a51be"><title>Alicante: 1,872</title></rect>
+<text x="350.4" y="362.27" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">A</text>
+<text x="350.4" y="375.12" font-size="10" fill="#ffffff" text-anchor="middle">1,872</text>
+<rect x="78.62" y="396.69" width="57.15" height="57.15" rx="4" fill="#5078dc"><title>Badajoz: 307</title></rect>
+<text x="107.2" y="423.07" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">BA</text>
+<text x="107.2" y="435.92" font-size="10" fill="#111111" text-anchor="middle">307</text>
+<rect x="139.42" y="396.69" width="57.15" height="57.15" rx="4" fill="#325dd4"><title>Córdoba: 851</title></rect>
+<text x="168" y="423.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">CO</text>
+<text x="168" y="435.92" font-size="10" fill="#ffffff" text-anchor="middle">851</text>
+<rect x="200.22" y="396.69" width="57.15" height="57.15" rx="4" fill="#22429c"><title>Jaén: 6,139</title></rect>
+<text x="228.8" y="423.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">J</text>
+<text x="228.8" y="435.92" font-size="10" fill="#ffffff" text-anchor="middle">6,139</text>
+<rect x="261.02" y="396.69" width="57.15" height="57.15" rx="4" fill="#22419b"><title>Murcia: 6,223</title></rect>
+<text x="289.6" y="423.07" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">MU</text>
+<text x="289.6" y="435.92" font-size="10" fill="#ffffff" text-anchor="middle">6,223</text>
+<rect x="17.82" y="457.49" width="57.15" height="57.15" rx="4" fill="#466fd9"><title>Huelva: 432</title></rect>
+<text x="46.4" y="483.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">H</text>
+<text x="46.4" y="496.71" font-size="10" fill="#ffffff" text-anchor="middle">432</text>
+<rect x="78.62" y="457.49" width="57.15" height="57.15" rx="4" fill="#2548a9"><title>Sevilla: 3,857</title></rect>
+<text x="107.2" y="483.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">SE</text>
+<text x="107.2" y="496.71" font-size="10" fill="#ffffff" text-anchor="middle">3,857</text>
+<rect x="139.42" y="457.49" width="57.15" height="57.15" rx="4" fill="#22439d"><title>Málaga: 5,781</title></rect>
+<text x="168" y="483.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">MA</text>
+<text x="168" y="496.71" font-size="10" fill="#ffffff" text-anchor="middle">5,781</text>
+<rect x="200.22" y="457.49" width="57.15" height="57.15" rx="4" fill="#1c3682"><title>Granada: 15.2k</title></rect>
+<text x="228.8" y="483.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">GR</text>
+<text x="228.8" y="496.71" font-size="10" fill="#ffffff" text-anchor="middle">15.2k</text>
+<rect x="261.02" y="457.49" width="57.15" height="57.15" rx="4" fill="#23439e"><title>Almería: 5,691</title></rect>
+<text x="289.6" y="483.87" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">AL</text>
+<text x="289.6" y="496.71" font-size="10" fill="#ffffff" text-anchor="middle">5,691</text>
+<rect x="78.62" y="518.29" width="57.15" height="57.15" rx="4" fill="#294fb8"><title>Cádiz: 2,286</title></rect>
+<text x="107.2" y="544.67" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">CA</text>
+<text x="107.2" y="557.52" font-size="10" fill="#ffffff" text-anchor="middle">2,286</text>
+<rect x="17.82" y="603.41" width="57.15" height="57.15" rx="4" fill="#172d6e"><title>S. C. de Tenerife: 32.2k</title></rect>
+<text x="46.4" y="629.79" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">TF</text>
+<text x="46.4" y="642.64" font-size="10" fill="#ffffff" text-anchor="middle">32.2k</text>
+<rect x="78.62" y="603.41" width="57.15" height="57.15" rx="4" fill="#4770da"><title>Las Palmas: 409</title></rect>
+<text x="107.2" y="629.79" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="600">GC</text>
+<text x="107.2" y="642.64" font-size="10" fill="#ffffff" text-anchor="middle">409</text>
+<rect x="175.9" y="603.41" width="57.15" height="57.15" rx="4" fill="#97aeeb"><title>Ceuta: 32</title></rect>
+<text x="204.48" y="629.79" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">CE</text>
+<text x="204.48" y="642.64" font-size="10" fill="#111111" text-anchor="middle">32</text>
+<rect x="236.7" y="603.41" width="57.15" height="57.15" rx="4" fill="#d6e0f8"><title>Melilla: 2</title></rect>
+<text x="265.28" y="629.79" font-size="11" fill="#111111" text-anchor="middle" font-weight="600">ML</text>
+<text x="265.28" y="642.64" font-size="10" fill="#111111" text-anchor="middle">2</text>
+<text x="16" y="75.33" font-size="10.5" fill="#475467">events (log)</text>
+<text x="83.59" y="75.33" font-size="10.5" fill="#8a94a6">2</text>
+<image x="95.72" y="67.65" width="160" height="8" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAACCAYAAAC3zQLZAAADZElEQVR4nO3U9zsXeADA8f6LaMhIm5zqSpdKTp3qqmtq3dU1nupKdAiH8CCKcIiQrKysjKyMjKxI9va1+X7tvZ7nfZ/+jvPD6194rRiZWGJ4fIkhQTa2hHR0kcGRRQaE/uFF+oYW6ZUt0iNboFsqDC7QNbBApyDpX6Cjb552oa13ntaeeVq652kWmrrmaOyco0EyR71Q1zFHbfscNe2zVLcJrbN8a5mlSvjaPENl0wwVjTN8EcobZiirn6G0fpqSummKa6f5XDNNkVBYPUXBN6Fqinzh09cp8ionyRVyKibJ/jLJx/JJssonyCybIKN0gvSSCdK+Kx7nw+dxUoWUonGSC8dJKhjjvZCYP0bCpzHi88aIyxslLneU2JxR3mWPEiNEfxwhKmuESCEic4S3GSOEpw8T9l3aMKEfhglJHSJYeJMyRFDyEIFJQwS8l+GfKMMvQYZvvAyfOCnesVK83knxjJHiET2Ie9QgbpGDuEYM8vztAC7hAziHDeAUOoBjSD8Owf3Yv+nHLqgf29d92AT2YR3Qh5V/H5averHw68Xctxezlz2Y+vRg4t3DI68ejP/txsizG0OPbh64d3H/RRf33Lq469rFneed3H7WyS2XTm46S7jxVMJ1JwnXHCX84dDBVfsOrth1cNm2nYtP2jGwaeeCdRvnrNo4+08bZyxbOW3RyinzVk4+buGEWQvHTVs4ZtLM0b+b0Tdu5ohRM4cfNqFn2ITugyYO3W9E569GDt5rZP/dBrTvNLDvdj17b9WjdbOePTfq2P1nHbuu17HzWi07fq9F82otGldq2H5ZuFSN+qUq1C9+FSpRN6hAzaActQtlqJ0vZdv5EradKxaK2Hq2UChg65l8IY8tp3PZ8luOkM3mU1lCJptPZgjpbDqRxqZfU4UUNh5PFpLYeCxRSGDD0Xghjg36sajqx6D6SzSqR6KESNYfjhDCWa8XhopeKCo/hwjBqOgGoaz7GuVDgSjrBKCk44/SQT/BF6UDL1E84IPifm/BC0VtT9Zpe7Bun7vwAoWf3ARXFPY+Q0HLhbVazqzd81RwYs1uR8GBNT/aC3as3mUrPGH1ThvBmlU7rARLVmlaIK9pjvwPjwUz5DVMkdMwQW77I8EYOXUjVqo/ZKWaISuWA1gOYDmA/28A/wG2L5VgY+/G1gAAAABJRU5ErkJggg=="/>
+<text x="261.72" y="75.33" font-size="10.5" fill="#8a94a6">32.2k</text>
+</svg>

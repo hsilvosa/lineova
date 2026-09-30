@@ -138,11 +138,14 @@ def format_number(value: float, step: float | None = None, *, compact: bool | No
     mag = max(abs(v), step)
     use_compact = compact if compact is not None else mag >= 1e4
     if use_compact:
-        for div, suffix in _SI:
+        for i, (div, suffix) in enumerate(_SI):
             if mag >= div:
                 d = decimals_for_step(step / div)
-                s = f"{abs(v) / div:,.{d}f}{suffix}"
-                return (MINUS if v < 0 else "") + s
+                s = f"{abs(v) / div:,.{d}f}"
+                if i > 0 and float(s.replace(",", "")) >= 1000:     # 999.96k rounds to 1,000k: say 1M
+                    div, suffix = _SI[i - 1]
+                    s = f"{abs(v) / div:,.{max(d - 3, 0) if d else 0}f}"
+                return (MINUS if v < 0 else "") + s + suffix
     d = decimals_for_step(step)
     s = f"{abs(v):,.{d}f}"
     return (MINUS if v < 0 else "") + s
@@ -155,7 +158,11 @@ def format_value(value: float) -> str:
         return "0" if v == 0 else str(v)
     mag = abs(v)
     if mag >= 1e4:
-        return format_number(v, 10 ** math.floor(math.log10(mag)) / 100, compact=True)
+        s = format_number(v, 10 ** math.floor(math.log10(mag)) / 100, compact=True)
+        num, suffix = s[:-1], s[-1]
+        if "." in num:                      # 12.0k -> 12k, 2.50M -> 2.5M
+            num = num.rstrip("0").rstrip(".")
+        return num + suffix
     digits = max(0, 2 - math.floor(math.log10(mag)))
     s = f"{mag:,.{digits}f}"
     if "." in s:

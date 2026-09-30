@@ -1,15 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="860" height="760" viewBox="0 0 860 760" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
-<desc>When is power cheap?</desc>
-<defs><clipPath id="lv8beec495c1"><rect x="67.3" y="94.84" width="777.7" height="602.81"/></clipPath></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="760" viewBox="0 0 860 760" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvcff7a3cbt lvcff7a3cbd">
+<title id="lvcff7a3cbt">When is power cheap?</title>
+<desc id="lvcff7a3cbd">When is power cheap?. Mean price by hour of day, €/MWh. Heatmap of 44 rows by 24 columns, values from 0.26 to 213.</desc>
+<defs><clipPath id="lvcff7a3cbc1"><rect x="67.3" y="94.84" width="777.7" height="602.81"/></clipPath></defs>
 <rect width="100%" height="100%" fill="#eef2f4"/>
 <text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">When is power cheap?</text>
 <text x="16" y="52.72" font-size="12.5" fill="#43565f">Mean price by hour of day, €/MWh</text>
-<text x="16" y="78.69" font-size="11" fill="#43565f">€/MWh</text>
-<text x="63.09" y="78.69" font-size="11" fill="#6e8088">0.26</text>
-<image x="91.56" y="70.84" width="160" height="8" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAACCAYAAAC3zQLZAAADQElEQVR4nO3U107eBRjAYUpZ3/c/8cDEA2NiYowxxhhjjMZojEbT2tpBCxQoUKBAWyiUMsooo4yWVfZeZe9d9qbsvffeq1Qv4eeLXoYcPLfwaOyc/M222Hr7F5ti4/gd62Lt6B2rRyesiOXDE5YO37J48JaFg2Pm94+ZE7N7R/+aEdO7h0yJyZ0DJsT49gFj2/uMipGtfYa39hja3GNwc5eBjV36Rd/GDr3rO/SI7rVt3oiu1S06RYdoX9mkTbQub9KyvEHz0gZNS+s0Lq7TIOoX16hbWKNWvJ5fpUZUz61QJSpFxewy5aJsZpnSmSVKppconl6kaGqRQlEwtUD+5AJ5IndinhyRPT5HlnglMsdmyRDpo7Okjc6QOjJDysg0ySJpeJrE4SkShqaIH5okbnCSWBEzMEG0iOofJ1JE9I0R3jtGWM8ooSKke4Tnb4YJFkFdQwR2DhHQOYh/xwB+7QP4tvXjI7xb+/Bq6cOzpReP5h7cm3pwa+rGtbEbl4Y3ONd38Ug41XXiWNuJQ20H9q87eFDTzv2aNuyq27CtasVGWFe2YFXRgmV5MxblTZiXNWFW2oipMClpwLi4HiNhWFSHQWEdNwpr0S+o5Vr+a67m1XBFXM6t5lJONRdzqriQXcXvWZX8llXBr68q+CWznJ/FTxll/Jhexg9ppXyfVsJ3qSV8m1LMN+Lr5CK+Siriy6RCvkgs4POEAj5LyOfT+Hw+icvj49g8PorN5cOYHD6IzuH96Gzei8pGicxCR2i8fIVGRCbnwjM4F5Yu0tAMTUUzJAXNF8loPk/ifHAi54MSRDxagXFoBcSi9Uz4x6DtFy2i0PaNRNvnJdpPI9DxDkfHK0yEouMZgq7HC3SfPEfXPRhdtyARiK5rAHouz9B7LJz90XvkJ3zRc/JB5fgU1UNvVA5ewhOVvQeqB09Q3XdHdc8Ntd0pV9S2LqhtHqO+64za+pFwQm3liNryIeo7Dqgt7FFOmT9AMbuPcvseiqmdsEUxsUExvotyyxrFyOo/hpYoBndQbloIc5QbZij6t1Gum6JcO2WCctUY5cotlD+NhCHKZQOUSzdR/jh1A+WiPsqF62icBXAWwFkA/98A/gEza11uEKsqTAAAAABJRU5ErkJggg=="/>
-<text x="257.56" y="78.69" font-size="11" fill="#6e8088">213</text>
 <text x="16" y="744" font-size="11.5" fill="#6e8088">Source: OMIE, Mercado diario</text>
-<g clip-path="url(#lv8beec495c1)">
+<g clip-path="url(#lvcff7a3cbc1)">
 <rect x="68.8" y="96.34" width="31.32" height="12.65" rx="2" fill="#9dcdd4"><title>2023-01 · 1: 59</title></rect>
 <rect x="101.12" y="96.34" width="31.32" height="12.65" rx="2" fill="#a9d2d9"><title>2023-01 · 2: 50</title></rect>
 <rect x="133.44" y="96.34" width="31.32" height="12.65" rx="2" fill="#aed5db"><title>2023-01 · 3: 45</title></rect>
@@ -1135,4 +1132,8 @@
 <text x="61.3" y="134" font-size="11.5" fill="#6e8088" text-anchor="end">2023-03</text>
 <text x="61.3" y="120.35" font-size="11.5" fill="#6e8088" text-anchor="end">2023-02</text>
 <text x="61.3" y="106.69" font-size="11.5" fill="#6e8088" text-anchor="end">2023-01</text>
+<text x="16" y="78.69" font-size="11" fill="#43565f">€/MWh</text>
+<text x="63.09" y="78.69" font-size="11" fill="#6e8088">0.26</text>
+<image x="91.56" y="70.84" width="160" height="8" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAACCAYAAAC3zQLZAAADQElEQVR4nO3U107eBRjAYUpZ3/c/8cDEA2NiYowxxhhjjMZojEbT2tpBCxQoUKBAWyiUMsooo4yWVfZeZe9d9qbsvffeq1Qv4eeLXoYcPLfwaOyc/M222Hr7F5ti4/gd62Lt6B2rRyesiOXDE5YO37J48JaFg2Pm94+ZE7N7R/+aEdO7h0yJyZ0DJsT49gFj2/uMipGtfYa39hja3GNwc5eBjV36Rd/GDr3rO/SI7rVt3oiu1S06RYdoX9mkTbQub9KyvEHz0gZNS+s0Lq7TIOoX16hbWKNWvJ5fpUZUz61QJSpFxewy5aJsZpnSmSVKppconl6kaGqRQlEwtUD+5AJ5IndinhyRPT5HlnglMsdmyRDpo7Okjc6QOjJDysg0ySJpeJrE4SkShqaIH5okbnCSWBEzMEG0iOofJ1JE9I0R3jtGWM8ooSKke4Tnb4YJFkFdQwR2DhHQOYh/xwB+7QP4tvXjI7xb+/Bq6cOzpReP5h7cm3pwa+rGtbEbl4Y3ONd38Ug41XXiWNuJQ20H9q87eFDTzv2aNuyq27CtasVGWFe2YFXRgmV5MxblTZiXNWFW2oipMClpwLi4HiNhWFSHQWEdNwpr0S+o5Vr+a67m1XBFXM6t5lJONRdzqriQXcXvWZX8llXBr68q+CWznJ/FTxll/Jhexg9ppXyfVsJ3qSV8m1LMN+Lr5CK+Siriy6RCvkgs4POEAj5LyOfT+Hw+icvj49g8PorN5cOYHD6IzuH96Gzei8pGicxCR2i8fIVGRCbnwjM4F5Yu0tAMTUUzJAXNF8loPk/ifHAi54MSRDxagXFoBcSi9Uz4x6DtFy2i0PaNRNvnJdpPI9DxDkfHK0yEouMZgq7HC3SfPEfXPRhdtyARiK5rAHouz9B7LJz90XvkJ3zRc/JB5fgU1UNvVA5ewhOVvQeqB09Q3XdHdc8Ntd0pV9S2LqhtHqO+64za+pFwQm3liNryIeo7Dqgt7FFOmT9AMbuPcvseiqmdsEUxsUExvotyyxrFyOo/hpYoBndQbloIc5QbZij6t1Gum6JcO2WCctUY5cotlD+NhCHKZQOUSzdR/jh1A+WiPsqF62icBXAWwFkA/98A/gEza11uEKsqTAAAAABJRU5ErkJggg=="/>
+<text x="257.56" y="78.69" font-size="11" fill="#6e8088">213</text>
 </svg>

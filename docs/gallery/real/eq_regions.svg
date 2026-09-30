@@ -1,5 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img">
-<desc>Where the catalogue&#x27;s events are</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv51a1386ct lv51a1386cd">
+<title id="lv51a1386ct">Where the catalogue&#x27;s events are</title>
+<desc id="lv51a1386cd">Where the catalogue&#x27;s events are. Events by region, 1373–2026. Treemap of 207k in total, 1 level(s): Canary Islands 27%, Iberian interior 20%, Pyrenees 18%, Betics &amp; Alborán 18%, North Africa 10%, Gulf of Cádiz 8%.</desc>
 <rect width="100%" height="100%" fill="#eef2f4"/>
 <text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Where the catalogue&#x27;s events are</text>
 <text x="16" y="52.72" font-size="12.5" fill="#43565f">Events by region, 1373–2026</text>
@@ -10,9 +11,9 @@
 <rect x="210.67" y="68.84" width="274.27" height="169.62" rx="3" fill="#1e99a9"><title>Iberian interior: 40.6k (19.6%)</title></rect>
 <text x="216.67" y="84.34" font-size="11.5" fill="#111111" font-weight="600">Iberian interior</text>
 <text x="216.67" y="99.29" font-size="11" fill="#111111">40.6k</text>
-<rect x="210.67" y="240.46" width="274.27" height="158.44" rx="3" fill="#3ba5b3"><title>Pyrenees: 38.0k (18.3%)</title></rect>
+<rect x="210.67" y="240.46" width="274.27" height="158.44" rx="3" fill="#3ba5b3"><title>Pyrenees: 38k (18.3%)</title></rect>
 <text x="216.67" y="255.96" font-size="11.5" fill="#111111" font-weight="600">Pyrenees</text>
-<text x="216.67" y="270.91" font-size="11" fill="#111111">38.0k</text>
+<text x="216.67" y="270.91" font-size="11" fill="#111111">38k</text>
 <rect x="486.94" y="68.84" width="256.06" height="162.94" rx="3" fill="#59b2be"><title>Betics &amp; Alborán: 36.5k (17.6%)</title></rect>
 <text x="492.94" y="84.34" font-size="11.5" fill="#111111" font-weight="600">Betics &amp; Alborán</text>
 <text x="492.94" y="99.29" font-size="11" fill="#111111">36.5k</text>

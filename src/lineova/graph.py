@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import heapq
+import random
 from collections import deque
 from typing import Optional
 from collections.abc import Hashable, Iterable, Iterator
@@ -427,12 +428,22 @@ class Graph:
             r = new
         return dict(zip(nodes, (r / r.sum()).tolist()))
 
-    def betweenness(self, weighted: bool = True, normalized: bool = True) -> dict:
-        """Betweenness centrality (Brandes): how often a node lies on shortest paths."""
+    def betweenness(self, weighted: bool = True, normalized: bool = True, k: Optional[int] = None,
+                    seed: int = 0) -> dict:
+        """Betweenness centrality (Brandes): how often a node lies on shortest paths.
+
+        Exact by default (O(nodes x edges)). ``k=`` estimates it from ``k`` randomly chosen source
+        nodes (Brandes & Pich 2007), which makes graphs with 100k+ nodes practical; the error
+        shrinks like 1/sqrt(k). ``seed`` makes the sample reproducible.
+        """
         nodes = self.nodes
         bc = dict.fromkeys(nodes, 0.0)
         use_w = weighted and self.is_weighted()
-        for s in nodes:
+        sources = nodes
+        if k is not None and 0 < int(k) < len(nodes):
+            rng = random.Random(seed)
+            sources = rng.sample(list(nodes), int(k))
+        for s in sources:
             stack, pred = [], {v: [] for v in nodes}
             sigma = dict.fromkeys(nodes, 0.0)
             sigma[s] = 1.0
@@ -478,11 +489,14 @@ class Graph:
                 if w_ != s:
                     bc[w_] += delta[w_]
         n = len(nodes)
+        if len(sources) < n:                     # scale the sampled sum up to all sources
+            f = n / len(sources)
+            bc = {key: v * f for key, v in bc.items()}
         if not self.directed:
-            bc = {k: v / 2 for k, v in bc.items()}
+            bc = {key: v / 2 for key, v in bc.items()}
         if normalized and n > 2:
             scale = 1 / ((n - 1) * (n - 2)) * (1 if self.directed else 2)
-            bc = {k: v * scale for k, v in bc.items()}
+            bc = {key: v * scale for key, v in bc.items()}
         return bc
 
     def closeness(self, weighted: bool = True) -> dict:

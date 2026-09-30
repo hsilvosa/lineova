@@ -56,8 +56,8 @@ def build_api() -> None:
              "[`Chart`](#chart), so the methods below work on its result.", ""]
     lines += ["## Chart functions", ""]
     for name in ["line", "area", "bar", "scatter", "histogram", "heatmap", "box", "violin", "ridgeline", "pie",
-                 "donut", "dumbbell", "slope", "waterfall", "candlestick", "treemap", "sankey", "radar", "density",
-                 "timeline", "calendar", "sparkline", "stat", "network"]:
+                 "donut", "dumbbell", "slope", "waterfall", "candlestick", "treemap", "sunburst", "sankey", "radar",
+                 "density", "hexbin", "map", "tilemap", "timeline", "calendar", "sparkline", "stat", "network"]:
         fn = getattr(lv, name)
         lines += [f"### `lv.{name}`", "", f"```python\nlv.{name}{_sig(fn)}\n```", "", _doc(fn), ""]
         layer = layer_class("pie" if name == "donut" else name)
@@ -73,11 +73,14 @@ def build_api() -> None:
     common = {
         "title / subtitle": "Heading text (in `folio`, the figure caption)",
         "caption / number / source": "Text under the chart; `number` gives 'Figure N.'",
-        "theme": "`folio`, `ledger`, `instrument`, `fjord`, a registered name or a `Theme`",
+        "theme": "`folio`, `ledger`, `instrument`, `fjord`, their variants (`ledger-dark`, `folio-dark`, "
+                 "`fjord-dark`, `instrument-light`), a registered name or a `Theme`",
         "width / height / size": "Pixels, or a preset: " + ", ".join(f"`{k}`" for k in lv.SIZES),
         "legend": "`auto`, `top`, `bottom`, `right`, `direct`, `readout`, `none`",
         "palette / highlight": "Colours for series, and series to emphasise",
         "facet / facet_cols / share": "Small multiples by a column",
+        "texture": "`True` adds a pattern per series (a second encoding besides colour)",
+        "alt": "Your own text description (otherwise generated; see `describe()`)",
         "x_* / y_*": "Axis options: " + ", ".join(f"`{f}`" for f in lv.Axis.__dataclass_fields__),
     }
     lines += [f"| `{k}` | {v} |" for k, v in common.items()] + [""]
@@ -88,6 +91,8 @@ def build_api() -> None:
         d = _doc(m)
         lines += [f"- **`.{name}{_sig(m)}`**" + (f": {d.splitlines()[0]}" if d else "")]
     lines += ["", "## Grid", "", f"```python\nlv.grid{_sig(lv.grid)}\n```", "", _doc(lv.Grid), "",
+              "- **`.describe()`**: " + _doc(lv.Grid.describe).splitlines()[0],
+              "- **`.tables()`**: " + _doc(lv.Grid.tables).splitlines()[0], "",
               "## Chunks", "", f"```python\nlv.Chunks{_sig(lv.Chunks)}\n```", "", _doc(lv.Chunks), "",
               "## Graph", "", _doc(lv.Graph), ""]
     for name, m in inspect.getmembers(lv.Graph, lambda o: inspect.isfunction(o) or isinstance(o, classmethod)):
@@ -97,7 +102,10 @@ def build_api() -> None:
         lines += [f"- **`.{name}{_sig(m)}`**" + (f": {d.splitlines()[0]}" if d else "")]
     lines += ["", "## Themes", "", _doc(lv.themes), "",
               "- `lv.themes.get(name)`, `lv.themes.register(name, theme)`, `lv.themes.names()`, "
-              "`lv.themes.set_default(name)`", "",
+              "`lv.themes.set_default(name)`, `lv.themes.dark(name)`, `lv.themes.light(name)`", "",
+              f"- `lv.themes.from_brand{_sig(lv.themes.from_brand)}`: {_doc(lv.themes.from_brand).splitlines()[0]}",
+              f"- `lv.themes.check_palette{_sig(lv.themes.check_palette)}`: "
+              f"{_doc(lv.themes.check_palette).splitlines()[0]}", "",
               "`Theme` fields: " + ", ".join(f"`{f}`" for f in lv.Theme.__dataclass_fields__ if f != "extra") + ".", ""]
     (ROOT / "docs" / "api.md").write_text("\n".join(lines), encoding="utf-8")
 

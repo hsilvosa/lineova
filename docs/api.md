@@ -170,9 +170,24 @@ Chart-specific options: `open=None`, `high=None`, `low=None`, `close=None`, `sty
 lv.treemap(data: Any = None, **options) -> Chart
 ```
 
-Treemap: ``treemap({"A": 10, "B": 4})``, nested dicts, or ``treemap(df, path=["region", "city"], value="pop")``.
+Treemap: ``treemap({"A": 10, "B": 4})``, nested dicts of any depth, or
+``treemap(df, path=["region", "country", "city"], value="pop")``. ``depth=`` limits the levels drawn.
 
-Chart-specific options: `path=None`, `labels="auto"`, `format=None`, `agg='sum'`.
+Chart-specific options: `path=None`, `labels="auto"`, `format=None`, `agg='sum'`, `depth=None`.
+
+### `lv.sunburst`
+
+```python
+lv.sunburst(data: Any = None, **options) -> Chart
+```
+
+Sunburst: a hierarchy as rings, the angle proportional to value.
+
+``data`` is nested dicts of any depth ({"Europe": {"Spain": {"Madrid": 7}}}) or a DataFrame with
+``path=["region", "country", "city"]`` and ``value=``. Options: ``depth=`` (rings to show),
+``labels=``, ``format=``, ``center=`` (text in the middle; the total by default).
+
+Chart-specific options: `path=None`, `depth=None`, `labels="auto"`, `format=None`, `agg='sum'`, `center="auto"`, `start=90.0`.
 
 ### `lv.sankey`
 
@@ -203,6 +218,55 @@ lv.density(data: Any = None, x: Any = None, y: Any = None, color: Any = None, **
 2-D density with contour lines (for very many points, or to compare groups' shapes).
 
 Chart-specific options: `levels="auto"`, `fill="auto"`, `points="auto"`, `bandwidth=None`, `grid=160`.
+
+### `lv.hexbin`
+
+```python
+lv.hexbin(data: Any = None, x: Any = None, y: Any = None, **options) -> Chart
+```
+
+Hexagonal binning of a point cloud: how many points (or the mean of ``value``) fall in each hexagon.
+
+Works for millions of rows and for ``lv.Chunks``. Options: ``value=`` (column to aggregate),
+``agg="count" | "sum" | "mean" | "max" | "min"``, ``gridsize=`` (hexagons across), ``mincount=1``,
+``log="auto"`` (log colour scale for skewed counts), ``cmap=`` (colour stops), ``label=``.
+
+Chart-specific options: `agg="auto"`, `gridsize="auto"`, `mincount=1`, `log="auto"`, `cmap="auto"`, `label=None`, `border="auto"`.
+
+### `lv.map`
+
+```python
+lv.map(data: Any = None, geo: Any = None, **options) -> Chart
+```
+
+Maps from GeoJSON and/or points.
+
+* Choropleth: ``lv.map(values, geo="regions.geojson", key="name")`` where ``values`` is
+  {region: number}, a Series, or a DataFrame with ``id=`` and ``value=`` columns;
+  or ``lv.map(geojson, value="population")`` to colour by a feature property.
+* Points: ``lv.map(df, lon="lon", lat="lat", size="mag", color="depth")``, optionally over
+  ``geo=`` as a basemap. Above 50,000 points they are drawn as a density image.
+
+Options: ``projection="auto" | "equirectangular" | "mercator"``, ``cmap=``, ``vmin=``, ``vmax=``,
+``labels=``, ``format=``, ``graticule=``, ``label=`` (colour-bar title).
+
+Chart-specific options: `geo=None`, `key=None`, `id=None`, `lon=None`, `lat=None`, `size=None`, `projection="auto"`, `cmap="auto"`, `vmin=None`, `vmax=None`, `labels="auto"`, `format=None`, `graticule="auto"`, `label=None`, `missing="auto"`.
+
+### `lv.tilemap`
+
+```python
+lv.tilemap(data: Any = None, **options) -> Chart
+```
+
+Tile map: one equal square per region, placed roughly as on the map, so every region is
+equally visible. ``lv.tilemap({"M": 6.8, "B": 5.7}, layout="es-provinces")``.
+
+Built-in layouts: ``"es-provinces"`` (52 Spanish provinces; plate codes, INE numbers or names)
+and ``"es-regions"`` (19 autonomous communities; ISO codes or names). A custom layout is
+``{code: (column, row, name)}``. Options: ``id=``/``value=`` for DataFrames, ``cmap=``,
+``format=``, ``labels=``, ``names=`` (full names instead of codes on large tiles).
+
+Chart-specific options: `layout='es-provinces'`, `id=None`, `cmap="auto"`, `vmin=None`, `vmax=None`, `labels="auto"`, `format=None`, `label=None`, `names="auto"`.
 
 ### `lv.timeline`
 
@@ -265,11 +329,13 @@ Accepted by every chart function as keywords, and by `Chart(...)`:
 |---|---|
 | `title / subtitle` | Heading text (in `folio`, the figure caption) |
 | `caption / number / source` | Text under the chart; `number` gives 'Figure N.' |
-| `theme` | `folio`, `ledger`, `instrument`, `fjord`, a registered name or a `Theme` |
+| `theme` | `folio`, `ledger`, `instrument`, `fjord`, their variants (`ledger-dark`, `folio-dark`, `fjord-dark`, `instrument-light`), a registered name or a `Theme` |
 | `width / height / size` | Pixels, or a preset: `column`, `page`, `wide`, `slide`, `square`, `dashboard`, `a4` |
 | `legend` | `auto`, `top`, `bottom`, `right`, `direct`, `readout`, `none` |
 | `palette / highlight` | Colours for series, and series to emphasise |
 | `facet / facet_cols / share` | Small multiples by a column |
+| `texture` | `True` adds a pattern per series (a second encoding besides colour) |
+| `alt` | Your own text description (otherwise generated; see `describe()`) |
 | `x_* / y_*` | Axis options: `label`, `scale`, `range`, `ticks`, `format`, `zero`, `grid`, `reverse`, `visible` |
 
 ## Chart
@@ -289,14 +355,17 @@ A figure made of one or more layers (line, bar, scatter, ...).
 - **`.candlestick(data=None, x=None, **kw) -> Chart`**: Add a candlestick layer. Takes the same options as ``lv.candlestick()``.
 - **`.caption(text: str, number: Optional[int] = None) -> Chart`**: Paragraph under the chart. ``number`` adds 'Figure N.' (Folio).
 - **`.density(data=None, x=None, y=None, color=None, **kw) -> Chart`**: Add a density layer. Takes the same options as ``lv.density()``.
+- **`.describe() -> str`**: A plain-language description of the chart (alt text): what is plotted, ranges, extremes, trends.
 - **`.dumbbell(data=None, x=None, y=None, color=None, **kw) -> Chart`**: Add a dumbbell layer. Takes the same options as ``lv.dumbbell()``.
 - **`.facet(column: Any, cols: Any = "auto", share: str = 'both') -> Chart`**: Small multiples: one panel per value of ``column``, with shared axes and one legend.
 - **`.heatmap(data=None, x=None, y=None, value=None, **kw) -> Chart`**: Add a heatmap layer. Takes the same options as ``lv.heatmap()``.
+- **`.hexbin(data=None, x=None, y=None, **kw) -> Chart`**: Add a hexbin layer. Takes the same options as ``lv.hexbin()``.
 - **`.highlight(*keys) -> Chart`**: Emphasise some series/categories/nodes; everything else is muted.
 - **`.histogram(data=None, x=None, color=None, **kw) -> Chart`**: Add a histogram layer. Takes the same options as ``lv.histogram()``.
 - **`.hline(y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> Chart`**: Horizontal reference line, e.g. a target. ``y="mean"`` uses the data mean.
 - **`.legend(position: Any = "auto") -> Chart`**: auto | top | bottom | right | direct | readout | none.
 - **`.line(data=None, x=None, y=None, color="auto", **kw) -> Chart`**: Add a line layer. Takes the same options as ``lv.line()``.
+- **`.map(data=None, geo=None, **kw) -> Chart`**: Add a map layer. Takes the same options as ``lv.map()``.
 - **`.network(data=None, **kw) -> Chart`**: Add a network layer. Takes the same options as ``lv.network()``.
 - **`.palette(colors: Any) -> Chart`**: A list of colours, a {series: colour} dict, or one colour for everything.
 - **`.pie(data=None, x=None, y=None, **kw) -> Chart`**: Add a pie layer. Takes the same options as ``lv.pie()``.
@@ -313,10 +382,13 @@ A figure made of one or more layers (line, bar, scatter, ...).
 - **`.sparkline(data=None, x=None, **kw) -> Chart`**: Add a sparkline layer. Takes the same options as ``lv.sparkline()``.
 - **`.stat(value=None, **kw) -> Chart`**: Add a stat layer. Takes the same options as ``lv.stat()``.
 - **`.subtitle(text: str) -> Chart`**: Second heading line.
+- **`.sunburst(data=None, **kw) -> Chart`**: Add a sunburst layer. Takes the same options as ``lv.sunburst()``.
+- **`.table()`**: The data behind the chart as a ``Table`` (``.to_csv()``, ``.to_html()``, ``.to_pandas()``).
 - **`.theme(theme) -> Chart`**: Use a theme by name or a ``Theme`` object.
+- **`.tilemap(data=None, **kw) -> Chart`**: Add a tile-map layer. Takes the same options as ``lv.tilemap()``.
 - **`.timeline(data=None, **kw) -> Chart`**: Add a timeline layer. Takes the same options as ``lv.timeline()``.
 - **`.title(text: str, subtitle: Optional[str] = None) -> Chart`**: Main heading, optionally with a subtitle.
-- **`.to_html(*, title: Optional[str] = None) -> str`**: Standalone HTML page: styled hover tooltips, wheel/drag zoom, double-click to reset.
+- **`.to_html(*, title: Optional[str] = None, data: bool = True) -> str`**: Standalone HTML page: hover tooltips, a crosshair readout on line charts, wheel/drag zoom,
 - **`.to_pdf() -> bytes`**: The chart as a vector PDF (bytes). Text stays selectable.
 - **`.to_png(scale: Optional[float] = None, dpi: Optional[float] = None) -> bytes`**: The chart as PNG bytes. Default 2x; ``dpi=300`` for print. Needs a PNG backend (``lineova[png]``).
 - **`.to_svg() -> str`**: The chart as an SVG document (string).
@@ -336,6 +408,9 @@ lv.grid(charts: Sequence, cols: Any = "auto", **options) -> Grid
 Several charts laid out in rows and columns, with one title, one legend and aligned sizes.
 
 ``share="both" | "x" | "y" | "none"`` makes panels use the same axis ranges, so they can be compared.
+
+- **`.describe()`**: Plain-language description of every panel (alt text); written into the SVG ``<desc>``.
+- **`.tables()`**: The data table of each panel (``Table`` objects, ``None`` where a panel has none).
 
 ## Chunks
 
@@ -362,7 +437,7 @@ Directed or undirected weighted graph (adjacency dict of dicts).
 - **`.add_node(n: Node, **attrs) -> Graph`**: Add a node (if new) and set attributes, e.g. ``pos=(x, y)`` or ``label=``.
 - **`.astar(source: Node, target: Node, heuristic=None) -> list`**: A* shortest path. ``heuristic(node, target)`` must never overestimate the remaining cost.
 - **`.attrs(n: Node) -> dict`**: A copy of the node's attributes.
-- **`.betweenness(weighted: bool = True, normalized: bool = True) -> dict`**: Betweenness centrality (Brandes): how often a node lies on shortest paths.
+- **`.betweenness(weighted: bool = True, normalized: bool = True, k: Optional[int] = None, seed: int = 0) -> dict`**: Betweenness centrality (Brandes): how often a node lies on shortest paths.
 - **`.bfs(start: Node) -> list`**: Nodes in breadth-first order from ``start``.
 - **`.closeness(weighted: bool = True) -> dict`**: Closeness centrality (Wasserman–Faust, handles disconnected graphs).
 - **`.communities(seed: int = 0, max_iter: int = 30) -> list[set]`**: Groups of densely connected nodes (label propagation). Fast, approximate.
@@ -403,6 +478,9 @@ A theme is an immutable dataclass. To customise one, derive a copy::
     lv.themes.register("brand", brand)
     lv.line(data, theme="brand")
 
-- `lv.themes.get(name)`, `lv.themes.register(name, theme)`, `lv.themes.names()`, `lv.themes.set_default(name)`
+- `lv.themes.get(name)`, `lv.themes.register(name, theme)`, `lv.themes.names()`, `lv.themes.set_default(name)`, `lv.themes.dark(name)`, `lv.themes.light(name)`
 
-`Theme` fields: `name`, `font`, `font_kind`, `font_size`, `title_size`, `subtitle_size`, `title_weight`, `italic_labels`, `uppercase_header`, `background`, `plot_background`, `ink`, `ink_secondary`, `ink_muted`, `axis_color`, `grid_color`, `dark`, `palette`, `accent`, `muted`, `sequential`, `diverging`, `positive`, `negative`, `axis_style`, `grid`, `grid_dash`, `grid_width`, `tick_direction`, `tick_length`, `axis_width`, `line_width`, `curve`, `dashes`, `series_markers`, `marker_size`, `scatter_style`, `end_markers`, `area_opacity`, `lead_area`, `bar_radius`, `bar_gap`, `bar_highlight`, `bar_value_labels`, `legend`, `legend_marker`, `caption_style`, `node_style`, `edge_style`, `edge_color`, `padding`.
+- `lv.themes.from_brand(color: str, base: str | Theme = 'ledger', *, dark: bool = False, name: str | None = None, background: str | None = None, n: int = 8) -> Theme`: Build a theme around a brand colour.
+- `lv.themes.check_palette(colors, background: str = '#ffffff')`: Check a categorical palette against a background: lightness band, chroma, colour-blind
+
+`Theme` fields: `name`, `family`, `font`, `font_kind`, `font_size`, `title_size`, `subtitle_size`, `title_weight`, `italic_labels`, `uppercase_header`, `background`, `plot_background`, `ink`, `ink_secondary`, `ink_muted`, `axis_color`, `grid_color`, `dark`, `palette`, `accent`, `muted`, `sequential`, `diverging`, `positive`, `negative`, `axis_style`, `grid`, `grid_dash`, `grid_width`, `tick_direction`, `tick_length`, `axis_width`, `line_width`, `curve`, `dashes`, `series_markers`, `marker_size`, `scatter_style`, `end_markers`, `area_opacity`, `lead_area`, `bar_radius`, `bar_gap`, `bar_highlight`, `bar_value_labels`, `legend`, `legend_marker`, `caption_style`, `node_style`, `edge_style`, `edge_color`, `padding`.

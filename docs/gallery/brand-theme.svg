@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="792" height="340.65" viewBox="0 0 792 340.65" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv339e13c6t lv339e13c6d">
+<title id="lv339e13c6t">A theme built from one brand colour</title>
+<desc id="lv339e13c6d">A theme built from one brand colour. lv.themes.from_brand(&#x27;#0f766e&#x27;). 2 panels. (a) Sales by quarter. Bar chart of North, South and East across 4 categories. Largest total: Q4 (15.3). (b) Generation. Line chart of 3 series (Solar, Wind and Hydro), month from 2025-01-01 to 2027-12-01. Solar: from 1 to 7, last 2.75, down 31% from the start. Wind: from 3.5 to 6.5, last 6.36, down 2% from the start. Hydro: from 2.79 to 3.17, last 2.94, up 1% from the start.</desc>
+<defs><clipPath id="lv339e13c6c1"><rect x="29.42" y="67.05" width="361.58" height="163.45"/></clipPath><clipPath id="lv339e13c6c2"><rect x="39.05" y="82.85" width="317.47" height="127.85"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">A theme built from one brand colour</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">lv.themes.from_brand(&#x27;#0f766e&#x27;)</text>
+<g transform="translate(0 56.65)">
+<text x="16" y="28.5" font-size="12.5" fill="#1a2233" font-weight="600">Sales by quarter</text>
+<rect x="18" y="41.55" width="10" height="10" rx="2" fill="#1e9e93"/>
+<text x="32" y="50.57" font-size="11.5" fill="#475467">North</text>
+<rect x="81.52" y="41.55" width="10" height="10" rx="2" fill="#935a09"/>
+<text x="95.52" y="50.57" font-size="11.5" fill="#475467">South</text>
+<rect x="147.08" y="41.55" width="10" height="10" rx="2" fill="#6557ba"/>
+<text x="161.08" y="50.57" font-size="11.5" fill="#475467">East</text>
+<line x1="30.42" y1="229.5" x2="390" y2="229.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="175.68" x2="390" y2="175.68" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="121.87" x2="390" y2="121.87" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="68.05" x2="390" y2="68.05" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv339e13c6c1)">
+<path d="M43.01,229.5L43.01,149.08Q43.01,146.08,46.01,146.08L60.25,146.08Q63.25,146.08,63.25,149.08L63.25,229.5Z" fill="#1e9e93"><title>Q1 · North: 3.1</title></path>
+<path d="M65.25,229.5L65.25,119.48Q65.25,116.48,68.25,116.48L82.49,116.48Q85.49,116.48,85.49,119.48L85.49,229.5Z" fill="#935a09"><title>Q1 · South: 4.2</title></path>
+<path d="M87.49,229.5L87.49,178.68Q87.49,175.68,90.49,175.68L104.73,175.68Q107.73,175.68,107.73,178.68L107.73,229.5Z" fill="#6557ba"><title>Q1 · East: 2</title></path>
+<path d="M132.9,229.5L132.9,124.87Q132.9,121.87,135.9,121.87L150.14,121.87Q153.14,121.87,153.14,124.87L153.14,229.5Z" fill="#1e9e93"><title>Q2 · North: 4</title></path>
+<path d="M155.14,229.5L155.14,143.7Q155.14,140.7,158.14,140.7L172.38,140.7Q175.38,140.7,175.38,143.7L175.38,229.5Z" fill="#935a09"><title>Q2 · South: 3.3</title></path>
+<path d="M177.38,229.5L177.38,149.08Q177.38,146.08,180.38,146.08L194.63,146.08Q197.63,146.08,197.63,149.08L197.63,229.5Z" fill="#6557ba"><title>Q2 · East: 3.1</title></path>
+<path d="M222.8,229.5L222.8,92.58Q222.8,89.58,225.8,89.58L240.04,89.58Q243.04,89.58,243.04,92.58L243.04,229.5Z" fill="#1e9e93"><title>Q3 · North: 5.2</title></path>
+<path d="M245.04,229.5L245.04,97.96Q245.04,94.96,248.04,94.96L262.28,94.96Q265.28,94.96,265.28,97.96L265.28,229.5Z" fill="#935a09"><title>Q3 · South: 5</title></path>
+<path d="M267.28,229.5L267.28,127.56Q267.28,124.56,270.28,124.56L284.52,124.56Q287.52,124.56,287.52,127.56L287.52,229.5Z" fill="#6557ba"><title>Q3 · East: 3.9</title></path>
+<path d="M312.69,229.5L312.69,71.05Q312.69,68.05,315.69,68.05L329.93,68.05Q332.93,68.05,332.93,71.05L332.93,229.5Z" fill="#1e9e93"><title>Q4 · North: 6</title></path>
+<path d="M334.93,229.5L334.93,122.18Q334.93,119.18,337.93,119.18L352.17,119.18Q355.17,119.18,355.17,122.18L355.17,229.5Z" fill="#935a09"><title>Q4 · South: 4.1</title></path>
+<path d="M357.17,229.5L357.17,92.58Q357.17,89.58,360.17,89.58L374.41,89.58Q377.41,89.58,377.41,92.58L377.41,229.5Z" fill="#6557ba"><title>Q4 · East: 5.2</title></path>
+</g>
+<text x="53.13" y="140.08" font-size="11" fill="#475467" text-anchor="middle">3.1</text>
+<text x="75.37" y="110.48" font-size="11" fill="#475467" text-anchor="middle">4.2</text>
+<text x="97.61" y="169.68" font-size="11" fill="#475467" text-anchor="middle">2</text>
+<text x="143.02" y="115.87" font-size="11" fill="#475467" text-anchor="middle">4</text>
+<text x="165.26" y="134.7" font-size="11" fill="#475467" text-anchor="middle">3.3</text>
+<text x="187.5" y="140.08" font-size="11" fill="#475467" text-anchor="middle">3.1</text>
+<text x="232.92" y="83.58" font-size="11" fill="#475467" text-anchor="middle">5.2</text>
+<text x="255.16" y="88.96" font-size="11" fill="#475467" text-anchor="middle">5</text>
+<text x="277.4" y="118.56" font-size="11" fill="#475467" text-anchor="middle">3.9</text>
+<text x="322.81" y="62.05" font-size="11" fill="#475467" text-anchor="middle">6</text>
+<text x="345.05" y="113.18" font-size="11" fill="#475467" text-anchor="middle">4.1</text>
+<text x="367.29" y="83.58" font-size="11" fill="#475467" text-anchor="middle">5.2</text>
+<line x1="30.42" y1="229.5" x2="390" y2="229.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="75.37" y="244.08" font-size="11" fill="#8a94a6" text-anchor="middle">Q1</text>
+<text x="165.26" y="244.08" font-size="11" fill="#8a94a6" text-anchor="middle">Q2</text>
+<text x="255.16" y="244.08" font-size="11" fill="#8a94a6" text-anchor="middle">Q3</text>
+<text x="345.05" y="244.08" font-size="11" fill="#8a94a6" text-anchor="middle">Q4</text>
+<text x="23.42" y="233.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="23.42" y="179.53" font-size="11" fill="#8a94a6" text-anchor="end">2</text>
+<text x="23.42" y="125.72" font-size="11" fill="#8a94a6" text-anchor="end">4</text>
+<text x="23.42" y="71.9" font-size="11" fill="#8a94a6" text-anchor="end">6</text>
+</g>
+<g transform="translate(386 56.65)">
+<text x="16" y="28.5" font-size="12.5" fill="#1a2233" font-weight="600">Generation</text>
+<rect x="18" y="41.55" width="10" height="10" rx="2" fill="#1e9e93"/>
+<text x="32" y="50.57" font-size="11.5" fill="#475467">Solar</text>
+<rect x="80.18" y="41.55" width="10" height="10" rx="2" fill="#935a09"/>
+<text x="94.18" y="50.57" font-size="11.5" fill="#475467">Wind</text>
+<rect x="141.69" y="41.55" width="10" height="10" rx="2" fill="#6557ba"/>
+<text x="155.69" y="50.57" font-size="11.5" fill="#475467">Hydro</text>
+<line x1="40.05" y1="209.7" x2="355.52" y2="209.7" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="167.75" x2="355.52" y2="167.75" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="125.8" x2="355.52" y2="125.8" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="83.85" x2="355.52" y2="83.85" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv339e13c6c2)">
+<path d="M40.05,142.58L49.25,117.29L57.55,98.85L66.74,92.24L75.63,99.26L84.83,118L93.72,143.4L102.91,168.57L112.1,186.71L121,192.9L130.19,185.48L139.08,166.44L148.27,140.94L157.47,115.89L165.77,98.06L174.96,92.28L183.85,100.12L193.05,119.45L201.94,145.04L211.13,169.97L220.32,187.48L229.22,192.84L238.41,184.59L247.3,164.98L256.49,139.3L265.69,114.51L273.99,97.32L283.18,92.38L292.07,101.02L301.27,120.92L310.16,146.68L319.35,171.33L328.54,188.2L337.44,192.72L346.63,183.67L355.52,163.5" fill="none" stroke="#1e9e93" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#1e9e93" stroke="#ffffff" stroke-width="2">
+<circle cx="355.52" cy="163.5" r="4"/>
+</g>
+<path d="M40.05,100.63L49.25,104.04L57.55,113.33L66.74,126.01L75.63,138.62L84.83,147.77L93.72,150.97L102.91,147.35L112.1,137.91L121,125.18L130.19,112.63L139.08,103.64L148.27,100.64L157.47,104.46L165.77,114.05L174.96,126.83L183.85,139.32L193.05,148.16L201.94,150.94L211.13,146.92L220.32,137.18L229.22,124.36L238.41,111.94L247.3,103.26L256.49,100.68L265.69,104.91L273.99,114.78L283.18,127.64L292.07,140.01L301.27,148.52L310.16,150.89L319.35,146.46L328.54,136.44L337.44,123.55L346.63,111.26L355.52,102.91" fill="none" stroke="#935a09" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#935a09" stroke="#ffffff" stroke-width="2">
+<circle cx="355.52" cy="102.91" r="4"/>
+</g>
+<path d="M40.05,160.83L49.25,160.35L57.55,160.76L66.74,160.29L75.63,160.13L84.83,157.78L93.72,159.23L102.91,157.75L112.1,157.98L121,158.7L130.19,158.42L139.08,160.98L148.27,162.95L157.47,161.56L165.77,161.22L174.96,160.02L183.85,159.17L193.05,159.49L201.94,159.84L211.13,159.52L220.32,158.68L229.22,157.56L238.41,158.07L247.3,158.31L256.49,157.08L265.69,158.1L273.99,157.15L283.18,156.62L292.07,156.43L301.27,157.94L310.16,159.61L319.35,159.18L328.54,158.74L337.44,158.07L346.63,158.2L355.52,160.38" fill="none" stroke="#6557ba" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#6557ba" stroke="#ffffff" stroke-width="2">
+<circle cx="355.52" cy="160.38" r="4"/>
+</g>
+</g>
+<text x="363.52" y="177.43" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.75</text>
+<text x="363.52" y="106.76" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">6.36</text>
+<text x="363.52" y="164.23" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.94</text>
+<line x1="40.05" y1="209.7" x2="355.52" y2="209.7" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="38.05" y="224.28" font-size="11" fill="#8a94a6">2025</text>
+<text x="148.27" y="224.28" font-size="11" fill="#8a94a6" text-anchor="middle">2026</text>
+<text x="256.49" y="224.28" font-size="11" fill="#8a94a6" text-anchor="middle">2027</text>
+<text x="33.05" y="213.55" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="33.05" y="171.6" font-size="11" fill="#8a94a6" text-anchor="end">2.5</text>
+<text x="33.05" y="129.65" font-size="11" fill="#8a94a6" text-anchor="end">5.0</text>
+<text x="33.05" y="87.7" font-size="11" fill="#8a94a6" text-anchor="end">7.5</text>
+<text x="355.52" y="250" font-size="11" fill="#8a94a6" text-anchor="end">month</text>
+<text x="16" y="73.95" font-size="11" fill="#8a94a6">twh</text>
+</g>
+</svg>

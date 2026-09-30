@@ -21,7 +21,7 @@ from ._output import Renderable
 from ._color import ramp_lut
 from ._text import format_value, text_width, truncate, wrap
 from .marks import layer_class
-from .marks._base import Domain, DrawContext, LegendItem, Plot
+from .marks._base import texture_for, Domain, DrawContext, LegendItem, Plot
 from .scales import BandScale, LinearScale, LogScale, TimeScale, nice_domain
 
 SIZES = {
@@ -52,6 +52,7 @@ class Axis:
 _CHART_KEYS = {
     "title", "subtitle", "caption", "source", "theme", "width", "height", "size", "legend",
     "palette", "highlight", "number", "background", "notes", "facet", "facet_cols", "share",
+    "texture", "alt",
 }
 _AXIS_KEYS = {f.name for f in fields(Axis)}
 
@@ -67,7 +68,7 @@ class Chart(Renderable):
                             "source": None, "width": "auto", "height": "auto", "size": None,
                             "legend": "auto", "palette": "auto", "highlight": None, "number": None,
                             "background": None, "notes": True, "facet": None, "facet_cols": "auto",
-                            "share": "both", "panel": None}
+                            "share": "both", "panel": None, "texture": False, "alt": None}
         self._x = Axis()
         self._y = Axis()
         self.set(**options)
@@ -248,6 +249,10 @@ class Chart(Renderable):
         """Add a treemap layer. Takes the same options as ``lv.treemap()``."""
         return self._add(layer_class("treemap")(self._d(data), **kw))
 
+    def sunburst(self, data=None, **kw) -> Chart:
+        """Add a sunburst layer. Takes the same options as ``lv.sunburst()``."""
+        return self._add(layer_class("sunburst")(self._d(data), **kw))
+
     def sankey(self, data=None, **kw) -> Chart:
         """Add a sankey layer. Takes the same options as ``lv.sankey()``."""
         return self._add(layer_class("sankey")(self._d(data), **kw))
@@ -259,6 +264,18 @@ class Chart(Renderable):
     def density(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
         """Add a density layer. Takes the same options as ``lv.density()``."""
         return self._add(layer_class("density")(self._d(data), x, y, color, **kw))
+
+    def hexbin(self, data=None, x=None, y=None, **kw) -> Chart:
+        """Add a hexbin layer. Takes the same options as ``lv.hexbin()``."""
+        return self._add(layer_class("hexbin")(self._d(data), x, y, **kw))
+
+    def map(self, data=None, geo=None, **kw) -> Chart:
+        """Add a map layer. Takes the same options as ``lv.map()``."""
+        return self._add(layer_class("map")(self._d(data), geo, **kw))
+
+    def tilemap(self, data=None, **kw) -> Chart:
+        """Add a tile-map layer. Takes the same options as ``lv.tilemap()``."""
+        return self._add(layer_class("tilemap")(self._d(data), **kw))
 
     def timeline(self, data=None, **kw) -> Chart:
         """Add a timeline layer. Takes the same options as ``lv.timeline()``."""
@@ -307,6 +324,49 @@ class Chart(Renderable):
             layer.prepare(self)
         return self._build_prepared(raster_scale)
 
+    # ------------------------------------------------------------------ accessibility
+
+    def _prepare_layers(self) -> None:
+        if not self._layers:
+            if self.data is None:
+                raise ValueError("The chart has no layers.")
+            self.line()
+        for layer in self._layers:
+            layer.prepare(self)
+
+    def _description(self) -> str:
+        from ._describe import describe_layer
+        if self._opts.get("alt"):
+            return str(self._opts["alt"])
+        head = " ".join(str(p).strip().rstrip(".") + "." for p in (self._opts["title"], self._opts["subtitle"]) if p)
+        body = " ".join(describe_layer(layer) for layer in self._layers)
+        return (head + " " + body).strip()
+
+    def describe(self) -> str:
+        """A plain-language description of the chart (alt text): what is plotted, ranges, extremes, trends.
+
+        It is written into every SVG (``<desc>``); set ``alt="..."`` on the chart to use your own text.
+        """
+        if self._opts.get("facet") is not None:
+            from .figure import facet_grid
+            return facet_grid(self).describe()
+        self._prepare_layers()
+        return self._description()
+
+    def table(self):
+        """The data behind the chart as a ``Table`` (``.to_csv()``, ``.to_html()``, ``.to_pandas()``).
+
+        For charts with several layers, the first layer that has tabular data.
+        """
+        from ._describe import table_layer
+        self._prepare_layers()
+        for layer in self._layers:
+            t = table_layer(layer)
+            if t is not None:
+                t.title = str(self._opts["title"] or "")
+                return t
+        return None
+
     def _build_prepared(self, raster_scale: float = 2.0) -> S.Scene:
         """Draw, assuming every layer's ``prepare`` has already run."""
         theme = self.resolved_theme
@@ -315,9 +375,10 @@ class Chart(Renderable):
         self._theme = theme
         W, H = self._resolve_size(theme)
         scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind,
-                        description=self._opts["title"] or "")
+                        title=str(self._opts["title"] or "Chart"))
         keys = list(dict.fromkeys(k for layer in self._layers for k in layer.keys()))
         colors, others = self._assign_colors(theme, keys)
+        self._legend_keys = list(colors)
         highlight = set(map(str, self._opts["highlight"] or []))
         pad = theme.padding
 
@@ -336,9 +397,12 @@ class Chart(Renderable):
                 items.append(LegendItem("__other__", f"Other ({len(others)})", theme.muted, "square"))
         if mode == "top" and items:
             top = self._draw_legend_row(scene, theme, items, pad, top, W - 2 * pad)
-        cbar = next((l.colorbar() for l in self._layers if l.colorbar()), None)
-        if cbar:
-            top = self._draw_colorbar(scene, theme, cbar, pad, top)
+        # the colour bar is drawn after the plot (a layer may settle its value range while drawing,
+        # e.g. hexbin bins at the final pixel size); its space is reserved here
+        cbar_layer = next((l for l in self._layers if l.has_colorbar()), None)
+        cbar_top = top
+        if cbar_layer is not None:
+            top += 24
         bottom = self._draw_footer(scene, theme, W, H - pad)
         if mode == "bottom" and items:
             h = self._legend_height(theme, items, W - 2 * pad)
@@ -359,6 +423,9 @@ class Chart(Renderable):
             for layer in self._layers:
                 layer.draw(ctx)
             scene.extend(ctx.overlay)
+        if cbar_layer is not None:
+            self._draw_colorbar(scene, theme, cbar_layer.colorbar(), pad, cbar_top)
+        scene.description = self._description()      # after drawing: some layers settle their data in draw()
         return scene
 
     # ------------------------------------------------------------------ sizing & colour
@@ -491,8 +558,10 @@ class Chart(Renderable):
         lines: list[tuple[str, str, bool]] = []   # (text, colour, first-line-has-prefix)
         prefix = ""
         if theme.caption_style == "figure":
-            parts = [p for p in (self._opts["title"], self._opts["subtitle"], self._opts["caption"]) if p]
-            text = " ".join(p if p.rstrip().endswith((".", "?", "!", ":")) else p + "." for p in map(str, parts))
+            parts = [str(p).strip() for p in (self._opts["title"], self._opts["subtitle"], self._opts["caption"]) if p]
+            # each part becomes a sentence: "Forecast." + "with 90% interval" -> "Forecast. With 90% interval."
+            parts = [p[:1].upper() + p[1:] if i and p[:1].islower() else p for i, p in enumerate(parts)]
+            text = " ".join(p if p.endswith((".", "?", "!", ":")) else p + "." for p in parts)
             if self._opts["number"] is not None:
                 prefix = f"Figure {self._opts['number']}."
             if text or prefix:
@@ -548,7 +617,8 @@ class Chart(Renderable):
             scene.add(S.Rect(x + 2, cy - 5, 10, 10, fill=theme.background, stroke=theme.ink, stroke_width=0.8,
                              hatch=theme.ink))
         else:
-            scene.add(S.Rect(x + 2, cy - 5, 10, 10, fill=it.color, rx=2))
+            tex = texture_for(self._opts.get("texture"), list(getattr(self, "_legend_keys", [])), it.key, 0, theme)
+            scene.add(S.Rect(x + 2, cy - 5, 10, 10, fill=it.color, rx=2 if not tex else 0, hatch=tex))
 
     def _draw_legend_row(self, scene, theme, items, x0, top, width) -> float:
         rows, size = self._legend_rows(theme, items, width)
@@ -640,7 +710,13 @@ class Chart(Renderable):
             if lo == hi:
                 lo, hi = lo - 43200e9, hi + 43200e9
             return TimeScale((lo, hi), (r0, r1))
-        if dom.nice and user_lo is None and user_hi is None:
+        if (theme.axis_style == "range" and dom.nice and dom.kind == "num" and user_lo is None
+                and user_hi is None and hi > lo):
+            # range frames show the data extent, so round-number padding would only leave empty space
+            p = (hi - lo) * max(dom.pad, 0.04)
+            lo = lo if (zero and lo == 0) else lo - p
+            hi = hi if (zero and hi == 0) else hi + p
+        elif dom.nice and user_lo is None and user_hi is None:
             lo, hi, _ = nice_domain(lo, hi, count)
         else:
             if lo == hi:
@@ -755,6 +831,9 @@ class Chart(Renderable):
             layer.draw(ctx)
         scene.add(S.EndClip())
         scene.extend(ctx.overlay)
+        if ctx.readout:
+            scene.meta.append({"plot": [plot.x, plot.y, plot.w, plot.h], "series": ctx.readout,
+                               "ink": theme.ink, "bg": theme.background})
         self._draw_axes(scene, theme, plot, xs, ys, xv, xl, yv, yl, xd, yd, x_rot, offset)
         self._draw_annotations(ctx, under=False)
         if lx and self._x.visible:
@@ -798,7 +877,7 @@ class Chart(Renderable):
                 py = ys.scalar(v)
                 if box and (abs(py - plot.y) < 1 or abs(py - plot.bottom) < 1):
                     continue
-                zero = v == 0 and theme.axis_style == "none"
+                zero = v == 0 and theme.axis_style == "none" and all(getattr(l, "emphasize_zero", True) for l in self._layers)
                 scene.add(S.Line(plot.x, py, plot.right, py, theme.axis_color if zero else theme.grid_color,
                                  1.5 if zero else theme.grid_width, dash=None if zero else theme.grid_dash))
         if gx and not isinstance(xs, BandScale):
@@ -821,7 +900,9 @@ class Chart(Renderable):
             scene.add(S.Rect(plot.x, plot.y, plot.w, plot.h, stroke=ink, stroke_width=theme.axis_width))
         elif style == "baseline":
             if not isinstance(ys, BandScale):
-                y0 = ys.scalar(0) if ys.kind == "linear" and min(ys.d0, ys.d1) <= 0 <= max(ys.d0, ys.d1) else plot.bottom
+                at_zero = ys.kind == "linear" and min(ys.d0, ys.d1) <= 0 <= max(ys.d0, ys.d1) \
+                    and all(getattr(l, "emphasize_zero", True) for l in self._layers)
+                y0 = ys.scalar(0) if at_zero else plot.bottom
                 scene.add(S.Line(plot.x, y0, plot.right, y0, ink, theme.axis_width))
             elif not isinstance(xs, BandScale):
                 x0 = xs.scalar(0) if xs.kind == "linear" and min(xs.d0, xs.d1) <= 0 <= max(xs.d0, xs.d1) else plot.x
@@ -831,20 +912,23 @@ class Chart(Renderable):
                 a, b = _extent(xd, xs)
                 by = plot.bottom + offset
                 scene.add(S.Line(xs.scalar(a), by, xs.scalar(b), by, ink, theme.axis_width))
-                xv, xl = _range_ticks(xs, xv, xl, a, b)
+                xv, xl = _range_ticks(xs, xv, xl, a, b, True, size, kind)
             if self._y.visible and not isinstance(ys, BandScale):
                 a, b = _extent(yd, ys)
                 ax = plot.x - offset
                 scene.add(S.Line(ax, ys.scalar(a), ax, ys.scalar(b), ink, theme.axis_width))
-                yv, yl = _range_ticks(ys, yv, yl, a, b)
+                yv, yl = _range_ticks(ys, yv, yl, a, b, False, size, kind)
             if isinstance(ys, BandScale) and not isinstance(xs, BandScale):
                 x0 = xs.scalar(0) if min(xs.d0, xs.d1) <= 0 <= max(xs.d0, xs.d1) else plot.x
                 scene.add(S.Line(x0, plot.y, x0, plot.bottom, ink, theme.axis_width))
 
         # --- x ticks & labels
+        # a y label sitting on the bottom edge collides with a centred first x label
+        y_at_bottom = self._y.visible and not isinstance(ys, BandScale) and any(
+            abs(ys.scalar(v) - plot.bottom) < size for v in yv)
         if self._x.visible:
             base = plot.bottom + offset
-            for v, lab in zip(xv, xl):
+            for i, (v, lab) in enumerate(zip(xv, xl)):
                 px = xs.center(v) if isinstance(xs, BandScale) else xs.scalar(v)
                 if not (plot.x - 1 <= px <= plot.right + 1):
                     continue
@@ -857,6 +941,9 @@ class Chart(Renderable):
                 if x_rot:
                     scene.add(S.Text(px + 3, ty, truncate(lab, 120, size, kind), size, lab_col, anchor="end",
                                      rotate=-40, baseline="hanging"))
+                elif (i == 0 and y_at_bottom and not isinstance(xs, BandScale)
+                      and px - text_width(lab, size, kind) / 2 < plot.x - offset - 3):
+                    scene.add(S.Text(px - 2, ty, lab, size, lab_col, anchor="start", baseline="hanging"))
                 else:
                     scene.add(S.Text(px, ty, lab, size, lab_col, anchor="middle", baseline="hanging"))
         # --- y ticks & labels
@@ -884,7 +971,7 @@ class Chart(Renderable):
         if not labels:
             return
         ys = [t[3] for t in labels]
-        gap = size * 1.2
+        gap = size * 1.4
         for i in range(1, len(ys)):             # push apart downward
             ys[i] = max(ys[i], ys[i - 1] + gap)
         overflow = ys[-1] - ctx.plot.bottom
@@ -926,8 +1013,15 @@ class Chart(Renderable):
                 opacity = 0.14 if theme.dark else 0.07
                 scene.add(S.Rect(x0, y0, x1 - x0, y1 - y0, fill=col, opacity=opacity))
                 if a["label"]:
-                    scene.add(S.Text((x0 + x1) / 2, plot.y + size + 2, a["label"], size, theme.ink_secondary,
-                                     anchor="middle", weight=500, halo=theme.background))
+                    # drawn over the data (overlay) so a line crossing the band can't hide it
+                    tw = text_width(str(a["label"]), size, theme.font_kind)
+                    tx, anchor = (x0 + x1) / 2, "middle"
+                    if tx + tw / 2 > plot.right:
+                        tx, anchor = min(x1, plot.right) - 2, "end"
+                    elif tx - tw / 2 < plot.x:
+                        tx, anchor = max(x0, plot.x) + 2, "start"
+                    ctx.overlay.append(S.Text(tx, plot.y + size + 2, a["label"], size, theme.ink_secondary,
+                                              anchor=anchor, weight=500, halo=theme.background))
             elif not under and kind in ("hline", "vline"):
                 col = a["color"] or theme.ink
                 if kind == "hline":
@@ -963,7 +1057,7 @@ class Chart(Renderable):
         h = size + 7
         x0 = x - w if anchor == "end" else x
         y0 = y - h if above else y - h / 2
-        if theme.name == "folio":
+        if theme.family == "folio":
             ctx.scene.add(S.Text(x0 + 6, y0 + h / 2, text, size + 0.5, theme.ink, baseline="middle", italic=True,
                                  halo=theme.background))
             return
@@ -1011,23 +1105,43 @@ def _extent(dom: Domain, scale):
         a, b = dom.lo, dom.hi
     lo, hi = min(scale.d0, scale.d1), max(scale.d0, scale.d1)
     if scale.kind == "log":
+        if a <= 0 and dom.min_positive:        # bars/histograms start at 0; the frame starts at the first value
+            a = dom.min_positive
         a, b = math.log10(max(a, 1e-300)), math.log10(max(b, 1e-300))
         return 10 ** max(lo, a), 10 ** min(hi, b)
     return max(lo, a), min(hi, b)
 
 
-def _range_ticks(scale, vals, labels, a, b):
-    """Range-frame ticks: the data extremes plus the round ticks between them."""
+def _range_ticks(scale, vals, labels, a, b, horizontal=True, size=11.0, kind="sans"):
+    """Range-frame ticks: the data extremes plus the round ticks between them.
+
+    Extremes are rounded to one decimal more than the tick step, and round ticks
+    whose labels would touch an extreme's label are dropped.
+    """
     if isinstance(scale, TimeScale):
         keep = [(v, l) for v, l in zip(vals, labels) if a - 1 <= v <= b + 1]
         return [v for v, _ in keep], [l for _, l in keep]
-    if scale.kind == "log":
-        inner = [(v, l) for v, l in zip(vals, labels) if a * 1.4 < v < b / 1.4]
-        return [a] + [v for v, _ in inner] + [b], [format_value(a)] + [l for _, l in inner] + [format_value(b)]
-    step = getattr(scale, "step", None) or ((b - a) / 4 or 1)
-    inner = [(v, l) for v, l in zip(vals, labels) if a + step * 0.35 < v < b - step * 0.35]
-    out_v = [a] + [v for v, _ in inner] + [b]
-    out_l = [format_value(a)] + [l for _, l in inner] + [format_value(b)]
     if a == b:
         return [a], [format_value(a)]
-    return out_v, out_l
+    if scale.kind == "log":
+        inner = [(v, l) for v, l in zip(vals, labels) if a * 1.4 < v < b / 1.4]
+        la, lb = format_value(a), format_value(b)
+    else:
+        step = getattr(scale, "step", None) or ((b - a) / 4 or 1)
+        digits = max(0, 1 - math.floor(math.log10(abs(step)))) if step else 2
+        la, lb = _round_label(a, digits), _round_label(b, digits)
+        inner = [(v, l) for v, l in zip(vals, labels) if a + step * 0.2 < v < b - step * 0.2]
+
+    def clear(v, l, ev, el):
+        d = abs(scale.scalar(v) - scale.scalar(ev))
+        need = (text_width(l, size, kind) + text_width(el, size, kind)) / 2 + 6 if horizontal else size * 1.6
+        return d >= need
+
+    inner = [(v, l) for v, l in inner if clear(v, l, a, la) and clear(v, l, b, lb)]
+    return [a] + [v for v, _ in inner] + [b], [la] + [l for _, l in inner] + [lb]
+
+
+def _round_label(v, digits):
+    r = round(float(v), digits)
+    txt = format_value(r)
+    return txt
