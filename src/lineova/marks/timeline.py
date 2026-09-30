@@ -107,7 +107,7 @@ class TimelineLayer(Layer):
         xs, ys = ctx.xs, ctx.ys
         band = ys.bandwidth
         size = theme.font_size - 0.5
-        base_col = theme.palette[0] if theme.name != "folio" else theme.ink_secondary
+        base_col = theme.palette[0] if theme.family != "folio" else theme.ink_secondary
         if self.kind == "time" and (self.today is True or is_auto(self.today)):
             now = self._now()
             if min(xs.d0, xs.d1) <= now <= max(xs.d0, xs.d1):

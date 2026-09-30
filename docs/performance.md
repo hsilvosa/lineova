@@ -13,7 +13,11 @@ lineova aims to keep the cost of a chart tied to the size of the picture, not th
 | **Bucketing**: consecutive rows merged into longer periods | `candlestick` | About one candle per 4 px |
 | **Block reduction**: average blocks of cells | `heatmap` larger than the plot | Draws as one image |
 | **FFT repulsion**: particle-mesh force layout | `network` above 1,500 nodes | O(n + grid) per step instead of O(n²) |
-| **Streaming**: `lv.Chunks(source)` | `line`, `scatter`, `histogram` | Data larger than memory |
+| **Streaming**: `lv.Chunks(source)` | `line`, `scatter`, `histogram`, `hexbin`, `bar`, `heatmap`, `box`, `violin` | Data larger than memory |
+| **Streaming group-by**: count/sum/sum of squares/min/max per group, merged chunk by chunk | `bar`, `heatmap` from `Chunks` | Exact means, totals and error bars; memory per group |
+| **Quantile sketch**: per-group 4,096-bin histogram → quantile-preserving sample | `box`, `violin` from `Chunks` | Percentiles exact to 1/4,096 of the range |
+| **Dense hex binning**: nearest of two offset lattices, `bincount` into a grid | `hexbin` | One linear pass, no sort |
+| **Sampled betweenness** (Brandes & Pich) | `Graph.betweenness(k=)`, network sizing above 2,000 nodes | ~10× faster at 3,000 nodes, rank correlation > 0.98 |
 
 ## Measurements
 
@@ -33,6 +37,11 @@ Full pipeline (data → finished SVG) on a 2-core cloud VM:
 | Line from `lv.Chunks`, 20 million rows | 1.1 s | 70 KB |
 | Histogram of 17 million real market bids from 6 files | 0.3 s | 25 KB |
 | Network, 40,000 nodes / 200,000 edges | 3 s | 670 KB |
+| Hexbin, 10 million points | 1.0 s | 140 KB |
+| Bar (mean per category) from `lv.Chunks`, 10 million rows | 0.8 s | 11 KB |
+| Box plots from `lv.Chunks`, 10 million rows in 50 groups | 1.4 s | 330 KB |
+| Point map (density), 10 million points | 1.2 s | 0.9 MB |
+| Heatmap of 12 million real market offers from 6 files (streamed group-by) | 2.3 s | 40 KB |
 
 Reproduce with:
 

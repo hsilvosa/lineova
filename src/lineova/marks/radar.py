@@ -104,13 +104,13 @@ class RadarLayer(Layer):
             ctx.scene.add(S.Text(lx, ly, name, size, theme.ink_secondary, anchor=anchor, baseline=base,
                                  italic=theme.italic_labels))
         # shapes
-        fill = (theme.name != "folio") if is_auto(self.fill) else bool(self.fill)
+        fill = (theme.family != "folio") if is_auto(self.fill) else bool(self.fill)
         names = list(self.series)
         hl = ctx.highlight
         order = sorted(range(len(names)), key=lambda i: 1 if (not hl or names[i] in hl) else 0)
         for i in order:
             name = names[i]
-            color = ctx.color(name, i) if name else theme.accent if theme.name != "ledger" else theme.palette[0]
+            color = ctx.color(name, i) if name else theme.accent if theme.family != "ledger" else theme.palette[0]
             if hl and name not in hl:
                 color = theme.muted
             t = np.clip(np.nan_to_num(self.scaled[i]), 0, 1.05)

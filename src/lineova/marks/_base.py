@@ -84,9 +84,25 @@ class DrawContext:
     end_labels: list = field(default_factory=list)   # (key, label, x_px, y_px) for direct labels
     notes: list = field(default_factory=list)        # small annotations (e.g. fit equation)
     overlay: list = field(default_factory=list)      # ops drawn after the plot clip (outside labels)
+    readout: list = field(default_factory=list)      # series samples for the HTML crosshair readout
 
     def color(self, key: str, i: int = 0) -> str:
         return self.colors.get(key) or self.theme.color(i)
+
+    def texture(self, key: str, i: int = 0) -> Optional[str]:
+        """Texture for a series when ``texture=True`` (a second encoding besides colour), else None."""
+        return texture_for(self.options.get("texture"), list(self.colors), key, i, self.theme)
+
+
+TEXTURES = ("/", "\\", ".", "x", "-", "|")
+
+
+def texture_for(setting, keys, key, i, theme) -> Optional[str]:
+    if not setting:
+        return None
+    kinds = tuple(setting) if isinstance(setting, (list, tuple)) else TEXTURES
+    idx = keys.index(key) if key in keys else i
+    return f"{theme.background}|{kinds[idx % len(kinds)]}"
 
 
 class Layer:
@@ -96,6 +112,7 @@ class Layer:
     legend_shape = "square"
     supports_direct_labels = False
     wants_readout = False
+    emphasize_zero = True      # draw y = 0 as a baseline (off for point clouds)
 
     def prepare(self, chart) -> None:            # resolve data; called once per build
         raise NotImplementedError
@@ -117,6 +134,9 @@ class Layer:
 
     def colorbar(self):                          # (lut_stops, vmin, vmax, label) or None
         return None
+
+    def has_colorbar(self) -> bool:              # cheap check before drawing (colorbar() may need draw())
+        return self.colorbar() is not None
 
     def default_size(self, theme: Theme) -> Optional[tuple[float, float]]:
         return None

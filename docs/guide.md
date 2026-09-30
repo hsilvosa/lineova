@@ -160,7 +160,28 @@ Two values per item: `{item: (before, after)}`, `df` with `y="item", x=("col_a",
 A DataFrame with open/high/low/close columns (detected by name, or `open=`, `high=`, … to set them) and a date column or index. `style="candle" | "ohlc"` (Folio defaults to OHLC). When there are more rows than fit (about 1 per 4 px), consecutive rows are merged into longer periods.
 
 ### treemap
-`treemap({label: value})`, nested `{group: {label: value}}`, or `treemap(df, path=["region", "country"], value="pop")`. Squarified layout. Labels appear where they fit.
+`treemap({label: value})`, nested dicts of any depth (`{region: {country: {city: value}}}`), or `treemap(df, path=["region", "country", "city"], value="pop")`. Squarified layout; each level gets a tinted frame with a header (name and total) where there's room. `depth=2` stops after two levels. Labels appear where they fit.
+
+### sunburst
+The same hierarchies as `treemap`, drawn as rings: the centre shows the total, the first ring the top level, and so on outward. Angles are proportional to value. Labels run along the ring when they fit, across it when the segment is narrow but deep, and move to the tooltip otherwise. `depth=` limits the rings, `center=` changes the text in the middle.
+
+### hexbin
+`hexbin(df, x=, y=)` counts points per hexagon; `value="col", agg="mean" | "sum" | "max" | "min"` aggregates a column instead. `gridsize=` sets hexagons across (default: about one per 15 px). Skewed counts get a log colour scale automatically (`log=False` to turn off), and signed values a diverging one. Hexagons stay regular whatever the panel shape (binning happens at the final pixel size), and `lv.Chunks` works for counts.
+
+### map
+Choropleths and point maps from GeoJSON, with no extra dependency:
+
+```python
+lv.map(unemployment, geo="provinces.geojson", key="name")     # {name: value}, joined ignoring accents/case
+lv.map(df, geo=geojson, id="code", value="rate", key="cod_prov")
+lv.map(geojson, value="population")                            # colour by a feature property
+lv.map(quakes, lon="lon", lat="lat", size="magnitude", color="depth")
+```
+
+Polygons with holes and multi-polygons are supported. Points above 50,000 become a density image. Without a basemap, a graticule with degree labels is drawn. `projection="auto"` uses a latitude-corrected equirectangular projection (right for countries and regions) and Web Mercator for continent-wide spans. Skewed positive values get a log colour scale; otherwise the 99th percentile caps it so a few extremes don't wash out the rest.
+
+### tilemap
+`tilemap({region: value}, layout="es-provinces")`: one equal square per region, placed roughly as on the map, so small regions count as much as large ones. Built in: `"es-provinces"` (52 Spanish provinces by plate code, INE number or name) and `"es-regions"` (19 autonomous communities by ISO code or name). Keys that don't match are reported in a warning. A custom layout is `{code: (column, row, name)}`. `names=True` writes full names on large tiles.
 
 ### sankey
 Rows of `(source, target, value)` or an edge DataFrame. Nodes are placed in stages by their longest path from a source; flows must not form a cycle.
@@ -199,12 +220,32 @@ Panels share one colour per series and one legend (when they show the same serie
 | `line` | extent pass, then per-chunk M4 on a shared 16k-column grid. Chunks must arrive sorted by x. |
 | `scatter` | extent pass, then a 2048 × 2048 count grid, always drawn as density. |
 | `histogram` | range + 1M-value sample pass for the bins, then a counting pass. Counts are exact. |
+| `bar` | one group-by pass: count, sum, mean, min, max or std per category (and per `color=` group). `error="ci"` works from the streamed moments. Exact. |
+| `heatmap` | one group-by pass over `x` × `y` (counts, or `agg` of `value=`). Exact. |
+| `box`, `violin`, `ridgeline` | group ranges, then a 4,096-bin histogram per group, turned into a quantile-preserving sample. Percentiles are exact to 1/4,096 of each group's range; group sizes are the true ones. |
+| `hexbin` | extent pass, then a fine count grid binned into hexagons. |
 
-Memory use is bounded by the chunk size. `np.memmap` arrays don't need `Chunks`: pass them directly.
+Memory use is bounded by the chunk size (plus one small array per group). `np.memmap` arrays don't need `Chunks`: pass them directly. Weekdays and months keep calendar order in streamed categories.
 
 ## Interactive HTML
 
-`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip, the scroll wheel zooms around the pointer, dragging pans, and double-click resets. `chart.show()` outside a notebook opens this page in the browser.
+`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets. Below the chart, a "Description and data" section holds the text description and the data table with a CSV download (`to_html(data=False)` leaves it out). `chart.show()` outside a notebook opens this page in the browser.
+
+## Accessibility
+
+Every chart carries a plain-language description of what it shows: chart type, series, ranges, extremes, the change from start to end, correlation for scatter plots.
+
+```python
+chart.describe()        # "Energy output. Line chart of 3 series (Solar, Wind and Hydro), month from ..."
+chart.table()           # the plotted data: .to_csv("data.csv"), .to_html(), .to_pandas()
+lv.bar(data, alt="Sales rose in every region")   # your own alt text
+lv.bar(data, texture=True)                       # a pattern per series as well as a colour
+```
+
+- SVGs get `<title>` and `<desc>` linked with `aria-labelledby`, so screen readers announce the chart.
+- `texture=True` adds a second encoding (diagonal, back-diagonal, dots, cross, rows, columns) to bars, pies, areas and overlaid histograms, legends included, in SVG and PDF.
+- Folio already encodes series with dashes and markers, and Instrument with a readout; direct labels are used where they fit.
+- Palettes are checked for colour-blind readers (see Themes).
 
 ## Themes
 
@@ -222,7 +263,18 @@ lv.themes.register("thesis", my)
 lv.themes.set_default("thesis")
 ```
 
-Each field is documented in `lineova/themes.py`. You can change fonts, colours, the axis style (`range`, `baseline`, `box`, `none`), grid, ticks, marker styles, bar rounding, legend style, network node and edge style, and padding.
+Each field is documented in `lineova/themes.py`. You can change fonts, colours, the axis style (`range`, `baseline`, `box`, `none`), grid, ticks, marker styles, bar rounding, legend style, network node and edge style, and padding. A derived theme keeps its `family`, so it keeps that style's behaviour (a renamed Folio still draws range frames and OHLC bars).
+
+Dark and light variants: `ledger-dark`, `folio-dark`, `fjord-dark` and `instrument-light`. Series keep the same hue order as in the light themes; lightness is re-stepped for the surface. `lv.themes.dark("ledger")` and `lv.themes.light("instrument")` look them up.
+
+A theme from a brand colour:
+
+```python
+lv.themes.from_brand("#0f766e", base="fjord", name="acme")        # dark=True for a dark version
+print(lv.themes.check_palette("acme"))                           # the checks, PASS/WARN/FAIL
+```
+
+`from_brand` keeps your colour first and generates the rest of the palette so that neighbouring colours stay distinguishable for protan, deutan and tritan vision (ΔE ≥ 8), for normal vision (ΔE ≥ 15), and contrast with the background (≥ 3:1), plus sequential and diverging ramps. If eight colours can't all pass, it returns fewer rather than confusable ones.
 
 ## Output
 
@@ -249,6 +301,7 @@ The PNG backend can be forced with `LINEOVA_PNG_BACKEND=resvg|cairosvg|playwrigh
 
 | Decision | Rule |
 |---|---|
+| Colour scales | Sequential for magnitudes, diverging (symmetric around 0) for signed values, log for skewed positive counts. |
 | Legend | None for one series. Direct labels in Folio (≤ 8 lines). Readout in Instrument (≤ 5 lines). A top row otherwise, or a right-hand column above 8. |
 | Colours | Theme palette in fixed order, so a series keeps its colour. Above 8 series, the rest are muted and grouped as "Other" (with a warning). |
 | Series detection | In a DataFrame, a text column with 2–12 distinct values becomes the series identity. |

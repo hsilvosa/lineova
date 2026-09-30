@@ -24,6 +24,15 @@ Made from two public datasets with [`examples/real_data.py`](https://github.com/
 ![Depth](gallery/real/eq_depth_regions.svg)
 *`lv.ridgeline(df, x="region", y="depth_km", theme="fjord")`*
 
+![Hexbin](gallery/real/eq_hexbin.svg)
+*200,848 events with a known depth, binned into hexagons: `lv.hexbin(eq, x="magnitude", y="depth_km", y_range=(0, 60))`.*
+
+![Tile map](gallery/real/eq_tilemap.svg)
+*Events per province, one equal tile each: `lv.tilemap(counts, layout="es-provinces")`. The colour scale switches to log for skewed counts.*
+
+![Map M4+](gallery/real/eq_map_m4.svg)
+*`lv.map(big, lon="lon", lat="lat", size="magnitude", color="depth_km")`: 4,001 events of magnitude 4 or more.*
+
 ![Largest](gallery/real/eq_largest.svg)
 ![Calendar](gallery/real/eq_calendar.svg)
 ![Regions](gallery/real/eq_regions.svg)
@@ -47,6 +56,9 @@ Made from two public datasets with [`examples/real_data.py`](https://github.com/
 ![Bids](gallery/real/bids_histogram.svg)
 *17 million bids streamed from six files with `lv.Chunks`, in 0.3 s.*
 
+![Offers](gallery/real/bids_offer_heatmap.svg)
+*12 million sell offers aggregated by month and hour in one streamed pass: `lv.heatmap(lv.Chunks(files), x="hour", y="month", value="price")`.*
+
 ![Curves](gallery/real/bids_curves.svg)
 *Supply and demand for one hour, from the raw bids.*
 
@@ -67,6 +79,9 @@ Synthetic examples of every chart type, made by [`examples/gallery.py`](https://
 | ![](gallery/heatmap.svg) | ![](gallery/box.svg) |
 | ![](gallery/facets.svg) | ![](gallery/stats.svg) |
 | ![](gallery/big-scatter.svg) | ![](gallery/calendar.svg) |
+| ![](gallery/hexbin.svg) | ![](gallery/sunburst.svg) |
+| ![](gallery/treemap-deep.svg) | ![](gallery/tilemap.svg) |
+| ![](gallery/textures.svg) | ![](gallery/brand-theme.svg) |
 
 ## The four styles on the same data
 
@@ -76,3 +91,9 @@ Synthetic examples of every chart type, made by [`examples/gallery.py`](https://
 | Bar | ![](gallery/folio-bar.svg) | ![](gallery/ledger-bar.svg) | ![](gallery/instrument-bar.svg) | ![](gallery/fjord-bar.svg) |
 | Scatter | ![](gallery/folio-scatter.svg) | ![](gallery/ledger-scatter.svg) | ![](gallery/instrument-scatter.svg) | ![](gallery/fjord-scatter.svg) |
 | Network | ![](gallery/folio-network.svg) | ![](gallery/ledger-network.svg) | ![](gallery/instrument-network.svg) | ![](gallery/fjord-network.svg) |
+
+## Dark variants
+
+| Ledger dark | Fjord dark | Folio dark |
+|---|---|---|
+| ![](gallery/ledger-dark-line.svg) | ![](gallery/fjord-dark-line.svg) | ![](gallery/folio-dark-line.svg) |

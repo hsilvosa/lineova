@@ -127,15 +127,25 @@ class DensityLayer(ScatterLayer):
         if self.x_kind != "num":
             raise DataError("Density plots need numeric x and y.")
 
-    def x_domain(self):
-        d = super().x_domain()
-        d.pad = 0.08
+    def _robust(self, axis):
+        """Domain from the 0.5–99.5% quantiles: a few far outliers shouldn't shrink the density to a dot."""
+        d = super().x_domain() if axis == "x" else super().y_domain()
+        vals = [g.x if axis == "x" else g.y for g in self.groups]
+        v = np.concatenate([np.asarray(a, float)[sample_indices(len(a), 200_000)] for a in vals if len(a)])
+        v = v[np.isfinite(v)]
+        if len(v) > 50:
+            lo, hi = np.quantile(v, [0.005, 0.995])
+            span = (hi - lo) or 1.0
+            d.lo, d.hi = float(lo - span * 0.12), float(hi + span * 0.12)
+            d.extent = (d.lo, d.hi)
+        d.pad = 0.0
         return d
 
+    def x_domain(self):
+        return self._robust("x")
+
     def y_domain(self):
-        d = super().y_domain()
-        d.pad = 0.08
-        return d
+        return self._robust("y")
 
     def legend_items(self, ctx):
         if len(self.groups) < 2:
@@ -170,8 +180,8 @@ class DensityLayer(ScatterLayer):
                                         else theme.ink_muted, opacity=0.5))
         for i, g in enumerate(self.groups):
             z = self._field(g, xlim, ylim, rows, cols)
-            color = ctx.color(g.name, i) if not single else (theme.accent if theme.name != "ledger" else theme.palette[0])
-            if theme.name == "folio" and single:
+            color = ctx.color(g.name, i) if not single else (theme.accent if theme.family != "ledger" else theme.palette[0])
+            if theme.family == "folio" and single:
                 color = theme.ink
             want_fill = single if is_auto(self.fill) else bool(self.fill)
             if want_fill:

@@ -6,7 +6,7 @@ import numpy as np
 
 from .. import scene as S
 from .._color import mix
-from .._data import (as_float, columns_of, DataError, factorize, get_column, is_auto, is_frame,
+from .._data import (Chunks, as_float, columns_of, DataError, factorize, get_column, is_auto, is_frame,
                      ordered_categories, series_name, to_array, value_kind)
 from .._text import format_value, text_width
 from ._base import Domain, DrawContext, Layer
@@ -49,7 +49,20 @@ class BoxLayer(Layer):
         data, x, y = self.data, self.x, self.y
         groups: list[tuple[str, np.ndarray]] = []
         xl = yl = None
-        if isinstance(data, dict):
+        true_n = None
+        if isinstance(data, Chunks):
+            # two streaming passes; each group becomes a quantile-preserving sample
+            from .. import stream
+            if not isinstance(y, str):
+                raise DataError("Chunked box/violin plots need y='value column' (and x='group column').")
+            res = stream.group_samples(data, y, x if isinstance(x, str) else None)
+            from .bar import natural_order
+            order = {name: i for i, name in enumerate(natural_order([r[0] for r in res]))}
+            res.sort(key=lambda r: order[r[0]])
+            groups = [(name, sample) for name, sample, _, _, _ in res]
+            true_n = [n for _, _, n, _, _ in res]
+            xl, yl = (str(x) if isinstance(x, str) else None), str(y)
+        elif isinstance(data, dict):
             groups = [(str(k), as_float(to_array(v), "num")) for k, v in data.items()]
         elif is_frame(data):
             cols = columns_of(data)
@@ -93,6 +106,11 @@ class BoxLayer(Layer):
                 yl = series_name(src)
         self.groups = groups
         self.stats = [box_stats(v, self.whisker) for _, v in groups]
+        if true_n is not None:            # report the real group sizes, not the sample's
+            for st, n in zip(self.stats, true_n):
+                if st.get("n"):
+                    st["n_out"] = int(round(st["n_out"] * n / st["n"]))
+                    st["n"] = n
         theme = chart.resolved_theme
         longest = max((text_width(n, theme.font_size, theme.font_kind) for n, _ in groups), default=0)
         width = chart._opts["width"] if isinstance(chart._opts["width"], (int, float)) else 700
@@ -147,11 +165,11 @@ class BoxLayer(Layer):
             elif hl:
                 color = theme.accent if name in hl else theme.muted
             else:
-                color = theme.palette[0] if theme.name != "folio" else theme.ink
+                color = theme.palette[0] if theme.family != "folio" else theme.ink
             c = cat.center(cat.index[name])
             a, b = c - bw / 2, c + bw / 2
-            fill = theme.background if theme.name == "folio" else (None if theme.dark else mix(color, theme.background, 0.78))
-            stroke = color if theme.name != "folio" else theme.ink
+            fill = theme.background if theme.family == "folio" else (None if theme.dark else mix(color, theme.background, 0.78))
+            stroke = color if theme.family != "folio" else theme.ink
 
             def seg(v0, p0, v1, p1, width=1.2, col=stroke):
                 if self.horizontal:

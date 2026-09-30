@@ -28,10 +28,19 @@ class Renderable:
         s = scale if scale is not None else (dpi / 96 if dpi else 2.0)
         return png.render(self.build(raster_scale=max(1.0, s)), s)
 
-    def to_html(self, *, title: Optional[str] = None) -> str:
-        """Standalone HTML page: styled hover tooltips, wheel/drag zoom, double-click to reset."""
-        from .backends import html
-        return html.render(self.to_svg(), title=title or getattr(self, "_page_title", None))
+    def to_html(self, *, title: Optional[str] = None, data: bool = True) -> str:
+        """Standalone HTML page: hover tooltips, a crosshair readout on line charts, wheel/drag zoom,
+        double-click to reset, and (``data=True``) the text description and data table with a CSV download."""
+        from .backends import html, svg
+        scene = self.build()
+        tables = []
+        if data:
+            try:
+                tables = self.tables() if hasattr(self, "tables") else [self.table()]
+            except Exception:
+                tables = []
+        return html.render(svg.render(scene), title=title or getattr(self, "_page_title", None) or scene.title,
+                           meta=scene.meta, description=scene.description if data else "", tables=tables)
 
     def save(self, path: str | os.PathLike, *, dpi: Optional[float] = None, scale: Optional[float] = None,
              format: Optional[str] = None) -> str:

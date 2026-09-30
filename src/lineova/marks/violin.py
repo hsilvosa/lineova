@@ -91,7 +91,7 @@ class ViolinLayer(BoxLayer):
             elif hl:
                 color = theme.accent if name in hl else theme.muted
             else:
-                color = theme.palette[0] if theme.name != "folio" else theme.ink_secondary
+                color = theme.palette[0] if theme.family != "folio" else theme.ink_secondary
             c = float(cat.center(cat.index[name]))
             peak = dens.max() if self.scale == "width" else peak_all
             w = dens / (peak or 1.0) * half
@@ -102,9 +102,9 @@ class ViolinLayer(BoxLayer):
             else:
                 xs = np.concatenate((c - w, (c + w)[::-1]))
                 ys = np.concatenate((pv, pv[::-1]))
-            fill = color if theme.name != "folio" else mix(theme.ink, theme.background, 0.82)
-            ctx.scene.add(S.Polyline(xs, ys, fill=fill, fill_opacity=0.35 if theme.name != "folio" else 1.0,
-                                     stroke=color if theme.name != "folio" else theme.ink, stroke_width=1.2,
+            fill = color if theme.family != "folio" else mix(theme.ink, theme.background, 0.82)
+            ctx.scene.add(S.Polyline(xs, ys, fill=fill, fill_opacity=0.35 if theme.family != "folio" else 1.0,
+                                     stroke=color if theme.family != "folio" else theme.ink, stroke_width=1.2,
                                      closed=True))
             if self.inner is False:
                 continue
@@ -174,12 +174,12 @@ class RidgeLayer(BoxLayer):
             elif hl:
                 color = theme.accent if name in hl else theme.muted
             else:
-                color = theme.palette[0] if theme.name != "folio" else theme.ink
+                color = theme.palette[0] if theme.family != "folio" else theme.ink
             px = val(grid)
             py = base - dens / peak * height
             xs = np.concatenate(([px[0]], px, [px[-1]]))
             ys = np.concatenate(([base], py, [base]))
-            fill = mix(color, theme.background, 0.55) if theme.name != "folio" else theme.background
+            fill = mix(color, theme.background, 0.55) if theme.family != "folio" else theme.background
             ctx.scene.add(S.Polyline(xs, ys, fill=fill, stroke=None, closed=True))
             ctx.scene.add(S.Polyline(px, py, stroke=color, stroke_width=1.4))
             ctx.scene.add(S.Line(px[0], base, px[-1], base, theme.axis_color, 0.8))
