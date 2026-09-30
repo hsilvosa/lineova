@@ -14,7 +14,7 @@ from .figure import Grid, grid
 from .graph import Graph, GraphError
 from .themes import Theme
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "Chart", "Axis", "Grid", "grid", "Chunks", "Graph", "GraphError", "DataError", "Theme", "themes", "SIZES",
