@@ -147,11 +147,11 @@ class BoxLayer(Layer):
             elif hl:
                 color = theme.accent if name in hl else theme.muted
             else:
-                color = theme.palette[0] if theme.name != "folio" else theme.ink
+                color = theme.palette[0] if theme.family != "folio" else theme.ink
             c = cat.center(cat.index[name])
             a, b = c - bw / 2, c + bw / 2
-            fill = theme.background if theme.name == "folio" else (None if theme.dark else mix(color, theme.background, 0.78))
-            stroke = color if theme.name != "folio" else theme.ink
+            fill = theme.background if theme.family == "folio" else (None if theme.dark else mix(color, theme.background, 0.78))
+            stroke = color if theme.family != "folio" else theme.ink
 
             def seg(v0, p0, v1, p1, width=1.2, col=stroke):
                 if self.horizontal:

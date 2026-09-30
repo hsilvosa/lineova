@@ -124,17 +124,26 @@ class HexbinLayer(Layer):
         fin = np.isfinite(xs) & np.isfinite(ys)
         if not fin.any():
             raise DataError("No finite x/y points to bin.")
-        # lattice: gridsize hexagons across the x range, shaped for the expected plot size
-        x_lo, x_hi = float(np.min(xs[fin])), float(np.max(xs[fin]))
-        y_lo, y_hi = float(np.min(ys[fin])), float(np.max(ys[fin]))
+        self._xs, self._ys, self._w, self._v = xs, ys, weights, values
+        self.agg_name = agg
+        self._theme = theme
+        self.data_ext = (float(np.min(xs[fin])), float(np.max(xs[fin])), float(np.min(ys[fin])), float(np.max(ys[fin])))
+        # first pass at the expected plot size (the axes need an extent); draw() re-bins at the real size
         W, H = chart._resolve_size(theme)
-        pw, ph = max(W - 2 * theme.padding - 50, 100), max(H - 130, 80)
+        self._bin(max(W - 2 * theme.padding - 60, 100), max(H - 150, 100),
+                  self.data_ext[1] - self.data_ext[0], self.data_ext[3] - self.data_ext[2])
+        x_lo, x_hi, y_lo, y_hi = self.data_ext
+        self.ext = (x_lo - self.dx / 2, x_hi + self.dx / 2, y_lo - self.dy * 2 / 3, y_hi + self.dy * 2 / 3)
+
+    def _bin(self, pw: float, ph: float, x_span: float, y_span: float) -> None:
+        """Bin for a plot ``pw`` x ``ph`` pixels showing ``x_span`` x ``y_span`` data units."""
+        theme, agg = self._theme, self.agg_name
+        xs, ys, weights, values = self._xs, self._ys, self._w, self._v
+        x_lo, _, y_lo, _ = self.data_ext
         g = int(self.gridsize) if not is_auto(self.gridsize) else int(np.clip(pw / 15, 12, 80))
-        xr = (x_hi - x_lo) or 1.0
-        yr = (y_hi - y_lo) or 1.0
-        dx = xr / g
         px_w = pw / g                                   # hexagon width on screen
-        dy = (SQ3 / 2) * px_w * yr / ph                 # row spacing in y units: rows sqrt(3)/2 widths apart
+        dx = px_w * (x_span or 1.0) / pw
+        dy = (SQ3 / 2) * px_w * (y_span or 1.0) / ph   # rows are sqrt(3)/2 widths apart on screen
         col, row, val = hex_bin(xs, ys, x_lo, y_lo, dx, dy, weights, values, agg)
         if agg == "count":
             keep = val >= self.mincount
@@ -143,8 +152,6 @@ class HexbinLayer(Layer):
             keep = (cnt >= self.mincount) & np.isfinite(val)
         self.col, self.row, self.val = col[keep], row[keep], val[keep]
         self.x0, self.y0, self.dx, self.dy = x_lo, y_lo, dx, dy
-        self.agg_name = agg
-        self.ext = (x_lo - dx / 2, x_hi + dx / 2, y_lo - dy * 2 / 3, y_hi + dy * 2 / 3)
         v = self.val[np.isfinite(self.val)]
         self.vmin = float(v.min()) if len(v) else 0.0
         self.vmax = float(v.max()) if len(v) else 1.0
@@ -157,8 +164,6 @@ class HexbinLayer(Layer):
             self.cbar_label = "count"
         else:
             self.cbar_label = f"{agg} of {self.value}" if isinstance(self.value, str) else agg
-        if self.use_log:
-            self.cbar_label += " (log)"
         lo, hi = self.vmin, self.vmax
         self.diverging = self.cmap == "diverging" or (
             is_auto(self.cmap) and agg != "count" and lo < 0 < hi and min(-lo, hi) / max(-lo, hi) > 0.2)
@@ -170,6 +175,8 @@ class HexbinLayer(Layer):
             self.vmin, self.vmax, self.use_log = -m, m, False
         else:
             self.stops = tuple(theme.sequential)
+        if self.use_log:
+            self.cbar_label += " (log)"
 
     # ---------------------------------------------------------------- axes
     def x_domain(self):
@@ -196,6 +203,9 @@ class HexbinLayer(Layer):
 
     def draw(self, ctx: DrawContext) -> None:
         theme = ctx.theme
+        self._theme = theme
+        # re-bin at the final pixel size so hexagons are regular whatever the panel shape
+        self._bin(ctx.plot.w, ctx.plot.h, abs(ctx.xs.d1 - ctx.xs.d0), abs(ctx.ys.d1 - ctx.ys.d0))
         if not len(self.val):
             return
         lut = ramp_lut(self.stops)

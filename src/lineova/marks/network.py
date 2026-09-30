@@ -275,7 +275,7 @@ class NetworkLayer(Layer):
             return
         s, d = self.src, self.dst
         ecol = theme.edge_color
-        hl_col = theme.accent if theme.name != "folio" else theme.ink
+        hl_col = theme.accent if theme.family != "folio" else theme.ink
         if m > VECTOR_EDGES:
             rs = ctx.raster_scale
             plot = ctx.plot

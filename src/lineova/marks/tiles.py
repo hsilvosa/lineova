@@ -78,14 +78,14 @@ class SparklineLayer(Layer):
     def draw(self, ctx: DrawContext) -> None:
         theme = ctx.theme
         plot = ctx.plot
-        color = self.color or (theme.palette[0] if theme.name != "folio" else theme.ink)
+        color = self.color or (theme.palette[0] if theme.family != "folio" else theme.ink)
         size = theme.font_size
         show_val = self.value is True or is_auto(self.value)
         last = self.yv[np.isfinite(self.yv)][-1] if np.isfinite(self.yv).any() else np.nan
         label = format_value(last) if np.isfinite(last) else ""
         lw = text_width(label, size, theme.font_kind, True) + 8 if show_val and label else 0
         end = _spark(ctx, self.xv, self.yv, plot.x, plot.y, plot.w - lw, plot.h, color,
-                     area=(theme.name != "folio") if is_auto(self.area) else bool(self.area), dots=self.dots,
+                     area=(theme.family != "folio") if is_auto(self.area) else bool(self.area), dots=self.dots,
                      band=self.band)
         if end and lw:
             ctx.scene.add(S.Text(plot.right - lw + 6, end[1], label, size, theme.ink, baseline="middle", weight=600))
@@ -168,6 +168,6 @@ class StatLayer(Layer):
             y += size * 1.6
         if self.spark is not None and plot.bottom - y > 14:
             s = as_float(np.asarray(self.spark, dtype=float), "num")
-            color = theme.palette[0] if theme.name != "folio" else theme.ink
+            color = theme.palette[0] if theme.family != "folio" else theme.ink
             _spark(ctx, np.arange(len(s), dtype=float), s, plot.x, y + 2, plot.w, plot.bottom - y - 2, color,
-                   area=theme.name != "folio", dots=False)
+                   area=theme.family != "folio", dots=False)

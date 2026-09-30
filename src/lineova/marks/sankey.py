@@ -146,7 +146,7 @@ class SankeyLayer(Layer):
             dst_y[k] = in_off[t]
             in_off[t] += self.links[k][2] * ky
         node_col = [ctx.color(self.nodes[i], i) for i in range(n)]
-        if theme.name == "folio":
+        if theme.family == "folio":
             node_col = [theme.ink] * n
         hl = ctx.highlight
         for k, (s, t, v) in enumerate(self.links):
@@ -158,9 +158,9 @@ class SankeyLayer(Layer):
             cmds = [("M", xa, ya), ("C", mx, ya, mx, yb, xb, yb), ("L", xb, yb + w),
                     ("C", mx, yb + w, mx, ya + w, xa, ya + w), ("Z",)]
             on = not hl or self.nodes[s] in hl or self.nodes[t] in hl
-            col = node_col[s] if theme.name != "folio" else theme.ink
+            col = node_col[s] if theme.family != "folio" else theme.ink
             ctx.scene.add(S.Path(cmds, fill=col if on else theme.muted,
-                                 fill_opacity=(0.14 if theme.name == "folio" else 0.32) if on else 0.2,
+                                 fill_opacity=(0.14 if theme.family == "folio" else 0.32) if on else 0.2,
                                  title=f"{self.nodes[s]} → {self.nodes[t]}: {self._fmt(v)}"))
         for i in range(n):
             x = colx[self.depth[i]]

@@ -213,7 +213,7 @@ class ScatterLayer(Layer):
             g = self.groups[i]
             color = ctx.color(g.name, i) if not self.continuous else theme.accent
             if g.extra:
-                self._draw_errors(ctx, g, color if theme.name != "folio" else theme.ink_secondary)
+                self._draw_errors(ctx, g, color if theme.family != "folio" else theme.ink_secondary)
             ok = np.isfinite(g.x) & np.isfinite(g.y)
             px, py = ctx.xs(g.x[ok]), ctx.ys(g.y[ok])
             r = self._radius(g, theme)
@@ -253,7 +253,7 @@ class ScatterLayer(Layer):
                 op_ = S.Markers(px, py, "circle", r, fill=fills, stroke=theme.background, stroke_width=1.2,
                                 opacity=op, titles=titles)
             ctx.scene.add(op_)
-            if theme.extra.get("rug", theme.name == "instrument") and n <= 5000:
+            if theme.extra.get("rug", theme.family == "instrument") and n <= 5000:
                 self._rug(ctx, px, py, color)
 
     def _rug(self, ctx, px, py, color):

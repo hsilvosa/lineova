@@ -344,9 +344,12 @@ class Chart(Renderable):
                 items.append(LegendItem("__other__", f"Other ({len(others)})", theme.muted, "square"))
         if mode == "top" and items:
             top = self._draw_legend_row(scene, theme, items, pad, top, W - 2 * pad)
-        cbar = next((l.colorbar() for l in self._layers if l.colorbar()), None)
-        if cbar:
-            top = self._draw_colorbar(scene, theme, cbar, pad, top)
+        # the colour bar is drawn after the plot (a layer may settle its value range while drawing,
+        # e.g. hexbin bins at the final pixel size); its space is reserved here
+        cbar_layer = next((l for l in self._layers if l.colorbar()), None)
+        cbar_top = top
+        if cbar_layer is not None:
+            top += 24
         bottom = self._draw_footer(scene, theme, W, H - pad)
         if mode == "bottom" and items:
             h = self._legend_height(theme, items, W - 2 * pad)
@@ -367,6 +370,8 @@ class Chart(Renderable):
             for layer in self._layers:
                 layer.draw(ctx)
             scene.extend(ctx.overlay)
+        if cbar_layer is not None:
+            self._draw_colorbar(scene, theme, cbar_layer.colorbar(), pad, cbar_top)
         return scene
 
     # ------------------------------------------------------------------ sizing & colour
@@ -994,7 +999,7 @@ class Chart(Renderable):
         h = size + 7
         x0 = x - w if anchor == "end" else x
         y0 = y - h if above else y - h / 2
-        if theme.name == "folio":
+        if theme.family == "folio":
             ctx.scene.add(S.Text(x0 + 6, y0 + h / 2, text, size + 0.5, theme.ink, baseline="middle", italic=True,
                                  halo=theme.background))
             return

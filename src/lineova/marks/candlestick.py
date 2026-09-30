@@ -105,7 +105,7 @@ class CandlestickLayer(Layer):
         step = float(np.median(np.diff(px))) if len(px) > 1 else 10.0
         body = max(1.0, step * 0.68)
         up = c >= o
-        style = ("ohlc" if theme.name == "folio" else "candle") if is_auto(self.style) else self.style
+        style = ("ohlc" if theme.family == "folio" else "candle") if is_auto(self.style) else self.style
         tips = len(x) <= 600
         for sel, color in ((up, theme.positive), (~up, theme.negative)):
             if not sel.any():
@@ -126,7 +126,7 @@ class CandlestickLayer(Layer):
                 top, bot = min(os_[j], cs[j]), max(os_[j], cs[j])
                 title = (f"O {format_value(o[i])}  H {format_value(h[i])}  L {format_value(lo[i])}  "
                          f"C {format_value(c[i])}") if tips else None
-                hollow = theme.name == "folio" and up[i]
+                hollow = theme.family == "folio" and up[i]
                 ctx.scene.add(S.Rect(xs[j] - body / 2, top, body, max(bot - top, 0.8),
                                      fill=theme.background if hollow else color, stroke=color if hollow else None,
                                      stroke_width=1.0, title=title))

@@ -96,7 +96,7 @@ class TreemapLayer(Layer):
             if self.nested:
                 self._group(ctx, node, x, y, w, h, ctx.color(node.name, i))
             else:
-                if theme.name == "folio":
+                if theme.family == "folio":
                     fill = mix(theme.ink, theme.background, 0.25 + 0.6 * i / max(n - 1, 1))
                 else:
                     on = ctx.highlight and node.name in ctx.highlight

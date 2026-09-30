@@ -109,8 +109,8 @@ class LineLayer(Layer):
                     x, lo, _ = minmax_envelope(x, lo, xlim, cols)
                     _, _, hi = minmax_envelope(s.x, hi, xlim, cols)
                 px = xs(x)
-            fill = theme.ink if theme.name == "folio" and len(self.xy.series) == 1 else color
-            op = 0.12 if theme.name == "folio" else theme.area_opacity * (0.9 if theme.dark else 0.8)
+            fill = theme.ink if theme.family == "folio" and len(self.xy.series) == 1 else color
+            op = 0.12 if theme.family == "folio" else theme.area_opacity * (0.9 if theme.dark else 0.8)
             for a, b in finite_runs(px, (lo + hi)):
                 pxs = np.concatenate((px[a:b], px[a:b][::-1]))
                 pys = np.concatenate((ys(hi[a:b]), ys(lo[a:b])[::-1]))

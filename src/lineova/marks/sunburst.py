@@ -60,7 +60,7 @@ class SunburstLayer(Layer):
         ring = (R - hole) / self.levels
         hl = ctx.highlight
         show = self.labels is not False
-        folio = theme.name == "folio"
+        folio = theme.family == "folio"
         tops = self.root.children
 
         def colour(node, i_top):

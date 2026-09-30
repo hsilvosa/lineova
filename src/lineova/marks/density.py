@@ -180,8 +180,8 @@ class DensityLayer(ScatterLayer):
                                         else theme.ink_muted, opacity=0.5))
         for i, g in enumerate(self.groups):
             z = self._field(g, xlim, ylim, rows, cols)
-            color = ctx.color(g.name, i) if not single else (theme.accent if theme.name != "ledger" else theme.palette[0])
-            if theme.name == "folio" and single:
+            color = ctx.color(g.name, i) if not single else (theme.accent if theme.family != "ledger" else theme.palette[0])
+            if theme.family == "folio" and single:
                 color = theme.ink
             want_fill = single if is_auto(self.fill) else bool(self.fill)
             if want_fill:

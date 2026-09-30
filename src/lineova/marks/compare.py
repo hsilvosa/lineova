@@ -170,7 +170,7 @@ class SlopeLayer(Layer):
             c, va, vb = self.cats[i], self.a[i], self.b[i]
             if hl:
                 col = theme.accent if c in hl else theme.muted
-            elif theme.name == "folio":
+            elif theme.family == "folio":
                 col = theme.ink if vb >= va else theme.ink_muted
             else:
                 col = theme.positive if vb >= va else theme.negative

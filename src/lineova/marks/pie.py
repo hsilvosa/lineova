@@ -60,7 +60,7 @@ class PieLayer(Layer):
             values = np.append(values[keep], values[rest].sum())
         self.cats, self.values = cats, values
         self.total = float(values.sum())
-        self.is_donut = (theme.name != "folio") if is_auto(self.donut) else bool(self.donut)
+        self.is_donut = (theme.family != "folio") if is_auto(self.donut) else bool(self.donut)
 
     def keys(self):
         return list(self.cats)
