@@ -1,0 +1,1918 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Clean, fast charts from Python, with good defaults and one dependency.">
+      
+      
+        <meta name="author" content="Hugo Silvosa Cuervo">
+      
+      
+        <link rel="canonical" href="https://hsilvosa.github.io/lineova/api/">
+      
+      
+        <link rel="prev" href="../performance/">
+      
+      
+        <link rel="next" href="../faq/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API reference - lineova</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="lineova" class="md-header__button md-logo" aria-label="lineova" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            lineova
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hsilvosa/lineova" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hsilvosa/lineova
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="lineova" class="md-nav__button md-logo" aria-label="lineova" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    lineova
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hsilvosa/lineova" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hsilvosa/lineova
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Themes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Graphs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chart-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lvline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.area
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvscatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.scatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvhistogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.histogram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvheatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.box
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvviolin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.violin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvridgeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.ridgeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvpie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.pie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvdonut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.donut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvdumbbell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.dumbbell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvslope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.slope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvwaterfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.waterfall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvcandlestick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.candlestick
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvtreemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.treemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvsunburst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.sunburst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvsankey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.sankey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvradar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.radar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvdensity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvhexbin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.hexbin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvtilemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.tilemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvtimeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvcalendar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.calendar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvsparkline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.sparkline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.stat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvnetwork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.network
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chunks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Themes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#chart-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Chart functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lvline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvarea" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.area
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvbar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvscatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.scatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvhistogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.histogram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvheatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.box
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvviolin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.violin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvridgeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.ridgeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvpie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.pie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvdonut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.donut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvdumbbell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.dumbbell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvslope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.slope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvwaterfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.waterfall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvcandlestick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.candlestick
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvtreemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.treemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvsunburst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.sunburst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvsankey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.sankey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvradar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.radar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvdensity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvhexbin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.hexbin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvtilemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.tilemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvtimeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvcalendar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.calendar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvsparkline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.sparkline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvstat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.stat
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lvnetwork" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lv.network
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chunks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chunks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graph
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Themes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Permanent link">&para;</a></h1>
+<p>Generated from the source by <code>tools/build_docs.py</code>. Every chart function returns a <a href="#chart"><code>Chart</code></a>, so the methods below work on its result.</p>
+<h2 id="chart-functions">Chart functions<a class="headerlink" href="#chart-functions" title="Permanent link">&para;</a></h2>
+<h3 id="lvline"><code>lv.line</code><a class="headerlink" href="#lvline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Line chart. <code>data</code> can be a list, array, dict of series, or a DataFrame.</p>
+<p>Useful options: <code>title</code>, <code>subtitle</code>, <code>theme</code> (folio | ledger | instrument | fjord),
+<code>highlight</code>, <code>legend</code>, <code>x_label</code>/<code>y_label</code>, <code>x_range</code>/<code>y_range</code>,
+<code>x_scale="log"</code>, <code>curve="smooth"</code>, <code>markers=True</code>.</p>
+<p>Chart-specific options: <code>width="auto"</code>, <code>curve="auto"</code>, <code>markers="auto"</code>, <code>dash=None</code>, <code>label=None</code>, <code>render="auto"</code>, <code>values="auto"</code>, <code>band=None</code>.</p>
+<h3 id="lvarea"><code>lv.area</code><a class="headerlink" href="#lvarea" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">area</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Area chart. Several series stack; <code>normalize=True</code> shows each as a share of 100%.</p>
+<p>Chart-specific options: <code>stack="auto"</code>, <code>normalize=False</code>.</p>
+<h3 id="lvbar"><code>lv.bar</code><a class="headerlink" href="#lvbar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Bar chart from <code>{label: value}</code>, a Series, raw labels (counted) or a DataFrame.</p>
+<p><code>color=</code> groups bars, <code>stack=True</code> stacks them, <code>normalize=True</code> shows 100% stacks,
+<code>orientation="h"</code> forces horizontal, <code>reference="mean"</code> adds a reference line.</p>
+<p>Chart-specific options: <code>orientation="auto"</code>, <code>stack="auto"</code>, <code>normalize=False</code>, <code>sort="auto"</code>, <code>agg='sum'</code>, <code>top="auto"</code>, <code>labels="auto"</code>, <code>format=None</code>, <code>reference=None</code>, <code>label=None</code>, <code>error=None</code>.</p>
+<h3 id="lvscatter"><code>lv.scatter</code><a class="headerlink" href="#lvscatter" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Scatter/bubble plot. <code>size=</code> maps a column to bubble area, <code>fit=True</code> adds a trend line.</p>
+<p>Above 50,000 points it switches to a density image automatically (<code>render="vector"</code> to force).</p>
+<p>Chart-specific options: <code>size=None</code>, <code>label=None</code>, <code>fit=False</code>, <code>render="auto"</code>, <code>opacity="auto"</code>, <code>marker="auto"</code>, <code>tooltips="auto"</code>, <code>shade="auto"</code>, <code>sizes=(2.5, 16.0)</code>, <code>error=None</code>, <code>x_error=None</code>.</p>
+<h3 id="lvhistogram"><code>lv.histogram</code><a class="headerlink" href="#lvhistogram" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Distribution of values with automatic round-numbered bins. <code>bins=</code> to override.</p>
+<p>Chart-specific options: <code>bins="auto"</code>, <code>range=None</code>, <code>stat='count'</code>, <code>cumulative=False</code>, <code>label=None</code>.</p>
+<h3 id="lvheatmap"><code>lv.heatmap</code><a class="headerlink" href="#lvheatmap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Heatmap from a 2-D array, a DataFrame (index x columns), or long data (x, y, value columns).</p>
+<p>Chart-specific options: <code>cmap="auto"</code>, <code>vmin=None</code>, <code>vmax=None</code>, <code>annotate="auto"</code>, <code>format=None</code>, <code>agg='mean'</code>, <code>label=None</code>.</p>
+<h3 id="lvbox"><code>lv.box</code><a class="headerlink" href="#lvbox" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Box plot per group: <code>{"A": values, "B": values}</code> or <code>box(df, x="group", y="value")</code>.</p>
+<p>Chart-specific options: <code>orientation="auto"</code>, <code>points="auto"</code>, <code>whisker=1.5</code>, <code>mean=False</code>, <code>label=None</code>.</p>
+<h3 id="lvviolin"><code>lv.violin</code><a class="headerlink" href="#lvviolin" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">violin</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Violin plot: the full distribution per group, with quartiles and median inside.</p>
+<p>Chart-specific options: <code>orientation="auto"</code>, <code>inner="auto"</code>, <code>bw=None</code>, <code>scale='width'</code>, <code>label=None</code>.</p>
+<h3 id="lvridgeline"><code>lv.ridgeline</code><a class="headerlink" href="#lvridgeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">ridgeline</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Ridgeline (joyplot): one density curve per group, stacked and slightly overlapping.</p>
+<p>Chart-specific options: <code>overlap=1.6</code>, <code>bw=None</code>, <code>label=None</code>.</p>
+<h3 id="lvpie"><code>lv.pie</code><a class="headerlink" href="#lvpie" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Pie or donut. <code>donut=True/False</code>; more than 6 slices fold into "Other" automatically.</p>
+<p>Chart-specific options: <code>donut="auto"</code>, <code>top="auto"</code>, <code>sort="auto"</code>, <code>labels="auto"</code>, <code>center="auto"</code>, <code>format=None</code>, <code>agg='sum'</code>, <code>start=90.0</code>.</p>
+<h3 id="lvdonut"><code>lv.donut</code><a class="headerlink" href="#lvdonut" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">donut</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Donut chart (a pie with a hole showing the total).</p>
+<p>Chart-specific options: <code>donut="auto"</code>, <code>top="auto"</code>, <code>sort="auto"</code>, <code>labels="auto"</code>, <code>center="auto"</code>, <code>format=None</code>, <code>agg='sum'</code>, <code>start=90.0</code>.</p>
+<h3 id="lvdumbbell"><code>lv.dumbbell</code><a class="headerlink" href="#lvdumbbell" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">dumbbell</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Two values per row joined by a line: <code>dumbbell({"A": (3, 5)})</code> or
+<code>dumbbell(df, y="country", x=("2019", "2024"))</code>.</p>
+<p>Chart-specific options: <code>labels=None</code>, <code>sort="auto"</code>, <code>values="auto"</code>, <code>agg='mean'</code>.</p>
+<h3 id="lvslope"><code>lv.slope</code><a class="headerlink" href="#lvslope" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">slope</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Slope chart: each item's value before and after, as a line between two axes.</p>
+<p>Chart-specific options: <code>labels=None</code>, <code>agg='mean'</code>, <code>format=None</code>.</p>
+<h3 id="lvwaterfall"><code>lv.waterfall</code><a class="headerlink" href="#lvwaterfall" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">waterfall</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Waterfall (bridge): <code>waterfall({"Sales": 120, "Costs": -80}, start=("2023", 400))</code>.</p>
+<p>Chart-specific options: <code>start=None</code>, <code>total="auto"</code>, <code>subtotals=None</code>, <code>labels="auto"</code>, <code>format=None</code>, <code>agg='sum'</code>.</p>
+<h3 id="lvcandlestick"><code>lv.candlestick</code><a class="headerlink" href="#lvcandlestick" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">candlestick</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Candlestick/OHLC from a DataFrame with open/high/low/close columns (names detected).</p>
+<p>Chart-specific options: <code>open=None</code>, <code>high=None</code>, <code>low=None</code>, <code>close=None</code>, <code>style="auto"</code>, <code>max_candles="auto"</code>.</p>
+<h3 id="lvtreemap"><code>lv.treemap</code><a class="headerlink" href="#lvtreemap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">treemap</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Treemap: <code>treemap({"A": 10, "B": 4})</code>, nested dicts of any depth, or
+<code>treemap(df, path=["region", "country", "city"], value="pop")</code>. <code>depth=</code> limits the levels drawn.</p>
+<p>Chart-specific options: <code>path=None</code>, <code>labels="auto"</code>, <code>format=None</code>, <code>agg='sum'</code>, <code>depth=None</code>.</p>
+<h3 id="lvsunburst"><code>lv.sunburst</code><a class="headerlink" href="#lvsunburst" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">sunburst</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Sunburst: a hierarchy as rings, the angle proportional to value.</p>
+<p><code>data</code> is nested dicts of any depth ({"Europe": {"Spain": {"Madrid": 7}}}) or a DataFrame with
+<code>path=["region", "country", "city"]</code> and <code>value=</code>. Options: <code>depth=</code> (rings to show),
+<code>labels=</code>, <code>format=</code>, <code>center=</code> (text in the middle; the total by default).</p>
+<p>Chart-specific options: <code>path=None</code>, <code>depth=None</code>, <code>labels="auto"</code>, <code>format=None</code>, <code>agg='sum'</code>, <code>center="auto"</code>, <code>start=90.0</code>.</p>
+<h3 id="lvsankey"><code>lv.sankey</code><a class="headerlink" href="#lvsankey" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">sankey</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Sankey flow diagram from (source, target, value) rows or an edge DataFrame.</p>
+<p>Chart-specific options: <code>node_width="auto"</code>, <code>padding="auto"</code>, <code>format=None</code>, <code>iterations=24</code>.</p>
+<h3 id="lvradar"><code>lv.radar</code><a class="headerlink" href="#lvradar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">radar</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Radar chart: <code>radar({"Model A": {"Speed": 7, "Cost": 4, ...}, "Model B": {...}})</code>.</p>
+<p>Chart-specific options: <code>axes=None</code>, <code>normalize=False</code>, <code>fill="auto"</code>, <code>range=None</code>.</p>
+<h3 id="lvdensity"><code>lv.density</code><a class="headerlink" href="#lvdensity" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>2-D density with contour lines (for very many points, or to compare groups' shapes).</p>
+<p>Chart-specific options: <code>levels="auto"</code>, <code>fill="auto"</code>, <code>points="auto"</code>, <code>bandwidth=None</code>, <code>grid=160</code>.</p>
+<h3 id="lvhexbin"><code>lv.hexbin</code><a class="headerlink" href="#lvhexbin" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">hexbin</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Hexagonal binning of a point cloud: how many points (or the mean of <code>value</code>) fall in each hexagon.</p>
+<p>Works for millions of rows and for <code>lv.Chunks</code>. Options: <code>value=</code> (column to aggregate),
+<code>agg="count" | "sum" | "mean" | "max" | "min"</code>, <code>gridsize=</code> (hexagons across), <code>mincount=1</code>,
+<code>log="auto"</code> (log colour scale for skewed counts), <code>cmap=</code> (colour stops), <code>label=</code>.</p>
+<p>Chart-specific options: <code>agg="auto"</code>, <code>gridsize="auto"</code>, <code>mincount=1</code>, <code>log="auto"</code>, <code>cmap="auto"</code>, <code>label=None</code>, <code>border="auto"</code>.</p>
+<h3 id="lvmap"><code>lv.map</code><a class="headerlink" href="#lvmap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">geo</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Maps from GeoJSON and/or points.</p>
+<ul>
+<li>Choropleth: <code>lv.map(values, geo="regions.geojson", key="name")</code> where <code>values</code> is
+  {region: number}, a Series, or a DataFrame with <code>id=</code> and <code>value=</code> columns;
+  or <code>lv.map(geojson, value="population")</code> to colour by a feature property.</li>
+<li>Points: <code>lv.map(df, lon="lon", lat="lat", size="mag", color="depth")</code>, optionally over
+  <code>geo=</code> as a basemap. Above 50,000 points they are drawn as a density image.</li>
+</ul>
+<p>Options: <code>projection="auto" | "equirectangular" | "mercator"</code>, <code>cmap=</code>, <code>vmin=</code>, <code>vmax=</code>,
+<code>labels=</code>, <code>format=</code>, <code>graticule=</code>, <code>label=</code> (colour-bar title).</p>
+<p>Chart-specific options: <code>geo=None</code>, <code>key=None</code>, <code>id=None</code>, <code>lon=None</code>, <code>lat=None</code>, <code>size=None</code>, <code>projection="auto"</code>, <code>cmap="auto"</code>, <code>vmin=None</code>, <code>vmax=None</code>, <code>labels="auto"</code>, <code>format=None</code>, <code>graticule="auto"</code>, <code>label=None</code>, <code>missing="auto"</code>.</p>
+<h3 id="lvtilemap"><code>lv.tilemap</code><a class="headerlink" href="#lvtilemap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">tilemap</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Tile map: one equal square per region, placed roughly as on the map, so every region is
+equally visible. <code>lv.tilemap({"M": 6.8, "B": 5.7}, layout="es-provinces")</code>.</p>
+<p>Built-in layouts: <code>"es-provinces"</code> (52 Spanish provinces; plate codes, INE numbers or names)
+and <code>"es-regions"</code> (19 autonomous communities; ISO codes or names). A custom layout is
+<code>{code: (column, row, name)}</code>. Options: <code>id=</code>/<code>value=</code> for DataFrames, <code>cmap=</code>,
+<code>format=</code>, <code>labels=</code>, <code>names=</code> (full names instead of codes on large tiles).</p>
+<p>Chart-specific options: <code>layout='es-provinces'</code>, <code>id=None</code>, <code>cmap="auto"</code>, <code>vmin=None</code>, <code>vmax=None</code>, <code>labels="auto"</code>, <code>format=None</code>, <code>label=None</code>, <code>names="auto"</code>.</p>
+<h3 id="lvtimeline"><code>lv.timeline</code><a class="headerlink" href="#lvtimeline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">timeline</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Timeline / Gantt: rows of (task, start, end); <code>color=</code> groups, <code>progress=</code> shades done work.</p>
+<p>Chart-specific options: <code>task=None</code>, <code>start=None</code>, <code>end=None</code>, <code>progress=None</code>, <code>today="auto"</code>, <code>labels="auto"</code>.</p>
+<h3 id="lvcalendar"><code>lv.calendar</code><a class="headerlink" href="#lvcalendar" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">calendar</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Calendar heatmap: one cell per day, weeks as columns (GitHub-style).</p>
+<p>Chart-specific options: <code>agg='sum'</code>, <code>label=None</code>, <code>format=None</code>.</p>
+<h3 id="lvsparkline"><code>lv.sparkline</code><a class="headerlink" href="#lvsparkline" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">sparkline</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Word-sized line chart with no axes, for tables and dashboards.</p>
+<p>Chart-specific options: <code>area="auto"</code>, <code>dots=True</code>, <code>band=None</code>.</p>
+<h3 id="lvstat"><code>lv.stat</code><a class="headerlink" href="#lvstat" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Stat tile: one big number with a label, an optional change (<code>delta=</code>) and a sparkline (<code>spark=</code>).</p>
+<p>Chart-specific options: <code>label=None</code>, <code>delta=None</code>, <code>previous=None</code>, <code>spark=None</code>, <code>format=None</code>, <code>delta_format="auto"</code>, <code>good='up'</code>, <code>note=None</code>.</p>
+<h3 id="lvnetwork"><code>lv.network</code><a class="headerlink" href="#lvnetwork" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">network</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Chart</span>
+</code></pre></div>
+<p>Node-link diagram from a <code>Graph</code>, an edge list, an edge DataFrame or a networkx graph.</p>
+<p><code>path=("A", "Z")</code> highlights the shortest path; <code>groups="community"</code> colours clusters;
+<code>layout="circular" | "layered" | "force"</code>.</p>
+<p>Chart-specific options: <code>directed=None</code>, <code>layout="auto"</code>, <code>labels="auto"</code>, <code>node_size="auto"</code>, <code>groups="auto"</code>, <code>edge_labels="auto"</code>, <code>path=None</code>, <code>highlight=None</code>, <code>positions=None</code>, <code>seed=0</code>.</p>
+<h2 id="common-options">Common options<a class="headerlink" href="#common-options" title="Permanent link">&para;</a></h2>
+<p>Accepted by every chart function as keywords, and by <code>Chart(...)</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title / subtitle</code></td>
+<td>Heading text (in <code>folio</code>, the figure caption)</td>
+</tr>
+<tr>
+<td><code>caption / number / source</code></td>
+<td>Text under the chart; <code>number</code> gives 'Figure N.'</td>
+</tr>
+<tr>
+<td><code>theme</code></td>
+<td><code>folio</code>, <code>ledger</code>, <code>instrument</code>, <code>fjord</code>, their variants (<code>ledger-dark</code>, <code>folio-dark</code>, <code>fjord-dark</code>, <code>instrument-light</code>), a registered name or a <code>Theme</code></td>
+</tr>
+<tr>
+<td><code>width / height / size</code></td>
+<td>Pixels, or a preset: <code>column</code>, <code>page</code>, <code>wide</code>, <code>slide</code>, <code>square</code>, <code>dashboard</code>, <code>a4</code></td>
+</tr>
+<tr>
+<td><code>legend</code></td>
+<td><code>auto</code>, <code>top</code>, <code>bottom</code>, <code>right</code>, <code>direct</code>, <code>readout</code>, <code>none</code></td>
+</tr>
+<tr>
+<td><code>palette / highlight</code></td>
+<td>Colours for series, and series to emphasise</td>
+</tr>
+<tr>
+<td><code>facet / facet_cols / share</code></td>
+<td>Small multiples by a column</td>
+</tr>
+<tr>
+<td><code>texture</code></td>
+<td><code>True</code> adds a pattern per series (a second encoding besides colour)</td>
+</tr>
+<tr>
+<td><code>alt</code></td>
+<td>Your own text description (otherwise generated; see <code>describe()</code>)</td>
+</tr>
+<tr>
+<td><code>x_* / y_*</code></td>
+<td>Axis options: <code>label</code>, <code>scale</code>, <code>range</code>, <code>ticks</code>, <code>format</code>, <code>zero</code>, <code>grid</code>, <code>reverse</code>, <code>visible</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="chart">Chart<a class="headerlink" href="#chart" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
+</code></pre></div>
+<p>A figure made of one or more layers (line, bar, scatter, ...).</p>
+<ul>
+<li><strong><code>.annotate(x: Any, y: Any, text: str, *, dx: float = 8, dy: float = -8) -&gt; Chart</code></strong>: Text note pointing at a data position.</li>
+<li><strong><code>.area(data=None, x=None, y=None, color="auto", **kw) -&gt; Chart</code></strong>: Add a area layer. Takes the same options as <code>lv.area()</code>.</li>
+<li><strong><code>.band(x: Any = None, y: Any = None, label: Optional[str] = None, *, color: Optional[str] = None) -&gt; Chart</code></strong>: Shade a range, e.g. <code>band(x=("2024-06-01", "2024-08-31"), label="Summer")</code>.</li>
+<li><strong><code>.bar(data=None, x=None, y=None, color=None, **kw) -&gt; Chart</code></strong>: Add a bar layer. Takes the same options as <code>lv.bar()</code>.</li>
+<li><strong><code>.box(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a box layer. Takes the same options as <code>lv.box()</code>.</li>
+<li><strong><code>.calendar(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a calendar layer. Takes the same options as <code>lv.calendar()</code>.</li>
+<li><strong><code>.candlestick(data=None, x=None, **kw) -&gt; Chart</code></strong>: Add a candlestick layer. Takes the same options as <code>lv.candlestick()</code>.</li>
+<li><strong><code>.caption(text: str, number: Optional[int] = None) -&gt; Chart</code></strong>: Paragraph under the chart. <code>number</code> adds 'Figure N.' (Folio).</li>
+<li><strong><code>.density(data=None, x=None, y=None, color=None, **kw) -&gt; Chart</code></strong>: Add a density layer. Takes the same options as <code>lv.density()</code>.</li>
+<li><strong><code>.describe() -&gt; str</code></strong>: A plain-language description of the chart (alt text): what is plotted, ranges, extremes, trends.</li>
+<li><strong><code>.dumbbell(data=None, x=None, y=None, color=None, **kw) -&gt; Chart</code></strong>: Add a dumbbell layer. Takes the same options as <code>lv.dumbbell()</code>.</li>
+<li><strong><code>.facet(column: Any, cols: Any = "auto", share: str = 'both') -&gt; Chart</code></strong>: Small multiples: one panel per value of <code>column</code>, with shared axes and one legend.</li>
+<li><strong><code>.heatmap(data=None, x=None, y=None, value=None, **kw) -&gt; Chart</code></strong>: Add a heatmap layer. Takes the same options as <code>lv.heatmap()</code>.</li>
+<li><strong><code>.hexbin(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a hexbin layer. Takes the same options as <code>lv.hexbin()</code>.</li>
+<li><strong><code>.highlight(*keys) -&gt; Chart</code></strong>: Emphasise some series/categories/nodes; everything else is muted.</li>
+<li><strong><code>.histogram(data=None, x=None, color=None, **kw) -&gt; Chart</code></strong>: Add a histogram layer. Takes the same options as <code>lv.histogram()</code>.</li>
+<li><strong><code>.hline(y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -&gt; Chart</code></strong>: Horizontal reference line, e.g. a target. <code>y="mean"</code> uses the data mean.</li>
+<li><strong><code>.legend(position: Any = "auto") -&gt; Chart</code></strong>: auto | top | bottom | right | direct | readout | none.</li>
+<li><strong><code>.line(data=None, x=None, y=None, color="auto", **kw) -&gt; Chart</code></strong>: Add a line layer. Takes the same options as <code>lv.line()</code>.</li>
+<li><strong><code>.map(data=None, geo=None, **kw) -&gt; Chart</code></strong>: Add a map layer. Takes the same options as <code>lv.map()</code>.</li>
+<li><strong><code>.network(data=None, **kw) -&gt; Chart</code></strong>: Add a network layer. Takes the same options as <code>lv.network()</code>.</li>
+<li><strong><code>.palette(colors: Any) -&gt; Chart</code></strong>: A list of colours, a {series: colour} dict, or one colour for everything.</li>
+<li><strong><code>.pie(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a pie layer. Takes the same options as <code>lv.pie()</code>.</li>
+<li><strong><code>.radar(data=None, **kw) -&gt; Chart</code></strong>: Add a radar layer. Takes the same options as <code>lv.radar()</code>.</li>
+<li><strong><code>.ridgeline(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a ridgeline layer. Takes the same options as <code>lv.ridgeline()</code>.</li>
+<li><strong><code>.sankey(data=None, **kw) -&gt; Chart</code></strong>: Add a sankey layer. Takes the same options as <code>lv.sankey()</code>.</li>
+<li><strong><code>.save(path: str | os.PathLike, *, dpi: Optional[float] = None, scale: Optional[float] = None, format: Optional[str] = None) -&gt; str</code></strong>: Save to .svg, .pdf, .png or .html (format from the extension). Returns the path.</li>
+<li><strong><code>.scatter(data=None, x=None, y=None, color="auto", **kw) -&gt; Chart</code></strong>: Add a scatter layer. Takes the same options as <code>lv.scatter()</code>.</li>
+<li><strong><code>.set(**options) -&gt; Chart</code></strong>: Set any chart option by keyword. Axis options use <code>x_</code>/<code>y_</code> prefixes.</li>
+<li><strong><code>.show() -&gt; None</code></strong>: Display in a notebook, or open an interactive page in the default browser.</li>
+<li><strong><code>.size(width: Any = "auto", height: Any = "auto") -&gt; Chart</code></strong>: <code>size(800, 450)</code>, <code>size(width=600)</code> or a preset: <code>size("column")</code>.</li>
+<li><strong><code>.slope(data=None, x=None, y=None, color=None, **kw) -&gt; Chart</code></strong>: Add a slope layer. Takes the same options as <code>lv.slope()</code>.</li>
+<li><strong><code>.source(text: str) -&gt; Chart</code></strong>: 'Source: …' line under the chart.</li>
+<li><strong><code>.sparkline(data=None, x=None, **kw) -&gt; Chart</code></strong>: Add a sparkline layer. Takes the same options as <code>lv.sparkline()</code>.</li>
+<li><strong><code>.stat(value=None, **kw) -&gt; Chart</code></strong>: Add a stat layer. Takes the same options as <code>lv.stat()</code>.</li>
+<li><strong><code>.subtitle(text: str) -&gt; Chart</code></strong>: Second heading line.</li>
+<li><strong><code>.sunburst(data=None, **kw) -&gt; Chart</code></strong>: Add a sunburst layer. Takes the same options as <code>lv.sunburst()</code>.</li>
+<li><strong><code>.table()</code></strong>: The data behind the chart as a <code>Table</code> (<code>.to_csv()</code>, <code>.to_html()</code>, <code>.to_pandas()</code>).</li>
+<li><strong><code>.theme(theme) -&gt; Chart</code></strong>: Use a theme by name or a <code>Theme</code> object.</li>
+<li><strong><code>.tilemap(data=None, **kw) -&gt; Chart</code></strong>: Add a tile-map layer. Takes the same options as <code>lv.tilemap()</code>.</li>
+<li><strong><code>.timeline(data=None, **kw) -&gt; Chart</code></strong>: Add a timeline layer. Takes the same options as <code>lv.timeline()</code>.</li>
+<li><strong><code>.title(text: str, subtitle: Optional[str] = None) -&gt; Chart</code></strong>: Main heading, optionally with a subtitle.</li>
+<li><strong><code>.to_html(*, title: Optional[str] = None, data: bool = True) -&gt; str</code></strong>: Standalone HTML page: hover tooltips, a crosshair readout on line charts, wheel/drag zoom,</li>
+<li><strong><code>.to_pdf() -&gt; bytes</code></strong>: The chart as a vector PDF (bytes). Text stays selectable.</li>
+<li><strong><code>.to_png(scale: Optional[float] = None, dpi: Optional[float] = None) -&gt; bytes</code></strong>: The chart as PNG bytes. Default 2x; <code>dpi=300</code> for print. Needs a PNG backend (<code>lineova[png]</code>).</li>
+<li><strong><code>.to_svg() -&gt; str</code></strong>: The chart as an SVG document (string).</li>
+<li><strong><code>.treemap(data=None, **kw) -&gt; Chart</code></strong>: Add a treemap layer. Takes the same options as <code>lv.treemap()</code>.</li>
+<li><strong><code>.violin(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a violin layer. Takes the same options as <code>lv.violin()</code>.</li>
+<li><strong><code>.vline(x: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -&gt; Chart</code></strong>: Vertical reference line; <code>x="mean"</code> uses the data mean.</li>
+<li><strong><code>.waterfall(data=None, x=None, y=None, **kw) -&gt; Chart</code></strong>: Add a waterfall layer. Takes the same options as <code>lv.waterfall()</code>.</li>
+<li><strong><code>.x_axis(**options) -&gt; Chart</code></strong>: Set x-axis options (<code>label</code>, <code>scale</code>, <code>range</code>, <code>ticks</code>, <code>format</code>, <code>zero</code>, <code>grid</code>, <code>reverse</code>, <code>visible</code>).</li>
+<li><strong><code>.y_axis(**options) -&gt; Chart</code></strong>: Set y-axis options (same names as <code>x_axis</code>).</li>
+</ul>
+<h2 id="grid">Grid<a class="headerlink" href="#grid" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">charts</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cols</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="s2">"auto"</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Grid</span>
+</code></pre></div>
+<p>Several charts laid out in rows and columns, with one title, one legend and aligned sizes.</p>
+<p><code>share="both" | "x" | "y" | "none"</code> makes panels use the same axis ranges, so they can be compared.</p>
+<ul>
+<li><strong><code>.describe()</code></strong>: Plain-language description of every panel (alt text); written into the SVG <code>&lt;desc&gt;</code>.</li>
+<li><strong><code>.tables()</code></strong>: The data table of each panel (<code>Table</code> objects, <code>None</code> where a panel has none).</li>
+</ul>
+<h2 id="chunks">Chunks<a class="headerlink" href="#chunks" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">Chunks</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</code></pre></div>
+<p>Data read piece by piece, for inputs larger than memory.</p>
+<div class="highlight"><pre><span></span><code>lv.histogram(lv.Chunks(lambda: pq.ParquetFile("big.parquet").iter_batches(columns=["v"])), x="v")
+lv.line(lv.Chunks(my_reader), x="t", y="value")
+</code></pre></div>
+<p><code>source</code> is a function returning a fresh iterable of chunks (it's called
+once per pass; most charts need two passes), or a list of chunks. A chunk
+can be a NumPy array (one column), a dict of arrays, a pandas/polars
+DataFrame or a pyarrow RecordBatch/Table.</p>
+<h2 id="graph">Graph<a class="headerlink" href="#graph" title="Permanent link">&para;</a></h2>
+<p>Directed or undirected weighted graph (adjacency dict of dicts).</p>
+<ul>
+<li><strong><code>.add_edge(u: Node, v: Node, weight: float = 1.0) -&gt; Graph</code></strong>: Add an edge (and its nodes). Adding it again replaces the weight.</li>
+<li><strong><code>.add_edges(edges: Iterable) -&gt; Graph</code></strong>: Add many <code>(u, v)</code> or <code>(u, v, weight)</code> edges.</li>
+<li><strong><code>.add_node(n: Node, **attrs) -&gt; Graph</code></strong>: Add a node (if new) and set attributes, e.g. <code>pos=(x, y)</code> or <code>label=</code>.</li>
+<li><strong><code>.astar(source: Node, target: Node, heuristic=None) -&gt; list</code></strong>: A* shortest path. <code>heuristic(node, target)</code> must never overestimate the remaining cost.</li>
+<li><strong><code>.attrs(n: Node) -&gt; dict</code></strong>: A copy of the node's attributes.</li>
+<li><strong><code>.betweenness(weighted: bool = True, normalized: bool = True, k: Optional[int] = None, seed: int = 0) -&gt; dict</code></strong>: Betweenness centrality (Brandes): how often a node lies on shortest paths.</li>
+<li><strong><code>.bfs(start: Node) -&gt; list</code></strong>: Nodes in breadth-first order from <code>start</code>.</li>
+<li><strong><code>.closeness(weighted: bool = True) -&gt; dict</code></strong>: Closeness centrality (Wasserman–Faust, handles disconnected graphs).</li>
+<li><strong><code>.communities(seed: int = 0, max_iter: int = 30) -&gt; list[set]</code></strong>: Groups of densely connected nodes (label propagation). Fast, approximate.</li>
+<li><strong><code>.connected_components() -&gt; list[set]</code></strong>: Components, largest first (weakly connected for directed graphs).</li>
+<li><strong><code>.degree(n: Optional[Node] = None)</code></strong>: Degree of one node, or a dict for all nodes (in + out for directed graphs).</li>
+<li><strong><code>.dfs(start: Node) -&gt; list</code></strong>: Nodes in depth-first (pre-)order from <code>start</code>. Iterative: no recursion limit.</li>
+<li><strong><code>.distance(source: Node, target: Node, weighted: bool = True) -&gt; float</code></strong>: Cost of the cheapest path, or <code>inf</code> if unreachable.</li>
+<li><strong><code>.draw(**options)</code></strong>: Shortcut for <code>lv.network(graph, **options)</code>.</li>
+<li><strong><code>.has_cycle() -&gt; bool</code></strong>: True if the graph contains a cycle (directed or undirected).</li>
+<li><strong><code>.has_edge(u, v) -&gt; bool</code></strong>: True if there is an edge from <code>u</code> to <code>v</code>.</li>
+<li><strong><code>.is_connected() -&gt; bool</code></strong>: True if every node can reach every other (ignoring direction).</li>
+<li><strong><code>.is_weighted() -&gt; bool</code></strong>: True unless every edge has weight 1.</li>
+<li><strong><code>.max_flow(source: Node, sink: Node) -&gt; tuple[float, dict]</code></strong>: Maximum flow (Edmonds–Karp); edge weights are capacities. Returns (value, {(u, v): flow}).</li>
+<li><strong><code>.minimum_spanning_tree() -&gt; Graph</code></strong>: Kruskal. For a disconnected graph, returns a spanning forest.</li>
+<li><strong><code>.neighbors(n: Node) -&gt; list</code></strong>: Nodes reachable from <code>n</code> in one step.</li>
+<li><strong><code>.number_of_edges() -&gt; int</code></strong>: Number of edges (self-loops count once).</li>
+<li><strong><code>.pagerank(damping: float = 0.85, tol: float = 1e-10, max_iter: int = 200) -&gt; dict</code></strong>: PageRank (power iteration, vectorised). Edge weights are used as link strength.</li>
+<li><strong><code>.path_weight(path: list) -&gt; float</code></strong>: Sum of the edge weights along <code>path</code>.</li>
+<li><strong><code>.predecessors(n: Node) -&gt; list</code></strong>: Nodes with an edge into <code>n</code> (same as neighbors for undirected graphs).</li>
+<li><strong><code>.remove_edge(u: Node, v: Node) -&gt; Graph</code></strong>: Remove one edge. Raises <code>GraphError</code> if it doesn't exist.</li>
+<li><strong><code>.remove_node(n: Node) -&gt; Graph</code></strong>: Remove a node and every edge touching it.</li>
+<li><strong><code>.shortest_path(source: Node, target: Node, weighted: bool = True) -&gt; list</code></strong>: Cheapest path as a list of nodes. Raises <code>GraphError</code> if unreachable.</li>
+<li><strong><code>.shortest_paths(source: Node, weighted: bool = True) -&gt; tuple[dict, dict]</code></strong>: Distances and predecessors from <code>source</code> (Dijkstra, or BFS if unweighted).</li>
+<li><strong><code>.strongly_connected_components() -&gt; list[set]</code></strong>: Tarjan's algorithm (iterative). For undirected graphs this equals connected_components().</li>
+<li><strong><code>.subgraph(nodes: Iterable) -&gt; Graph</code></strong></li>
+<li><strong><code>.to_arrays() -&gt; tuple[list, np.ndarray, np.ndarray, np.ndarray]</code></strong>: (nodes, src_index, dst_index, weights) for fast numeric work.</li>
+<li><strong><code>.topological_sort() -&gt; list</code></strong>: Kahn's algorithm. Raises <code>GraphError</code> on cycles or undirected graphs.</li>
+<li><strong><code>.weight(u, v) -&gt; float</code></strong>: Weight of the edge <code>u</code>–<code>v</code>.</li>
+</ul>
+<h2 id="themes">Themes<a class="headerlink" href="#themes" title="Permanent link">&para;</a></h2>
+<p>Themes: every visual decision the library makes lives here.</p>
+<p>A theme is an immutable dataclass. To customise one, derive a copy::</p>
+<div class="highlight"><pre><span></span><code>import lineova as lv
+brand = lv.themes.get("ledger").replace(accent="#0f766e", palette=("#0f766e", "#b45309"))
+lv.themes.register("brand", brand)
+lv.line(data, theme="brand")
+</code></pre></div>
+<ul>
+<li>
+<p><code>lv.themes.get(name)</code>, <code>lv.themes.register(name, theme)</code>, <code>lv.themes.names()</code>, <code>lv.themes.set_default(name)</code>, <code>lv.themes.dark(name)</code>, <code>lv.themes.light(name)</code></p>
+</li>
+<li>
+<p><code>lv.themes.from_brand(color: str, base: str | Theme = 'ledger', *, dark: bool = False, name: str | None = None, background: str | None = None, n: int = 8) -&gt; Theme</code>: Build a theme around a brand colour.</p>
+</li>
+<li><code>lv.themes.check_palette(colors, background: str = '#ffffff')</code>: Check a categorical palette against a background: lightness band, chroma, colour-blind</li>
+</ul>
+<p><code>Theme</code> fields: <code>name</code>, <code>family</code>, <code>font</code>, <code>font_kind</code>, <code>font_size</code>, <code>title_size</code>, <code>subtitle_size</code>, <code>title_weight</code>, <code>italic_labels</code>, <code>uppercase_header</code>, <code>background</code>, <code>plot_background</code>, <code>ink</code>, <code>ink_secondary</code>, <code>ink_muted</code>, <code>axis_color</code>, <code>grid_color</code>, <code>dark</code>, <code>palette</code>, <code>accent</code>, <code>muted</code>, <code>sequential</code>, <code>diverging</code>, <code>positive</code>, <code>negative</code>, <code>axis_style</code>, <code>grid</code>, <code>grid_dash</code>, <code>grid_width</code>, <code>tick_direction</code>, <code>tick_length</code>, <code>axis_width</code>, <code>line_width</code>, <code>curve</code>, <code>dashes</code>, <code>series_markers</code>, <code>marker_size</code>, <code>scatter_style</code>, <code>end_markers</code>, <code>area_opacity</code>, <code>lead_area</code>, <code>bar_radius</code>, <code>bar_gap</code>, <code>bar_highlight</code>, <code>bar_value_labels</code>, <code>legend</code>, <code>legend_marker</code>, <code>caption_style</code>, <code>node_style</code>, <code>edge_style</code>, <code>edge_color</code>, <code>padding</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Hugo Silvosa Cuervo. MIT license.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

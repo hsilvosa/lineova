@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv0e712886t lv0e712886d">
+<title id="lv0e712886t">Capacity factor by site</title>
+<desc id="lv0e712886d">Capacity factor by site. Bar chart of value for 7 categories. Highest: Alta Ridge (41.2); lowest: Gallan Flats (21.3).</desc>
+<defs><clipPath id="lv0e712886c1"><rect x="47.32" y="19" width="577.68" height="306"/></clipPath><pattern id="lv0e712886h1e2229d" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="#1e2229" stroke-width="1.4"/></pattern></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 2.</tspan><tspan> Capacity factor by site.</tspan></text>
+<g clip-path="url(#lv0e712886c1)">
+<path d="M66.82,31.69L112.06,31.69L112.06,324L66.82,324Z" fill="#c7cbd1"><title>Alta Ridge: 41.2%</title></path>
+<path d="M149.06,55.81L194.3,55.81L194.3,324L149.06,324Z" fill="#c7cbd1"><title>Brennmoor: 37.8%</title></path>
+<path d="M231.3,79.23L276.54,79.23L276.54,324L231.3,324Z" fill="#ffffff" stroke="#1e2229" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"><title>Cala Serena: 34.5%</title></path>
+<path d="M231.3,79.23L276.54,79.23L276.54,324L231.3,324Z" fill="url(#lv0e712886h1e2229d)" pointer-events="none"/>
+<path d="M313.54,104.06L358.78,104.06L358.78,324L313.54,324Z" fill="#c7cbd1"><title>Dunhollow: 31.0%</title></path>
+<path d="M395.78,121.09L441.02,121.09L441.02,324L395.78,324Z" fill="#c7cbd1"><title>Eskvale: 28.6%</title></path>
+<path d="M478.02,147.34L523.26,147.34L523.26,324L478.02,324Z" fill="#c7cbd1"><title>Ferrow Point: 24.9%</title></path>
+<path d="M560.26,172.88L605.5,172.88L605.5,324L560.26,324Z" fill="#c7cbd1"><title>Gallan Flats: 21.3%</title></path>
+</g>
+<text x="89.44" y="25.69" font-size="11" fill="#4b5260" text-anchor="middle">41.2%</text>
+<text x="171.68" y="49.81" font-size="11" fill="#4b5260" text-anchor="middle">37.8%</text>
+<text x="253.92" y="73.23" font-size="11" fill="#1e2229" text-anchor="middle" font-weight="600">34.5%</text>
+<text x="336.16" y="98.06" font-size="11" fill="#4b5260" text-anchor="middle">31.0%</text>
+<text x="418.4" y="115.09" font-size="11" fill="#4b5260" text-anchor="middle">28.6%</text>
+<text x="500.64" y="141.34" font-size="11" fill="#4b5260" text-anchor="middle">24.9%</text>
+<text x="582.88" y="166.88" font-size="11" fill="#4b5260" text-anchor="middle">21.3%</text>
+<line x1="40.32" y1="324" x2="40.32" y2="31.69" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="89.44" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Alta Ridge</text>
+<text x="171.68" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Brennmoor</text>
+<text x="253.92" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Cala Serena</text>
+<text x="336.16" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Dunhollow</text>
+<text x="418.4" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Eskvale</text>
+<text x="500.64" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Ferrow Point</text>
+<text x="582.88" y="350.58" font-size="11" fill="#4b5260" text-anchor="middle">Gallan Flats</text>
+<line x1="36.32" y1="324" x2="40.32" y2="324" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="327.85" font-size="11" fill="#4b5260" text-anchor="end">0</text>
+<line x1="36.32" y1="288.53" x2="40.32" y2="288.53" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="292.38" font-size="11" fill="#4b5260" text-anchor="end">5</text>
+<line x1="36.32" y1="253.05" x2="40.32" y2="253.05" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="256.9" font-size="11" fill="#4b5260" text-anchor="end">10</text>
+<line x1="36.32" y1="217.58" x2="40.32" y2="217.58" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="221.43" font-size="11" fill="#4b5260" text-anchor="end">15</text>
+<line x1="36.32" y1="182.1" x2="40.32" y2="182.1" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="185.95" font-size="11" fill="#4b5260" text-anchor="end">20</text>
+<line x1="36.32" y1="146.63" x2="40.32" y2="146.63" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="150.48" font-size="11" fill="#4b5260" text-anchor="end">25</text>
+<line x1="36.32" y1="111.15" x2="40.32" y2="111.15" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="115" font-size="11" fill="#4b5260" text-anchor="end">30</text>
+<line x1="36.32" y1="75.68" x2="40.32" y2="75.68" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="79.53" font-size="11" fill="#4b5260" text-anchor="end">35</text>
+<line x1="36.32" y1="31.69" x2="40.32" y2="31.69" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="29.32" y="35.54" font-size="11" fill="#4b5260" text-anchor="end">41.2</text>
+<line x1="48.32" y1="101.73" x2="624" y2="101.73" fill="none" stroke="#1e2229" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="556.77" y="92.9" font-size="10.5" fill="#1e2229" font-style="italic" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Mean 31.3%</text>
+</svg>

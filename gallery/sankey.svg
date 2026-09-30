@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lve9c31f5ft lve9c31f5fd">
+<title id="lve9c31f5ft">Energy flows</title>
+<desc id="lve9c31f5fd">Energy flows. TWh. Sankey chart of Solar, Grid, Wind, Hydro, Gas and 4 more.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Energy flows</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">TWh</text>
+<path d="M28,267.54C175.02,267.54,175.02,240.16,322.05,240.16L322.05,291.62C175.02,291.62,175.02,319,28,319Z" fill="#2f5bd3" fill-opacity="0.32"><title>Solar → Grid: 120</title></path>
+<path d="M28,172.53C175.02,172.53,175.02,171.54,322.05,171.54L322.05,240.16C175.02,240.16,175.02,241.14,28,241.14Z" fill="#e0913a" fill-opacity="0.32"><title>Wind → Grid: 160</title></path>
+<path d="M28,345.4C175.02,345.4,175.02,291.62,322.05,291.62L322.05,330.21C175.02,330.21,175.02,384,28,384Z" fill="#8a6bd1" fill-opacity="0.32"><title>Hydro → Grid: 90</title></path>
+<path d="M28,86.09C175.02,86.09,175.02,111.51,322.05,111.51L322.05,171.54C175.02,171.54,175.02,146.13,28,146.13Z" fill="#d0527a" fill-opacity="0.32"><title>Gas → Grid: 140</title></path>
+<path d="M334.05,197.27C481.07,197.27,481.07,198.26,628.1,198.26L628.1,288.32C481.07,288.32,481.07,287.33,334.05,287.33Z" fill="#17a38b" fill-opacity="0.32"><title>Grid → Homes: 210</title></path>
+<path d="M334.05,111.51C481.07,111.51,481.07,86.09,628.1,86.09L628.1,171.86C481.07,171.86,481.07,197.27,334.05,197.27Z" fill="#17a38b" fill-opacity="0.32"><title>Grid → Industry: 200</title></path>
+<path d="M334.05,287.33C481.07,287.33,481.07,314.72,628.1,314.72L628.1,340.45C481.07,340.45,481.07,313.06,334.05,313.06Z" fill="#17a38b" fill-opacity="0.32"><title>Grid → Transport: 60</title></path>
+<path d="M334.05,313.06C481.07,313.06,481.07,366.85,628.1,366.85L628.1,384C481.07,384,481.07,330.21,334.05,330.21Z" fill="#17a38b" fill-opacity="0.32"><title>Grid → Losses: 40</title></path>
+<path d="M28,64.65C328.05,64.65,328.05,64.65,628.1,64.65L628.1,86.09C328.05,86.09,328.05,86.09,28,86.09Z" fill="#d0527a" fill-opacity="0.32"><title>Gas → Industry: 50</title></path>
+<rect x="16" y="267.54" width="12" height="51.46" rx="2" fill="#2f5bd3"><title>Solar: 120</title></rect>
+<text x="34" y="292.17" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Solar</text>
+<text x="34" y="305.2" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">120</text>
+<rect x="322.05" y="111.51" width="12" height="218.71" rx="2" fill="#17a38b"><title>Grid: 510</title></rect>
+<text x="340.05" y="219.76" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Grid</text>
+<text x="340.05" y="232.79" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">510</text>
+<rect x="16" y="172.53" width="12" height="68.61" rx="2" fill="#e0913a"><title>Wind: 160</title></rect>
+<text x="34" y="205.74" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Wind</text>
+<text x="34" y="218.76" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">160</text>
+<rect x="16" y="345.4" width="12" height="38.6" rx="2" fill="#8a6bd1"><title>Hydro: 90</title></rect>
+<text x="34" y="363.6" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Hydro</text>
+<text x="34" y="376.63" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">90</text>
+<rect x="16" y="64.65" width="12" height="81.48" rx="2" fill="#d0527a"><title>Gas: 190</title></rect>
+<text x="34" y="104.29" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Gas</text>
+<text x="34" y="117.31" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">190</text>
+<rect x="628.1" y="198.26" width="12" height="90.06" rx="2" fill="#5b8c2a"><title>Homes: 210</title></rect>
+<text x="646.1" y="242.19" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Homes</text>
+<text x="646.1" y="255.21" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">210</text>
+<rect x="628.1" y="64.65" width="12" height="107.21" rx="2" fill="#2b9bc9"><title>Industry: 250</title></rect>
+<text x="646.1" y="117.15" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Industry</text>
+<text x="646.1" y="130.18" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">250</text>
+<rect x="628.1" y="314.72" width="12" height="25.73" rx="2" fill="#c9d0dc"><title>Transport: 60</title></rect>
+<text x="646.1" y="326.48" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Transport</text>
+<text x="646.1" y="339.51" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">60</text>
+<rect x="628.1" y="366.85" width="12" height="17.15" rx="2" fill="#c9d0dc"><title>Losses: 40</title></rect>
+<text x="646.1" y="379.27" font-size="11" fill="#1a2233" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke" xml:space="preserve"><tspan font-weight="600">Losses</tspan><tspan fill="#475467">  40</tspan></text>
+</svg>

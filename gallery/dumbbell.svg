@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img" aria-labelledby="lv1066d98et lv1066d98ed">
+<title id="lv1066d98et">Renewables share of electricity</title>
+<desc id="lv1066d98ed">Renewables share of electricity. %. Dumbbell chart of 2015 and 2024.</desc>
+<defs><clipPath id="lv1066d98ec1"><rect x="71" y="75.15" width="548" height="288.85"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#0f1a24"/>
+<text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">RENEWABLES SHARE OF ELECTRICITY</text>
+<text x="624" y="23.9" font-size="10" fill="#62788a" text-anchor="end" letter-spacing="0.4">%</text>
+<line x1="0" y1="33.9" x2="640" y2="33.9" fill="none" stroke="#3a5063" stroke-width="1"/>
+<rect x="18" y="50.65" width="10" height="10" rx="5" fill="#2a9cc4"/>
+<text x="32" y="59.32" font-size="10.5" fill="#9db0bf">2015</text>
+<rect x="77.2" y="50.65" width="10" height="10" rx="5" fill="#c08418"/>
+<text x="91.2" y="59.32" font-size="10.5" fill="#9db0bf">2024</text>
+<line x1="163" y1="76.15" x2="163" y2="363" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="254" y1="76.15" x2="254" y2="363" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="345" y1="76.15" x2="345" y2="363" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="436" y1="76.15" x2="436" y2="363" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="527" y1="76.15" x2="527" y2="363" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<g clip-path="url(#lv1066d98ec1)">
+<line x1="454.2" y1="104.83" x2="563.4" y2="104.83" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="454.2" cy="104.83" r="5.5" fill="#2a9cc4"><title>Portugal · 2015: 52</title></circle>
+<circle cx="563.4" cy="104.83" r="5.5" fill="#c08418"><title>Portugal · 2024: 64</title></circle>
+</g>
+<text x="445.2" y="108.16" font-size="9.5" fill="#9db0bf" text-anchor="end">52</text>
+<text x="572.4" y="108.16" font-size="9.5" fill="#d5e1ea" font-weight="600">64</text>
+<line x1="317.7" y1="162.2" x2="499.7" y2="162.2" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="317.7" cy="162.2" r="5.5" fill="#2a9cc4"><title>Spain · 2015: 37</title></circle>
+<circle cx="499.7" cy="162.2" r="5.5" fill="#c08418"><title>Spain · 2024: 57</title></circle>
+</g>
+<text x="308.7" y="165.53" font-size="9.5" fill="#9db0bf" text-anchor="end">37</text>
+<text x="508.7" y="165.53" font-size="9.5" fill="#d5e1ea" font-weight="600">57</text>
+<line x1="263.1" y1="219.57" x2="454.2" y2="219.57" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="263.1" cy="219.57" r="5.5" fill="#2a9cc4"><title>Germany · 2015: 31</title></circle>
+<circle cx="454.2" cy="219.57" r="5.5" fill="#c08418"><title>Germany · 2024: 52</title></circle>
+</g>
+<text x="254.1" y="222.9" font-size="9.5" fill="#9db0bf" text-anchor="end">31</text>
+<text x="463.2" y="222.9" font-size="9.5" fill="#d5e1ea" font-weight="600">52</text>
+<line x1="281.3" y1="276.94" x2="354.1" y2="276.94" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="281.3" cy="276.94" r="5.5" fill="#2a9cc4"><title>Italy · 2015: 33</title></circle>
+<circle cx="354.1" cy="276.94" r="5.5" fill="#c08418"><title>Italy · 2024: 41</title></circle>
+</g>
+<text x="272.3" y="280.27" font-size="9.5" fill="#9db0bf" text-anchor="end">33</text>
+<text x="363.1" y="280.27" font-size="9.5" fill="#d5e1ea" font-weight="600">41</text>
+<line x1="153.9" y1="334.31" x2="235.8" y2="334.31" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="153.9" cy="334.31" r="5.5" fill="#2a9cc4"><title>France · 2015: 19</title></circle>
+<circle cx="235.8" cy="334.31" r="5.5" fill="#c08418"><title>France · 2024: 28</title></circle>
+</g>
+<text x="144.9" y="337.64" font-size="9.5" fill="#9db0bf" text-anchor="end">19</text>
+<text x="244.8" y="337.64" font-size="9.5" fill="#d5e1ea" font-weight="600">28</text>
+</g>
+<rect x="72" y="76.15" width="546" height="286.85" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="72" y1="363" x2="72" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="72" y1="76.15" x2="72" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="72" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">10</text>
+<line x1="163" y1="363" x2="163" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="163" y1="76.15" x2="163" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="163" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">20</text>
+<line x1="254" y1="363" x2="254" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="254" y1="76.15" x2="254" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="254" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">30</text>
+<line x1="345" y1="363" x2="345" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="345" y1="76.15" x2="345" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="345" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">40</text>
+<line x1="436" y1="363" x2="436" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="436" y1="76.15" x2="436" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="436" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">50</text>
+<line x1="527" y1="363" x2="527" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="527" y1="76.15" x2="527" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="527" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">60</text>
+<line x1="618" y1="363" x2="618" y2="358" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="618" y1="76.15" x2="618" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="618" y="376.8" font-size="10" fill="#62788a" text-anchor="middle">70</text>
+<text x="65" y="337.81" font-size="10" fill="#62788a" text-anchor="end">France</text>
+<text x="65" y="280.44" font-size="10" fill="#62788a" text-anchor="end">Italy</text>
+<text x="65" y="223.07" font-size="10" fill="#62788a" text-anchor="end">Germany</text>
+<text x="65" y="165.7" font-size="10" fill="#62788a" text-anchor="end">Spain</text>
+<text x="65" y="108.33" font-size="10" fill="#62788a" text-anchor="end">Portugal</text>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lvbddae98bt lvbddae98bd">
+<title id="lvbddae98bt">Symptom score by treatment arm</title>
+<desc id="lvbddae98bd">Symptom score by treatment arm. Line chart of 3 series (High dose, Low dose and Placebo), day from 0 to 28. High dose: from 30.7 to 49.3, last 30.7, down 38% from the start. Low dose: from 38.7 to 51, last 38.7, down 23% from the start. Placebo: from 48.9 to 51.3, last 50.6, up 2% from the start.</desc>
+<defs><clipPath id="lvbddae98bc1"><rect x="64.92" y="19" width="493.49" height="286.2"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="384" font-size="12.5" fill="#4b5260" xml:space="preserve"><tspan font-weight="700" fill="#1e2229">Figure 2.</tspan><tspan> Symptom score by treatment arm. Mean and 95% confidence interval, n = 40 per arm.</tspan></text>
+<g clip-path="url(#lvbddae98bc1)">
+<path d="M65.92,50.73L101.03,61.69L136.13,65.5L171.24,90.59L206.35,102.54L241.45,132.46L276.56,141.79L311.67,168.67L346.77,166.71L381.88,187.68L416.98,182.32L452.09,214.53L487.2,232.33L522.3,239.81L557.41,248.67L557.41,293.67L522.3,282.35L487.2,272.41L452.09,258.7L416.98,223.61L381.88,225.5L346.77,206.36L311.67,205L276.56,190.47L241.45,168.65L206.35,138.67L171.24,139.86L136.13,111.43L101.03,109.31L65.92,89.07Z" fill="#1e2229" fill-opacity="0.12"/>
+<path d="M65.92,38.42L101.03,30.84L136.13,53.31L171.24,61.76L206.35,94.88L241.45,77.93L276.56,88.18L311.67,104.32L346.77,114.27L381.88,119.14L416.98,110.95L452.09,124.41L487.2,118.51L522.3,143.15L557.41,167.6L557.41,202.25L522.3,176.03L487.2,160.04L452.09,162.86L416.98,147.9L381.88,154.1L346.77,149.81L311.67,133.1L276.56,133.71L241.45,121.62L206.35,143.15L171.24,113.16L136.13,97.11L101.03,71.84L65.92,75.59Z" fill="#56647a" fill-opacity="0.12"/>
+<path d="M65.92,46.39L101.03,50.22L136.13,47.11L171.24,38.26L206.35,39.64L241.45,44.95L276.56,43.74L311.67,45.64L346.77,43.5L381.88,52.31L416.98,53.28L452.09,41.28L487.2,30.53L522.3,47.82L557.41,37.93L557.41,74.25L522.3,89.12L487.2,64.45L452.09,80.31L416.98,88.85L381.88,96.2L346.77,86.09L311.67,87.26L276.56,77.56L241.45,81.1L206.35,83.26L171.24,82.26L136.13,83.53L101.03,84.83L65.92,92.35Z" fill="#a3263b" fill-opacity="0.12"/>
+<path d="M65.92,69.9L101.03,85.5L136.13,88.46L171.24,115.23L206.35,120.61L241.45,150.56L276.56,166.13L311.67,186.83L346.77,186.53L381.88,206.59L416.98,202.97L452.09,236.62L487.2,252.37L522.3,261.08L557.41,271.17" fill="none" stroke="#1e2229" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#ffffff" stroke="#1e2229" stroke-width="1.12">
+<circle cx="65.92" cy="69.9" r="3"/>
+<circle cx="101.03" cy="85.5" r="3"/>
+<circle cx="136.13" cy="88.46" r="3"/>
+<circle cx="171.24" cy="115.23" r="3"/>
+<circle cx="206.35" cy="120.61" r="3"/>
+<circle cx="241.45" cy="150.56" r="3"/>
+<circle cx="276.56" cy="166.13" r="3"/>
+<circle cx="311.67" cy="186.83" r="3"/>
+<circle cx="346.77" cy="186.53" r="3"/>
+<circle cx="381.88" cy="206.59" r="3"/>
+<circle cx="416.98" cy="202.97" r="3"/>
+<circle cx="452.09" cy="236.62" r="3"/>
+<circle cx="487.2" cy="252.37" r="3"/>
+<circle cx="522.3" cy="261.08" r="3"/>
+<circle cx="557.41" cy="271.17" r="3"/>
+</g>
+<path d="M65.92,57.01L101.03,51.34L136.13,75.21L171.24,87.46L206.35,119.02L241.45,99.78L276.56,110.94L311.67,118.71L346.77,132.04L381.88,136.62L416.98,129.42L452.09,143.63L487.2,139.27L522.3,159.59L557.41,184.93" fill="none" stroke="#56647a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 3"/>
+<g fill="#ffffff" stroke="#56647a" stroke-width="1.12">
+<path d="M62.92,54.01h6v6h-6Z"/>
+<path d="M98.03,48.34h6v6h-6Z"/>
+<path d="M133.13,72.21h6v6h-6Z"/>
+<path d="M168.24,84.46h6v6h-6Z"/>
+<path d="M203.35,116.02h6v6h-6Z"/>
+<path d="M238.45,96.78h6v6h-6Z"/>
+<path d="M273.56,107.94h6v6h-6Z"/>
+<path d="M308.67,115.71h6v6h-6Z"/>
+<path d="M343.77,129.04h6v6h-6Z"/>
+<path d="M378.88,133.62h6v6h-6Z"/>
+<path d="M413.98,126.42h6v6h-6Z"/>
+<path d="M449.09,140.63h6v6h-6Z"/>
+<path d="M484.2,136.27h6v6h-6Z"/>
+<path d="M519.3,156.59h6v6h-6Z"/>
+<path d="M554.41,181.93h6v6h-6Z"/>
+</g>
+<path d="M65.92,69.37L101.03,67.52L136.13,65.32L171.24,60.26L206.35,61.45L241.45,63.03L276.56,60.65L311.67,66.45L346.77,64.79L381.88,74.26L416.98,71.07L452.09,60.79L487.2,47.49L522.3,68.47L557.41,56.09" fill="none" stroke="#a3263b" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.5 3"/>
+<g fill="#ffffff" stroke="#a3263b" stroke-width="1.12">
+<path d="M65.92,65.77L69.22,71.77L62.62,71.77Z"/>
+<path d="M101.03,63.92L104.33,69.92L97.73,69.92Z"/>
+<path d="M136.13,61.72L139.43,67.72L132.83,67.72Z"/>
+<path d="M171.24,56.66L174.54,62.66L167.94,62.66Z"/>
+<path d="M206.35,57.85L209.65,63.85L203.05,63.85Z"/>
+<path d="M241.45,59.43L244.75,65.43L238.15,65.43Z"/>
+<path d="M276.56,57.05L279.86,63.05L273.26,63.05Z"/>
+<path d="M311.67,62.85L314.97,68.85L308.37,68.85Z"/>
+<path d="M346.77,61.19L350.07,67.19L343.47,67.19Z"/>
+<path d="M381.88,70.66L385.18,76.66L378.58,76.66Z"/>
+<path d="M416.98,67.47L420.28,73.47L413.68,73.47Z"/>
+<path d="M452.09,57.19L455.39,63.19L448.79,63.19Z"/>
+<path d="M487.2,43.89L490.5,49.89L483.9,49.89Z"/>
+<path d="M522.3,64.87L525.6,70.87L519,70.87Z"/>
+<path d="M557.41,52.49L560.71,58.49L554.11,58.49Z"/>
+</g>
+</g>
+<line x1="65.92" y1="312.2" x2="557.41" y2="312.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<line x1="57.92" y1="293.67" x2="57.92" y2="30.53" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<line x1="65.92" y1="312.2" x2="65.92" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="65.92" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">0</text>
+<line x1="153.69" y1="312.2" x2="153.69" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="153.69" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">5</text>
+<line x1="241.45" y1="312.2" x2="241.45" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="241.45" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">10</text>
+<line x1="329.22" y1="312.2" x2="329.22" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="329.22" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">15</text>
+<line x1="416.98" y1="312.2" x2="416.98" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="416.98" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">20</text>
+<line x1="504.75" y1="312.2" x2="504.75" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="504.75" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">25</text>
+<line x1="557.41" y1="312.2" x2="557.41" y2="316.2" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="557.41" y="330.78" font-size="11" fill="#4b5260" text-anchor="middle">28</text>
+<line x1="53.92" y1="293.67" x2="57.92" y2="293.67" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="46.92" y="297.52" font-size="11" fill="#4b5260" text-anchor="end">28.6</text>
+<line x1="53.92" y1="224.47" x2="57.92" y2="224.47" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="46.92" y="228.32" font-size="11" fill="#4b5260" text-anchor="end">35</text>
+<line x1="53.92" y1="170.35" x2="57.92" y2="170.35" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="46.92" y="174.2" font-size="11" fill="#4b5260" text-anchor="end">40</text>
+<line x1="53.92" y1="116.22" x2="57.92" y2="116.22" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="46.92" y="120.07" font-size="11" fill="#4b5260" text-anchor="end">45</text>
+<line x1="53.92" y1="62.1" x2="57.92" y2="62.1" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="46.92" y="65.95" font-size="11" fill="#4b5260" text-anchor="end">50</text>
+<line x1="53.92" y1="30.53" x2="57.92" y2="30.53" fill="none" stroke="#1e2229" stroke-width="0.9"/>
+<text x="46.92" y="34.38" font-size="11" fill="#4b5260" text-anchor="end">52.9</text>
+<text x="311.67" y="356.5" font-size="11" fill="#4b5260" text-anchor="middle" font-style="italic">Day</text>
+<text x="22.6" y="165.95" font-size="11" fill="#4b5260" text-anchor="middle" font-style="italic" transform="rotate(-90 22.6 162.1)">Score</text>
+<text x="566.41" y="60.11" font-size="11.5" fill="#1e2229" font-style="italic">Placebo</text>
+<text x="566.41" y="188.95" font-size="11.5" fill="#1e2229" font-style="italic">Low dose</text>
+<text x="566.41" y="275.2" font-size="11.5" fill="#1e2229" font-style="italic">High dose</text>
+</svg>

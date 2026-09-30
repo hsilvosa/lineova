@@ -1,0 +1,2194 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Clean, fast charts from Python, with good defaults and one dependency.">
+      
+      
+        <meta name="author" content="Hugo Silvosa Cuervo">
+      
+      
+        <link rel="canonical" href="https://hsilvosa.github.io/lineova/guide/">
+      
+      
+        <link rel="prev" href="../quickstart/">
+      
+      
+        <link rel="next" href="../use-cases/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>User guide - lineova</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lineova-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="lineova" class="md-header__button md-logo" aria-label="lineova" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            lineova
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hsilvosa/lineova" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hsilvosa/lineova
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="lineova" class="md-nav__button md-logo" aria-label="lineova" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    lineova
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hsilvosa/lineova" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hsilvosa/lineova
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-you-can-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data you can pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axis-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axis options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-chart-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-chart options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Per-chart options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#area" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        area
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        histogram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        box
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-bars-and-bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error bars and bands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pie-donut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pie / donut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#violin-ridgeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        violin / ridgeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumbbell-slope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dumbbell / slope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waterfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        waterfall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candlestick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        candlestick
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        treemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunburst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sunburst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexbin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hexbin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tilemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tilemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sankey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sankey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#density" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calendar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calendar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sparkline-stat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sparkline / stat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layouts-grids-and-facets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layouts: grids and facets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-larger-than-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data larger than memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive HTML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Themes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-auto-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What "auto" does
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../themes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Themes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graphs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Graphs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Performance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-you-can-pass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data you can pass
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chart-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chart options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#axis-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Axis options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#per-chart-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Per-chart options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Per-chart options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#area" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        area
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scatter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scatter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        histogram
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#box" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        box
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-bars-and-bands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error bars and bands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pie-donut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pie / donut
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#violin-ridgeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        violin / ridgeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dumbbell-slope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dumbbell / slope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#waterfall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        waterfall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#candlestick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        candlestick
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#treemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        treemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunburst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sunburst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hexbin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hexbin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        map
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tilemap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tilemap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sankey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sankey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        radar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#density" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        density
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        timeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calendar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        calendar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sparkline-stat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sparkline / stat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#layouts-grids-and-facets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Layouts: grids and facets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-larger-than-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data larger than memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interactive-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interactive HTML
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Themes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Output
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-auto-does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What "auto" does
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lineova-guide">lineova guide<a class="headerlink" href="#lineova-guide" title="Permanent link">&para;</a></h1>
+<p>Every option below defaults to <code>"auto"</code> or <code>None</code>, and the automatic choice is described next to it. You only set what you want to change.</p>
+<ul>
+<li><a href="#data-you-can-pass">Data you can pass</a></li>
+<li><a href="#chart-options">Chart options (all chart types)</a></li>
+<li><a href="#axis-options">Axis options</a></li>
+<li><a href="#annotations">Annotations</a></li>
+<li><a href="#per-chart-options">Per-chart options</a></li>
+<li><a href="#themes">Themes</a></li>
+<li><a href="#output">Output</a></li>
+<li><a href="#performance-notes">Performance notes</a></li>
+<li><a href="#layouts-grids-and-facets">Layouts: grids and facets</a></li>
+<li><a href="#data-larger-than-memory">Data larger than memory</a></li>
+<li><a href="#interactive-html">Interactive HTML</a></li>
+<li><a href="#what-auto-does">What "auto" does</a></li>
+</ul>
+<h2 id="data-you-can-pass">Data you can pass<a class="headerlink" href="#data-you-can-pass" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>You have</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A list or array</td>
+<td><code>lv.line([3, 1, 4, 1, 5])</code></td>
+</tr>
+<tr>
+<td>x and y arrays</td>
+<td><code>lv.line(x=dates, y=values)</code></td>
+</tr>
+<tr>
+<td>Several named series</td>
+<td><code>lv.line({"a": ya, "b": yb}, x=dates)</code></td>
+</tr>
+<tr>
+<td>A 2-D array (columns = series)</td>
+<td><code>lv.line(matrix)</code></td>
+</tr>
+<tr>
+<td>A DataFrame + column names</td>
+<td><code>lv.line(df, x="date", y="sales")</code></td>
+</tr>
+<tr>
+<td>Long format, one row per point</td>
+<td><code>lv.line(df, x="date", y="sales", color="region")</code></td>
+</tr>
+<tr>
+<td>Several value columns</td>
+<td><code>lv.line(df, x="date", y=["north", "south"])</code></td>
+</tr>
+<tr>
+<td>A pandas Series</td>
+<td><code>lv.line(series)</code> (the index becomes x)</td>
+</tr>
+<tr>
+<td><code>{label: value}</code></td>
+<td><code>lv.bar({"A": 3, "B": 5})</code></td>
+</tr>
+<tr>
+<td>Raw labels (counted for you)</td>
+<td><code>lv.bar(["cat", "dog", "cat"])</code></td>
+</tr>
+<tr>
+<td>An edge list</td>
+<td><code>lv.network([("a", "b"), ("b", "c", 2.5)])</code></td>
+</tr>
+</tbody>
+</table>
+<p>pandas, polars, NumPy (including <code>np.memmap</code>), plain lists, dicts of columns and structured arrays all work. Dates can be <code>datetime64</code>, Python <code>datetime</code>/<code>date</code>, or pandas timestamps (time-zone aware ones are converted to UTC). Missing values (<code>None</code>, <code>NaN</code>, <code>NaT</code>, pandas <code>NA</code>) leave gaps in lines and are skipped elsewhere.</p>
+<p>When <code>y</code> is not given for a DataFrame, every numeric column is plotted. When <code>x</code> is not given, the first date column is used, then a meaningful pandas index, then row numbers.</p>
+<h2 id="chart-options">Chart options<a class="headerlink" href="#chart-options" title="Permanent link">&para;</a></h2>
+<p>These work in every chart function as keywords, and on <code>Chart</code> as methods.</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Method</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>theme</code></td>
+<td><code>.theme()</code></td>
+<td><code>"folio"</code>, <code>"ledger"</code> (default), <code>"instrument"</code>, <code>"fjord"</code>, a registered name, or a <code>Theme</code></td>
+</tr>
+<tr>
+<td><code>title</code>, <code>subtitle</code></td>
+<td><code>.title(t, subtitle=)</code></td>
+<td>Heading text. In Folio they become the figure caption instead.</td>
+</tr>
+<tr>
+<td><code>caption</code></td>
+<td><code>.caption(text, number=)</code></td>
+<td>Paragraph under the chart</td>
+</tr>
+<tr>
+<td><code>number</code></td>
+<td></td>
+<td>Figure number in Folio captions (<code>Figure 3.</code>)</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>.source(text)</code></td>
+<td>"Source: …" line</td>
+</tr>
+<tr>
+<td><code>width</code>, <code>height</code></td>
+<td><code>.size(w, h)</code></td>
+<td>In px (1 px = 0.75 pt in PDF). Auto sizes fit the content.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td><code>.size("column")</code></td>
+<td>Preset: <code>column</code>, <code>page</code>, <code>wide</code>, <code>slide</code>, <code>square</code>, <code>dashboard</code>, <code>a4</code></td>
+</tr>
+<tr>
+<td><code>legend</code></td>
+<td><code>.legend(pos)</code></td>
+<td><code>auto</code>, <code>top</code>, <code>bottom</code>, <code>right</code>, <code>direct</code> (labels at line ends), <code>readout</code>, <code>none</code></td>
+</tr>
+<tr>
+<td><code>palette</code></td>
+<td><code>.palette(p)</code></td>
+<td>A list of colours, <code>{series: colour}</code>, one colour for everything, or another theme's name</td>
+</tr>
+<tr>
+<td><code>highlight</code></td>
+<td><code>.highlight(*names)</code></td>
+<td>Colour these series, bars, boxes or nodes and mute the rest</td>
+</tr>
+<tr>
+<td><code>background</code></td>
+<td></td>
+<td>Override the theme background</td>
+</tr>
+</tbody>
+</table>
+<h2 id="axis-options">Axis options<a class="headerlink" href="#axis-options" title="Permanent link">&para;</a></h2>
+<p>Prefix with <code>x_</code> or <code>y_</code> as keywords (<code>y_range=(0, 1)</code>), or use <code>.x_axis(...)</code> / <code>.y_axis(...)</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>label</code></td>
+<td>text, <code>None</code> to hide, <code>"auto"</code> (from the column name)</td>
+</tr>
+<tr>
+<td><code>scale</code></td>
+<td><code>auto</code>, <code>linear</code>, <code>log</code>, <code>time</code>, <code>category</code></td>
+</tr>
+<tr>
+<td><code>range</code></td>
+<td><code>(lo, hi)</code>. Either end may be <code>None</code>. Dates accepted on time axes.</td>
+</tr>
+<tr>
+<td><code>ticks</code></td>
+<td><code>auto</code>, an approximate count (<code>6</code>), a list of values, or <code>{value: "label"}</code></td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td><code>",.1f"</code>, <code>"{:.0%}"</code>, <code>"%b %Y"</code> (time), or a function</td>
+</tr>
+<tr>
+<td><code>zero</code></td>
+<td>include zero? <code>auto</code> (yes for bars, areas and histograms)</td>
+</tr>
+<tr>
+<td><code>grid</code></td>
+<td><code>auto</code> (from the theme), <code>True</code>, <code>False</code></td>
+</tr>
+<tr>
+<td><code>reverse</code></td>
+<td>flip the axis</td>
+</tr>
+<tr>
+<td><code>visible</code></td>
+<td><code>False</code> hides it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">chart</span><span class="o">.</span><span class="n">hline</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">"Target"</span><span class="p">)</span>                 <span class="c1"># horizontal reference line with a label</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">hline</span><span class="p">(</span><span class="s2">"mean"</span><span class="p">)</span>                        <span class="c1"># at the data mean</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">vline</span><span class="p">(</span><span class="s2">"2025-03-01"</span><span class="p">,</span> <span class="s2">"Launch"</span><span class="p">)</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">band</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="s2">"2025-06-01"</span><span class="p">,</span> <span class="s2">"2025-08-31"</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Summer"</span><span class="p">)</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">band</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#e0673f"</span><span class="p">)</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">"2025-07-01"</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="s2">"Peak"</span><span class="p">)</span>  <span class="c1"># text pointing at a data position</span>
+</code></pre></div>
+<h2 id="per-chart-options">Per-chart options<a class="headerlink" href="#per-chart-options" title="Permanent link">&para;</a></h2>
+<h3 id="line">line<a class="headerlink" href="#line" title="Permanent link">&para;</a></h3>
+<p><code>curve</code> (<code>auto</code> / <code>"smooth"</code> / <code>"linear"</code>), <code>markers</code> (<code>auto</code> / <code>True</code> / <code>False</code>), <code>width</code> (line width), <code>dash</code> (e.g. <code>(4, 2)</code>), <code>values</code> (end-of-line values: <code>auto</code> / <code>True</code> / <code>False</code>), <code>label</code> (name of a single series), <code>render</code> (<code>auto</code>, or <code>"exact"</code> to turn off pixel reduction).</p>
+<h3 id="area">area<a class="headerlink" href="#area" title="Permanent link">&para;</a></h3>
+<p>Everything from <code>line</code>, plus <code>stack</code> (auto: stacks when there are several series) and <code>normalize</code> (<code>True</code> for 100% shares).</p>
+<h3 id="bar">bar<a class="headerlink" href="#bar" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color</code></td>
+<td>Column to group by (grouped bars, one colour each)</td>
+</tr>
+<tr>
+<td><code>stack</code></td>
+<td><code>True</code> to stack the groups</td>
+</tr>
+<tr>
+<td><code>normalize</code></td>
+<td>100% stacked</td>
+</tr>
+<tr>
+<td><code>orientation</code></td>
+<td><code>auto</code> (horizontal when labels are long or there are more than 12 bars), <code>"h"</code>, <code>"v"</code></td>
+</tr>
+<tr>
+<td><code>sort</code></td>
+<td><code>auto</code> (sorts horizontal bars with unordered labels), <code>True</code>, <code>"ascending"</code>, <code>False</code></td>
+</tr>
+<tr>
+<td><code>agg</code></td>
+<td>How to combine repeated labels: <code>sum</code> (default), <code>mean</code>, <code>median</code>, <code>min</code>, <code>max</code>, <code>count</code></td>
+</tr>
+<tr>
+<td><code>top</code></td>
+<td>Keep the N largest and fold the rest into "Other" (auto: 25 when there are more than 30)</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>Value labels on bars: <code>auto</code> (up to 24 bars), <code>True</code>, <code>False</code></td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>Value label format, e.g. <code>"{:.1f}%"</code></td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td><code>"mean"</code>, <code>"median"</code> or a number: dashed reference line with a label</td>
+</tr>
+</tbody>
+</table>
+<p>Labels that look ordered (months, weekdays, numbers, ranges like <code>0-9</code>, quarters, years) keep their order.</p>
+<h3 id="scatter">scatter<a class="headerlink" href="#scatter" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>color</code></td>
+<td>Column or array. Text → one colour per group (auto-detected in DataFrames). Numbers → colour scale with a colour bar.</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>Column or array mapped to bubble area</td>
+</tr>
+<tr>
+<td><code>sizes</code></td>
+<td><code>(min_radius, max_radius)</code> in px</td>
+</tr>
+<tr>
+<td><code>fit</code></td>
+<td><code>True</code>: least-squares line, 95% confidence band and equation</td>
+</tr>
+<tr>
+<td><code>render</code></td>
+<td><code>auto</code> (density above 50,000 points), <code>"vector"</code>, <code>"density"</code></td>
+</tr>
+<tr>
+<td><code>shade</code></td>
+<td>Density shading: <code>eq_hist</code> (default), <code>log</code>, <code>linear</code></td>
+</tr>
+<tr>
+<td><code>marker</code></td>
+<td><code>solid</code>, <code>hollow</code>, <code>cross</code>, <code>bubble</code> (default from the theme)</td>
+</tr>
+<tr>
+<td><code>opacity</code>, <code>tooltips</code></td>
+<td>Automatic based on point count</td>
+</tr>
+</tbody>
+</table>
+<h3 id="histogram">histogram<a class="headerlink" href="#histogram" title="Permanent link">&para;</a></h3>
+<p><code>bins</code> (<code>auto</code>, a count, or explicit edges), <code>range</code>, <code>stat</code> (<code>count</code>, <code>percent</code>, <code>density</code>), <code>cumulative</code>, <code>color</code> (group column, overlaid). Integer data over a short range gets one bin per integer.</p>
+<h3 id="heatmap">heatmap<a class="headerlink" href="#heatmap" title="Permanent link">&para;</a></h3>
+<p>Pass a 2-D array (with optional <code>x=</code>/<code>y=</code> labels), a DataFrame (index × columns), or long data with <code>x=</code>, <code>y=</code>, <code>value=</code> column names (<code>agg</code> combines duplicates). Options: <code>cmap</code> (<code>auto</code>: diverging when values cross zero; <code>"sequential"</code>, <code>"diverging"</code>, or a list of colours), <code>vmin</code>, <code>vmax</code>, <code>annotate</code> (values in cells: auto up to 400 cells), <code>format</code>, <code>label</code> (colour bar title). Matrices larger than the plot are block-averaged into one image.</p>
+<h3 id="box">box<a class="headerlink" href="#box" title="Permanent link">&para;</a></h3>
+<p><code>{group: values}</code>, a list of arrays, or <code>box(df, x="group", y="value")</code>. Options: <code>orientation</code>, <code>points</code> (raw points: auto for groups of 60 or fewer), <code>whisker</code> (IQR multiple, default 1.5), <code>mean</code> (diamond marker), <code>color="group"</code> (one colour per box). At most 150 outliers per group are drawn (the most extreme ones).</p>
+<h3 id="network">network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h3>
+<p>Pass a <code>lv.Graph</code>, an edge list <code>[(u, v)]</code> / <code>[(u, v, w)]</code>, an <code>(m, 2|3)</code> array, a DataFrame with source/target(/weight) columns (names detected), an adjacency dict, or a networkx graph.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>path</code></td>
+<td><code>(source, target)</code>: finds and highlights the cheapest path</td>
+</tr>
+<tr>
+<td><code>highlight</code></td>
+<td>A list of nodes to highlight as a path</td>
+</tr>
+<tr>
+<td><code>layout</code></td>
+<td><code>auto</code> (layered for small directed acyclic graphs, force otherwise), <code>force</code>, <code>circular</code>, <code>grid</code>, <code>layered</code></td>
+</tr>
+<tr>
+<td><code>positions</code></td>
+<td><code>{node: (x, y)}</code> to place nodes yourself</td>
+</tr>
+<tr>
+<td><code>groups</code></td>
+<td><code>{node: group}</code>, <code>"component"</code>, or <code>"community"</code> (label propagation). Auto: colours components when there are 2–8.</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td>auto: all nodes up to 40, the 12 best-connected up to 400</td>
+</tr>
+<tr>
+<td><code>node_size</code></td>
+<td>px radius, <code>"degree"</code>, <code>"pagerank"</code>, <code>"betweenness"</code> or <code>"closeness"</code></td>
+</tr>
+<tr>
+<td><code>edge_labels</code></td>
+<td>weights on edges: auto for weighted graphs with 30 or fewer edges</td>
+</tr>
+<tr>
+<td><code>directed</code></td>
+<td>Draw arrows. Auto for directed <code>Graph</code>s.</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>Layout random seed (layouts are deterministic)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="error-bars-and-bands">Error bars and bands<a class="headerlink" href="#error-bars-and-bands" title="Permanent link">&para;</a></h3>
+<p><code>line(..., band=spec)</code>, <code>scatter(..., error=spec, x_error=spec)</code>, <code>bar(..., error=spec)</code>. A spec is a column name or array of ± half-widths, a number, or a <strong>tuple</strong> <code>(lower, upper)</code> of absolute bounds. For bars built from raw rows, <code>error="std"</code>, <code>"sem"</code> or <code>"ci"</code> (95%) computes the statistic per bar.</p>
+<h3 id="pie-donut">pie / donut<a class="headerlink" href="#pie-donut" title="Permanent link">&para;</a></h3>
+<p><code>pie({label: value})</code> or <code>pie(df, x="label", y="value")</code>. Options: <code>donut</code> (auto: a donut except in Folio), <code>top</code> (auto 6: the smallest slices fold into "Other", with a warning suggesting a bar chart), <code>sort</code>, <code>labels</code> (outside, with leader lines that never overlap), <code>center</code> (donut centre text, auto: the total), <code>start</code> (angle, default 90 = 12 o'clock), <code>format</code>.</p>
+<h3 id="violin-ridgeline">violin / ridgeline<a class="headerlink" href="#violin-ridgeline" title="Permanent link">&para;</a></h3>
+<p>Same inputs as <code>box</code>. The density is a binned Gaussian KDE (Silverman bandwidth, <code>bw=</code> to override), so it's O(n). Violin options: <code>inner</code> (quartile bar + median dot), <code>scale</code> (<code>"width"</code>: every violin as wide as the band, or <code>"area"</code>: shared scale), <code>orientation</code>. Ridgeline: <code>overlap</code> (default 1.6 rows).</p>
+<h3 id="dumbbell-slope">dumbbell / slope<a class="headerlink" href="#dumbbell-slope" title="Permanent link">&para;</a></h3>
+<p>Two values per item: <code>{item: (before, after)}</code>, <code>df</code> with <code>y="item", x=("col_a", "col_b")</code>, or long data with <code>x="value", color="year"</code> (exactly two years). <code>labels=("2015", "2024")</code> names the two ends. Slope lines are coloured up/down (theme <code>positive</code>/<code>negative</code>), or by <code>highlight=</code>.</p>
+<h3 id="waterfall">waterfall<a class="headerlink" href="#waterfall" title="Permanent link">&para;</a></h3>
+<p><code>waterfall({step: change})</code>. <code>start=("2024", 900)</code> adds an opening bar; <code>subtotals=["H1"]</code> turns steps into running-total bars; <code>total=False</code> hides the closing bar. Increases and decreases use the theme's <code>positive</code> and <code>negative</code> colours.</p>
+<h3 id="candlestick">candlestick<a class="headerlink" href="#candlestick" title="Permanent link">&para;</a></h3>
+<p>A DataFrame with open/high/low/close columns (detected by name, or <code>open=</code>, <code>high=</code>, … to set them) and a date column or index. <code>style="candle" | "ohlc"</code> (Folio defaults to OHLC). When there are more rows than fit (about 1 per 4 px), consecutive rows are merged into longer periods.</p>
+<h3 id="treemap">treemap<a class="headerlink" href="#treemap" title="Permanent link">&para;</a></h3>
+<p><code>treemap({label: value})</code>, nested dicts of any depth (<code>{region: {country: {city: value}}}</code>), or <code>treemap(df, path=["region", "country", "city"], value="pop")</code>. Squarified layout; each level gets a tinted frame with a header (name and total) where there's room. <code>depth=2</code> stops after two levels. Labels appear where they fit.</p>
+<h3 id="sunburst">sunburst<a class="headerlink" href="#sunburst" title="Permanent link">&para;</a></h3>
+<p>The same hierarchies as <code>treemap</code>, drawn as rings: the centre shows the total, the first ring the top level, and so on outward. Angles are proportional to value. Labels run along the ring when they fit, across it when the segment is narrow but deep, and move to the tooltip otherwise. <code>depth=</code> limits the rings, <code>center=</code> changes the text in the middle.</p>
+<h3 id="hexbin">hexbin<a class="headerlink" href="#hexbin" title="Permanent link">&para;</a></h3>
+<p><code>hexbin(df, x=, y=)</code> counts points per hexagon; <code>value="col", agg="mean" | "sum" | "max" | "min"</code> aggregates a column instead. <code>gridsize=</code> sets hexagons across (default: about one per 15 px). Skewed counts get a log colour scale automatically (<code>log=False</code> to turn off), and signed values a diverging one. Hexagons stay regular whatever the panel shape (binning happens at the final pixel size), and <code>lv.Chunks</code> works for counts.</p>
+<h3 id="map">map<a class="headerlink" href="#map" title="Permanent link">&para;</a></h3>
+<p>Choropleths and point maps from GeoJSON, with no extra dependency:</p>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">unemployment</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="s2">"provinces.geojson"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">"name"</span><span class="p">)</span>     <span class="c1"># {name: value}, joined ignoring accents/case</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">geo</span><span class="o">=</span><span class="n">geojson</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"code"</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">"rate"</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">"cod_prov"</span><span class="p">)</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">geojson</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">"population"</span><span class="p">)</span>                            <span class="c1"># colour by a feature property</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">quakes</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s2">"lon"</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="s2">"lat"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">"magnitude"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"depth"</span><span class="p">)</span>
+</code></pre></div>
+<p>Polygons with holes and multi-polygons are supported. Points above 50,000 become a density image. Without a basemap, a graticule with degree labels is drawn. <code>projection="auto"</code> uses a latitude-corrected equirectangular projection (right for countries and regions) and Web Mercator for continent-wide spans. Skewed positive values get a log colour scale; otherwise the 99th percentile caps it so a few extremes don't wash out the rest.</p>
+<h3 id="tilemap">tilemap<a class="headerlink" href="#tilemap" title="Permanent link">&para;</a></h3>
+<p><code>tilemap({region: value}, layout="es-provinces")</code>: one equal square per region, placed roughly as on the map, so small regions count as much as large ones. Built in: <code>"es-provinces"</code> (52 Spanish provinces by plate code, INE number or name) and <code>"es-regions"</code> (19 autonomous communities by ISO code or name). Keys that don't match are reported in a warning. A custom layout is <code>{code: (column, row, name)}</code>. <code>names=True</code> writes full names on large tiles.</p>
+<h3 id="sankey">sankey<a class="headerlink" href="#sankey" title="Permanent link">&para;</a></h3>
+<p>Rows of <code>(source, target, value)</code> or an edge DataFrame. Nodes are placed in stages by their longest path from a source; flows must not form a cycle.</p>
+<h3 id="radar">radar<a class="headerlink" href="#radar" title="Permanent link">&para;</a></h3>
+<p><code>radar({item: {measure: value}})</code> or a DataFrame with one row per item. <code>normalize=True</code> scales each measure to its own maximum (use it when measures have different units). Warns above 6 items.</p>
+<h3 id="density">density<a class="headerlink" href="#density" title="Permanent link">&para;</a></h3>
+<p><code>density(df, x=, y=, color=)</code>: smoothed 2-D density with contour lines enclosing 25/50/75/90% of the points (<code>levels=</code> to change). One group gets a shaded image. Several groups get coloured contours. Works for any number of points.</p>
+<h3 id="timeline">timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h3>
+<p>Rows of <code>(task, start, end[, group])</code> or a DataFrame (columns named task/start/end are detected). <code>color=</code> groups tasks, <code>progress=</code> shades the completed part, and tasks with no end become milestone diamonds. On a date axis, <code>today</code> (auto) draws a line at the current date when it's in range.</p>
+<h3 id="calendar">calendar<a class="headerlink" href="#calendar" title="Permanent link">&para;</a></h3>
+<p>Dates (counted per day) or dates with values (<code>calendar(df)</code> detects a date and a value column; <code>agg="sum" | "mean"</code>). One block per year, weeks as columns.</p>
+<h3 id="sparkline-stat">sparkline / stat<a class="headerlink" href="#sparkline-stat" title="Permanent link">&para;</a></h3>
+<p><code>sparkline(values)</code>: a word-sized line with the last value. <code>stat(value, label=, previous= | delta=, spark=, good="up" | "down" | None, note=)</code>: a KPI tile. The change is shown as ▲/▼ with a sign and colour, so it doesn't rely on colour alone.</p>
+<h2 id="layouts-grids-and-facets">Layouts: grids and facets<a class="headerlink" href="#layouts-grids-and-facets" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">"month"</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">"gwh"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"source"</span><span class="p">,</span> <span class="n">facet</span><span class="o">=</span><span class="s2">"region"</span><span class="p">)</span>        <span class="c1"># small multiples</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">facet</span><span class="p">(</span><span class="s2">"region"</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">share</span><span class="o">=</span><span class="s2">"y"</span><span class="p">)</span>                                <span class="c1"># same, chained</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">grid</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">c3</span><span class="p">],</span> <span class="n">cols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Overview"</span><span class="p">,</span> <span class="n">share</span><span class="o">=</span><span class="s2">"none"</span><span class="p">)</span>
+</code></pre></div>
+<p>Panels share one colour per series and one legend (when they show the same series), and axis ranges when <code>share</code> is <code>"both"</code> (default for facets), <code>"x"</code> or <code>"y"</code>. Axis titles appear once: x on the bottom row, y on the first column. In Folio, panels are labelled (a), (b), (c). Grids save to every format, like charts.</p>
+<h2 id="data-larger-than-memory">Data larger than memory<a class="headerlink" href="#data-larger-than-memory" title="Permanent link">&para;</a></h2>
+<p><code>lv.Chunks(source)</code> wraps data that arrives in pieces. <code>source</code> is a function returning a fresh iterable of chunks (called once per pass), or a list of chunks. A chunk can be an array, a dict of arrays, a pandas/polars DataFrame or a pyarrow RecordBatch.</p>
+<table>
+<thead>
+<tr>
+<th>Chart</th>
+<th>How it streams</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>line</code></td>
+<td>extent pass, then per-chunk M4 on a shared 16k-column grid. Chunks must arrive sorted by x.</td>
+</tr>
+<tr>
+<td><code>scatter</code></td>
+<td>extent pass, then a 2048 × 2048 count grid, always drawn as density.</td>
+</tr>
+<tr>
+<td><code>histogram</code></td>
+<td>range + 1M-value sample pass for the bins, then a counting pass. Counts are exact.</td>
+</tr>
+<tr>
+<td><code>bar</code></td>
+<td>one group-by pass: count, sum, mean, min, max or std per category (and per <code>color=</code> group). <code>error="ci"</code> works from the streamed moments. Exact.</td>
+</tr>
+<tr>
+<td><code>heatmap</code></td>
+<td>one group-by pass over <code>x</code> × <code>y</code> (counts, or <code>agg</code> of <code>value=</code>). Exact.</td>
+</tr>
+<tr>
+<td><code>box</code>, <code>violin</code>, <code>ridgeline</code></td>
+<td>group ranges, then a 4,096-bin histogram per group, turned into a quantile-preserving sample. Percentiles are exact to 1/4,096 of each group's range; group sizes are the true ones.</td>
+</tr>
+<tr>
+<td><code>hexbin</code></td>
+<td>extent pass, then a fine count grid binned into hexagons.</td>
+</tr>
+</tbody>
+</table>
+<p>Memory use is bounded by the chunk size (plus one small array per group). <code>np.memmap</code> arrays don't need <code>Chunks</code>: pass them directly. Weekdays and months keep calendar order in streamed categories.</p>
+<h2 id="interactive-html">Interactive HTML<a class="headerlink" href="#interactive-html" title="Permanent link">&para;</a></h2>
+<p><code>chart.save("chart.html")</code> writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets. Below the chart, a "Description and data" section holds the text description and the data table with a CSV download (<code>to_html(data=False)</code> leaves it out). <code>chart.show()</code> outside a notebook opens this page in the browser.</p>
+<h2 id="accessibility">Accessibility<a class="headerlink" href="#accessibility" title="Permanent link">&para;</a></h2>
+<p>Every chart carries a plain-language description of what it shows: chart type, series, ranges, extremes, the change from start to end, correlation for scatter plots.</p>
+<div class="highlight"><pre><span></span><code><span class="n">chart</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>        <span class="c1"># "Energy output. Line chart of 3 series (Solar, Wind and Hydro), month from ..."</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">table</span><span class="p">()</span>           <span class="c1"># the plotted data: .to_csv("data.csv"), .to_html(), .to_pandas()</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">alt</span><span class="o">=</span><span class="s2">"Sales rose in every region"</span><span class="p">)</span>   <span class="c1"># your own alt text</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                       <span class="c1"># a pattern per series as well as a colour</span>
+</code></pre></div>
+<ul>
+<li>SVGs get <code>&lt;title&gt;</code> and <code>&lt;desc&gt;</code> linked with <code>aria-labelledby</code>, so screen readers announce the chart.</li>
+<li><code>texture=True</code> adds a second encoding (diagonal, back-diagonal, dots, cross, rows, columns) to bars, pies, areas and overlaid histograms, legends included, in SVG and PDF.</li>
+<li>Folio already encodes series with dashes and markers, and Instrument with a readout; direct labels are used where they fit.</li>
+<li>Palettes are checked for colour-blind readers (see Themes).</li>
+</ul>
+<h2 id="themes">Themes<a class="headerlink" href="#themes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Theme</th>
+<th>For</th>
+<th>Signature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>folio</code></td>
+<td>papers, theses, print</td>
+<td>Serif type, range-frame axes, direct labels, dash + marker encoding, hatching, numbered captions</td>
+</tr>
+<tr>
+<td><code>ledger</code></td>
+<td>dashboards, decks</td>
+<td>Quiet grey structure, one accent, dashed grid, reference pills, end values</td>
+</tr>
+<tr>
+<td><code>instrument</code></td>
+<td>engineering, monitoring</td>
+<td>Dark, monospace, boxed frame, inward ticks, readout panel, rug marks</td>
+</tr>
+<tr>
+<td><code>fjord</code></td>
+<td>reports, teaching</td>
+<td>Soft background, smooth curves, lead-area fill, pill bars, degree-sized nodes</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="n">t</span> <span class="o">=</span> <span class="n">lv</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"folio"</span><span class="p">)</span>
+<span class="n">my</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">(</span><span class="s2">"#000000"</span><span class="p">,</span> <span class="s2">"#666666"</span><span class="p">),</span> <span class="n">line_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s2">"thesis"</span><span class="p">,</span> <span class="n">my</span><span class="p">)</span>
+<span class="n">lv</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="s2">"thesis"</span><span class="p">)</span>
+</code></pre></div>
+<p>Each field is documented in <code>lineova/themes.py</code>. You can change fonts, colours, the axis style (<code>range</code>, <code>baseline</code>, <code>box</code>, <code>none</code>), grid, ticks, marker styles, bar rounding, legend style, network node and edge style, and padding. A derived theme keeps its <code>family</code>, so it keeps that style's behaviour (a renamed Folio still draws range frames and OHLC bars).</p>
+<p>Dark and light variants: <code>ledger-dark</code>, <code>folio-dark</code>, <code>fjord-dark</code> and <code>instrument-light</code>. Series keep the same hue order as in the light themes; lightness is re-stepped for the surface. <code>lv.themes.dark("ledger")</code> and <code>lv.themes.light("instrument")</code> look them up.</p>
+<p>A theme from a brand colour:</p>
+<div class="highlight"><pre><span></span><code><span class="n">lv</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">from_brand</span><span class="p">(</span><span class="s2">"#0f766e"</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="s2">"fjord"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"acme"</span><span class="p">)</span>        <span class="c1"># dark=True for a dark version</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lv</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">check_palette</span><span class="p">(</span><span class="s2">"acme"</span><span class="p">))</span>                           <span class="c1"># the checks, PASS/WARN/FAIL</span>
+</code></pre></div>
+<p><code>from_brand</code> keeps your colour first and generates the rest of the palette so that neighbouring colours stay distinguishable for protan, deutan and tritan vision (ΔE ≥ 8), for normal vision (ΔE ≥ 15), and contrast with the background (≥ 3:1), plus sequential and diverging ramps. If eight colours can't all pass, it returns fewer rather than confusable ones.</p>
+<h2 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">chart</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"fig.svg"</span><span class="p">)</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"fig.pdf"</span><span class="p">)</span>               <span class="c1"># vector, standard PDF fonts, selectable text</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"fig.png"</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>      <span class="c1"># needs lineova[png], cairosvg or playwright</span>
+<span class="n">svg_text</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_svg</span><span class="p">()</span>
+<span class="n">pdf_bytes</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_pdf</span><span class="p">()</span>
+<span class="n">png_bytes</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_png</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">chart</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>                        <span class="c1"># notebook inline, or opens a browser</span>
+</code></pre></div>
+<p>The PNG backend can be forced with <code>LINEOVA_PNG_BACKEND=resvg|cairosvg|playwright</code>.</p>
+<h2 id="performance-notes">Performance notes<a class="headerlink" href="#performance-notes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Lines: sorted x is required for per-pixel reduction. Unsorted x is sorted once (O(n log n)). Pass sorted data for the fastest path.</li>
+<li>Scatter: density mode costs one pass over the data in 4M-row chunks. <code>render="vector"</code> above ~50k points gives large files.</li>
+<li>Networks: the force layout is O(n²) per step up to 1,500 nodes, then O(n + grid) with FFT repulsion. Pass <code>positions=</code> if you already have coordinates.</li>
+<li>Everything is deterministic: the same input gives the same picture.</li>
+</ul>
+<h2 id="what-auto-does">What "auto" does<a class="headerlink" href="#what-auto-does" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Colour scales</td>
+<td>Sequential for magnitudes, diverging (symmetric around 0) for signed values, log for skewed positive counts.</td>
+</tr>
+<tr>
+<td>Legend</td>
+<td>None for one series. Direct labels in Folio (≤ 8 lines). Readout in Instrument (≤ 5 lines). A top row otherwise, or a right-hand column above 8.</td>
+</tr>
+<tr>
+<td>Colours</td>
+<td>Theme palette in fixed order, so a series keeps its colour. Above 8 series, the rest are muted and grouped as "Other" (with a warning).</td>
+</tr>
+<tr>
+<td>Series detection</td>
+<td>In a DataFrame, a text column with 2–12 distinct values becomes the series identity.</td>
+</tr>
+<tr>
+<td>Axis range</td>
+<td>Round tick values that contain the data. Zero is included for bars, areas and histograms. Lines touch the x edges.</td>
+</tr>
+<tr>
+<td>Tick count</td>
+<td>About one tick per 90 px horizontally and per 46 px vertically, thinned until labels don't collide</td>
+</tr>
+<tr>
+<td>Number format</td>
+<td>Decimals from the tick step. 12k / 3.4M for large values. A real minus sign.</td>
+</tr>
+<tr>
+<td>Dates</td>
+<td>Tick unit from milliseconds to centuries. Labels show a larger unit when it changes ("Jan 2025", "Apr", …).</td>
+</tr>
+<tr>
+<td>Category labels</td>
+<td>Rotated when they don't fit. Bars turn horizontal instead when that reads better.</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>720 × 440 (Folio 640 × 400). Horizontal bars and heatmaps grow with the number of rows.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2026 Hugo Silvosa Cuervo. MIT license.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

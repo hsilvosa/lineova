@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvcd5916b4t lvcd5916b4d">
+<title id="lvcd5916b4t">Renewables share of electricity</title>
+<desc id="lvcd5916b4d">Renewables share of electricity. %. Slope chart of Spain, France, Italy, Germany and Portugal.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Renewables share of electricity</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">%</text>
+<line x1="94.76" y1="87.05" x2="94.76" y2="377" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="94.76" y="75.65" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">2015</text>
+<line x1="545.24" y1="87.05" x2="545.24" y2="377" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="545.24" y="75.65" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">2024</text>
+<line x1="94.76" y1="260.22" x2="545.24" y2="134.91" fill="none" stroke="#17a38b" stroke-width="2" stroke-linecap="round"/>
+<g fill="#17a38b" stroke="#ffffff" stroke-width="1.2">
+<circle cx="94.76" cy="260.22" r="3.5"><title>Spain: 37</title></circle>
+<circle cx="545.24" cy="134.91" r="3.5"><title>Spain: 57</title></circle>
+</g>
+<text x="86.76" y="264.07" font-size="11" fill="#1a2233" text-anchor="end">Spain  37</text>
+<text x="553.24" y="138.76" font-size="11" fill="#1a2233">57  Spain</text>
+<line x1="94.76" y1="373" x2="545.24" y2="316.61" fill="none" stroke="#17a38b" stroke-width="2" stroke-linecap="round"/>
+<g fill="#17a38b" stroke="#ffffff" stroke-width="1.2">
+<circle cx="94.76" cy="373" r="3.5"><title>France: 19</title></circle>
+<circle cx="545.24" cy="316.61" r="3.5"><title>France: 28</title></circle>
+</g>
+<text x="86.76" y="376.85" font-size="11" fill="#1a2233" text-anchor="end">France  19</text>
+<text x="553.24" y="320.46" font-size="11" fill="#1a2233">28  France</text>
+<line x1="94.76" y1="285.28" x2="545.24" y2="235.16" fill="none" stroke="#17a38b" stroke-width="2" stroke-linecap="round"/>
+<g fill="#17a38b" stroke="#ffffff" stroke-width="1.2">
+<circle cx="94.76" cy="285.28" r="3.5"><title>Italy: 33</title></circle>
+<circle cx="545.24" cy="235.16" r="3.5"><title>Italy: 41</title></circle>
+</g>
+<text x="86.76" y="289.13" font-size="11" fill="#1a2233" text-anchor="end">Italy  33</text>
+<text x="553.24" y="239.01" font-size="11" fill="#1a2233">41  Italy</text>
+<line x1="94.76" y1="297.81" x2="545.24" y2="166.24" fill="none" stroke="#17a38b" stroke-width="2" stroke-linecap="round"/>
+<g fill="#17a38b" stroke="#ffffff" stroke-width="1.2">
+<circle cx="94.76" cy="297.81" r="3.5"><title>Germany: 31</title></circle>
+<circle cx="545.24" cy="166.24" r="3.5"><title>Germany: 52</title></circle>
+</g>
+<text x="86.76" y="302.88" font-size="11" fill="#1a2233" text-anchor="end">Germany  31</text>
+<text x="553.24" y="170.09" font-size="11" fill="#1a2233">52  Germany</text>
+<line x1="94.76" y1="166.24" x2="545.24" y2="91.05" fill="none" stroke="#17a38b" stroke-width="2" stroke-linecap="round"/>
+<g fill="#17a38b" stroke="#ffffff" stroke-width="1.2">
+<circle cx="94.76" cy="166.24" r="3.5"><title>Portugal: 52</title></circle>
+<circle cx="545.24" cy="91.05" r="3.5"><title>Portugal: 64</title></circle>
+</g>
+<text x="86.76" y="170.09" font-size="11" fill="#1a2233" text-anchor="end">Portugal  52</text>
+<text x="553.24" y="94.9" font-size="11" fill="#1a2233">64  Portugal</text>
+</svg>
