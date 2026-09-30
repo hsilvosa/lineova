@@ -21,7 +21,7 @@ from ._output import Renderable
 from ._color import ramp_lut
 from ._text import format_value, text_width, truncate, wrap
 from .marks import layer_class
-from .marks._base import Domain, DrawContext, LegendItem, Plot
+from .marks._base import texture_for, Domain, DrawContext, LegendItem, Plot
 from .scales import BandScale, LinearScale, LogScale, TimeScale, nice_domain
 
 SIZES = {
@@ -52,6 +52,7 @@ class Axis:
 _CHART_KEYS = {
     "title", "subtitle", "caption", "source", "theme", "width", "height", "size", "legend",
     "palette", "highlight", "number", "background", "notes", "facet", "facet_cols", "share",
+    "texture", "alt",
 }
 _AXIS_KEYS = {f.name for f in fields(Axis)}
 
@@ -67,7 +68,7 @@ class Chart(Renderable):
                             "source": None, "width": "auto", "height": "auto", "size": None,
                             "legend": "auto", "palette": "auto", "highlight": None, "number": None,
                             "background": None, "notes": True, "facet": None, "facet_cols": "auto",
-                            "share": "both", "panel": None}
+                            "share": "both", "panel": None, "texture": False, "alt": None}
         self._x = Axis()
         self._y = Axis()
         self.set(**options)
@@ -315,6 +316,49 @@ class Chart(Renderable):
             layer.prepare(self)
         return self._build_prepared(raster_scale)
 
+    # ------------------------------------------------------------------ accessibility
+
+    def _prepare_layers(self) -> None:
+        if not self._layers:
+            if self.data is None:
+                raise ValueError("The chart has no layers.")
+            self.line()
+        for layer in self._layers:
+            layer.prepare(self)
+
+    def _description(self) -> str:
+        from ._describe import describe_layer
+        if self._opts.get("alt"):
+            return str(self._opts["alt"])
+        head = " ".join(str(p).strip().rstrip(".") + "." for p in (self._opts["title"], self._opts["subtitle"]) if p)
+        body = " ".join(describe_layer(layer) for layer in self._layers)
+        return (head + " " + body).strip()
+
+    def describe(self) -> str:
+        """A plain-language description of the chart (alt text): what is plotted, ranges, extremes, trends.
+
+        It is written into every SVG (``<desc>``); set ``alt="..."`` on the chart to use your own text.
+        """
+        if self._opts.get("facet") is not None:
+            from .figure import facet_grid
+            return facet_grid(self).describe()
+        self._prepare_layers()
+        return self._description()
+
+    def table(self):
+        """The data behind the chart as a ``Table`` (``.to_csv()``, ``.to_html()``, ``.to_pandas()``).
+
+        For charts with several layers, the first layer that has tabular data.
+        """
+        from ._describe import table_layer
+        self._prepare_layers()
+        for layer in self._layers:
+            t = table_layer(layer)
+            if t is not None:
+                t.title = str(self._opts["title"] or "")
+                return t
+        return None
+
     def _build_prepared(self, raster_scale: float = 2.0) -> S.Scene:
         """Draw, assuming every layer's ``prepare`` has already run."""
         theme = self.resolved_theme
@@ -323,9 +367,10 @@ class Chart(Renderable):
         self._theme = theme
         W, H = self._resolve_size(theme)
         scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind,
-                        description=self._opts["title"] or "")
+                        description=self._description(), title=str(self._opts["title"] or "Chart"))
         keys = list(dict.fromkeys(k for layer in self._layers for k in layer.keys()))
         colors, others = self._assign_colors(theme, keys)
+        self._legend_keys = list(colors)
         highlight = set(map(str, self._opts["highlight"] or []))
         pad = theme.padding
 
@@ -563,7 +608,8 @@ class Chart(Renderable):
             scene.add(S.Rect(x + 2, cy - 5, 10, 10, fill=theme.background, stroke=theme.ink, stroke_width=0.8,
                              hatch=theme.ink))
         else:
-            scene.add(S.Rect(x + 2, cy - 5, 10, 10, fill=it.color, rx=2))
+            tex = texture_for(self._opts.get("texture"), list(getattr(self, "_legend_keys", [])), it.key, 0, theme)
+            scene.add(S.Rect(x + 2, cy - 5, 10, 10, fill=it.color, rx=2 if not tex else 0, hatch=tex))
 
     def _draw_legend_row(self, scene, theme, items, x0, top, width) -> float:
         rows, size = self._legend_rows(theme, items, width)
@@ -776,6 +822,9 @@ class Chart(Renderable):
             layer.draw(ctx)
         scene.add(S.EndClip())
         scene.extend(ctx.overlay)
+        if ctx.readout:
+            scene.meta.append({"plot": [plot.x, plot.y, plot.w, plot.h], "series": ctx.readout,
+                               "ink": theme.ink, "bg": theme.background})
         self._draw_axes(scene, theme, plot, xs, ys, xv, xl, yv, yl, xd, yd, x_rot, offset)
         self._draw_annotations(ctx, under=False)
         if lx and self._x.visible:

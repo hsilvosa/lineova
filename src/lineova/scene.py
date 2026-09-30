@@ -28,7 +28,8 @@ class Rect:
     rx: float = 0.0
     opacity: float = 1.0
     dash: Dash = None
-    hatch: Optional[str] = None      # colour of 45° hatch lines drawn over the fill
+    hatch: Optional[str] = None      # texture over the fill: "colour" (45° lines) or "colour|kind",
+                                     # kind in / \\ x - | . (diagonal, back-diagonal, cross, rows, columns, dots)
     title: Optional[str] = None      # hover text (SVG only)
 
 
@@ -59,6 +60,7 @@ class Polyline:
     closed: bool = False
     join: str = "round"
     cap: str = "round"
+    hatch: Optional[str] = None      # texture over the fill: "colour" or "colour|kind" (see Rect)
 
 
 @dataclass(slots=True)
@@ -150,6 +152,9 @@ class Scene:
     font_kind: str
     ops: list = field(default_factory=list)
     description: str = ""
+    title: str = ""
+    meta: list = field(default_factory=list)     # interactive metadata (HTML export), not drawn
+    table_html: str = ""
 
     def add(self, op) -> None:
         self.ops.append(op)

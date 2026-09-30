@@ -219,7 +219,7 @@ class HistogramLayer(Layer):
                 sy = np.repeat(top, 2)
                 ctx.scene.add(S.Polyline(np.concatenate(([sx[0]], sx, [sx[-1]])),
                                          np.concatenate(([base], sy, [base])), fill=color, fill_opacity=0.35,
-                                         closed=True))
+                                         closed=True, hatch=ctx.texture(name, gi)))
                 ctx.scene.add(S.Polyline(sx, sy, stroke=color, stroke_width=1.6, join="miter", cap="butt"))
                 continue
             fill = theme.muted if theme.bar_highlight == "hatch" else color

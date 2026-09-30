@@ -36,7 +36,8 @@ class Grid(Renderable):
     def __init__(self, charts: Sequence, cols: Any = _AUTO, *, title: Optional[str] = None,
                  subtitle: Optional[str] = None, caption: Optional[str] = None, source: Optional[str] = None,
                  number: Optional[int] = None, theme: Any = None, width: Any = _AUTO, height: Any = _AUTO,
-                 gap: float = 12.0, legend: Any = _AUTO, share: str = "none", labels: Any = _AUTO):
+                 gap: float = 12.0, legend: Any = _AUTO, share: str = "none", labels: Any = _AUTO,
+                 texture: Any = None):
         if not charts:
             raise ValueError("grid() needs at least one chart.")
         self.charts = list(charts)
@@ -44,6 +45,7 @@ class Grid(Renderable):
         self.opts = dict(title=title, subtitle=subtitle, caption=caption, source=source, number=number)
         self.theme_opt, self.width, self.height, self.gap = theme, width, height, gap
         self.legend, self.share, self.labels = legend, share, labels
+        self.texture = texture
         self._page_title = title
 
     def _theme(self):
@@ -73,6 +75,8 @@ class Grid(Renderable):
             if ch._opts["theme"] is None or self.theme_opt is not None:
                 k._opts["theme"] = theme
             k._opts["width"] = cell_w_inner + 2 * pad
+            if self.texture is not None:
+                k._opts["texture"] = self.texture
             if self.height != _AUTO:
                 k._opts["height"] = float(self.height)
             if self.labels is not False and k._opts.get("title") is not None:
@@ -129,6 +133,8 @@ class Grid(Renderable):
 
         # header, legend, footer via a helper chart that owns only the figure-level text
         helper = Chart(theme=theme, **{k: v for k, v in self.opts.items() if v is not None})
+        helper._opts["texture"] = self.texture
+        helper._legend_keys = list(dict.fromkeys(key for k in kids for l in k._layers for key in l.keys()))
         H_body = sum(row_h) + self.gap * (nrow - 1)
         probe = S.Scene(W, 10_000, theme.background, theme.font, theme.font_kind)
         top = helper._draw_header(probe, theme, W, pad)
@@ -146,7 +152,8 @@ class Grid(Renderable):
         foot_probe = S.Scene(W, 10_000, theme.background, theme.font, theme.font_kind)
         foot_h = 10_000 - helper._draw_footer(foot_probe, theme, W, 10_000)
         H = top - pad * 0.5 + H_body + (foot_h if foot_h > 0 else pad)
-        scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind, description=self.opts["title"] or "")
+        scene = S.Scene(W, H, theme.background, theme.font, theme.font_kind,
+                        description=self._describe_kids(kids), title=str(self.opts["title"] or "Figure"))
         scene.ops.extend(probe.ops)
         if foot_h > 0:
             helper._draw_footer(scene, theme, W, H - pad)
@@ -159,8 +166,32 @@ class Grid(Renderable):
                 sub = kids[i]._build_prepared(raster_scale)
                 dx = c * (cell_w_inner + self.gap)
                 scene.add(S.Group(dx, y, sub.ops))
+                for m in sub.meta:        # crosshair metadata, shifted into the grid's coordinates
+                    px, py, pw, ph = m["plot"]
+                    shifted = [dict(sr, px=[v + dx for v in sr["px"]], py=[v + y for v in sr["py"]]) for sr in m["series"]]
+                    scene.meta.append(dict(m, plot=[px + dx, py + y, pw, ph], series=shifted))
             y += row_h[r] + self.gap
         return scene
+
+    def _describe_kids(self, kids) -> str:
+        head = " ".join(str(p).strip().rstrip(".") + "." for p in (self.opts["title"], self.opts["subtitle"]) if p)
+        parts = [f"{len(kids)} panels."]
+        for i, k in enumerate(kids):
+            label = f"({string.ascii_lowercase[i % 26]})" if self.labels is not False else f"Panel {i + 1}:"
+            parts.append(f"{label} {k._description()}")
+        return (head + " " + " ".join(parts)).strip()
+
+    def describe(self) -> str:
+        """Plain-language description of every panel (alt text); written into the SVG ``<desc>``."""
+        kids = []
+        for ch in self.charts:
+            ch._prepare_layers()
+            kids.append(ch)
+        return self._describe_kids(kids)
+
+    def tables(self) -> list:
+        """The data table of each panel (``Table`` objects, ``None`` where a panel has none)."""
+        return [ch.table() for ch in self.charts]
 
     def __repr__(self) -> str:
         return f"<lineova.Grid {len(self.charts)} panels>"

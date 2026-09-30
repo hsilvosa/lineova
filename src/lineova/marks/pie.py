@@ -99,6 +99,7 @@ class PieLayer(Layer):
                 color = theme.muted
             if share > 0:
                 ctx.scene.add(S.Path(wedge(cx, cy, r, r_in, a, a + sweep), fill=color, stroke=theme.background,
+                                     hatch=ctx.texture(c, i),
                                      stroke_width=2 if len(self.cats) > 1 else 0, join="round",
                                      title=f"{c}: {self._fmt(self.values[i])} ({share:.1%})"))
             mids.append((a + sweep / 2, share, color))

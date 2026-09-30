@@ -361,7 +361,7 @@ class BarLayer(Layer):
                 end = ("both" if pill else (("right" if v >= 0 else "left") if self.horizontal
                                             else ("top" if v >= 0 else "bottom"))) if outer else "none"
                 self._bar(ctx, p0, p1, pos0, thickness, color, end, radius=radius if outer else 0,
-                                 hatch=theme.ink if (single and on and hatch) else None,
+                                 hatch=theme.ink if (single and on and hatch) else (ctx.texture(name, si) if k > 1 else None),
                                  stroke=theme.ink if (single and on and hatch) else None,
                                  sep=self.stacked, title=f"{cat} · {name}: {self._fmt(v)}" if k > 1 else f"{cat}: {self._fmt(v)}")
                 if single and cat in self.errors:
@@ -375,7 +375,7 @@ class BarLayer(Layer):
                     cy = pos0 + thickness / 2
                     x, yy = (cx, cy) if self.horizontal else (cy, cx)
                     ctx.scene.add(S.Text(x, yy, self._fmt(v), size - 1, readable_on(color), anchor="middle",
-                                         baseline="middle"))
+                                         baseline="middle", halo=color if ctx.options.get("texture") else None))
 
     def _bar(self, ctx, p0, p1, pos0, thick, color, end, radius=None, hatch=None, stroke=None, sep=False, title=None):
         theme = ctx.theme

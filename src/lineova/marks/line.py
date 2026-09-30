@@ -171,6 +171,8 @@ class LineLayer(Layer):
                 shape = theme.series_markers[i % len(theme.series_markers)] if theme.series_markers else "circle"
                 ctx.scene.add(S.Markers(px, py, shape, theme.marker_size, fill=theme.background, stroke=color,
                                         stroke_width=max(1.0, lw * 0.8)))
+            if not is_muted:
+                self._readout(ctx, s, color)
             last = _last_finite(px, py)
             if last is None:
                 continue
@@ -189,6 +191,29 @@ class LineLayer(Layer):
             for (lx, _ly, txt), y in zip(end_vals, ys):
                 ctx.overlay.append(S.Text(lx + 8, y, txt, size, theme.ink, baseline="middle", weight=600,
                                           halo=theme.background))
+
+    def _readout(self, ctx, s, color) -> None:
+        """Samples for the HTML crosshair: at most one data point per pixel column."""
+        if self.xy.x_kind == "cat" or len(s.x) == 0:
+            return
+        from .._describe import _fmt_x
+        x = np.asarray(s.x, float)
+        y = np.asarray(s.y, float)
+        ok = np.isfinite(x) & np.isfinite(y)
+        x, y = x[ok], y[ok]
+        if not len(x):
+            return
+        order = np.argsort(x, kind="stable")
+        x, y = x[order], y[order]
+        cols = int(min(1500, max(50, ctx.plot.w)))
+        if len(x) > cols:
+            grid = np.linspace(x[0], x[-1], cols)
+            idx = np.unique(np.clip(np.searchsorted(x, grid), 0, len(x) - 1))
+            x, y = x[idx], y[idx]
+        px, py = ctx.xs(x), ctx.ys(y)
+        ctx.readout.append({"name": str(s.name), "color": color,
+                            "px": [round(float(v), 2) for v in px], "py": [round(float(v), 2) for v in py],
+                            "x": [_fmt_x(v, self.xy.x_kind) for v in x], "y": [format_value(v) for v in y]})
 
     def _show_values(self, theme, legend_mode) -> bool:
         n = len(self.xy.series)
@@ -316,7 +341,8 @@ class AreaLayer(LineLayer):
                 for a, b in finite_runs(px, py):
                     xs = np.concatenate(([px[a]], px[a:b], [px[b - 1]]))
                     yv = np.concatenate(([base], py[a:b], [base]))
-                    ctx.scene.add(S.Polyline(xs, yv, fill=color, fill_opacity=theme.area_opacity + 0.1, closed=True))
+                    ctx.scene.add(S.Polyline(xs, yv, fill=color, fill_opacity=theme.area_opacity + 0.1, closed=True,
+                                             hatch=ctx.texture(s.name, i)))
                 ctx.scene.add(S.Polyline(px, py, stroke=color, stroke_width=theme.line_width * 0.85))
                 last = _last_finite(px, py)
                 if last and ctx.options.get("_legend_mode") == "direct":
@@ -333,7 +359,7 @@ class AreaLayer(LineLayer):
             top = ys(self.tops[i])
             xs = np.concatenate((gx, gx[::-1]))
             yv = np.concatenate((top, prev[::-1]))
-            ctx.scene.add(S.Polyline(xs, yv, fill=color, fill_opacity=0.88, closed=True))
+            ctx.scene.add(S.Polyline(xs, yv, fill=color, fill_opacity=0.88, closed=True, hatch=ctx.texture(s.name, i)))
             ctx.scene.add(S.Polyline(gx, top, stroke=theme.background, stroke_width=1.0))
             if ctx.options.get("_legend_mode") == "direct" and len(gx):
                 ctx.end_labels.append((s.name, s.name, float(gx[-1]), float((top[-1] + prev[-1]) / 2)))
