@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="480" viewBox="0 0 560 480" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvb1344859t lvb1344859d">
+<title id="lvb1344859t">Radial layout</title>
+<desc id="lvb1344859d">Radial layout. rings = distance from the root. Network chart.</desc>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Radial layout</text>
+<text x="16" y="52.72" font-size="12.5" fill="#43565f">rings = distance from the root</text>
+<path d="M257.52,265.92Q244.54,291.53,244.6,320.25" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CEO – CTO</title></path>
+<path d="M257.52,265.92Q244.65,237.57,220.3,218.15" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CEO – CFO</title></path>
+<path d="M257.52,265.92Q290.29,255.03,314.55,230.46" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CEO – COO</title></path>
+<path d="M244.6,320.25Q306.09,343.78,371.57,336.84" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CTO – Data</title></path>
+<path d="M244.6,320.25Q208.89,333.48,183.08,361.47" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CTO – Platform</title></path>
+<path d="M244.6,320.25Q183.14,276.77,108.65,265.92" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CTO – Security</title></path>
+<path d="M220.3,218.15Q184.67,197.35,143.48,195" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CFO – Finance</title></path>
+<path d="M220.3,218.15Q233.29,189.07,231.67,157.27" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>CFO – Legal</title></path>
+<path d="M314.55,230.46Q330.46,202.51,331.96,170.37" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>COO – Ops</title></path>
+<path d="M314.55,230.46Q356.26,239.27,397.42,228.19" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>COO – Support</title></path>
+<path d="M371.57,336.84Q361.69,372.75,369.18,409.24" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>Data – ML</title></path>
+<path d="M371.57,336.84Q421.19,341.18,467.37,322.52" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>Data – BI</title></path>
+<path d="M183.08,361.47Q133.47,355.29,86.45,372.3" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>Platform – SRE</title></path>
+<path d="M183.08,361.47Q192.82,399.46,218.74,428.9" fill="none" stroke="#a9b7be" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>Platform – Cloud</title></path>
+<g stroke="#eef2f4" stroke-width="2.2">
+<circle cx="467.37" cy="322.52" r="11.1" fill="#008c9e"><title>BI · degree 1</title></circle>
+<circle cx="257.52" cy="265.92" r="14.39" fill="#008c9e"><title>CEO · degree 3</title></circle>
+<circle cx="220.3" cy="218.15" r="14.39" fill="#008c9e"><title>CFO · degree 3</title></circle>
+<circle cx="314.55" cy="230.46" r="14.39" fill="#008c9e"><title>COO · degree 3</title></circle>
+<circle cx="244.6" cy="320.25" r="15.6" fill="#008c9e"><title>CTO · degree 4</title></circle>
+<circle cx="218.74" cy="428.9" r="11.1" fill="#008c9e"><title>Cloud · degree 1</title></circle>
+<circle cx="371.57" cy="336.84" r="14.39" fill="#008c9e"><title>Data · degree 3</title></circle>
+<circle cx="143.48" cy="195" r="11.1" fill="#008c9e"><title>Finance · degree 1</title></circle>
+<circle cx="231.67" cy="157.27" r="11.1" fill="#008c9e"><title>Legal · degree 1</title></circle>
+<circle cx="369.18" cy="409.24" r="11.1" fill="#008c9e"><title>ML · degree 1</title></circle>
+<circle cx="331.96" cy="170.37" r="11.1" fill="#008c9e"><title>Ops · degree 1</title></circle>
+<circle cx="183.08" cy="361.47" r="14.39" fill="#008c9e"><title>Platform · degree 3</title></circle>
+<circle cx="86.45" cy="372.3" r="11.1" fill="#008c9e"><title>SRE · degree 1</title></circle>
+<circle cx="108.65" cy="265.92" r="11.1" fill="#008c9e"><title>Security · degree 1</title></circle>
+<circle cx="397.42" cy="228.19" r="11.1" fill="#008c9e"><title>Support · degree 1</title></circle>
+</g>
+<text x="481.47" y="339.37" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">BI</text>
+<text x="274.92" y="286.06" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">CEO</text>
+<text x="237.7" y="238.29" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">CFO</text>
+<text x="331.94" y="250.61" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">COO</text>
+<text x="263.2" y="341.6" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">CTO</text>
+<text x="232.84" y="445.75" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Cloud</text>
+<text x="388.96" y="356.98" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Data</text>
+<text x="157.58" y="211.85" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Finance</text>
+<text x="245.77" y="174.12" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Legal</text>
+<text x="383.28" y="426.09" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">ML</text>
+<text x="346.06" y="187.22" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Ops</text>
+<text x="200.48" y="381.61" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Platform</text>
+<text x="100.55" y="389.15" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">SRE</text>
+<text x="122.75" y="282.77" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Security</text>
+<text x="411.52" y="245.04" font-size="11.5" fill="#17262e" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Support</text>
+</svg>

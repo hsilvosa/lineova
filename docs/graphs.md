@@ -19,7 +19,7 @@ g.draw(path=("A", "E")).save("route.svg")
 |---|---|
 | Edge list | `Graph.from_edges([(u, v), (u, v, weight), ...], directed=False)` |
 | Adjacency | `Graph.from_adjacency({"a": ["b", "c"]})` or `{"a": {"b": 2.5}}` |
-| networkx | `Graph.from_networkx(G)` |
+| networkx | `Graph.from_networkx(G)`, and back with `g.to_networkx()` |
 | Step by step | `g.add_node(n, pos=(x, y))`, `g.add_edge(u, v, w)`, `g.remove_node(n)` |
 
 ## Algorithms
@@ -32,7 +32,13 @@ g.draw(path=("A", "E")).save("route.svg")
 | Pieces | `connected_components()`, `strongly_connected_components()`, `is_connected()` | BFS, Tarjan |
 | Order of dependencies | `topological_sort()`, `has_cycle()` | Kahn |
 | Cheapest way to connect everything | `minimum_spanning_tree()` | Kruskal with union–find |
-| Clusters | `communities()` | Label propagation |
+| Clusters | `communities()`, `louvain(resolution=1.0)`, `modularity(parts)` | Label propagation; Louvain modularity optimisation |
+| Dense cores | `core_numbers()`, `k_core(k=None)` | Peeling by degree |
+| Triangles | `triangles()`, `clustering()`, `average_clustering()`, `transitivity()` | Neighbour-set intersection |
+| Weak points | `articulation_points()`, `bridges()` | Tarjan low-link (iterative) |
+| Size | `eccentricity()`, `diameter()` | BFS from every node (connected graphs) |
+| Negative weights | `bellman_ford(source)` | Bellman-Ford; raises on a negative cycle |
+| All pairs | `floyd_warshall()` | Vectorised Floyd-Warshall; returns `(nodes, matrix)` |
 | Importance | `pagerank()`, `betweenness()`, `closeness()`, `degree()` | Power iteration, Brandes, Wasserman–Faust |
 | Capacity | `max_flow(source, sink)` | Edmonds–Karp |
 
@@ -46,7 +52,10 @@ lv.network(g, path=("A", "E"))                    # highlight the cheapest route
 lv.network(g, groups="community")                 # colour clusters
 lv.network(g, node_size="pagerank")               # size by importance
 lv.network(deps, directed=True)                   # small DAGs are drawn left to right in layers
-lv.network(edges_df, layout="circular")           # force | circular | grid | layered | positions={...}
+lv.network(edges_df, layout="circular")           # force | circular | grid | layered | radial | bipartite | positions={...}
+lv.network(tree, layout="radial", root="CEO")    # rings by distance from the root, branches share the angle
+lv.network(pairs, layout="bipartite")             # two columns, ordered to reduce crossings; sets=[...] fixes the left one
+lv.network(g, groups="louvain")                   # colour by modularity clusters
 ```
 
 Large graphs are handled automatically. The force layout switches to an FFT-based approximation above 1,500 nodes, and edges are rasterised above 6,000, so 40,000 nodes and 200,000 edges draw in about 3 seconds.

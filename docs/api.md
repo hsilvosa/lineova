@@ -315,9 +315,10 @@ lv.network(data: Any = None, **options) -> Chart
 Node-link diagram from a ``Graph``, an edge list, an edge DataFrame or a networkx graph.
 
 ``path=("A", "Z")`` highlights the shortest path; ``groups="community"`` colours clusters;
-``layout="circular" | "layered" | "force"``.
+``layout="force" | "circular" | "layered" | "radial" | "bipartite" | "grid"`` (``root=`` for radial,
+``sets=[left nodes]`` for bipartite); ``groups="community" | "louvain" | "component" | {node: group}``.
 
-Chart-specific options: `directed=None`, `layout="auto"`, `labels="auto"`, `node_size="auto"`, `groups="auto"`, `edge_labels="auto"`, `path=None`, `highlight=None`, `positions=None`, `seed=0`.
+Chart-specific options: `directed=None`, `layout="auto"`, `labels="auto"`, `node_size="auto"`, `groups="auto"`, `edge_labels="auto"`, `path=None`, `highlight=None`, `positions=None`, `seed=0`, `root=None`, `sets=None`.
 
 ### `lv.chord`
 
@@ -587,23 +588,35 @@ Directed or undirected weighted graph (adjacency dict of dicts).
 - **`.add_edge(u: Node, v: Node, weight: float = 1.0) -> Graph`**: Add an edge (and its nodes). Adding it again replaces the weight.
 - **`.add_edges(edges: Iterable) -> Graph`**: Add many ``(u, v)`` or ``(u, v, weight)`` edges.
 - **`.add_node(n: Node, **attrs) -> Graph`**: Add a node (if new) and set attributes, e.g. ``pos=(x, y)`` or ``label=``.
+- **`.articulation_points() -> set`**: Nodes whose removal disconnects their component (undirected view).
 - **`.astar(source: Node, target: Node, heuristic=None) -> list`**: A* shortest path. ``heuristic(node, target)`` must never overestimate the remaining cost.
 - **`.attrs(n: Node) -> dict`**: A copy of the node's attributes.
+- **`.average_clustering() -> float`**
+- **`.bellman_ford(source: Node) -> tuple[dict, dict]`**: Shortest paths from ``source`` when weights can be negative. Returns (distance, predecessor);
 - **`.betweenness(weighted: bool = True, normalized: bool = True, k: Optional[int] = None, seed: int = 0) -> dict`**: Betweenness centrality (Brandes): how often a node lies on shortest paths.
 - **`.bfs(start: Node) -> list`**: Nodes in breadth-first order from ``start``.
+- **`.bridges() -> list[tuple]`**: Edges whose removal disconnects their component (undirected view).
 - **`.closeness(weighted: bool = True) -> dict`**: Closeness centrality (Wasserman–Faust, handles disconnected graphs).
+- **`.clustering() -> dict`**: Local clustering coefficient: the share of a node's neighbour pairs that are linked (undirected view).
 - **`.communities(seed: int = 0, max_iter: int = 30) -> list[set]`**: Groups of densely connected nodes (label propagation). Fast, approximate.
 - **`.connected_components() -> list[set]`**: Components, largest first (weakly connected for directed graphs).
+- **`.core_numbers() -> dict`**: Core number of every node: the largest k such that the node is in a subgraph where every node has
 - **`.degree(n: Optional[Node] = None)`**: Degree of one node, or a dict for all nodes (in + out for directed graphs).
 - **`.dfs(start: Node) -> list`**: Nodes in depth-first (pre-)order from ``start``. Iterative: no recursion limit.
+- **`.diameter() -> int`**: Longest shortest path between any two nodes, in edges (the graph must be connected).
 - **`.distance(source: Node, target: Node, weighted: bool = True) -> float`**: Cost of the cheapest path, or ``inf`` if unreachable.
 - **`.draw(**options)`**: Shortcut for ``lv.network(graph, **options)``.
+- **`.eccentricity() -> dict`**: Longest shortest path (in edges) from each node. The graph must be connected.
+- **`.floyd_warshall(weighted: bool = True) -> tuple[list, np.ndarray]`**: All-pairs shortest distances as a NumPy matrix (``inf`` where there is no path), in ``nodes`` order.
 - **`.has_cycle() -> bool`**: True if the graph contains a cycle (directed or undirected).
 - **`.has_edge(u, v) -> bool`**: True if there is an edge from ``u`` to ``v``.
 - **`.is_connected() -> bool`**: True if every node can reach every other (ignoring direction).
 - **`.is_weighted() -> bool`**: True unless every edge has weight 1.
+- **`.k_core(k: Optional[int] = None) -> Graph`**: Subgraph of the nodes whose core number is at least ``k`` (the innermost core when ``k`` is None).
+- **`.louvain(resolution: float = 1.0, seed: int = 0) -> list[set]`**: Communities by greedy modularity optimisation (Louvain). Usually finds better clusters than
 - **`.max_flow(source: Node, sink: Node) -> tuple[float, dict]`**: Maximum flow (Edmonds–Karp); edge weights are capacities. Returns (value, {(u, v): flow}).
 - **`.minimum_spanning_tree() -> Graph`**: Kruskal. For a disconnected graph, returns a spanning forest.
+- **`.modularity(communities, resolution: float = 1.0) -> float`**: Modularity of a partition (a list of node sets), on the undirected weighted view of the graph.
 - **`.neighbors(n: Node) -> list`**: Nodes reachable from ``n`` in one step.
 - **`.number_of_edges() -> int`**: Number of edges (self-loops count once).
 - **`.pagerank(damping: float = 0.85, tol: float = 1e-10, max_iter: int = 200) -> dict`**: PageRank (power iteration, vectorised). Edge weights are used as link strength.
@@ -616,7 +629,10 @@ Directed or undirected weighted graph (adjacency dict of dicts).
 - **`.strongly_connected_components() -> list[set]`**: Tarjan's algorithm (iterative). For undirected graphs this equals connected_components().
 - **`.subgraph(nodes: Iterable) -> Graph`**
 - **`.to_arrays() -> tuple[list, np.ndarray, np.ndarray, np.ndarray]`**: (nodes, src_index, dst_index, weights) for fast numeric work.
+- **`.to_networkx()`**: The same graph as a ``networkx.Graph`` / ``DiGraph`` (needs networkx).
 - **`.topological_sort() -> list`**: Kahn's algorithm. Raises ``GraphError`` on cycles or undirected graphs.
+- **`.transitivity() -> float`**: Share of connected triples that close into a triangle (global clustering coefficient).
+- **`.triangles() -> dict`**: Number of triangles each node is part of (undirected view).
 - **`.weight(u, v) -> float`**: Weight of the edge ``u``–``v``.
 
 ## Themes

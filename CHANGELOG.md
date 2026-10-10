@@ -15,6 +15,11 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
   (date and number ticks prepared in Python at many densities). Also "Fit y to view", series buttons to hide lines, a
   reset button, and linked zoom between grid panels with the same x range. SVG, PDF and PNG output is unchanged.
 
+- Graphs: `core_numbers`, `k_core`, `triangles`, `clustering`, `average_clustering`, `transitivity`,
+  `articulation_points`, `bridges`, `eccentricity`, `diameter`, `bellman_ford`, `floyd_warshall`, `louvain`,
+  `modularity` and `to_networkx`. All are tested against networkx.
+- Network layouts `radial` (`root=`) and `bipartite` (`sets=`); `groups="louvain"`; the arc diagram colours nodes by community.
+
 ### Changed
 - Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
   switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).

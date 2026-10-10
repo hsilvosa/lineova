@@ -43,7 +43,7 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Theme builder from a brand colour (validated palette generation)
 - [x] Dark variants of folio, ledger and fjord (and a light instrument)
 - [ ] Animated transitions (SVG/SMIL or GIF) between two charts
-- [ ] Barnes–Hut layout and edge bundling for very large networks
+- [ ] Edge bundling for very large networks (Barnes–Hut is not needed: see 0.4)
 - [x] More graph algorithms: betweenness/closeness centrality, PageRank, max flow, A*, strongly connected components
 - [x] Graph algorithms at scale: approximate betweenness (sampling) for 100k+ nodes
 - [ ] Optional numba acceleration when it is installed
@@ -55,6 +55,8 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Chord, arc, parallel coordinates, streamgraph, horizon, marimekko, bullet
 - [x] `roc`, `pr`, `calibration`, `confusion_matrix`, `ecdf`, `qq`, `correlation`
 - [x] Facets share the point budget (smaller SVG)
+- [x] Graph algorithms: Louvain, k-core, clustering, bridges, Bellman-Ford, Floyd-Warshall; radial and bipartite layouts
+- Barnes-Hut layout: not needed. A profile of the 100k-node layout (7 s) shows the FFT mesh already handles the repulsion
 - [x] Data-level zoom in HTML: wheel, brush, range strip, re-ticked axes, fit y, series toggles, linked panels
 
 ## Next

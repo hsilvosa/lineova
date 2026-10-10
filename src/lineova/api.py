@@ -112,7 +112,8 @@ def network(data: Any = None, **options) -> Chart:
     """Node-link diagram from a ``Graph``, an edge list, an edge DataFrame or a networkx graph.
 
     ``path=("A", "Z")`` highlights the shortest path; ``groups="community"`` colours clusters;
-    ``layout="circular" | "layered" | "force"``.
+    ``layout="force" | "circular" | "layered" | "radial" | "bipartite" | "grid"`` (``root=`` for radial,
+    ``sets=[left nodes]`` for bipartite); ``groups="community" | "louvain" | "component" | {node: group}``.
     """
     return _make("network", data, {}, options)
 

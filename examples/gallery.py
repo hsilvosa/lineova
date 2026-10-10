@@ -218,4 +218,18 @@ base[:, 7] += base[:, 6] * 0.6
 lv.correlation({f"v{i}": base[:, i] for i in range(8)}, title="Clustered correlation matrix", theme="fjord",
                width=560, height=500).save(OUT / "correlation.svg")
 
+tree = [("CEO", "CTO"), ("CEO", "CFO"), ("CEO", "COO"), ("CTO", "Data"), ("CTO", "Platform"), ("CTO", "Security"),
+        ("CFO", "Finance"), ("CFO", "Legal"), ("COO", "Ops"), ("COO", "Support"), ("Data", "ML"), ("Data", "BI"),
+        ("Platform", "SRE"), ("Platform", "Cloud")]
+lv.network(tree, layout="radial", root="CEO", title="Radial layout", subtitle="rings = distance from the root",
+           theme="fjord", width=560, height=480).save(OUT / "radial.svg")
+clusters = []
+for c in range(3):
+    for i in range(9):
+        for j in range(i + 1, 9):
+            if rng.random() < 0.6:
+                clusters.append((f"{'ABC'[c]}{i}", f"{'ABC'[c]}{j}"))
+clusters += [("A3", "B2"), ("B7", "C1"), ("C5", "A8")]
+lv.network(clusters, groups="louvain", title="Louvain communities", theme="ledger", width=600, height=460,
+           labels=False).save(OUT / "louvain.svg")
 print("wrote", len(list(OUT.glob("*.svg"))), "files to", OUT)

@@ -94,6 +94,7 @@ Synthetic examples of every chart type, made by [`examples/gallery.py`](https://
 | ![](gallery/roc.svg) | ![](gallery/pr.svg) |
 | ![](gallery/calibration.svg) | ![](gallery/confusion.svg) |
 | ![](gallery/ecdf.svg) | ![](gallery/qq.svg) |
+| ![](gallery/radial.svg) | ![](gallery/louvain.svg) |
 
 ## The four styles on the same data
 
