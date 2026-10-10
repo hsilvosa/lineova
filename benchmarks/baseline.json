@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "python": "3.12.10",
+    "numpy": "2.5.3",
+    "lineova": "0.3.0"
+  },
+  "results": {
+    "line 1M": {
+      "seconds": 0.051,
+      "output_mb": 0.071
+    },
+    "line 10M": {
+      "seconds": 0.294,
+      "output_mb": 0.069
+    },
+    "scatter 1M": {
+      "seconds": 0.14,
+      "output_mb": 0.208
+    },
+    "scatter 5M": {
+      "seconds": 0.337,
+      "output_mb": 0.285
+    },
+    "scatter 10M": {
+      "seconds": 0.589,
+      "output_mb": 0.318
+    },
+    "histogram 10M": {
+      "seconds": 0.551,
+      "output_mb": 0.015
+    },
+    "hexbin 5M": {
+      "seconds": 0.48,
+      "output_mb": 0.111
+    },
+    "heatmap matrix 4000x4000": {
+      "seconds": 0.379,
+      "output_mb": 0.355
+    },
+    "heatmap chunks 10M rows": {
+      "seconds": 1.647,
+      "output_mb": 0.251
+    },
+    "network 2k edges": {
+      "seconds": 0.651,
+      "output_mb": 0.339
+    },
+    "network 200k edges": {
+      "seconds": 4.056,
+      "output_mb": 0.69
+    },
+    "facets 12 x 200k scatter": {
+      "seconds": 0.939,
+      "output_mb": 8.346
+    },
+    "pdf line 1M": {
+      "seconds": 0.04,
+      "output_mb": 0.029
+    },
+    "network 100k nodes": {
+      "seconds": 6.93,
+      "output_mb": 0.67
+    }
+  }
+}
