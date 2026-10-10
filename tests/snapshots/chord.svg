@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv18cb775et lv18cb775ed">
+<title id="lv18cb775et">Chart</title>
+<desc id="lv18cb775ed">Chord chart of A, B and C.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<path d="M180,40.5C204.56,40.5,227.74,51.85,242.8,71.26C257.86,90.66,263.11,115.93,257.01,139.72Q180,120,222.33,187.3C197.18,203.11,165.32,203.59,139.71,188.53Q180,120,180,40.5Z" fill="#2f5bd3" fill-opacity="0.45" stroke="#ffffff" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>A → B: 5; B → A: 3</title></path>
+<path d="M257.01,139.72C252.17,158.64,240.53,175.11,224.33,186Q180,120,108.34,85.57C112.53,76.85,118.28,68.96,125.31,62.3Q180,120,257.01,139.72Z" fill="#2f5bd3" fill-opacity="0.45" stroke="#ffffff" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>A → C: 2; C → A: 1</title></path>
+<path d="M139.71,188.53C104.86,168.05,90.94,124.68,107.34,87.74Q180,120,125.31,62.3C139.48,48.87,158.1,41.12,177.62,40.54Q180,120,139.71,188.53Z" fill="#17a38b" fill-opacity="0.45" stroke="#ffffff" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>B → C: 4; C → B: 2</title></path>
+<path d="M180,32.5C218.5,32.5,252.48,57.67,263.7,94.5C274.92,131.33,260.75,171.17,228.79,192.64L225.44,187.66C255.21,167.66,268.41,130.55,257.96,96.25C247.51,61.94,215.86,38.5,180,38.5Z" fill="#2f5bd3"><title>A: 7</title></path>
+<text x="271.35" y="96.02" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">A</text>
+<path d="M226.59,194.07C194,214.57,151.83,211.35,122.73,186.15C93.62,160.95,84.4,119.68,100.03,84.49L105.51,86.93C90.96,119.7,99.54,158.14,126.65,181.61C153.76,205.09,193.04,208.08,223.39,188.99Z" fill="#17a38b"><title>B: 7</title></path>
+<text x="117.49" y="200.78" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">B</text>
+<path d="M101.13,82.11C115.29,52.64,144.7,33.52,177.38,32.54L177.56,38.54C147.12,39.45,119.73,57.26,106.54,84.71Z" fill="#e0913a"><title>C: 3</title></path>
+<text x="127.95" y="39.93" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">C</text>
+</svg>

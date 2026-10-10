@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="560" viewBox="0 0 560 560" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv1ff757d9t lv1ff757d9d">
+<title id="lv1ff757d9t">Electricity exchanges</title>
+<desc id="lv1ff757d9d">Electricity exchanges. TWh, ribbons coloured by the larger direction. Chord chart of Spain, France, Portugal and Italy.</desc>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Electricity exchanges</text>
+<text x="16" y="52.72" font-size="12.5" fill="#43565f">TWh, ribbons coloured by the larger direction</text>
+<path d="M280,115.19C384.72,115.19,469.86,199.62,470.72,304.34Q280,305.92,412.48,443.13C392.55,462.38,368.67,477.05,342.49,486.12Q280,305.92,280,115.19Z" fill="#008c9e" fill-opacity="0.45" stroke="#eef2f4" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>Spain → France: 18; France → Spain: 5</title></path>
+<path d="M470.72,304.34C471.14,354.65,451.66,403.08,416.54,439.1Q280,305.92,104.25,380C80.21,322.98,85.33,257.83,117.99,205.26Q280,305.92,470.72,304.34Z" fill="#4062b8" fill-opacity="0.45" stroke="#eef2f4" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>Spain → Portugal: 9; Portugal → Spain: 11</title></path>
+<path d="M416.54,439.1C416.54,439.1,416.54,439.1,416.54,439.1Q280,305.92,121.08,200.45C133.32,182.01,148.68,165.84,166.46,152.67Q280,305.92,416.54,439.1Z" fill="#a8850e" fill-opacity="0.45" stroke="#eef2f4" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>Spain → Italy: 0; Italy → Spain: 4</title></path>
+<path d="M342.49,486.12C326.83,491.55,310.52,494.92,293.99,496.14Q280,305.92,117.99,205.26C117.99,205.26,117.99,205.26,117.99,205.26Q280,305.92,342.49,486.12Z" fill="#e0673f" fill-opacity="0.45" stroke="#eef2f4" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>France → Portugal: 3; Portugal → France: 0</title></path>
+<path d="M293.99,496.14C214.47,501.98,139.71,457.75,106.55,385.24Q280,305.92,166.46,152.67C197.74,129.49,235.36,116.44,274.28,115.28Q280,305.92,293.99,496.14Z" fill="#e0673f" fill-opacity="0.45" stroke="#eef2f4" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"><title>France → Italy: 14; Italy → France: 7</title></path>
+<path d="M280,100.89C362.46,100.89,436.9,150.29,468.93,226.28C500.96,302.27,484.35,390.05,426.77,449.08L417.97,440.49C472.09,385,487.71,302.49,457.6,231.06C427.49,159.63,357.52,113.19,280,113.19Z" fill="#008c9e"><title>Spain: 27</title></path>
+<text x="476.31" y="227.2" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Spain</text>
+<path d="M422.41,453.42C374.55,499.63,307.25,519.75,241.88,507.38C176.51,495.01,121.21,451.69,93.54,391.19L104.73,386.08C130.74,442.95,182.72,483.66,244.17,495.29C305.61,506.92,368.88,488.01,413.87,444.57Z" fill="#e0673f"><title>France: 22</title></path>
+<text x="240.39" y="524.21" font-size="11.5" fill="#17262e" text-anchor="middle" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">France</text>
+<path d="M91.07,385.56C65.23,324.26,70.73,254.23,105.84,197.72L116.29,204.21C83.29,257.33,78.11,323.16,102.4,380.78Z" fill="#4062b8"><title>Portugal: 11</title></path>
+<text x="67.62" y="293.24" font-size="11.5" fill="#17262e" text-anchor="end" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Portugal</text>
+<path d="M109.17,192.54C145.96,137.11,207.35,102.98,273.85,100.98L274.22,113.28C211.71,115.15,154,147.24,119.42,199.34Z" fill="#a8850e"><title>Italy: 11</title></path>
+<text x="176.48" y="119.73" font-size="11.5" fill="#17262e" text-anchor="end" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">Italy</text>
+</svg>

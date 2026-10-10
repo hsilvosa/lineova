@@ -17,10 +17,13 @@ class Renderable:
         from .backends import svg
         return svg.render(self.build())
 
-    def to_pdf(self) -> bytes:
-        """The chart as a vector PDF (bytes). Text stays selectable."""
+    def to_pdf(self, *, embed_fonts: bool = True) -> bytes:
+        """The chart as a vector PDF (bytes). Text stays selectable and searchable.
+
+        By default the text uses the bundled Liberation fonts, embedded in the file (real Unicode symbols, the
+        same look in every viewer). ``embed_fonts=False`` uses the 14 standard PDF fonts: smaller files."""
         from .backends import pdf
-        return pdf.render(self.build())
+        return pdf.render(self.build(), embed_fonts=embed_fonts)
 
     def to_png(self, scale: Optional[float] = None, dpi: Optional[float] = None) -> bytes:
         """The chart as PNG bytes. Default 2x; ``dpi=300`` for print. Needs a PNG backend (``lineova[png]``)."""
@@ -31,8 +34,10 @@ class Renderable:
     def to_html(self, *, title: Optional[str] = None, data: bool = True) -> str:
         """Standalone HTML page: hover tooltips, a crosshair readout on line charts, wheel/drag zoom,
         double-click to reset, and (``data=True``) the text description and data table with a CSV download."""
+        from . import _zoom
         from .backends import html, svg
-        scene = self.build()
+        with _zoom.collecting():
+            scene = self.build()
         tables = []
         if data:
             try:

@@ -17,6 +17,7 @@ import numpy as np
 
 from . import scene as S
 from . import themes
+from . import _zoom
 from ._output import Renderable
 from ._color import ramp_lut
 from ._text import format_value, text_width, truncate, wrap
@@ -260,6 +261,34 @@ class Chart(Renderable):
     def radar(self, data=None, **kw) -> Chart:
         """Add a radar layer. Takes the same options as ``lv.radar()``."""
         return self._add(layer_class("radar")(self._d(data), **kw))
+
+    def chord(self, data=None, **kw) -> Chart:
+        """Add a chord layer. Takes the same options as ``lv.chord()``."""
+        return self._add(layer_class("chord")(self._d(data), **kw))
+
+    def arc(self, data=None, **kw) -> Chart:
+        """Add an arc-diagram layer. Takes the same options as ``lv.arc()``."""
+        return self._add(layer_class("arc")(self._d(data), **kw))
+
+    def streamgraph(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a streamgraph layer. Takes the same options as ``lv.streamgraph()``."""
+        return self._add(layer_class("streamgraph")(self._d(data), x, y, color, **kw))
+
+    def horizon(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a horizon layer. Takes the same options as ``lv.horizon()``."""
+        return self._add(layer_class("horizon")(self._d(data), x, y, color, **kw))
+
+    def marimekko(self, data=None, x=None, y=None, value=None, **kw) -> Chart:
+        """Add a marimekko layer. Takes the same options as ``lv.marimekko()``."""
+        return self._add(layer_class("marimekko")(self._d(data), x, y, value, **kw))
+
+    def bullet(self, data=None, **kw) -> Chart:
+        """Add a bullet-chart layer. Takes the same options as ``lv.bullet()``."""
+        return self._add(layer_class("bullet")(self._d(data), **kw))
+
+    def parallel(self, data=None, **kw) -> Chart:
+        """Add a parallel-coordinates layer. Takes the same options as ``lv.parallel()``."""
+        return self._add(layer_class("parallel")(self._d(data), **kw))
 
     def density(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
         """Add a density layer. Takes the same options as ``lv.density()``."""
@@ -819,6 +848,8 @@ class Chart(Renderable):
                 xs = self._scale(xd, self._x, pl, pl + pw_, pw_, True, theme)
                 xv, xl = self._ticks(xs, self._x, pw_, True, theme)
         plot = Plot(pl, top, pw_, ph)
+        ztag = "lvz0" if _zoom.active() and _zoom.eligible(self, xs, ys) else None
+        self._ztag = ztag
 
         if theme.plot_background:
             scene.add(S.Rect(plot.x, plot.y, plot.w, plot.h, fill=theme.plot_background))
@@ -826,15 +857,23 @@ class Chart(Renderable):
         ctx = DrawContext(scene, theme, plot, xs, ys, colors, highlight, raster_scale,
                           dict(self._opts, _legend_mode=legend_mode))
         self._draw_annotations(ctx, under=True)
-        scene.add(S.Clip(plot.x - 1, plot.y - 1, plot.w + 2, plot.h + 2))
+        scene.add(S.Clip(plot.x - 1, plot.y - 1, plot.w + 2, plot.h + 2, cls=self._cls("marks")))
         for layer in self._layers:
             layer.draw(ctx)
         scene.add(S.EndClip())
+        if ztag:
+            for op in ctx.overlay:
+                if isinstance(op, (S.Text, S.Line)):
+                    op.cls = self._cls("ov")
         scene.extend(ctx.overlay)
-        if ctx.readout:
-            scene.meta.append({"plot": [plot.x, plot.y, plot.w, plot.h], "series": ctx.readout,
-                               "ink": theme.ink, "bg": theme.background})
+        if ctx.readout or ztag:
+            entry = {"plot": [plot.x, plot.y, plot.w, plot.h], "series": ctx.readout,
+                     "ink": theme.ink, "bg": theme.background}
+            if ztag:
+                entry["zoom"] = _zoom.plan(self, ztag, plot, xs, ys, pw_, ph, theme, colors, offset, x_rot)
+            scene.meta.append(entry)
         self._draw_axes(scene, theme, plot, xs, ys, xv, xl, yv, yl, xd, yd, x_rot, offset)
+        self._ztag = None
         self._draw_annotations(ctx, under=False)
         if lx and self._x.visible:
             if theme.caption_style == "figure":
@@ -868,6 +907,11 @@ class Chart(Renderable):
         ly = auto_y if self._y.label == "auto" else self._y.label
         return (str(lx) if lx else None), (str(ly) if ly else None)
 
+    def _cls(self, kind):
+        """CSS class for a zoomable plot's axis element (only set while building the interactive page)."""
+        tag = getattr(self, "_ztag", None)
+        return f"{tag}-{kind}" if tag else None
+
     def _draw_grid(self, scene, theme, plot, xs, ys, xv, yv):
         gx = self._x.grid if self._x.grid != "auto" else ("x" in theme.grid)
         gy = self._y.grid if self._y.grid != "auto" else ("y" in theme.grid)
@@ -879,13 +923,15 @@ class Chart(Renderable):
                     continue
                 zero = v == 0 and theme.axis_style == "none" and all(getattr(l, "emphasize_zero", True) for l in self._layers)
                 scene.add(S.Line(plot.x, py, plot.right, py, theme.axis_color if zero else theme.grid_color,
-                                 1.5 if zero else theme.grid_width, dash=None if zero else theme.grid_dash))
+                                 1.5 if zero else theme.grid_width, dash=None if zero else theme.grid_dash,
+                                 cls=self._cls("yg")))
         if gx and not isinstance(xs, BandScale):
             for v in xv:
                 px = xs.scalar(v)
                 if box and (abs(px - plot.x) < 1 or abs(px - plot.right) < 1):
                     continue
-                scene.add(S.Line(px, plot.y, px, plot.bottom, theme.grid_color, theme.grid_width, dash=theme.grid_dash))
+                scene.add(S.Line(px, plot.y, px, plot.bottom, theme.grid_color, theme.grid_width, dash=theme.grid_dash,
+                                 cls=self._cls("xg")))
 
     def _draw_axes(self, scene, theme, plot, xs, ys, xv, xl, yv, yl, xd, yd, x_rot, offset):
         size, kind = theme.font_size, theme.font_kind
@@ -903,7 +949,7 @@ class Chart(Renderable):
                 at_zero = ys.kind == "linear" and min(ys.d0, ys.d1) <= 0 <= max(ys.d0, ys.d1) \
                     and all(getattr(l, "emphasize_zero", True) for l in self._layers)
                 y0 = ys.scalar(0) if at_zero else plot.bottom
-                scene.add(S.Line(plot.x, y0, plot.right, y0, ink, theme.axis_width))
+                scene.add(S.Line(plot.x, y0, plot.right, y0, ink, theme.axis_width, cls=self._cls("ya")))
             elif not isinstance(xs, BandScale):
                 x0 = xs.scalar(0) if xs.kind == "linear" and min(xs.d0, xs.d1) <= 0 <= max(xs.d0, xs.d1) else plot.x
                 scene.add(S.Line(x0, plot.y, x0, plot.bottom, ink, theme.axis_width))
@@ -911,12 +957,12 @@ class Chart(Renderable):
             if self._x.visible and not isinstance(xs, BandScale):
                 a, b = _extent(xd, xs)
                 by = plot.bottom + offset
-                scene.add(S.Line(xs.scalar(a), by, xs.scalar(b), by, ink, theme.axis_width))
+                scene.add(S.Line(xs.scalar(a), by, xs.scalar(b), by, ink, theme.axis_width, cls=self._cls("xa")))
                 xv, xl = _range_ticks(xs, xv, xl, a, b, True, size, kind)
             if self._y.visible and not isinstance(ys, BandScale):
                 a, b = _extent(yd, ys)
                 ax = plot.x - offset
-                scene.add(S.Line(ax, ys.scalar(a), ax, ys.scalar(b), ink, theme.axis_width))
+                scene.add(S.Line(ax, ys.scalar(a), ax, ys.scalar(b), ink, theme.axis_width, cls=self._cls("ya")))
                 yv, yl = _range_ticks(ys, yv, yl, a, b, False, size, kind)
             if isinstance(ys, BandScale) and not isinstance(xs, BandScale):
                 x0 = xs.scalar(0) if min(xs.d0, xs.d1) <= 0 <= max(xs.d0, xs.d1) else plot.x
@@ -933,19 +979,21 @@ class Chart(Renderable):
                 if not (plot.x - 1 <= px <= plot.right + 1):
                     continue
                 if tdir == "out" and not isinstance(xs, BandScale):
-                    scene.add(S.Line(px, base, px, base + tl, ink, theme.axis_width))
+                    scene.add(S.Line(px, base, px, base + tl, ink, theme.axis_width, cls=self._cls("xk")))
                 elif tdir == "in" and not isinstance(xs, BandScale):
-                    scene.add(S.Line(px, plot.bottom, px, plot.bottom - tl, ink, theme.axis_width))
-                    scene.add(S.Line(px, plot.y, px, plot.y + tl, ink, theme.axis_width))
+                    scene.add(S.Line(px, plot.bottom, px, plot.bottom - tl, ink, theme.axis_width, cls=self._cls("xk")))
+                    scene.add(S.Line(px, plot.y, px, plot.y + tl, ink, theme.axis_width, cls=self._cls("xk")))
                 ty = base + (tl if tdir == "out" else 0) + 6
                 if x_rot:
                     scene.add(S.Text(px + 3, ty, truncate(lab, 120, size, kind), size, lab_col, anchor="end",
-                                     rotate=-40, baseline="hanging"))
+                                     rotate=-40, baseline="hanging", cls=self._cls("xt")))
                 elif (i == 0 and y_at_bottom and not isinstance(xs, BandScale)
                       and px - text_width(lab, size, kind) / 2 < plot.x - offset - 3):
-                    scene.add(S.Text(px - 2, ty, lab, size, lab_col, anchor="start", baseline="hanging"))
+                    scene.add(S.Text(px - 2, ty, lab, size, lab_col, anchor="start", baseline="hanging",
+                                     cls=self._cls("xt")))
                 else:
-                    scene.add(S.Text(px, ty, lab, size, lab_col, anchor="middle", baseline="hanging"))
+                    scene.add(S.Text(px, ty, lab, size, lab_col, anchor="middle", baseline="hanging",
+                                     cls=self._cls("xt")))
         # --- y ticks & labels
         if self._y.visible:
             base = plot.x - offset
@@ -954,15 +1002,15 @@ class Chart(Renderable):
                 if not (plot.y - 1 <= py <= plot.bottom + 1):
                     continue
                 if tdir == "out" and not isinstance(ys, BandScale):
-                    scene.add(S.Line(base - tl, py, base, py, ink, theme.axis_width))
+                    scene.add(S.Line(base - tl, py, base, py, ink, theme.axis_width, cls=self._cls("yk")))
                 elif tdir == "in" and not isinstance(ys, BandScale):
-                    scene.add(S.Line(plot.x, py, plot.x + tl, py, ink, theme.axis_width))
-                    scene.add(S.Line(plot.right, py, plot.right - tl, py, ink, theme.axis_width))
+                    scene.add(S.Line(plot.x, py, plot.x + tl, py, ink, theme.axis_width, cls=self._cls("yk")))
+                    scene.add(S.Line(plot.right, py, plot.right - tl, py, ink, theme.axis_width, cls=self._cls("yk")))
                 tx = base - (tl if tdir == "out" else 0) - 7
                 is_hl = isinstance(ys, BandScale) and lab in {str(h) for h in (self._opts["highlight"] or [])}
                 lab_txt = truncate(lab, tx - theme.padding + 2, size, kind) if isinstance(ys, BandScale) else lab
                 scene.add(S.Text(tx, py, lab_txt, size, theme.ink if is_hl else lab_col, anchor="end",
-                                 baseline="middle", weight=600 if is_hl else 400))
+                                 baseline="middle", weight=600 if is_hl else 400, cls=self._cls("yt")))
 
     def _draw_direct_labels(self, ctx: DrawContext):
         theme = ctx.theme
@@ -981,8 +1029,9 @@ class Chart(Renderable):
                 ys[i] = min(ys[i], ys[i + 1] - gap)
         for (_key, label, x, y0), y in zip(labels, ys):
             if abs(y - y0) > 3:
-                ctx.scene.add(S.Line(x + 3, y0, x + 7, y, theme.ink_muted, 0.7))
-            ctx.scene.add(S.Text(x + 9, y, label, size, theme.ink, baseline="middle", italic=theme.italic_labels))
+                ctx.scene.add(S.Line(x + 3, y0, x + 7, y, theme.ink_muted, 0.7, cls=self._cls("ov")))
+            ctx.scene.add(S.Text(x + 9, y, label, size, theme.ink, baseline="middle", italic=theme.italic_labels,
+                                 cls=self._cls("ov")))
 
     def _draw_readout(self, ctx: DrawContext, region: Plot):
         theme = ctx.theme

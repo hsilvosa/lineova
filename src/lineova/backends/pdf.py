@@ -1,7 +1,11 @@
-"""Scene -> vector PDF. Pure Python (zlib only), uses the 14 standard PDF fonts.
+"""Scene -> vector PDF. Pure Python (zlib only).
 
 Text stays text (selectable, searchable) and lines stay vectors, so figures are
 sharp at any zoom — what journals ask for. 1 px = 0.75 pt (CSS reference).
+
+By default the text uses the bundled Liberation fonts, embedded as TrueType (Type0 / Identity-H with a
+ToUnicode map), so the PDF looks the same everywhere and keeps real Unicode (−, →, ≤, é ...). With
+``embed_fonts=False`` it uses the 14 standard PDF fonts instead (smaller files, ASCII-ish symbols).
 """
 
 from __future__ import annotations
@@ -14,6 +18,7 @@ import numpy as np
 from .. import scene as S
 from .._color import parse
 from .._text import KIND_FACTOR, text_width
+from . import _ttf
 from .svg import baseline_shift
 
 PT = 0.75
@@ -40,8 +45,11 @@ def _n(v: float) -> str:
 
 
 class _Writer:
-    def __init__(self, scene: S.Scene):
+    def __init__(self, scene: S.Scene, embed: bool = True):
         self.scene = scene
+        self.embed = embed
+        self.faces: dict[str, tuple] = {}          # resource name (F1..) -> (font, {gid: char}) for embedded fonts
+        self._face_by_key: dict[tuple, str] = {}
         self.out: list[str] = []
         self.gstates: dict[tuple, str] = {}
         self.images: list[tuple[str, np.ndarray]] = []
@@ -315,14 +323,52 @@ class _Writer:
             self.paint(f, s, op.stroke_width, op.opacity, op.fill_opacity, cap="round" if line_only else "butt")
             self.out.append("Q")
 
+    def face(self, kind: str, bold: bool, italic: bool) -> str:
+        """Resource name of the embedded face for a style (faces that are not bundled share another style's font)."""
+        font = _ttf.load(kind, bold, italic)
+        key = (id(font),)
+        name = self._face_by_key.get(key)
+        if name is None:
+            name = f"F{len(self.faces) + 1}"
+            self._face_by_key[key] = name
+            self.faces[name] = (font, {})
+        return name
+
+    def _glyphs(self, font, used: dict, text: str) -> tuple[str, float]:
+        """Hex string of glyph ids for ``text`` and its advance width in em."""
+        for a, b in _REPLACE.items():
+            if font.glyph_index(a) == 0:
+                text = text.replace(a, b)
+        codes, adv = [], 0.0
+        for ch in text:
+            gid = font.glyph_index(ch)
+            if gid == 0:
+                gid = font.glyph_index("?")
+                ch = "?"
+            used.setdefault(gid, ch)
+            codes.append(f"{gid:04X}")
+            adv += font.advance(gid)
+        return "".join(codes), adv
+
     def text(self, op: S.Text):
-        if not op.text:
+        if not op.text and not op.spans:
             return
         kind = self.scene.font_kind if self.scene.font_kind in _FAMILIES else "sans"
         factor = KIND_FACTOR[kind]
         runs = op.spans or [(op.text, op.weight, op.italic, None)]
-        w = sum(text_width(t, op.size, kind, wt >= 600) for t, wt, _, _ in runs) / factor
-        w += op.letter_spacing * max(0, len(op.text) - 1)
+        encoded = None
+        if self.embed:
+            encoded = []
+            for t, wt, it, _col in runs:
+                name = self.face(kind, wt >= 600, bool(it))
+                font, used = self.faces[name]
+                hexs, adv = self._glyphs(font, used, t)
+                encoded.append((name, hexs, adv))
+            w = sum(a for _, _, a in encoded) * op.size
+            w += op.letter_spacing * max(0, sum(len(h) // 4 for _, h, _ in encoded) - 1)
+        else:
+            w = sum(text_width(t, op.size, kind, wt >= 600) for t, wt, _, _ in runs) / factor
+            w += op.letter_spacing * max(0, len(op.text) - 1)
         shift = {"start": 0.0, "middle": -w / 2, "end": -w}[op.anchor]
         th = math.radians(op.rotate)
         c, s = math.cos(th), math.sin(th)
@@ -335,13 +381,17 @@ class _Writer:
 
         def body(with_color: bool) -> str:
             parts = []
-            for t, wt, it, col in runs:
-                font = {(False, False): "F1", (True, False): "F2", (False, True): "F3", (True, True): "F4"}[(wt >= 600, it)]
+            for k, (t, wt, it, col) in enumerate(runs):
                 if with_color:
                     r, g, b, _ = parse(col or op.color)
                     parts.append(f"{_n(r)} {_n(g)} {_n(b)} rg")
                 # Tj advances the text position, so runs flow one after another
-                parts.append(f"/{font} {_n(op.size)} Tf ({_enc(t).decode('latin-1')}) Tj")
+                if encoded is not None:
+                    name, hexs, _adv = encoded[k]
+                    parts.append(f"/{name} {_n(op.size)} Tf <{hexs}> Tj")
+                else:
+                    font = {(False, False): "F1", (True, False): "F2", (False, True): "F3", (True, True): "F4"}[(wt >= 600, it)]
+                    parts.append(f"/{font} {_n(op.size)} Tf ({_enc(t).decode('latin-1')}) Tj")
             return " ".join(parts)
 
         if op.halo:
@@ -354,8 +404,37 @@ class _Writer:
         self.out.append(f"BT {spacing}{tm} {body(True)} ET Q")
 
 
-def render(scene: S.Scene) -> bytes:
-    w = _Writer(scene)
+def _embedded_font_objects(add, font, used: dict) -> int:
+    """Add the objects of one embedded TrueType font and return the id of its Type0 font."""
+    raw = font.data
+    comp = zlib.compress(raw, 9)
+    ffile = add(f"<< /Length {len(comp)} /Length1 {len(raw)} /Filter /FlateDecode >>\nstream\n".encode() + comp + b"\nendstream")
+    u = font.units
+    bb = " ".join(str(round(v * 1000 / u)) for v in font.bbox)
+    name = font.postscript_name
+    fixed = font.advance(font.glyph_index("i")) == font.advance(font.glyph_index("M"))
+    flags = 4 | (1 if fixed else 0) | (64 if font.italic_angle else 0)
+    desc = add(f"<< /Type /FontDescriptor /FontName /{name} /Flags {flags} /FontBBox [{bb}] "
+               f"/ItalicAngle {_n(font.italic_angle)} /Ascent {round(font.ascent * 1000 / u)} "
+               f"/Descent {round(font.descent * 1000 / u)} /CapHeight {round(font.cap_height * 1000 / u)} /StemV 80 "
+               f"/FontFile2 {ffile} 0 R >>".encode())
+    widths = " ".join(f"{g} [{round(font.advance(g) * 1000)}]" for g in sorted(used))
+    cid = add(f"<< /Type /Font /Subtype /CIDFontType2 /BaseFont /{name} /CIDSystemInfo << /Registry (Adobe) "
+              f"/Ordering (Identity) /Supplement 0 >> /FontDescriptor {desc} 0 R /DW 0 /W [{widths}] "
+              f"/CIDToGIDMap /Identity >>".encode())
+    bf = "\n".join(f"<{g:04X}> <{ord(ch):04X}>" if ord(ch) < 0x10000 else f"<{g:04X}> <FFFD>" for g, ch in sorted(used.items()))
+    cmap = (f"/CIDInit /ProcSet findresource begin 12 dict begin begincmap /CIDSystemInfo << /Registry (Adobe) "
+            f"/Ordering (UCS) /Supplement 0 >> def /CMapName /Adobe-Identity-UCS def /CMapType 2 def "
+            f"1 begincodespacerange <0000> <FFFF> endcodespacerange {len(used)} beginbfchar\n{bf}\nendbfchar "
+            f"endcmap CMapName currentdict /CMap defineresource pop end end").encode()
+    cm = zlib.compress(cmap, 6)
+    tou = add(f"<< /Length {len(cm)} /Filter /FlateDecode >>\nstream\n".encode() + cm + b"\nendstream")
+    return add(f"<< /Type /Font /Subtype /Type0 /BaseFont /{name} /Encoding /Identity-H "
+               f"/DescendantFonts [{cid} 0 R] /ToUnicode {tou} 0 R >>".encode())
+
+
+def render(scene: S.Scene, embed_fonts: bool = True) -> bytes:
+    w = _Writer(scene, embed_fonts)
     W, H = scene.width, scene.height
     w.out.append(f"{_n(PT)} 0 0 {_n(-PT)} 0 {_n(H * PT)} cm")
     w.out.append("q")
@@ -373,8 +452,11 @@ def render(scene: S.Scene) -> bytes:
         return len(objs)
 
     kind = scene.font_kind if scene.font_kind in _FAMILIES else "sans"
-    font_ids = [add(f"<< /Type /Font /Subtype /Type1 /BaseFont /{name} /Encoding /WinAnsiEncoding >>".encode())
-                for name in _FAMILIES[kind]]
+    if embed_fonts:
+        font_res = {name: _embedded_font_objects(add, font, used) for name, (font, used) in w.faces.items()}
+    else:
+        font_res = {f"F{i + 1}": add(f"<< /Type /Font /Subtype /Type1 /BaseFont /{name} /Encoding /WinAnsiEncoding >>".encode())
+                    for i, name in enumerate(_FAMILIES[kind])}
     gs_ids = {name: add(f"<< /Type /ExtGState /ca {_n(k[0])} /CA {_n(k[1])} >>".encode())
               for k, name in w.gstates.items()}
     img_ids = {}
@@ -393,7 +475,7 @@ def render(scene: S.Scene) -> bytes:
                             f"/BitsPerComponent 8 /Filter /FlateDecode{sm} /Length {len(rgb)} >>\nstream\n".encode()
                             + rgb + b"\nendstream")
     content_id = add(f"<< /Length {len(content)} /Filter /FlateDecode >>\nstream\n".encode() + content + b"\nendstream")
-    fonts = " ".join(f"/F{i + 1} {fid} 0 R" for i, fid in enumerate(font_ids))
+    fonts = " ".join(f"/{n} {fid} 0 R" for n, fid in font_res.items())
     gs = " ".join(f"/{n} {i} 0 R" for n, i in gs_ids.items())
     xo = " ".join(f"/{n} {i} 0 R" for n, i in img_ids.items())
     res = f"<< /Font << {fonts} >>" + (f" /ExtGState << {gs} >>" if gs else "") + \

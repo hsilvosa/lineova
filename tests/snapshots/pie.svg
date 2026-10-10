@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv75f8f5cat lv75f8f5cad">
+<title id="lv75f8f5cat">Chart</title>
+<desc id="lv75f8f5cad">Donut chart: a 50%, b 33%, c 17%.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<path d="M180,24C233.02,24,276,66.98,276,120C276,173.02,233.02,216,180,216L180,175.68C210.75,175.68,235.68,150.75,235.68,120C235.68,89.25,210.75,64.32,180,64.32Z" fill="#2f5bd3" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>a: 3 (50.0%)</title></path>
+<path d="M180,216C145.7,216,114.01,197.7,96.86,168C79.71,138.3,79.71,101.7,96.86,72L131.78,92.16C121.83,109.39,121.83,130.61,131.78,147.84C141.73,165.07,160.11,175.68,180,175.68Z" fill="#17a38b" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>b: 2 (33.3%)</title></path>
+<path d="M96.86,72C114.01,42.3,145.7,24,180,24L180,64.32C160.11,64.32,141.73,74.93,131.78,92.16Z" fill="#e0913a" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>c: 1 (16.7%)</title></path>
+<path d="M96.86,168L70,171.84L67,171.84" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="169.64" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">b</text>
+<text x="64" y="183.39" font-size="11" fill="#475467" text-anchor="end">33%</text>
+<path d="M132,36.86L70,30.21L67,30.21" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="28.01" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">c</text>
+<text x="64" y="41.76" font-size="11" fill="#475467" text-anchor="end">17%</text>
+<path d="M276,120L290,120L293,120" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="296" y="117.8" font-size="11" fill="#1a2233" font-weight="600">a</text>
+<text x="296" y="131.55" font-size="11" fill="#475467">50%</text>
+<text x="180" y="132.82" font-size="28.5" fill="#1a2233" text-anchor="middle" font-weight="700">6</text>
+<text x="180" y="148.07" font-size="11" fill="#8a94a6" text-anchor="middle">total</text>
+</svg>

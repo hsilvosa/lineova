@@ -630,6 +630,306 @@ class Graph:
                     c += 1
         raise GraphError(f"No path from {source!r} to {target!r}.")
 
+    # ------------------------------------------------------------------ structure
+    def _simple_adj(self) -> dict:
+        """Neighbour sets of the undirected simple graph (directions and self-loops ignored)."""
+        adj: dict = {n: set() for n in self._adj}
+        for u, nb in self._adj.items():
+            for v in nb:
+                if u != v:
+                    adj[u].add(v)
+                    adj[v].add(u)
+        return adj
+
+    def core_numbers(self) -> dict:
+        """Core number of every node: the largest k such that the node is in a subgraph where every node has
+        at least k neighbours. Directions and self-loops are ignored."""
+        adj = self._simple_adj()
+        deg = {n: len(nb) for n, nb in adj.items()}
+        heap = [(d, i, n) for i, (n, d) in enumerate(deg.items())]
+        heapq.heapify(heap)
+        counter = len(heap)
+        core, k = {}, 0
+        while heap:
+            d, _, n = heapq.heappop(heap)
+            if n in core or d != deg[n]:
+                continue
+            k = max(k, d)
+            core[n] = k
+            for m in adj[n]:
+                if m not in core:
+                    deg[m] -= 1
+                    counter += 1
+                    heapq.heappush(heap, (deg[m], counter, m))
+        return core
+
+    def k_core(self, k: Optional[int] = None) -> Graph:
+        """Subgraph of the nodes whose core number is at least ``k`` (the innermost core when ``k`` is None)."""
+        core = self.core_numbers()
+        if not core:
+            return Graph(directed=self.directed)
+        k = max(core.values()) if k is None else k
+        return self.subgraph([n for n, c in core.items() if c >= k])
+
+    def triangles(self) -> dict:
+        """Number of triangles each node is part of (undirected view)."""
+        adj = self._simple_adj()
+        return {u: sum(len(adj[v] & nb) for v in nb) // 2 for u, nb in adj.items()}
+
+    def clustering(self) -> dict:
+        """Local clustering coefficient: the share of a node's neighbour pairs that are linked (undirected view)."""
+        adj = self._simple_adj()
+        tri = self.triangles()
+        return {n: (2.0 * tri[n] / (len(nb) * (len(nb) - 1)) if len(nb) > 1 else 0.0) for n, nb in adj.items()}
+
+    def average_clustering(self) -> float:
+        c = self.clustering()
+        return sum(c.values()) / len(c) if c else 0.0
+
+    def transitivity(self) -> float:
+        """Share of connected triples that close into a triangle (global clustering coefficient)."""
+        adj = self._simple_adj()
+        tri = sum(self.triangles().values()) / 3.0
+        triples = sum(len(nb) * (len(nb) - 1) / 2 for nb in adj.values())
+        return 3.0 * tri / triples if triples else 0.0
+
+    def articulation_points(self) -> set:
+        """Nodes whose removal disconnects their component (undirected view)."""
+        return self._lowlink()[0]
+
+    def bridges(self) -> list[tuple]:
+        """Edges whose removal disconnects their component (undirected view)."""
+        return self._lowlink()[1]
+
+    def _lowlink(self):
+        adj = self._simple_adj()
+        disc: dict = {}
+        low: dict = {}
+        points: set = set()
+        bridges: list = []
+        t = 0
+        for root in adj:
+            if root in disc:
+                continue
+            disc[root] = low[root] = t
+            t += 1
+            stack = [(root, None, iter(adj[root]))]
+            children = 0
+            while stack:
+                u, parent, it = stack[-1]
+                advanced = False
+                for v in it:
+                    if v == parent:
+                        continue
+                    if v in disc:
+                        low[u] = min(low[u], disc[v])
+                    else:
+                        disc[v] = low[v] = t
+                        t += 1
+                        stack.append((v, u, iter(adj[v])))
+                        if u == root:
+                            children += 1
+                        advanced = True
+                        break
+                if advanced:
+                    continue
+                stack.pop()
+                if stack:
+                    p = stack[-1][0]
+                    low[p] = min(low[p], low[u])
+                    if low[u] > disc[p]:
+                        bridges.append((p, u))
+                    if p != root and low[u] >= disc[p]:
+                        points.add(p)
+            if children > 1:
+                points.add(root)
+        return points, bridges
+
+    def eccentricity(self) -> dict:
+        """Longest shortest path (in edges) from each node. The graph must be connected."""
+        adj = self._simple_adj()
+        out = {}
+        for s0 in adj:
+            seen = {s0: 0}
+            q = deque([s0])
+            while q:
+                u = q.popleft()
+                for v in adj[u]:
+                    if v not in seen:
+                        seen[v] = seen[u] + 1
+                        q.append(v)
+            if len(seen) != len(adj):
+                raise GraphError("The graph is not connected, so eccentricity is undefined.")
+            out[s0] = max(seen.values())
+        return out
+
+    def diameter(self) -> int:
+        """Longest shortest path between any two nodes, in edges (the graph must be connected)."""
+        ecc = self.eccentricity()
+        return max(ecc.values()) if ecc else 0
+
+    # ------------------------------------------------------------------ shortest paths with negative weights, all pairs
+    def bellman_ford(self, source: Node) -> tuple[dict, dict]:
+        """Shortest paths from ``source`` when weights can be negative. Returns (distance, predecessor);
+        raises ``GraphError`` if a negative cycle can be reached (an undirected edge of negative weight is one)."""
+        self._check(source)
+        edges = self.edges
+        if not self.directed:
+            if any(w < 0 for _, _, w in edges):
+                raise GraphError("A negative weight on an undirected edge is a negative cycle.")
+            edges = edges + [(v, u, w) for u, v, w in edges]
+        dist: dict = {source: 0.0}
+        pred: dict = {source: None}
+        for _ in range(len(self._adj) - 1):
+            changed = False
+            for u, v, w in edges:
+                if u in dist and dist[u] + w < dist.get(v, float("inf")) - 1e-12:
+                    dist[v] = dist[u] + w
+                    pred[v] = u
+                    changed = True
+            if not changed:
+                break
+        for u, v, w in edges:
+            if u in dist and dist[u] + w < dist.get(v, float("inf")) - 1e-9:
+                raise GraphError("The graph has a negative cycle reachable from the source.")
+        return dist, pred
+
+    def floyd_warshall(self, weighted: bool = True) -> tuple[list, np.ndarray]:
+        """All-pairs shortest distances as a NumPy matrix (``inf`` where there is no path), in ``nodes`` order.
+        Vectorised O(n^3); fine up to a few thousand nodes. Raises ``GraphError`` on a negative cycle."""
+        nodes = self.nodes
+        n = len(nodes)
+        pos = {v: i for i, v in enumerate(nodes)}
+        d = np.full((n, n), np.inf)
+        np.fill_diagonal(d, 0.0)
+        for u, v, w in self.edges:
+            c = float(w) if weighted else 1.0
+            i, j = pos[u], pos[v]
+            if i == j:
+                if c < 0:
+                    raise GraphError("The graph has a negative cycle.")
+                continue
+            d[i, j] = min(d[i, j], c)
+            if not self.directed:
+                d[j, i] = min(d[j, i], c)
+        for k in range(n):
+            np.minimum(d, d[:, k, None] + d[None, k, :], out=d)
+        if (np.diag(d) < 0).any():
+            raise GraphError("The graph has a negative cycle.")
+        return nodes, d
+
+    # ------------------------------------------------------------------ communities by modularity
+    def _weights(self):
+        """Symmetric weights as (nodes, [{j: w}]): directions are merged, weights taken as magnitudes."""
+        nodes = self.nodes
+        pos = {v: i for i, v in enumerate(nodes)}
+        adj: list = [dict() for _ in nodes]
+        for u, v, w in self.edges:
+            i, j, w = pos[u], pos[v], abs(float(w))
+            if i == j:
+                adj[i][i] = adj[i].get(i, 0.0) + w
+            else:
+                adj[i][j] = adj[i].get(j, 0.0) + w
+                adj[j][i] = adj[j].get(i, 0.0) + w
+        return nodes, adj
+
+    def modularity(self, communities, resolution: float = 1.0) -> float:
+        """Modularity of a partition (a list of node sets), on the undirected weighted view of the graph."""
+        nodes, adj = self._weights()
+        pos = {v: i for i, v in enumerate(nodes)}
+        label = {}
+        for c, members in enumerate(communities):
+            for v in members:
+                if v not in pos:
+                    raise GraphError(f"Node {v!r} is not in the graph.")
+                label[pos[v]] = c
+        if len(label) != len(nodes):
+            raise GraphError("The communities must cover every node exactly once.")
+        k = [sum(w for j, w in a.items() if j != i) + 2 * a.get(i, 0.0) for i, a in enumerate(adj)]
+        m2 = sum(k)
+        if m2 == 0:
+            return 0.0
+        inside: dict = {}
+        total: dict = {}
+        for i, a in enumerate(adj):
+            c = label[i]
+            total[c] = total.get(c, 0.0) + k[i]
+            for j, w in a.items():
+                if label[j] == c:
+                    inside[c] = inside.get(c, 0.0) + (w if j != i else 2 * w)     # both directions of each edge
+        return sum(inside.get(c, 0.0) / m2 - resolution * (total[c] / m2) ** 2 for c in total)
+
+    def louvain(self, resolution: float = 1.0, seed: int = 0) -> list[set]:
+        """Communities by greedy modularity optimisation (Louvain). Usually finds better clusters than
+        ``communities()`` at a higher cost. Directions are ignored; weights are magnitudes."""
+        nodes, adj = self._weights()
+        n = len(nodes)
+        if n == 0:
+            return []
+        rng = np.random.default_rng(seed)
+        member = [[i] for i in range(n)]             # original nodes inside each current super-node
+        while True:
+            size = len(adj)
+            k = [sum(w for j, w in a.items() if j != i) + 2 * a.get(i, 0.0) for i, a in enumerate(adj)]
+            m2 = sum(k)
+            if m2 == 0:
+                break
+            comm = list(range(size))
+            tot = k[:]
+            moved_any = False
+            improved = True
+            while improved:
+                improved = False
+                for i in rng.permutation(size).tolist():
+                    ci = comm[i]
+                    links: dict = {}
+                    for j, w in adj[i].items():
+                        if j != i:
+                            links[comm[j]] = links.get(comm[j], 0.0) + w
+                    tot[ci] -= k[i]
+                    best, best_gain = ci, links.get(ci, 0.0) - resolution * tot[ci] * k[i] / m2
+                    for c, kin in links.items():
+                        gain = kin - resolution * tot[c] * k[i] / m2
+                        if gain > best_gain + 1e-12:
+                            best, best_gain = c, gain
+                    tot[best] += k[i]
+                    if best != ci:
+                        comm[i] = best
+                        improved = moved_any = True
+            if not moved_any:
+                break
+            ids = {c: x for x, c in enumerate(dict.fromkeys(comm))}
+            new_adj: list = [dict() for _ in ids]
+            new_member: list = [[] for _ in ids]
+            for i, a in enumerate(adj):
+                ci = ids[comm[i]]
+                new_member[ci].extend(member[i])
+                for j, w in a.items():
+                    cj = ids[comm[j]]
+                    if ci == cj:
+                        new_adj[ci][ci] = new_adj[ci].get(ci, 0.0) + (w if i == j else w / 2)
+                    else:
+                        new_adj[ci][cj] = new_adj[ci].get(cj, 0.0) + w
+            adj, member = new_adj, new_member
+            if len(adj) == 1:
+                break
+        order = {v: i for i, v in enumerate(nodes)}
+        groups = [{nodes[i] for i in grp} for grp in member]
+        return sorted(groups, key=lambda g: (-len(g), min(order[v] for v in g)))
+
+    def to_networkx(self):
+        """The same graph as a ``networkx.Graph`` / ``DiGraph`` (needs networkx)."""
+        try:
+            import networkx as nx
+        except ImportError as e:  # pragma: no cover
+            raise ImportError("to_networkx() needs networkx: pip install networkx") from e
+        G = nx.DiGraph() if self.directed else nx.Graph()
+        for n in self._adj:
+            G.add_node(n, **self._attrs.get(n, {}))
+        for u, v, w in self.edges:
+            G.add_edge(u, v, weight=w)
+        return G
+
     def subgraph(self, nodes: Iterable) -> Graph:
         keep = set(nodes)
         g = Graph(directed=self.directed)

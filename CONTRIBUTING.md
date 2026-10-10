@@ -48,6 +48,7 @@ pip install -e ".[dev]"
    python tools/build_docs.py        # API reference and use-cases page
    ```
 5. Add a line under *Unreleased* in `CHANGELOG.md`.
+6. `tests/test_snapshots.py` compares 34 charts with SVG files in `tests/snapshots`. After a deliberate visual change, run `LINEOVA_UPDATE_SNAPSHOTS=1 pytest tests/test_snapshots.py` and review the diff.
 6. Open a pull request against `develop`.
 
 ## Guidelines

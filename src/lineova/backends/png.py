@@ -5,6 +5,7 @@ Tried in order (override with the LINEOVA_PNG_BACKEND environment variable):
 1. ``resvg_py``   – ``pip install "lineova[png]"``; small, fast, no system deps
 2. ``cairosvg``   – needs the Cairo library installed on the system
 3. ``playwright`` – headless Chromium; highest fidelity, slow to start
+4. ``native``     – lineova's own NumPy rasteriser; always available, so PNG works with no extra install
 """
 
 from __future__ import annotations
@@ -54,24 +55,34 @@ def _playwright(svg: str, scale: float, w: float, h: float) -> bytes:
 
 
 BACKENDS = {"resvg": _resvg, "cairosvg": _cairosvg, "playwright": _playwright}
+ORDER = ("resvg", "cairosvg", "playwright", "native")
 
 
 def available() -> list[str]:
     """Names of the PNG backends importable in this environment."""
     import importlib.util
     mods = {"resvg": "resvg_py", "cairosvg": "cairosvg", "playwright": "playwright"}
-    return [k for k, m in mods.items() if importlib.util.find_spec(m) is not None]
+    return [k for k, m in mods.items() if importlib.util.find_spec(m) is not None] + ["native"]
 
 
 def render(scene: Scene, scale: float = 2.0) -> bytes:
-    svg = svg_backend.render(scene)
     forced = os.environ.get("LINEOVA_PNG_BACKEND")
-    order = [forced] if forced else ["resvg", "cairosvg", "playwright"]
+    order = [forced] if forced else list(ORDER)
+    svg = None
     errors = []
     for name in order:
+        if name == "native":
+            from . import native_png
+            try:
+                return native_png.render_png(scene, scale)
+            except Exception as exc:
+                errors.append(f"native: {exc}")
+                continue
         fn = BACKENDS.get(name)
         if fn is None:
-            raise ValueError(f"Unknown PNG backend {name!r}; choose from {', '.join(BACKENDS)}.")
+            raise ValueError(f"Unknown PNG backend {name!r}; choose from {', '.join(ORDER)}.")
+        if svg is None:
+            svg = svg_backend.render(scene)
         try:
             return fn(svg, scale, scene.width, scene.height)
         except ImportError:
@@ -79,7 +90,4 @@ def render(scene: Scene, scale: float = 2.0) -> bytes:
         except Exception as exc:  # backend present but failed: try the next one
             errors.append(f"{name}: {exc}")
     detail = ("\nBackend errors:\n  " + "\n  ".join(errors)) if errors else ""
-    raise PNGBackendMissing(
-        "PNG export needs an SVG rasteriser. Install one with:\n"
-        "    pip install \"lineova[png]\"      (recommended: resvg, no system dependencies)\n"
-        "or use .svg / .pdf, which need nothing extra." + detail)
+    raise PNGBackendMissing("PNG export failed: no backend could render the chart." + detail)

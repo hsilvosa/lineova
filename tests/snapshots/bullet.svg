@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="120" viewBox="0 0 360 120" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv6601ea57t lv6601ea57d">
+<title id="lv6601ea57t">Chart</title>
+<desc id="lv6601ea57d">Bullet chart.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="43.18" y="63.85" font-size="11" fill="#1a2233" text-anchor="end" font-weight="600">Rev</text>
+<rect x="51.18" y="47" width="124.55" height="26" fill="#e8e9eb"/>
+<rect x="175.73" y="47" width="62.27" height="26" fill="#d6d7da"/>
+<rect x="238.01" y="47" width="62.27" height="26" fill="#bfc1c6"/>
+<rect x="51.18" y="55.58" width="224.19" height="8.84" fill="#2f5bd3"><title>Rev: 270 (target 250)</title></rect>
+<line x1="258.76" y1="50.12" x2="258.76" y2="69.88" fill="none" stroke="#1a2233" stroke-width="2.2"/>
+<text x="320.73" y="63.85" font-size="11" fill="#1a2233" font-weight="600">270</text>
+<text x="51.18" y="82.9" font-size="9" fill="#8a94a6">0</text>
+<text x="312.73" y="82.9" font-size="9" fill="#8a94a6" text-anchor="end">300</text>
+</svg>

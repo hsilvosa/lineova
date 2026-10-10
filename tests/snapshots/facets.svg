@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="233" viewBox="0 0 600 233" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv7d3a39f8t lv7d3a39f8d">
+<title id="lv7d3a39f8t">Figure</title>
+<desc id="lv7d3a39f8d">2 panels. (a) a. Line chart of v, t from 0 to 23. v: from −1.59 to 2.13, last 2.13, up 28% from the start. (b) b. Line chart of v, t from 0 to 23. v: from −2.65 to 1.84, last 0.425, up 0.47 from the start.</desc>
+<defs><clipPath id="lv7d3a39f8c1"><rect x="36.35" y="57.3" width="224.17" height="94.4"/></clipPath><clipPath id="lv7d3a39f8c2"><rect x="36.35" y="41.5" width="217.75" height="110.2"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g transform="translate(0 8)">
+<text x="16" y="28.5" font-size="12.5" fill="#1a2233" font-weight="600">a</text>
+<line x1="37.35" y1="150.7" x2="259.52" y2="150.7" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="104.5" x2="259.52" y2="104.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="58.3" x2="259.52" y2="58.3" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv7d3a39f8c1)">
+<path d="M37.35,89.16L47.01,104.51L56.67,107.4L66.33,107.43L75.99,107.59L85.65,93.14L95.31,109.74L104.97,109.75L114.63,106.08L124.29,118.83L133.95,108.34L143.61,95.5L153.27,101.68L162.93,99.52L172.59,109.97L182.25,119.21L191.91,98.56L201.57,113.41L211.23,118.56L220.89,111.45L230.54,110.48L240.2,114.66L249.86,104.25L259.52,84.81" fill="none" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="2">
+<circle cx="259.52" cy="84.81" r="4"/>
+</g>
+</g>
+<text x="267.52" y="88.66" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.13</text>
+<line x1="37.35" y1="104.5" x2="259.52" y2="104.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="35.35" y="165.28" font-size="11" fill="#8a94a6">0</text>
+<text x="133.95" y="165.28" font-size="11" fill="#8a94a6" text-anchor="middle">10</text>
+<text x="230.54" y="165.28" font-size="11" fill="#8a94a6" text-anchor="middle">20</text>
+<text x="30.35" y="154.55" font-size="11" fill="#8a94a6" text-anchor="end">−5</text>
+<text x="30.35" y="108.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="30.35" y="62.15" font-size="11" fill="#8a94a6" text-anchor="end">5</text>
+<text x="259.52" y="191" font-size="11" fill="#8a94a6" text-anchor="end">t</text>
+<text x="16" y="48.4" font-size="11" fill="#8a94a6">v</text>
+</g>
+<g transform="translate(290 8)">
+<text x="16" y="28.5" font-size="12.5" fill="#1a2233" font-weight="600">b</text>
+<line x1="37.35" y1="150.7" x2="253.1" y2="150.7" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="96.6" x2="253.1" y2="96.6" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="42.5" x2="253.1" y2="42.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv7d3a39f8c2)">
+<path d="M37.35,97.09L46.73,103.37L56.11,95.95L65.49,86.57L74.87,119.78L84.25,101.08L93.63,93.86L103.01,92.83L112.4,101.68L121.78,110.85L131.16,94.51L140.54,104.82L149.92,125.3L159.3,95.4L168.68,94.03L178.06,98.92L187.44,78.45L196.82,91.64L206.2,95.18L215.58,80.7L224.96,76.72L234.34,87.11L243.72,101.46L253.1,92.01" fill="none" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="2">
+<circle cx="253.1" cy="92.01" r="4"/>
+</g>
+</g>
+<text x="261.1" y="95.86" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">0.425</text>
+<line x1="37.35" y1="96.6" x2="253.1" y2="96.6" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="35.35" y="165.28" font-size="11" fill="#8a94a6">0</text>
+<text x="131.16" y="165.28" font-size="11" fill="#8a94a6" text-anchor="middle">10</text>
+<text x="224.96" y="165.28" font-size="11" fill="#8a94a6" text-anchor="middle">20</text>
+<text x="30.35" y="154.55" font-size="11" fill="#8a94a6" text-anchor="end">−5</text>
+<text x="30.35" y="100.45" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="30.35" y="46.35" font-size="11" fill="#8a94a6" text-anchor="end">5</text>
+<text x="253.1" y="191" font-size="11" fill="#8a94a6" text-anchor="end">t</text>
+</g>
+</svg>

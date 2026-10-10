@@ -258,3 +258,14 @@ def test_range_frame_labels_do_not_collide():
     s = c.to_svg()
     labels = re.findall(r">(\d+(?:\.\d+)?)</text>", s)
     assert "12.3" in labels and "28.2" in labels
+
+
+def test_facets_share_the_point_budget():
+    """Small panels that add up to a big chart switch to density, so the SVG stays small."""
+    rng = np.random.default_rng(0)
+    n = 120_000
+    d = {"x": rng.standard_normal(n), "y": rng.standard_normal(n), "g": rng.integers(0, 8, n).astype(str)}
+    svg = lv.scatter(d, x="x", y="y", facet="g").to_svg()
+    assert svg.count("<circle") < 1000 and len(svg) < 1_000_000
+    few = lv.scatter({k: v[:2000] for k, v in d.items()}, x="x", y="y", facet="g").to_svg()
+    assert few.count("<circle") >= 2000

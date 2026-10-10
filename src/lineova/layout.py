@@ -164,6 +164,113 @@ def layered(n: int, src: np.ndarray, dst: np.ndarray) -> np.ndarray:
     return pos
 
 
+def radial(n: int, src: np.ndarray, dst: np.ndarray, root: int | None = None) -> np.ndarray:
+    """Rings by distance from ``root`` (the best-connected node by default): a node's angle comes from the
+    size of its branch of the breadth-first tree. Other components hang off the centre as extra branches."""
+    if n == 0:
+        return np.zeros((0, 2))
+    nbrs: list[list[int]] = [[] for _ in range(n)]
+    for a, b in zip(src.tolist(), dst.tolist()):
+        if a != b:
+            nbrs[a].append(b)
+            nbrs[b].append(a)
+    deg = np.array([len(x) for x in nbrs])
+    root = int(np.argmax(deg)) if root is None else int(root)
+    depth = np.full(n, -1)
+    parent = np.full(n, -1)
+    children: list[list[int]] = [[] for _ in range(n)]
+    order: list[int] = []
+    tops: list[int] = []                       # roots of the trees: the main one, then other components
+
+    def grow(r: int, d0: int) -> None:
+        depth[r] = d0
+        queue = [r]
+        tops.append(r)
+        head = 0
+        while head < len(queue):
+            u = queue[head]
+            head += 1
+            order.append(u)
+            for v in sorted(nbrs[u], key=lambda x: (-deg[x], x)):
+                if depth[v] < 0:
+                    depth[v] = depth[u] + 1
+                    parent[v] = u
+                    children[u].append(v)
+                    queue.append(v)
+
+    grow(root, 0)
+    for u in np.argsort(-deg, kind="stable").tolist():
+        if depth[u] < 0:
+            grow(u, 1)
+            children[root].append(u)           # a branch of the centre, one ring out
+            parent[u] = root
+    leaves = np.ones(n)
+    for u in reversed(order):
+        if children[u]:
+            leaves[u] = sum(leaves[c] for c in children[u])
+    lo = np.zeros(n)
+    hi = np.zeros(n)
+    lo[root], hi[root] = 0.0, 2 * np.pi
+    for u in order:
+        if not children[u]:
+            continue
+        total = sum(leaves[c] for c in children[u])
+        cur = lo[u]
+        for c in children[u]:
+            span = (hi[u] - lo[u]) * leaves[c] / total
+            lo[c], hi[c] = cur, cur + span
+            cur += span
+    ang = (lo + hi) / 2
+    r = depth.astype(float)
+    pos = np.column_stack((r * np.cos(ang), r * np.sin(ang)))
+    biggest = float(np.abs(pos).max()) or 1.0          # one scale for both axes keeps the rings circular
+    return pos / (2 * biggest) + 0.5
+
+
+def bipartite(n: int, src: np.ndarray, dst: np.ndarray, left=None) -> np.ndarray:
+    """Two columns. ``left`` is the set of node indices for the left column; by default the graph is
+    two-coloured (it must be bipartite). Rows are ordered by barycentre sweeps to cut crossings."""
+    nbrs: list[list[int]] = [[] for _ in range(n)]
+    for a, b in zip(src.tolist(), dst.tolist()):
+        if a != b:
+            nbrs[a].append(b)
+            nbrs[b].append(a)
+    if left is None:
+        color = np.full(n, -1)
+        for s in range(n):
+            if color[s] >= 0:
+                continue
+            color[s] = 0
+            queue = [s]
+            for u in queue:
+                for v in nbrs[u]:
+                    if color[v] < 0:
+                        color[v] = 1 - color[u]
+                        queue.append(v)
+                    elif color[v] == color[u]:
+                        raise ValueError("The graph is not bipartite; pass sets=[nodes of the left column].")
+        side = color
+    else:
+        side = np.ones(n, dtype=int)
+        side[list(left)] = 0
+    rank = np.zeros(n)
+    for col in (0, 1):
+        members = np.flatnonzero(side == col)
+        rank[members] = np.arange(len(members))
+    for sweep in range(6):
+        for col in ((1, 0) if sweep % 2 == 0 else (0, 1)):
+            members = np.flatnonzero(side == col)
+            bary = np.array([np.mean([rank[v] for v in nbrs[u]]) if nbrs[u] else rank[u] for u in members])
+            rank[members[np.argsort(bary, kind="stable")]] = np.arange(len(members))
+    pos = np.zeros((n, 2))
+    for col in (0, 1):
+        members = np.flatnonzero(side == col)
+        k = max(len(members), 1)
+        pos[members, 0] = col
+        pos[members, 1] = (rank[members] + 0.5) / k
+    return pos
+
+
 def normalize(pos: np.ndarray) -> np.ndarray:
     lo = pos.min(axis=0)
     span = pos.max(axis=0) - lo

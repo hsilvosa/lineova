@@ -4,6 +4,46 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-10-10
+
+### Added
+- Charts: `chord`, `arc` (arc diagram), `parallel` (parallel coordinates), `streamgraph`, `horizon`, `marimekko`
+  and `bullet`.
+- Evaluation and distribution helpers that return ordinary charts: `roc`, `pr`, `calibration`,
+  `confusion_matrix`, `ecdf`, `qq` and `correlation` (clustered correlation matrix; Pearson or Spearman).
+- Gallery: a "New in 0.4" section with all of them.
+
+- Interactive HTML: line charts on a number or date axis get a data-level zoom. The wheel, a shift-drag brush and a
+  range strip change the visible x range; lines are redrawn at the new resolution and the axes are re-ticked
+  (date and number ticks prepared in Python at many densities). Also "Fit y to view", series buttons to hide lines, a
+  reset button, and linked zoom between grid panels with the same x range. SVG, PDF and PNG output is unchanged.
+
+- Graphs: `core_numbers`, `k_core`, `triangles`, `clustering`, `average_clustering`, `transitivity`,
+  `articulation_points`, `bridges`, `eccentricity`, `diameter`, `bellman_ford`, `floyd_warshall`, `louvain`,
+  `modularity` and `to_networkx`. All are tested against networkx.
+- Network layouts `radial` (`root=`) and `bipartite` (`sets=`); `groups="louvain"`; the arc diagram colours nodes by community.
+
+- PNG without extra installs: a rasteriser written in NumPy (exact-coverage anti-aliasing, dashes, clips, hatch
+  textures, images, rotated text with halos) draws every chart type, with Liberation font subsets bundled in the
+  package (`tools/make_fonts.py` rebuilds them). It is the last fallback after resvg, cairosvg and playwright, or
+  `LINEOVA_PNG_BACKEND=native`. `lineova[png]` is now optional.
+
+- PDF: the bundled Liberation fonts are embedded (TrueType, Identity-H, with a ToUnicode map), so PDFs look the same
+  in every viewer and keep real Unicode symbols (minus, arrows, comparison signs, accents); text stays selectable.
+  `to_pdf(embed_fonts=False)` goes back to the 14 standard fonts (smaller files).
+
+- Animated transitions: `lv.animate(a, b)` (or a list of charts) morphs one chart into the next - bars grow, lines bend,
+  points move, ticks slide, unmatched parts fade - and saves as an animated GIF (own encoder, delta frames) or an
+  animated SVG (SMIL). `frame(t)` returns any in-between chart; easing, hold, loop and bounce are options.
+
+- Visual regression tests: 34 SVG snapshots compared with a numeric tolerance.
+- `tools/build_real_inputs.py` rebuilds the OMIE price/bid-curve and IGN earthquake inputs of `examples/real_data.py` from the raw sources.
+
+### Changed
+- Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
+  switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).
+- `benchmarks/bench.py` has 14 cases, `--save`, `--compare` and `--only`; `benchmarks/baseline.json` holds the 0.3.0 timings.
+
 ## [0.3.0] — 2026-09-30
 ### Added
 - Charts: `hexbin` (counts or aggregated values per hexagon, log/diverging colour scales, streams `lv.Chunks`),

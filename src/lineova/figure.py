@@ -8,6 +8,7 @@ import string
 from typing import Any, Optional
 from collections.abc import Sequence
 
+from . import _zoom
 from . import scene as S
 from . import themes
 from ._data import DataError, factorize, get_column, ordered_categories, subset, to_array
@@ -164,6 +165,8 @@ class Grid(Renderable):
                 if i >= n:
                     break
                 sub = kids[i]._build_prepared(raster_scale)
+                if _zoom.active():
+                    _zoom.retag(sub, i)
                 dx = c * (cell_w_inner + self.gap)
                 scene.add(S.Group(dx, y, sub.ops))
                 for m in sub.meta:        # crosshair metadata, shifted into the grid's coordinates
@@ -219,6 +222,9 @@ def facet_grid(chart) -> Grid:
         order = list(range(len(names)))
     if len(names) > 36:
         raise DataError(f"{len(names)} facets is too many to read; filter the data or pick a coarser column.")
+    from .marks.scatter import DENSITY_THRESHOLD, ScatterLayer
+    # the point budget covers the whole document: many small panels must not add up to millions of <circle>s
+    crowded = len(codes) > DENSITY_THRESHOLD
     panels = []
     for j in order:
         mask = codes == j
@@ -230,6 +236,8 @@ def facet_grid(chart) -> Grid:
         k._layers = []
         for l in chart._layers:
             l2 = copy.copy(l)
+            if crowded and isinstance(l2, ScatterLayer) and l2.render == _AUTO:
+                l2.render = "density"
             if l.data is data:
                 l2.data = sub
             k._layers.append(l2)

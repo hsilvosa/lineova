@@ -43,11 +43,12 @@ class NetworkLayer(Layer):
     legend_shape = "circle"
 
     def __init__(self, data=None, *, directed=None, layout=_AUTO, labels=_AUTO, node_size=_AUTO, groups=_AUTO,
-                 edge_labels=_AUTO, path=None, highlight=None, positions=None, seed=0):
+                 edge_labels=_AUTO, path=None, highlight=None, positions=None, seed=0, root=None, sets=None):
         self.data, self.directed, self.layout = data, directed, layout
         self.labels, self.node_size, self.groups_opt = labels, node_size, groups
         self.edge_labels, self.path, self.hl = edge_labels, path, highlight
         self.positions, self.seed = positions, seed
+        self.root, self.sets = root, sets
 
     # ---------------------------------------------------------------- data
     def prepare(self, chart) -> None:
@@ -89,7 +90,7 @@ class NetworkLayer(Layer):
             w = np.ones(m) if w is None else np.asarray(w, float)
             directed = bool(self.directed)
             self.graph = None
-            if len(nodes) <= 200_000 and (self.path is not None or self.groups_opt == "community"
+            if len(nodes) <= 200_000 and (self.path is not None or self.groups_opt in ("community", "louvain")
                                           or self.node_size in ("pagerank", "betweenness", "closeness")):
                 g = Graph(directed=directed)
                 for n in nodes:
@@ -125,9 +126,11 @@ class NetworkLayer(Layer):
             vals = [str(g.get(nn, "other")) for nn in nodes]
             self.group_names = list(dict.fromkeys(vals))
             self.group_of = np.array([self.group_names.index(v) for v in vals])
-        elif g in ("component", "community") or (is_auto(g) and self._auto_components()):
+        elif g in ("component", "community", "louvain") or (is_auto(g) and self._auto_components()):
             if g == "community" and self.graph is not None:
                 comps = self.graph.communities(seed=self.seed)
+            elif g == "louvain" and self.graph is not None:
+                comps = self.graph.louvain(seed=self.seed)
             else:
                 comps = self._components()
             self.group_of = np.zeros(n, dtype=np.int64)
@@ -188,7 +191,21 @@ class NetworkLayer(Layer):
         if how == "layered":
             self.layered_ = True
             return L.layered(n, self.src, self.dst)
-        raise ValueError(f"Unknown layout {how!r}: use auto, force, circular, grid, layered, or positions=.")
+        if how == "radial":
+            root = None if self.root is None else self.index[self.root] if self.root in self.index else None
+            if self.root is not None and root is None:
+                raise ValueError(f"root={self.root!r} is not a node of the graph.")
+            return L.radial(n, self.src, self.dst, root)
+        if how == "bipartite":
+            left = None
+            if self.sets is not None:
+                missing = [v for v in self.sets if v not in self.index]
+                if missing:
+                    raise ValueError(f"sets= names {missing[:3]}, which are not nodes of the graph.")
+                left = [self.index[v] for v in self.sets]
+            return L.bipartite(n, self.src, self.dst, left)
+        raise ValueError(f"Unknown layout {how!r}: use auto, force, circular, grid, layered, radial, bipartite, "
+                         "or positions=.")
 
     def keys(self):
         return list(self.group_names)
