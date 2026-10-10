@@ -3,6 +3,10 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Changed
+- Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
+  switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).
+- `benchmarks/bench.py` has 14 cases, `--save`, `--compare` and `--only`; `benchmarks/baseline.json` holds the 0.3.0 timings.
 
 ## [0.3.0] — 2026-09-30
 ### Added
