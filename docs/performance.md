@@ -17,6 +17,7 @@ lineova aims to keep the cost of a chart tied to the size of the picture, not th
 | **Streaming group-by**: count/sum/sum of squares/min/max per group, merged chunk by chunk | `bar`, `heatmap` from `Chunks` | Exact means, totals and error bars; memory per group |
 | **Quantile sketch**: per-group 4,096-bin histogram → quantile-preserving sample | `box`, `violin` from `Chunks` | Percentiles exact to 1/4,096 of the range |
 | **Dense hex binning**: nearest of two offset lattices, `bincount` into a grid | `hexbin` | One linear pass, no sort |
+| **Shared point budget**: the density threshold counts the points of the whole chart, not of each panel | `facet=` and `lv.grid` of scatter plots | 12 panels of 200,000 points: 0.3 MB of SVG instead of 8.3 MB |
 | **Sampled betweenness** (Brandes & Pich) | `Graph.betweenness(k=)`, network sizing above 2,000 nodes | ~10× faster at 3,000 nodes, rank correlation > 0.98 |
 
 ## Measurements
@@ -42,6 +43,7 @@ Full pipeline (data → finished SVG) on a 2-core cloud VM:
 | Box plots from `lv.Chunks`, 10 million rows in 50 groups | 1.4 s | 330 KB |
 | Point map (density), 10 million points | 1.2 s | 0.9 MB |
 | Heatmap of 12 million real market offers from 6 files (streamed group-by) | 2.3 s | 40 KB |
+| 12 facets of 200,000 scatter points each | 0.7 s | 0.3 MB |
 
 Reproduce with:
 
@@ -49,6 +51,17 @@ Reproduce with:
 python benchmarks/bench.py          # up to 10 M
 python benchmarks/bench.py --big    # adds 100 M (needs ~8 GB RAM)
 ```
+
+## Version 0.4.0
+
+Profiling for 0.4.0 showed that layout and rendering were already fast, so it kept the algorithms and fixed the one real problem: facets. A float32 FFT in the network layout gave only about 17% and was not adopted. Timings of 0.3.0 and 0.4.0 are the same within noise (10 million line points: 0.31 s best of five on both).
+
+Two new outputs have their own costs:
+
+- The built-in PNG renderer takes about 0.2 to 0.3 s for a 640 x 400 chart. It is slower than resvg but needs no install.
+- A GIF animation renders every frame as a PNG, so the time is about the number of frames times the PNG time. The default is 24 frames per step.
+
+`benchmarks/baseline.json` holds the 0.3.0 timings. Compare a new run with `python benchmarks/bench.py --compare benchmarks/baseline.json`.
 
 ## Tips
 
