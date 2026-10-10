@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv42fab309t lv42fab309d">
+<title id="lv42fab309t">Chart</title>
+<desc id="lv42fab309d">Line chart of Series 1, x from 0 to 23. Series 1: from −0.998 to 1, last −0.112, down 1.11 from the start.</desc>
+<defs><clipPath id="lv42fab309c1"><rect x="45.98" y="19" width="251.19" height="183.5"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#141a23"/>
+<line x1="46.98" y1="201.5" x2="296.17" y2="201.5" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.98" y1="156.12" x2="296.17" y2="156.12" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.98" y1="110.75" x2="296.17" y2="110.75" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.98" y1="65.38" x2="296.17" y2="65.38" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="46.98" y1="20" x2="296.17" y2="20" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv42fab309c1)">
+<path d="M46.98,20L57.82,21.81L68.65,27.16L79.49,35.85L90.32,47.52L101.16,61.72L111.99,77.87L122.82,95.33L133.66,113.4L144.49,131.37L155.33,148.52L166.16,164.16L177,177.67L187.83,188.51L198.66,196.26L209.5,200.59L220.33,201.35L231.17,198.49L242,192.13L252.83,182.53L263.67,170.07L274.5,155.24L285.34,138.64L296.17,120.93" fill="none" stroke="#4676f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#4676f1" stroke="#141a23" stroke-width="2">
+<circle cx="296.17" cy="120.93" r="4"/>
+</g>
+</g>
+<text x="304.17" y="124.78" font-size="11" fill="#e6ebf2" font-weight="600" stroke="#141a23" stroke-width="3" stroke-linejoin="round" paint-order="stroke">−0.112</text>
+<line x1="46.98" y1="110.75" x2="296.17" y2="110.75" fill="none" stroke="#4a5566" stroke-width="1"/>
+<text x="44.98" y="216.08" font-size="11" fill="#7a8698">0</text>
+<text x="155.33" y="216.08" font-size="11" fill="#7a8698" text-anchor="middle">10</text>
+<text x="263.67" y="216.08" font-size="11" fill="#7a8698" text-anchor="middle">20</text>
+<text x="39.98" y="205.35" font-size="11" fill="#7a8698" text-anchor="end">−1.0</text>
+<text x="39.98" y="159.97" font-size="11" fill="#7a8698" text-anchor="end">−0.5</text>
+<text x="39.98" y="114.6" font-size="11" fill="#7a8698" text-anchor="end">0</text>
+<text x="39.98" y="69.22" font-size="11" fill="#7a8698" text-anchor="end">0.5</text>
+<text x="39.98" y="23.85" font-size="11" fill="#7a8698" text-anchor="end">1.0</text>
+</svg>

@@ -170,4 +170,75 @@ regions = {"AN": 8.6, "CT": 8.0, "MD": 7.0, "VC": 5.3, "GA": 2.7, "CL": 2.4, "PV
 lv.tilemap(regions, layout="es-regions", names=True, title="Population by autonomous community",
            subtitle="millions (approximate)", label="millions", theme="fjord", width=640).save(OUT / "tilemap.svg")
 
+# 0.4 chart types
+traffic = [("Spain", "France", 18), ("Spain", "Portugal", 9), ("France", "Spain", 5), ("France", "Italy", 14),
+           ("Italy", "France", 7), ("Portugal", "Spain", 11), ("Italy", "Spain", 4), ("France", "Portugal", 3)]
+lv.chord(traffic, title="Electricity exchanges", subtitle="TWh, ribbons coloured by the larger direction",
+         theme="fjord", width=560, height=560).save(OUT / "chord.svg")
+chain = [(f"n{i}", f"n{i + 1}") for i in range(24)] + [(f"n{int(a)}", f"n{int(b)}") for a, b in rng.integers(0, 25, (30, 2))]
+lv.arc(chain, title="Links between ordered nodes", theme="ledger", width=760, height=360).save(OUT / "arc.svg")
+iris = pd.DataFrame({"sepal": np.r_[rng.normal(5, .4, 60), rng.normal(6, .5, 60), rng.normal(6.6, .6, 60)],
+                     "petal": np.r_[rng.normal(1.5, .2, 60), rng.normal(4.2, .5, 60), rng.normal(5.5, .6, 60)],
+                     "width": np.r_[rng.normal(3.4, .3, 60), rng.normal(2.8, .3, 60), rng.normal(3, .3, 60)],
+                     "depth": rng.normal(0, 1, 180), "kind": np.repeat(["setosa", "versicolor", "virginica"], 60)})
+lv.parallel(iris, color="kind", title="Four measures per flower", theme="fjord", width=700, height=400)     .save(OUT / "parallel.svg")
+tt = np.arange(96.0)
+stream_df = pd.DataFrame({"hour": np.tile(tt, 5), "gwh": np.concatenate(
+    [np.abs(np.sin(tt / (7 + 2 * i) + i) * (12 + 4 * i)) + 3 for i in range(5)]),
+    "source": np.repeat(["Solar", "Wind", "Hydro", "Gas", "Coal"], 96)})
+lv.streamgraph(stream_df, x="hour", y="gwh", color="source", title="Generation mix over four days",
+               subtitle="Streamgraph: read the shapes, not the values", theme="fjord", **size).save(OUT / "streamgraph.svg")
+lv.horizon(stream_df.assign(gwh=stream_df.gwh - 12), x="hour", y="gwh", color="source",
+           title="Deviation from the 12 GWh baseline", theme="ledger", width=700, height=360).save(OUT / "horizon.svg")
+lv.marimekko({"Europe": {"Solar": 30, "Wind": 45, "Hydro": 25}, "Asia": {"Solar": 60, "Wind": 70, "Hydro": 90},
+              "Africa": {"Solar": 8, "Wind": 4, "Hydro": 18}}, title="Capacity by region and source", theme="ledger",
+             **size).save(OUT / "marimekko.svg")
+lv.bullet([{"label": "Revenue", "value": 270, "target": 250, "ranges": [150, 225, 300]},
+           {"label": "Profit", "value": 22, "target": 27, "ranges": [20, 25, 30]},
+           {"label": "Satisfaction", "value": 3.9, "target": 4.5, "ranges": [3, 4, 5]}], title="Quarter against target",
+          theme="folio", width=640, height=240).save(OUT / "bullet.svg")
+yt = rng.integers(0, 2, 1500)
+good, weak = yt * 0.9 + rng.normal(size=1500) * 0.8, yt * 0.3 + rng.normal(size=1500)
+lv.roc(yt, {"gradient boosting": good, "baseline": weak}, title="ROC curves", theme="ledger")     .save(OUT / "roc.svg")
+lv.pr(yt, {"gradient boosting": good, "baseline": weak}, title="Precision-recall", theme="ledger")     .save(OUT / "pr.svg")
+lv.calibration(yt, 1 / (1 + np.exp(-(good - 0.45))), title="Calibration", theme="ledger").save(OUT / "calibration.svg")
+true3 = rng.integers(0, 3, 600)
+pred3 = np.where(rng.random(600) < 0.78, true3, rng.integers(0, 3, 600))
+lv.confusion_matrix(true3, pred3, labels=[0, 1, 2], normalize="true",
+                    title="Confusion matrix", subtitle="share of each true class", theme="folio",
+                    width=480, height=420).save(OUT / "confusion.svg")
+lv.ecdf({"Control": rng.normal(50, 10, 600), "Treatment": rng.normal(56, 12, 600)}, title="Empirical CDF",
+        theme="ledger", **size).save(OUT / "ecdf.svg")
+lv.qq(rng.standard_t(3, 600), title="Normal Q-Q plot of heavy-tailed residuals", theme="ledger", width=480, height=480)     .save(OUT / "qq.svg")
+base = rng.normal(size=(500, 8))
+base[:, 1] += base[:, 0]
+base[:, 3] -= base[:, 2] * 0.8
+base[:, 5] += base[:, 4]
+base[:, 7] += base[:, 6] * 0.6
+lv.correlation({f"v{i}": base[:, i] for i in range(8)}, title="Clustered correlation matrix", theme="fjord",
+               width=560, height=500).save(OUT / "correlation.svg")
+
+tree = [("CEO", "CTO"), ("CEO", "CFO"), ("CEO", "COO"), ("CTO", "Data"), ("CTO", "Platform"), ("CTO", "Security"),
+        ("CFO", "Finance"), ("CFO", "Legal"), ("COO", "Ops"), ("COO", "Support"), ("Data", "ML"), ("Data", "BI"),
+        ("Platform", "SRE"), ("Platform", "Cloud")]
+lv.network(tree, layout="radial", root="CEO", title="Radial layout", subtitle="rings = distance from the root",
+           theme="fjord", width=560, height=480).save(OUT / "radial.svg")
+clusters = []
+for c in range(3):
+    for i in range(9):
+        for j in range(i + 1, 9):
+            if rng.random() < 0.6:
+                clusters.append((f"{'ABC'[c]}{i}", f"{'ABC'[c]}{j}"))
+clusters += [("A3", "B2"), ("B7", "C1"), ("C5", "A8")]
+lv.network(clusters, groups="louvain", title="Louvain communities", theme="ledger", width=600, height=460,
+           labels=False).save(OUT / "louvain.svg")
+# animated transition (GIF and SMIL SVG)
+q1 = {"North": 3.1, "South": 4.2, "East": 2.0, "West": 5.0, "Centre": 3.6}
+q2 = {"North": 6.0, "South": 3.3, "East": 4.8, "West": 4.1, "Centre": 5.2}
+frame = {"width": 560, "height": 340, "theme": "ledger", "y_range": (0, 7), "format": "{:.1f}"}
+step = lv.animate(lv.bar(q1, title="Output, Q1", **frame), lv.bar(q2, title="Output, Q2", **frame), frames=14,
+                  duration=0.9, hold=0.8, loop=True)
+step.save(OUT / "transition.gif")
+step.save(OUT / "transition-anim.svg")
+
 print("wrote", len(list(OUT.glob("*.svg"))), "files to", OUT)

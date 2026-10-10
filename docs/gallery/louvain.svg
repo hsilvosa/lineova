@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="460" viewBox="0 0 600 460" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv81f8cfd4t lv81f8cfd4d">
+<title id="lv81f8cfd4t">Louvain communities</title>
+<desc id="lv81f8cfd4d">Louvain communities. Network chart of Group 1, Group 2 and Group 3.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Louvain communities</text>
+<rect x="18" y="50.1" width="10" height="10" rx="5" fill="#2f5bd3"/>
+<text x="32" y="59.12" font-size="11.5" fill="#475467">Group 1</text>
+<rect x="95.63" y="50.1" width="10" height="10" rx="5" fill="#17a38b"/>
+<text x="109.63" y="59.12" font-size="11.5" fill="#475467">Group 2</text>
+<rect x="173.25" y="50.1" width="10" height="10" rx="5" fill="#e0913a"/>
+<text x="187.25" y="59.12" font-size="11.5" fill="#475467">Group 3</text>
+<path d="M492.86,133.63L524.13,198.69" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A0 – A2</title></path>
+<path d="M492.86,133.63L569,142.6" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A0 – A4</title></path>
+<path d="M492.86,133.63L431.44,87.6" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A0 – A5</title></path>
+<path d="M492.86,133.63L514.45,165.31" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A0 – A7</title></path>
+<path d="M492.86,133.63L379.57,150.33" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A0 – A8</title></path>
+<path d="M461.57,109.36L431.44,87.6" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A1 – A5</title></path>
+<path d="M461.57,109.36L514.45,165.31" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A1 – A7</title></path>
+<path d="M461.57,109.36L379.57,150.33" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A1 – A8</title></path>
+<path d="M524.13,198.69L434.74,230.11" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A2 – A3</title></path>
+<path d="M524.13,198.69L477.75,179.04" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A2 – A6</title></path>
+<path d="M524.13,198.69L514.45,165.31" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A2 – A7</title></path>
+<path d="M434.74,230.11L477.75,179.04" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A3 – A6</title></path>
+<path d="M434.74,230.11L514.45,165.31" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A3 – A7</title></path>
+<path d="M434.74,230.11L379.57,150.33" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A3 – A8</title></path>
+<path d="M569,142.6L477.75,179.04" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A4 – A6</title></path>
+<path d="M569,142.6L514.45,165.31" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A4 – A7</title></path>
+<path d="M431.44,87.6L379.57,150.33" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A5 – A8</title></path>
+<path d="M477.75,179.04L514.45,165.31" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A6 – A7</title></path>
+<path d="M477.75,179.04L379.57,150.33" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A6 – A8</title></path>
+<path d="M183.5,415.8L230.14,381.97" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B0 – B1</title></path>
+<path d="M183.5,415.8L231.6,429" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B0 – B3</title></path>
+<path d="M183.5,415.8L268.8,401.94" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B0 – B6</title></path>
+<path d="M183.5,415.8L218.35,355.63" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B0 – B7</title></path>
+<path d="M230.14,381.97L336.96,343.1" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B1 – B2</title></path>
+<path d="M230.14,381.97L218.35,355.63" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B1 – B7</title></path>
+<path d="M230.14,381.97L276.66,376.01" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B1 – B8</title></path>
+<path d="M336.96,343.1L322.85,380.57" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B2 – B4</title></path>
+<path d="M336.96,343.1L302.63,413.42" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B2 – B5</title></path>
+<path d="M336.96,343.1L268.8,401.94" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B2 – B6</title></path>
+<path d="M336.96,343.1L276.66,376.01" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B2 – B8</title></path>
+<path d="M231.6,429L302.63,413.42" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B3 – B5</title></path>
+<path d="M231.6,429L218.35,355.63" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B3 – B7</title></path>
+<path d="M231.6,429L276.66,376.01" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B3 – B8</title></path>
+<path d="M322.85,380.57L268.8,401.94" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B4 – B6</title></path>
+<path d="M322.85,380.57L218.35,355.63" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B4 – B7</title></path>
+<path d="M322.85,380.57L276.66,376.01" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B4 – B8</title></path>
+<path d="M302.63,413.42L268.8,401.94" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B5 – B6</title></path>
+<path d="M302.63,413.42L218.35,355.63" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B5 – B7</title></path>
+<path d="M268.8,401.94L218.35,355.63" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B6 – B7</title></path>
+<path d="M218.35,355.63L276.66,376.01" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B7 – B8</title></path>
+<path d="M120.25,193.13L134.69,228.91" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C0 – C1</title></path>
+<path d="M120.25,193.13L71.32,165.64" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C0 – C2</title></path>
+<path d="M120.25,193.13L98.63,169.88" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C0 – C4</title></path>
+<path d="M120.25,193.13L176.13,163.71" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C0 – C5</title></path>
+<path d="M120.25,193.13L71.77,190.83" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C0 – C6</title></path>
+<path d="M120.25,193.13L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C0 – C7</title></path>
+<path d="M134.69,228.91L71.32,165.64" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C1 – C2</title></path>
+<path d="M134.69,228.91L98.63,169.88" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C1 – C4</title></path>
+<path d="M134.69,228.91L176.13,163.71" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C1 – C5</title></path>
+<path d="M134.69,228.91L71.77,190.83" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C1 – C6</title></path>
+<path d="M134.69,228.91L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C1 – C7</title></path>
+<path d="M71.32,165.64L89.63,120.29" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C2 – C3</title></path>
+<path d="M71.32,165.64L98.63,169.88" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C2 – C4</title></path>
+<path d="M71.32,165.64L176.13,163.71" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C2 – C5</title></path>
+<path d="M71.32,165.64L71.77,190.83" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C2 – C6</title></path>
+<path d="M71.32,165.64L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C2 – C7</title></path>
+<path d="M71.32,165.64L31,140.39" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C2 – C8</title></path>
+<path d="M89.63,120.29L98.63,169.88" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C3 – C4</title></path>
+<path d="M89.63,120.29L176.13,163.71" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C3 – C5</title></path>
+<path d="M89.63,120.29L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C3 – C7</title></path>
+<path d="M89.63,120.29L31,140.39" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C3 – C8</title></path>
+<path d="M98.63,169.88L176.13,163.71" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C4 – C5</title></path>
+<path d="M98.63,169.88L71.77,190.83" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C4 – C6</title></path>
+<path d="M98.63,169.88L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C4 – C7</title></path>
+<path d="M98.63,169.88L31,140.39" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C4 – C8</title></path>
+<path d="M176.13,163.71L71.77,190.83" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C5 – C6</title></path>
+<path d="M176.13,163.71L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C5 – C7</title></path>
+<path d="M71.77,190.83L109.79,153.79" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C6 – C7</title></path>
+<path d="M71.77,190.83L31,140.39" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C6 – C8</title></path>
+<path d="M109.79,153.79L31,140.39" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C7 – C8</title></path>
+<path d="M434.74,230.11L336.96,343.1" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>A3 – B2</title></path>
+<path d="M218.35,355.63L134.69,228.91" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>B7 – C1</title></path>
+<path d="M176.13,163.71L379.57,150.33" fill="none" stroke="#cdd3de" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><title>C5 – A8</title></path>
+<g stroke="#ffffff" stroke-width="2.2">
+<circle cx="492.86" cy="133.63" r="9" fill="#2f5bd3"><title>A0 · degree 5</title></circle>
+<circle cx="461.57" cy="109.36" r="9" fill="#2f5bd3"><title>A1 · degree 3</title></circle>
+<circle cx="524.13" cy="198.69" r="9" fill="#2f5bd3"><title>A2 · degree 4</title></circle>
+<circle cx="434.74" cy="230.11" r="9" fill="#2f5bd3"><title>A3 · degree 5</title></circle>
+<circle cx="569" cy="142.6" r="9" fill="#2f5bd3"><title>A4 · degree 3</title></circle>
+<circle cx="431.44" cy="87.6" r="9" fill="#2f5bd3"><title>A5 · degree 3</title></circle>
+<circle cx="477.75" cy="179.04" r="9" fill="#2f5bd3"><title>A6 · degree 5</title></circle>
+<circle cx="514.45" cy="165.31" r="9" fill="#2f5bd3"><title>A7 · degree 6</title></circle>
+<circle cx="379.57" cy="150.33" r="9" fill="#2f5bd3"><title>A8 · degree 6</title></circle>
+<circle cx="183.5" cy="415.8" r="9" fill="#17a38b"><title>B0 · degree 4</title></circle>
+<circle cx="230.14" cy="381.97" r="9" fill="#17a38b"><title>B1 · degree 4</title></circle>
+<circle cx="336.96" cy="343.1" r="9" fill="#17a38b"><title>B2 · degree 6</title></circle>
+<circle cx="231.6" cy="429" r="9" fill="#17a38b"><title>B3 · degree 4</title></circle>
+<circle cx="322.85" cy="380.57" r="9" fill="#17a38b"><title>B4 · degree 4</title></circle>
+<circle cx="302.63" cy="413.42" r="9" fill="#17a38b"><title>B5 · degree 4</title></circle>
+<circle cx="268.8" cy="401.94" r="9" fill="#17a38b"><title>B6 · degree 5</title></circle>
+<circle cx="218.35" cy="355.63" r="9" fill="#17a38b"><title>B7 · degree 8</title></circle>
+<circle cx="276.66" cy="376.01" r="9" fill="#17a38b"><title>B8 · degree 5</title></circle>
+<circle cx="120.25" cy="193.13" r="9" fill="#e0913a"><title>C0 · degree 6</title></circle>
+<circle cx="134.69" cy="228.91" r="9" fill="#e0913a"><title>C1 · degree 7</title></circle>
+<circle cx="71.32" cy="165.64" r="9" fill="#e0913a"><title>C2 · degree 8</title></circle>
+<circle cx="89.63" cy="120.29" r="9" fill="#e0913a"><title>C3 · degree 5</title></circle>
+<circle cx="98.63" cy="169.88" r="9" fill="#e0913a"><title>C4 · degree 8</title></circle>
+<circle cx="176.13" cy="163.71" r="9" fill="#e0913a"><title>C5 · degree 8</title></circle>
+<circle cx="71.77" cy="190.83" r="9" fill="#e0913a"><title>C6 · degree 7</title></circle>
+<circle cx="109.79" cy="153.79" r="9" fill="#e0913a"><title>C7 · degree 8</title></circle>
+<circle cx="31" cy="140.39" r="9" fill="#e0913a"><title>C8 · degree 5</title></circle>
+</g>
+</svg>

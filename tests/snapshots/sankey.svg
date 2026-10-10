@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvd654f2b1t lvd654f2b1d">
+<title id="lvd654f2b1t">Chart</title>
+<desc id="lvd654f2b1d">Sankey chart of a, b, c and d.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<path d="M28,40.18C96.74,40.18,96.74,39.44,165.47,39.44L165.47,175.64C96.74,175.64,96.74,176.38,28,176.38Z" fill="#2f5bd3" fill-opacity="0.32"><title>a → b: 3</title></path>
+<path d="M28,176.38C171.47,176.38,171.47,178.6,314.94,178.6L314.94,224C171.47,224,171.47,221.78,28,221.78Z" fill="#2f5bd3" fill-opacity="0.32"><title>a → c: 1</title></path>
+<path d="M177.47,39.44C246.21,39.44,246.21,16,314.94,16L314.94,152.2C246.21,152.2,246.21,175.64,177.47,175.64Z" fill="#17a38b" fill-opacity="0.32"><title>b → d: 3</title></path>
+<rect x="16" y="40.18" width="12" height="181.6" rx="2" fill="#2f5bd3"><title>a: 4</title></rect>
+<text x="34" y="129.88" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">a</text>
+<text x="34" y="142.9" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">4</text>
+<rect x="165.47" y="39.44" width="12" height="136.2" rx="2" fill="#17a38b"><title>b: 3</title></rect>
+<text x="183.47" y="106.44" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">b</text>
+<text x="183.47" y="119.46" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<rect x="314.94" y="178.6" width="12" height="45.4" rx="2" fill="#e0913a"><title>c: 1</title></rect>
+<text x="332.94" y="200.2" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">c</text>
+<text x="332.94" y="213.22" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">1</text>
+<rect x="314.94" y="16" width="12" height="136.2" rx="2" fill="#8a6bd1"><title>d: 3</title></rect>
+<text x="332.94" y="83" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">d</text>
+<text x="332.94" y="96.02" font-size="10.5" fill="#475467" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+</svg>

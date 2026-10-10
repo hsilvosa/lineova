@@ -142,7 +142,8 @@ def render(scene: S.Scene) -> str:
                 if op.hatch:
                     out.append(f'<rect {geo} fill="url(#{hatch_id(op.hatch)})" pointer-events="none"/>')
             elif t is S.Line:
-                out.append(f'<line x1="{_f(op.x1)}" y1="{_f(op.y1)}" x2="{_f(op.x2)}" y2="{_f(op.y2)}"'
+                cls = f' class="{op.cls}"' if op.cls else ""
+                out.append(f'<line{cls} x1="{_f(op.x1)}" y1="{_f(op.y1)}" x2="{_f(op.x2)}" y2="{_f(op.y2)}"'
                            f'{_paint(None, op.stroke, op.stroke_width, op.opacity, dash=op.dash, cap=op.cap)}/>')
             elif t is S.Polyline:
                 runs = _points(np.asarray(op.xs, float), np.asarray(op.ys, float))
@@ -186,7 +187,8 @@ def render(scene: S.Scene) -> str:
                     body = "".join(_tspan(t, w, it, c, op) for t, w, it, c in op.spans)
                 else:
                     body = escape(op.text)
-                out.append(f"<text {' '.join(attrs)}>{body}</text>")
+                cls = f'class="{op.cls}" ' if op.cls else ""
+                out.append(f"<text {cls}{' '.join(attrs)}>{body}</text>")
             elif t is S.Image:
                 data = base64.b64encode(encode_png(op.rgba)).decode("ascii")
                 rendering = "" if op.smooth else ' image-rendering="pixelated" style="image-rendering:pixelated"'
@@ -196,7 +198,8 @@ def render(scene: S.Scene) -> str:
                 clip_n += 1
                 cid = f"{uid}c{clip_n}"
                 defs[cid] = f'<clipPath id="{cid}"><rect x="{_f(op.x)}" y="{_f(op.y)}" width="{_f(op.w)}" height="{_f(op.h)}"/></clipPath>'
-                out.append(f'<g clip-path="url(#{cid})">')
+                cls = f' class="{op.cls}"' if op.cls else ""
+                out.append(f'<g{cls} clip-path="url(#{cid})">')
             elif t is S.EndClip:
                 out.append("</g>")
             elif t is S.Group:

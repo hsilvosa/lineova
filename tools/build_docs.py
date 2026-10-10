@@ -50,16 +50,20 @@ def _doc(obj) -> str:
 
 
 def build_api() -> None:
-    from lineova.marks import layer_class
+    from lineova.marks import REGISTRY, layer_class
     lines = ["# API reference", "",
              "Generated from the source by `tools/build_docs.py`. Every chart function returns a "
              "[`Chart`](#chart), so the methods below work on its result.", ""]
     lines += ["## Chart functions", ""]
     for name in ["line", "area", "bar", "scatter", "histogram", "heatmap", "box", "violin", "ridgeline", "pie",
                  "donut", "dumbbell", "slope", "waterfall", "candlestick", "treemap", "sunburst", "sankey", "radar",
-                 "density", "hexbin", "map", "tilemap", "timeline", "calendar", "sparkline", "stat", "network"]:
+                 "density", "hexbin", "map", "tilemap", "timeline", "calendar", "sparkline", "stat", "network",
+                 "chord", "arc", "parallel", "streamgraph", "horizon", "marimekko", "bullet",
+                 "roc", "pr", "calibration", "confusion_matrix", "ecdf", "qq", "correlation"]:
         fn = getattr(lv, name)
         lines += [f"### `lv.{name}`", "", f"```python\nlv.{name}{_sig(fn)}\n```", "", _doc(fn), ""]
+        if name not in REGISTRY:               # evaluation helpers (lv.ml) build their charts from other layers
+            continue
         layer = layer_class("pie" if name == "donut" else name)
         params = [p for p in inspect.signature(layer.__init__).parameters.values()
                   if p.name not in ("self", "data", "x", "y", "color", "value", "kw")]

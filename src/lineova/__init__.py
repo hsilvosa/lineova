@@ -6,9 +6,12 @@
 
 from . import themes
 from ._data import Chunks, DataError
-from .api import (area, bar, box, calendar, candlestick, density, donut, dumbbell, heatmap, hexbin, histogram, line, map,
-                  network, pie, radar, ridgeline, sankey, scatter, slope, sparkline, stat, sunburst, tilemap, timeline, treemap,
+from .api import (arc, area, bar, box, bullet, calendar, candlestick, chord, density, donut, dumbbell, heatmap, hexbin, histogram, horizon, line, map,
+                  marimekko,
+                  network, parallel, pie, radar, ridgeline, sankey, scatter, slope, sparkline, stat, streamgraph, sunburst, tilemap, timeline, treemap,
                   violin, waterfall)
+from .ml import calibration, confusion_matrix, correlation, ecdf, pr, qq, roc
+from .animate import Animation, animate
 from .chart import SIZES, Axis, Chart
 from .figure import Grid, grid
 from .graph import Graph, GraphError
@@ -17,8 +20,9 @@ from .themes import Theme
 __version__ = "0.3.0"
 
 __all__ = [
-    "Chart", "Axis", "Grid", "grid", "Chunks", "Graph", "GraphError", "DataError", "Theme", "themes", "SIZES",
+    "Chart", "Axis", "animate", "Animation", "Grid", "grid", "Chunks", "Graph", "GraphError", "DataError", "Theme", "themes", "SIZES",
     "line", "area", "bar", "scatter", "histogram", "heatmap", "box", "network", "__version__",
     "pie", "donut", "violin", "ridgeline", "dumbbell", "slope", "waterfall", "candlestick", "treemap", "sunburst",
-    "sankey", "radar", "density", "hexbin", "map", "tilemap", "timeline", "calendar", "sparkline", "stat",
+    "sankey", "radar", "chord", "arc", "parallel", "streamgraph", "horizon", "marimekko", "bullet",
+    "roc", "pr", "calibration", "confusion_matrix", "correlation", "ecdf", "qq", "density", "hexbin", "map", "tilemap", "timeline", "calendar", "sparkline", "stat",
 ]

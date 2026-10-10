@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="420" viewBox="0 0 480 420" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lvb0bdbf6dt lvb0bdbf6dd">
+<title id="lvb0bdbf6dt">Confusion matrix</title>
+<desc id="lvb0bdbf6dd">Confusion matrix. share of each true class. Heatmap of 3 rows by 3 columns, values from 0.0569 to 0.872.</desc>
+<defs><clipPath id="lvb0bdbf6dc1"><rect x="58.76" y="43" width="406.24" height="282.2"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="404" font-size="12.5" fill="#4b5260">Confusion matrix. Share of each true class.</text>
+<g clip-path="url(#lvb0bdbf6dc1)">
+<rect x="60.26" y="44.5" width="133.75" height="92.4" rx="2" fill="#2d323a"><title>0 · 0: 82%</title></rect>
+<text x="127.13" y="94.37" font-size="10.5" fill="#ffffff" text-anchor="middle">82%</text>
+<rect x="195.01" y="44.5" width="133.75" height="92.4" rx="2" fill="#eeeff2"><title>0 · 1: 8%</title></rect>
+<text x="261.88" y="94.37" font-size="10.5" fill="#111111" text-anchor="middle">8%</text>
+<rect x="329.75" y="44.5" width="133.75" height="92.4" rx="2" fill="#ebecf0"><title>0 · 2: 10%</title></rect>
+<text x="396.63" y="94.37" font-size="10.5" fill="#111111" text-anchor="middle">10%</text>
+<rect x="60.26" y="137.9" width="133.75" height="92.4" rx="2" fill="#f4f5f7"><title>1 · 0: 6%</title></rect>
+<text x="127.13" y="187.77" font-size="10.5" fill="#111111" text-anchor="middle">6%</text>
+<rect x="195.01" y="137.9" width="133.75" height="92.4" rx="2" fill="#23272f"><title>1 · 1: 85%</title></rect>
+<text x="261.88" y="187.77" font-size="10.5" fill="#ffffff" text-anchor="middle">85%</text>
+<rect x="329.75" y="137.9" width="133.75" height="92.4" rx="2" fill="#edeef1"><title>1 · 2: 9%</title></rect>
+<text x="396.63" y="187.77" font-size="10.5" fill="#111111" text-anchor="middle">9%</text>
+<rect x="60.26" y="231.3" width="133.75" height="92.4" rx="2" fill="#f3f4f6"><title>2 · 0: 6%</title></rect>
+<text x="127.13" y="281.18" font-size="10.5" fill="#111111" text-anchor="middle">6%</text>
+<rect x="195.01" y="231.3" width="133.75" height="92.4" rx="2" fill="#f3f4f6"><title>2 · 1: 6%</title></rect>
+<text x="261.88" y="281.18" font-size="10.5" fill="#111111" text-anchor="middle">6%</text>
+<rect x="329.75" y="231.3" width="133.75" height="92.4" rx="2" fill="#1e2229"><title>2 · 2: 87%</title></rect>
+<text x="396.63" y="281.18" font-size="10.5" fill="#ffffff" text-anchor="middle">87%</text>
+</g>
+<text x="127.13" y="350.78" font-size="11" fill="#4b5260" text-anchor="middle">0</text>
+<text x="261.88" y="350.78" font-size="11" fill="#4b5260" text-anchor="middle">1</text>
+<text x="396.63" y="350.78" font-size="11" fill="#4b5260" text-anchor="middle">2</text>
+<text x="40.76" y="281.35" font-size="11" fill="#4b5260" text-anchor="end">2</text>
+<text x="40.76" y="187.95" font-size="11" fill="#4b5260" text-anchor="end">1</text>
+<text x="40.76" y="94.55" font-size="11" fill="#4b5260" text-anchor="end">0</text>
+<text x="261.88" y="376.5" font-size="11" fill="#4b5260" text-anchor="middle" font-style="italic">Predicted</text>
+<text x="22.6" y="187.95" font-size="11" fill="#4b5260" text-anchor="middle" font-style="italic" transform="rotate(-90 22.6 184.1)">True</text>
+<text x="16" y="26.68" font-size="10.5" fill="#4b5260">Share</text>
+<text x="52.78" y="26.68" font-size="10.5" fill="#7b828e">0.0569</text>
+<image x="91.12" y="19" width="160" height="8" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAACCAYAAAC3zQLZAAADgElEQVR4nO3U5yLWCwDA4a7knJaGZBeVkVGSGRGSERnZDZSSzAplr4wiK7K3sjOSPcIbEdmEdM7H3/lzG6cPzy08e7Z//8uv7X92bf36zebWbza2ttnY3Obnxi/WN7ZY/7nF2vomq4KVtQ1WVjdYXv3J0so6S8vrLC6vsbAkWFxlXvBjYYW5hWXm5peZ/bHE9x1zi8zMLjI9u8D093m+zcwzNfODyWnBtzm+CkRTs4gmvzMhGP86w7hohjHRNF8mphmd+Mbo+BQjY1MMj00y/GWSodGvDO4YETEwLKJ/eIL+oXH6BsfpHRyjZ0DQ/4XPgu6+UcEIn3pH6OoZ3tX5eYiO7h2DtH8a5GPXgKCfts5+Wjv7aO3oo6W9l2ZB08cemtp6aGz7TENrNw0t3Xxo+cT75h1d1Dd1UdfYuau2oYOaD+1Uv/9IVX0blXVtVNS2Ul7TQllNM6XVTZRUNVJc2UhRRQNF5R94V/aewtJ6CkrqeFtcR35RLXlFNeS+qyansIrsgirevK0kK7+CzLxyXueW8SqnlIzsUtKzS0h/U0xaVhGpme94+bqQlFeFJGcUkJT+lsS0fBLS8ohPzSPuZS6xKTnEJGcTk/SG6MQsohKyeBGfyfP410TGvSIiNoPwmAyeRafzNCqNJy9SCXv+cldoZAohEckEhycR9CyRwKeJPH6SQEBYPI/C4vAPjcU/JJaHwTE8CIrGLzCK+49fcE/gG/Acn0eRePtH4P0wnLsPwrnj94zbfk+5df8JXvfC8PQNw8MnFHfvEEEwbneDcb0ThMvtQG7eeoyzVwBOno9w9HiIg/sDbrj5Ye96HzuXe1y/6Yutsw82Tt5YO97ByuE2127cwtLei6t2nlhc98DC1h1zGzfMrF25YuWC6TVnTCyduHzVEWMLB4zMb3DJzB7DK3YYmF5H38QWvcs26Bpbo2NkxcVLlmgbXkXbwIIL+uZo6ZlxXvcK53RM0bxogob2ZdQvGKOmZcTZ85dQPWeIqqYBKhr6KKvroaSmyxk1HU6fvcgpVW0UVbRQUD6PgtI5Tp7R5MRpDeRPqSOnqIaswllkTqoifUIFaXllpOSVkJQ7w3HZ00jInOKYtCLiUgqIS57k6PETHJGQ57Dg0DE5xMRlETsqw8Ej0hw4LMX+Q5LsEzvOXjEJ9h48xt8HxPlr/1H2/AngTwB/Avj/BvAfYjN7rCvQYe0AAAAASUVORK5CYII="/>
+<text x="257.12" y="26.68" font-size="10.5" fill="#7b828e">0.872</text>
+</svg>

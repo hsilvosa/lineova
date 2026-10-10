@@ -186,6 +186,37 @@ Polygons with holes and multi-polygons are supported. Points above 50,000 become
 ### sankey
 Rows of `(source, target, value)` or an edge DataFrame. Nodes are placed in stages by their longest path from a source; flows must not form a cycle.
 
+### chord
+`chord(matrix, names=[...])`, a square DataFrame, or `(source, target, value)` rows. The arc of a group is as long as its row sum. The ribbon between groups *i* and *j* is as wide as `M[i][j]` at *i* and `M[j][i]` at *j*, so one-way flows show their asymmetry. `sort=True` orders groups by size. Use it for 3-10 groups.
+
+### arc
+Edge list, edge table, `lv.Graph` or networkx graph. Nodes sit on a line, one arc per link. `order="auto"` puts communities together; `order=[...]` fixes the order (time, position); `order="input"` keeps the order of appearance.
+
+### parallel
+`parallel(df, dims=[...], color="class")`: one axis per numeric column, one line per row. `color=` takes a text column (one colour per group) or a number (a ramp). `invert=[...]` flips axes, `normalize="zscore"` replaces the per-axis min-max scale. Above 30,000 rows a random sample is drawn and the chart says so.
+
+### streamgraph
+Same input as `area` with several series. `offset="wiggle"` (default) keeps the slopes small, `"silhouette"` centres the stack, `"zero"` is an ordinary stacked area. The y axis is hidden because the baseline moves: read shapes, not values.
+
+### horizon
+Same input as `line` with several series. Each series gets one thin row. The range is cut into `bands=3` slices drawn on top of each other in darker tones, and values below `baseline=` use the negative colour. `scale="shared"` (default) uses the same step in every row so rows stay comparable.
+
+### marimekko
+`marimekko({column: {segment: value}})` or long data with `x=`, `y=`, `value=`. Column width is the column total, segment height is its share inside the column. Hard to read with more than about 6 columns or 5 segments.
+
+### bullet
+`bullet([{"label": "Revenue", "value": 270, "target": 250, "ranges": [150, 225, 300]}])`, a `{label: (value, target, ranges)}` dict, or a DataFrame with label, value and target columns. Each row has its own scale from 0. `shared=True` uses one scale, `lower_is_better=True` reverses the range tones.
+
+### Model evaluation and distributions
+These functions return a normal `Chart`.
+
+- `roc(y_true, scores)` and `pr(y_true, scores)`: `scores` is one array or `{model: scores}`. The legend shows AUC or average precision.
+- `calibration(y_true, probabilities, bins=10, strategy="uniform")`: reliability diagram with the Brier score.
+- `confusion_matrix(y_true, y_pred, labels=None, normalize=None | "true" | "pred" | "all")`.
+- `ecdf(data, complementary=False)`: empirical CDF of one array, a dict of arrays or a DataFrame.
+- `qq(data, dist="normal" | "uniform" | "exponential" | function)`: quantile-quantile plot with a quartile reference line.
+- `correlation(df, method="pearson" | "spearman", cluster=True)`: diverging heatmap from -1 to 1. Clustering reorders variables so related ones form blocks.
+
 ### radar
 `radar({item: {measure: value}})` or a DataFrame with one row per item. `normalize=True` scales each measure to its own maximum (use it when measures have different units). Warns above 6 items.
 
@@ -227,9 +258,35 @@ Panels share one colour per series and one legend (when they show the same serie
 
 Memory use is bounded by the chunk size (plus one small array per group). `np.memmap` arrays don't need `Chunks`: pass them directly. Weekdays and months keep calendar order in streamed categories.
 
+## Animated transitions
+
+```python
+a = lv.bar(q1, title="Q1", width=560, height=340, y_range=(0, 7))
+b = lv.bar(q2, title="Q2", width=560, height=340, y_range=(0, 7))
+anim = lv.animate(a, b, duration=0.9, hold=0.8, loop=True)
+anim.save("transition.gif")        # animated GIF
+anim.save("transition.svg")        # animated SVG (SMIL): plays in browsers, no scripts
+anim.frame(0.5)                    # the in-between chart, as a scene; .frame_svg(0.5) and .frame_png(0.5) too
+lv.animate([a, b, c])              # three or more charts: one transition after the other
+```
+
+Both charts are drawn, then their drawing operations are matched: bars with bars, a line with a line, a tick label
+with the same label. Matched shapes move and change colour step by step. A line with more points than the other is
+resampled so it can bend into it. Scatter points move one to one, and extra points grow in or shrink away. Anything
+without a partner fades, and a label that changes (a title, a tick) cross-fades. Charts of different kinds cross-fade.
+
+Both charts need the same pixel size. For a clean result, fix the axis ranges (`y_range=`) so the axes do not change
+between them. Options: `frames` (per step, default 24), `duration` (seconds per step), `ease` (`"in-out"`, `"linear"`,
+`"in"`, `"out"`, `"cubic"`), `hold` (rest on the first and last chart), `loop`, `bounce` (play back to the start).
+
+GIF output has at most 256 colours, so gradients band a little, and it uses the PNG renderer chain (the built-in one
+is enough). The SVG output stores one group per frame, so keep `frames` low for charts with many marks.
+
 ## Interactive HTML
 
-`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets. Below the chart, a "Description and data" section holds the text description and the data table with a CSV download (`to_html(data=False)` leaves it out). `chart.show()` outside a notebook opens this page in the browser.
+`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets.
+
+Plain line charts on a number or date axis (also in a `grid` or with `facet=`) get a smarter zoom. It works on the data, not the picture: lines are redrawn at the new resolution, and the x axis gets new ticks and labels that fit the visible range (months, then days, then hours). Shift+drag selects a range to zoom into. A strip under the chart shows the whole series with a window to drag or resize. "Fit y to view" rescales and re-ticks the y axis to the visible data, the series buttons hide and show lines, and "Reset zoom" restores the view. Panels in a grid that share the same x range zoom together. The page embeds up to 30,000 points per plot, so a zoom into a very long series shows the reduced data (min and max per pixel column of the original), not every raw row. Charts with bands, log or reversed axes, vertical annotations, or other layer types keep the plain zoom of the whole picture. Below the chart, a "Description and data" section holds the text description and the data table with a CSV download (`to_html(data=False)` leaves it out). `chart.show()` outside a notebook opens this page in the browser.
 
 ## Accessibility
 
@@ -280,7 +337,7 @@ print(lv.themes.check_palette("acme"))                           # the checks, P
 
 ```python
 chart.save("fig.svg")
-chart.save("fig.pdf")               # vector, standard PDF fonts, selectable text
+chart.save("fig.pdf")               # vector, embedded fonts, selectable text (to_pdf(embed_fonts=False) for the standard fonts)
 chart.save("fig.png", dpi=300)      # needs lineova[png], cairosvg or playwright
 svg_text = chart.to_svg()
 pdf_bytes = chart.to_pdf()

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvac3899c4t lvac3899c4d">
+<title id="lvac3899c4t">Chart</title>
+<desc id="lvac3899c4d">Heatmap of 4 rows by 4 columns, values from −0.17 to 1.</desc>
+<defs><clipPath id="lvac3899c4c1"><rect x="35.2" y="43" width="309.8" height="159.5"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g clip-path="url(#lvac3899c4c1)">
+<rect x="36.7" y="44.5" width="75.95" height="38.38" rx="2" fill="#2f5bd3"><title>v0 · v0: 1.00</title></rect>
+<text x="74.67" y="67.36" font-size="10.5" fill="#ffffff" text-anchor="middle">1.00</text>
+<rect x="113.65" y="44.5" width="75.95" height="38.38" rx="2" fill="#edd5cb"><title>v0 · v1: -0.17</title></rect>
+<text x="151.62" y="67.36" font-size="10.5" fill="#111111" text-anchor="middle">-0.17</text>
+<rect x="190.6" y="44.5" width="75.95" height="38.38" rx="2" fill="#e0e5ee"><title>v0 · v2: 0.08</title></rect>
+<text x="228.57" y="67.36" font-size="10.5" fill="#111111" text-anchor="middle">0.08</text>
+<rect x="267.55" y="44.5" width="75.95" height="38.38" rx="2" fill="#dde3ee"><title>v0 · v3: 0.10</title></rect>
+<text x="305.52" y="67.36" font-size="10.5" fill="#111111" text-anchor="middle">0.10</text>
+<rect x="36.7" y="83.88" width="75.95" height="38.38" rx="2" fill="#edd5cb"><title>v1 · v0: -0.17</title></rect>
+<text x="74.67" y="106.74" font-size="10.5" fill="#111111" text-anchor="middle">-0.17</text>
+<rect x="113.65" y="83.88" width="75.95" height="38.38" rx="2" fill="#2f5bd3"><title>v1 · v1: 1.00</title></rect>
+<text x="151.62" y="106.74" font-size="10.5" fill="#ffffff" text-anchor="middle">1.00</text>
+<rect x="190.6" y="83.88" width="75.95" height="38.38" rx="2" fill="#f0f0ef"><title>v1 · v2: 0.01</title></rect>
+<text x="228.57" y="106.74" font-size="10.5" fill="#111111" text-anchor="middle">0.01</text>
+<rect x="267.55" y="83.88" width="75.95" height="38.38" rx="2" fill="#f0ece9"><title>v1 · v3: -0.03</title></rect>
+<text x="305.52" y="106.74" font-size="10.5" fill="#111111" text-anchor="middle">-0.03</text>
+<rect x="36.7" y="123.25" width="75.95" height="38.38" rx="2" fill="#e0e5ee"><title>v2 · v0: 0.08</title></rect>
+<text x="74.67" y="146.11" font-size="10.5" fill="#111111" text-anchor="middle">0.08</text>
+<rect x="113.65" y="123.25" width="75.95" height="38.38" rx="2" fill="#f0f0ef"><title>v2 · v1: 0.01</title></rect>
+<text x="151.62" y="146.11" font-size="10.5" fill="#111111" text-anchor="middle">0.01</text>
+<rect x="190.6" y="123.25" width="75.95" height="38.38" rx="2" fill="#2f5bd3"><title>v2 · v2: 1.00</title></rect>
+<text x="228.57" y="146.11" font-size="10.5" fill="#ffffff" text-anchor="middle">1.00</text>
+<rect x="267.55" y="123.25" width="75.95" height="38.38" rx="2" fill="#efded7"><title>v2 · v3: -0.12</title></rect>
+<text x="305.52" y="146.11" font-size="10.5" fill="#111111" text-anchor="middle">-0.12</text>
+<rect x="36.7" y="162.62" width="75.95" height="38.38" rx="2" fill="#dde3ee"><title>v3 · v0: 0.10</title></rect>
+<text x="74.67" y="185.49" font-size="10.5" fill="#111111" text-anchor="middle">0.10</text>
+<rect x="113.65" y="162.62" width="75.95" height="38.38" rx="2" fill="#f0ece9"><title>v3 · v1: -0.03</title></rect>
+<text x="151.62" y="185.49" font-size="10.5" fill="#111111" text-anchor="middle">-0.03</text>
+<rect x="190.6" y="162.62" width="75.95" height="38.38" rx="2" fill="#efded7"><title>v3 · v2: -0.12</title></rect>
+<text x="228.57" y="185.49" font-size="10.5" fill="#111111" text-anchor="middle">-0.12</text>
+<rect x="267.55" y="162.62" width="75.95" height="38.38" rx="2" fill="#2f5bd3"><title>v3 · v3: 1.00</title></rect>
+<text x="305.52" y="185.49" font-size="10.5" fill="#ffffff" text-anchor="middle">1.00</text>
+</g>
+<text x="74.67" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">v0</text>
+<text x="151.62" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">v1</text>
+<text x="228.57" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">v2</text>
+<text x="305.52" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">v3</text>
+<text x="29.2" y="185.66" font-size="11" fill="#8a94a6" text-anchor="end">v3</text>
+<text x="29.2" y="146.29" font-size="11" fill="#8a94a6" text-anchor="end">v2</text>
+<text x="29.2" y="106.91" font-size="11" fill="#8a94a6" text-anchor="end">v1</text>
+<text x="29.2" y="67.54" font-size="11" fill="#8a94a6" text-anchor="end">v0</text>
+<text x="16" y="26.68" font-size="10.5" fill="#475467">Pearson r</text>
+<text x="73.79" y="26.68" font-size="10.5" fill="#8a94a6">−1</text>
+<image x="92.54" y="19" width="160" height="8" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAACCAYAAAC3zQLZAAADi0lEQVR4nO3UeU/WBQDAcV9Af/RHW1tbW2ttrbVm5cxZWZlkGsMrSQ1DOUQUUVSEABFEQURQQTwgkEO8UJBDEFSI+74fnvu+fs/z/M6HV/DthcTnRXzWDG1+h+Et7zIc8R4jW99nZNsHjG7/kNHIjxiL+pjxHZ8wvutTJnZ/xsTvnzMZ/QWTf6xlav9XTB1Yx3TMeqYPbmAmdiMzh75jNm4Ts/E/MpewmbkjPzOfFMF88lYWjm1jIWU7iyciWUyNYunUTpbSdqE7swfd2b0sp0eznLEPfeYB9FkxGLIPYsiJxZh7GOOFOIz5CZguJmIqSMJ8ORlz4TEsRSlYilOxXD2JtSQNa+kZbGVnsV0/h/1mBvbyv7FXZOOozMFxOxfnnTyc9/JxVhXgqr6Eq6YQV+0V3PeLcdeX4GkoxdNYhqfpBt6HN/E+qsD7pBLf09v4mu/ie16Fv6Uaf2sN/rZahPY6hI4GhJeNBLqaCHQ/ItDzmGDvU4Kvmwm+fU6wr5VQ/wtCA+2EBjsRh14ijnQjjr5CHOtFGn+DNPkWaaofaXoAeXYQeW4YeX4UeXEMZWkCRTeFop9GMcyiGOdRzQuoliVUqw7VrkdzGNGcJjSXBc1jQ/Pa0XxOwoKbcMBDOOgjLAqEpQBhOcSKKrGiyayEVcJhDU3TUFQNSdEQZY2gpCGIGv6Qijeg4hFUXH4Vh0/F7lWxelTMbhWTS8XgUNHbVXQ2hUWrwoJFYc6sMGtSmDYqTOoVJpYVxnQyo0syw4sygwsyA/My/XMyfTMyb6YleqckeiYluickusYlOsckOkYk2oZFWodEWgZFng2INP8r8qQ/xOO+EA/fhHjwOkRjb4j6nhB1r4LUdgep6QpS3RmkqiPI3fYAd9oCVL4IcKs1QHmLwI1nAtebBUqfClx7InD1sZ/iR36KmvwUPvBzqdFHQYOP/HofeXU+cu97OV/jJfsfL1nVXjKrPGTc85B+18PZ2x5OV7pJu+XmZIWb1HI3KTddHL/uIrnMxdFSF0euOUkscRJf7CTuioNDRQ5iCx38ddlOTIGdPy/a2Z9vZ1+ejegLNvaet7Enx8rubCs7s6zsyLQQlWEh8pyF39LNbDtj5tfTZn5JMxNxysSWVBObT5j4KcXID8eNbEo28P1RA98mGdiYqGdDgp5v4vWsP7zMukPLfB27zJcHdayN0bFmNYDVAFYD+P8G8B8/pxUhfpDUXgAAAABJRU5ErkJggg=="/>
+<text x="258.54" y="26.68" font-size="10.5" fill="#8a94a6">1</text>
+</svg>
