@@ -36,7 +36,7 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Interactive HTML output (tooltips, zoom, pan) from the same scene
 - [x] Crosshair readout in HTML
 - [x] Date-range brushing and zoom that re-ticks the axes
-- [ ] Font embedding in PDF (theme fonts instead of the standard PDF fonts)
+- [x] Font embedding in PDF (the bundled Liberation fonts instead of the standard PDF fonts)
 - [x] Native PNG rasteriser so PNG needs no extra install
 - [x] Multi-chart layouts: `lv.grid([c1, c2], cols=2)` with aligned axes
 - [x] Secondary encodings for accessibility: textures for bars and areas, and an auto-generated data table / alt text
@@ -61,5 +61,4 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 
 ## Next
 - [ ] More tile layouts (European countries, US states) and bundled simplified boundaries
-- [ ] Font embedding in PDF
 - [ ] A script to rebuild the real-data gallery inputs from the raw IGN/OMIE files

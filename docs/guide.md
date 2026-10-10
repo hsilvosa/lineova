@@ -313,7 +313,7 @@ print(lv.themes.check_palette("acme"))                           # the checks, P
 
 ```python
 chart.save("fig.svg")
-chart.save("fig.pdf")               # vector, standard PDF fonts, selectable text
+chart.save("fig.pdf")               # vector, embedded fonts, selectable text (to_pdf(embed_fonts=False) for the standard fonts)
 chart.save("fig.png", dpi=300)      # needs lineova[png], cairosvg or playwright
 svg_text = chart.to_svg()
 pdf_bytes = chart.to_pdf()

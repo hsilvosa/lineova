@@ -26,16 +26,32 @@ class TrueTypeFont:
             self.tables[tag.decode("latin-1")] = (off, length)
         head = self.tables["head"][0]
         self.units = struct.unpack_from(">H", data, head + 18)[0]
+        self.bbox = struct.unpack_from(">hhhh", data, head + 36)
         self.loca_long = struct.unpack_from(">h", data, head + 50)[0] == 1
         self.num_glyphs = struct.unpack_from(">H", data, self.tables["maxp"][0] + 4)[0]
         hhea = self.tables["hhea"][0]
         self.ascent, self.descent = struct.unpack_from(">hh", data, hhea + 4)
         self.n_hmetrics = struct.unpack_from(">H", data, hhea + 34)[0]
+        os2 = self.tables.get("OS/2")
+        self.cap_height = struct.unpack_from(">h", data, os2[0] + 88)[0] if os2 and os2[1] >= 90 else self.ascent
+        post = self.tables.get("post")
+        self.italic_angle = struct.unpack_from(">i", data, post[0] + 4)[0] / 65536 if post else 0.0
+        self.postscript_name = self._name(6)
         self._cmap = self._read_cmap()
         self._loca = self._read_loca()
         self._outlines: dict = {}
 
     # ------------------------------------------------------------------ tables
+    def _name(self, name_id: int) -> str:
+        off = self.tables["name"][0]
+        count, str_off = struct.unpack_from(">HH", self.data, off + 2)
+        for i in range(count):
+            pid, eid, lid, nid, length, o = struct.unpack_from(">HHHHHH", self.data, off + 6 + 12 * i)
+            if nid == name_id:
+                raw = self.data[off + str_off + o:off + str_off + o + length]
+                return raw.decode("utf-16-be" if pid in (0, 3) else "latin-1")
+        return "Font"
+
     def _read_loca(self):
         off, length = self.tables["loca"]
         if self.loca_long:
