@@ -29,6 +29,10 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
   in every viewer and keep real Unicode symbols (minus, arrows, comparison signs, accents); text stays selectable.
   `to_pdf(embed_fonts=False)` goes back to the 14 standard fonts (smaller files).
 
+- Animated transitions: `lv.animate(a, b)` (or a list of charts) morphs one chart into the next - bars grow, lines bend,
+  points move, ticks slide, unmatched parts fade - and saves as an animated GIF (own encoder, delta frames) or an
+  animated SVG (SMIL). `frame(t)` returns any in-between chart; easing, hold, loop and bounce are options.
+
 ### Changed
 - Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
   switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).

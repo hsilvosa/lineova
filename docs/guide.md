@@ -258,6 +258,30 @@ Panels share one colour per series and one legend (when they show the same serie
 
 Memory use is bounded by the chunk size (plus one small array per group). `np.memmap` arrays don't need `Chunks`: pass them directly. Weekdays and months keep calendar order in streamed categories.
 
+## Animated transitions
+
+```python
+a = lv.bar(q1, title="Q1", width=560, height=340, y_range=(0, 7))
+b = lv.bar(q2, title="Q2", width=560, height=340, y_range=(0, 7))
+anim = lv.animate(a, b, duration=0.9, hold=0.8, loop=True)
+anim.save("transition.gif")        # animated GIF
+anim.save("transition.svg")        # animated SVG (SMIL): plays in browsers, no scripts
+anim.frame(0.5)                    # the in-between chart, as a scene; .frame_svg(0.5) and .frame_png(0.5) too
+lv.animate([a, b, c])              # three or more charts: one transition after the other
+```
+
+Both charts are drawn, then their drawing operations are matched: bars with bars, a line with a line, a tick label
+with the same label. Matched shapes move and change colour step by step. A line with more points than the other is
+resampled so it can bend into it. Scatter points move one to one, and extra points grow in or shrink away. Anything
+without a partner fades, and a label that changes (a title, a tick) cross-fades. Charts of different kinds cross-fade.
+
+Both charts need the same pixel size. For a clean result, fix the axis ranges (`y_range=`) so the axes do not change
+between them. Options: `frames` (per step, default 24), `duration` (seconds per step), `ease` (`"in-out"`, `"linear"`,
+`"in"`, `"out"`, `"cubic"`), `hold` (rest on the first and last chart), `loop`, `bounce` (play back to the start).
+
+GIF output has at most 256 colours, so gradients band a little, and it uses the PNG renderer chain (the built-in one
+is enough). The SVG output stores one group per frame, so keep `frames` low for charts with many marks.
+
 ## Interactive HTML
 
 `chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets.

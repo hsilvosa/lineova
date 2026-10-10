@@ -232,4 +232,13 @@ for c in range(3):
 clusters += [("A3", "B2"), ("B7", "C1"), ("C5", "A8")]
 lv.network(clusters, groups="louvain", title="Louvain communities", theme="ledger", width=600, height=460,
            labels=False).save(OUT / "louvain.svg")
+# animated transition (GIF and SMIL SVG)
+q1 = {"North": 3.1, "South": 4.2, "East": 2.0, "West": 5.0, "Centre": 3.6}
+q2 = {"North": 6.0, "South": 3.3, "East": 4.8, "West": 4.1, "Centre": 5.2}
+frame = {"width": 560, "height": 340, "theme": "ledger", "y_range": (0, 7), "format": "{:.1f}"}
+step = lv.animate(lv.bar(q1, title="Output, Q1", **frame), lv.bar(q2, title="Output, Q2", **frame), frames=14,
+                  duration=0.9, hold=0.8, loop=True)
+step.save(OUT / "transition.gif")
+step.save(OUT / "transition-anim.svg")
+
 print("wrote", len(list(OUT.glob("*.svg"))), "files to", OUT)

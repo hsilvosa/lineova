@@ -42,7 +42,7 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Secondary encodings for accessibility: textures for bars and areas, and an auto-generated data table / alt text
 - [x] Theme builder from a brand colour (validated palette generation)
 - [x] Dark variants of folio, ledger and fjord (and a light instrument)
-- [ ] Animated transitions (SVG/SMIL or GIF) between two charts
+- [x] Animated transitions (SVG/SMIL or GIF) between two charts
 - [ ] Edge bundling for very large networks (Barnes–Hut is not needed: see 0.4)
 - [x] More graph algorithms: betweenness/closeness centrality, PageRank, max flow, A*, strongly connected components
 - [x] Graph algorithms at scale: approximate betweenness (sampling) for 100k+ nodes

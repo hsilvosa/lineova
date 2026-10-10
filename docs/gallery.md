@@ -85,6 +85,8 @@ Synthetic examples of every chart type, made by [`examples/gallery.py`](https://
 
 ### New in 0.4
 
+Animated transition between two charts (`lv.animate(a, b).save("x.gif")`): ![](gallery/transition.gif)
+
 | | |
 |---|---|
 | ![](gallery/chord.svg) | ![](gallery/arc.svg) |

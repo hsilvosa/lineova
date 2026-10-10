@@ -542,7 +542,7 @@ A figure made of one or more layers (line, bar, scatter, ...).
 - **`.timeline(data=None, **kw) -> Chart`**: Add a timeline layer. Takes the same options as ``lv.timeline()``.
 - **`.title(text: str, subtitle: Optional[str] = None) -> Chart`**: Main heading, optionally with a subtitle.
 - **`.to_html(*, title: Optional[str] = None, data: bool = True) -> str`**: Standalone HTML page: hover tooltips, a crosshair readout on line charts, wheel/drag zoom,
-- **`.to_pdf() -> bytes`**: The chart as a vector PDF (bytes). Text stays selectable.
+- **`.to_pdf(*, embed_fonts: bool = True) -> bytes`**: The chart as a vector PDF (bytes). Text stays selectable and searchable.
 - **`.to_png(scale: Optional[float] = None, dpi: Optional[float] = None) -> bytes`**: The chart as PNG bytes. Default 2x; ``dpi=300`` for print. Needs a PNG backend (``lineova[png]``).
 - **`.to_svg() -> str`**: The chart as an SVG document (string).
 - **`.treemap(data=None, **kw) -> Chart`**: Add a treemap layer. Takes the same options as ``lv.treemap()``.
