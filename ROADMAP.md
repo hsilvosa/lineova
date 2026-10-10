@@ -35,7 +35,7 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Out-of-core input: iterables of chunks (e.g. Parquet row groups) for data larger than RAM
 - [x] Interactive HTML output (tooltips, zoom, pan) from the same scene
 - [x] Crosshair readout in HTML
-- [ ] Date-range brushing and zoom that re-ticks the axes
+- [x] Date-range brushing and zoom that re-ticks the axes
 - [ ] Font embedding in PDF (theme fonts instead of the standard PDF fonts)
 - [ ] Native PNG rasteriser so PNG needs no extra install
 - [x] Multi-chart layouts: `lv.grid([c1, c2], cols=2)` with aligned axes
@@ -55,9 +55,9 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Chord, arc, parallel coordinates, streamgraph, horizon, marimekko, bullet
 - [x] `roc`, `pr`, `calibration`, `confusion_matrix`, `ecdf`, `qq`, `correlation`
 - [x] Facets share the point budget (smaller SVG)
+- [x] Data-level zoom in HTML: wheel, brush, range strip, re-ticked axes, fit y, series toggles, linked panels
 
 ## Next
 - [ ] More tile layouts (European countries, US states) and bundled simplified boundaries
 - [ ] Font embedding in PDF, native PNG rasteriser
-- [ ] Date-range brushing in HTML
 - [ ] A script to rebuild the real-data gallery inputs from the raw IGN/OMIE files

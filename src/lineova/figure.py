@@ -8,6 +8,7 @@ import string
 from typing import Any, Optional
 from collections.abc import Sequence
 
+from . import _zoom
 from . import scene as S
 from . import themes
 from ._data import DataError, factorize, get_column, ordered_categories, subset, to_array
@@ -164,6 +165,8 @@ class Grid(Renderable):
                 if i >= n:
                     break
                 sub = kids[i]._build_prepared(raster_scale)
+                if _zoom.active():
+                    _zoom.retag(sub, i)
                 dx = c * (cell_w_inner + self.gap)
                 scene.add(S.Group(dx, y, sub.ops))
                 for m in sub.meta:        # crosshair metadata, shifted into the grid's coordinates

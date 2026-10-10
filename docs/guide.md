@@ -260,7 +260,9 @@ Memory use is bounded by the chunk size (plus one small array per group). `np.me
 
 ## Interactive HTML
 
-`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets. Below the chart, a "Description and data" section holds the text description and the data table with a CSV download (`to_html(data=False)` leaves it out). `chart.show()` outside a notebook opens this page in the browser.
+`chart.save("chart.html")` writes one self-contained file with no external scripts. Hover shows each mark's value in a styled tooltip; on line charts a crosshair reads out every series at the pointer. The scroll wheel zooms around the pointer, dragging pans, and double-click resets.
+
+Plain line charts on a number or date axis (also in a `grid` or with `facet=`) get a smarter zoom. It works on the data, not the picture: lines are redrawn at the new resolution, and the x axis gets new ticks and labels that fit the visible range (months, then days, then hours). Shift+drag selects a range to zoom into. A strip under the chart shows the whole series with a window to drag or resize. "Fit y to view" rescales and re-ticks the y axis to the visible data, the series buttons hide and show lines, and "Reset zoom" restores the view. Panels in a grid that share the same x range zoom together. The page embeds up to 30,000 points per plot, so a zoom into a very long series shows the reduced data (min and max per pixel column of the original), not every raw row. Charts with bands, log or reversed axes, vertical annotations, or other layer types keep the plain zoom of the whole picture. Below the chart, a "Description and data" section holds the text description and the data table with a CSV download (`to_html(data=False)` leaves it out). `chart.show()` outside a notebook opens this page in the browser.
 
 ## Accessibility
 

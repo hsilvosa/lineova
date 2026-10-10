@@ -66,19 +66,22 @@ _PAGE = """<!doctype html>
   function apply(){{svg.setAttribute('viewBox',vb.join(' '));}}
   function toSvg(e){{var r=svg.getBoundingClientRect();
     return [vb[0]+(e.clientX-r.left)/r.width*vb[2], vb[1]+(e.clientY-r.top)/r.height*vb[3]];}}
-  frame.addEventListener('wheel',function(e){{e.preventDefault();
+  function zo(e){{return window.__lvZoom&&window.__lvZoom.owns(e);}}
+  frame.addEventListener('wheel',function(e){{if(zo(e))return; e.preventDefault();
     var p=toSvg(e), k=Math.exp(e.deltaY*0.0015), w=Math.min(base[2],Math.max(base[2]/40,vb[2]*k)), s=w/vb[2];
     vb=[p[0]-(p[0]-vb[0])*s, p[1]-(p[1]-vb[1])*s, w, vb[3]*s]; apply();}},{{passive:false}});
   var drag=null;
-  frame.addEventListener('pointerdown',function(e){{drag={{x:e.clientX,y:e.clientY,vb:vb.slice()}};
+  frame.addEventListener('pointerdown',function(e){{if(zo(e))return; drag={{x:e.clientX,y:e.clientY,vb:vb.slice()}};
     frame.classList.add('dragging'); frame.setPointerCapture(e.pointerId);}});
   frame.addEventListener('pointermove',function(e){{if(!drag)return; var r=svg.getBoundingClientRect();
     vb[0]=drag.vb[0]-(e.clientX-drag.x)/r.width*vb[2]; vb[1]=drag.vb[1]-(e.clientY-drag.y)/r.height*vb[3]; apply();}});
   function end(){{drag=null; frame.classList.remove('dragging');}}
   frame.addEventListener('pointerup',end); frame.addEventListener('pointercancel',end);
-  frame.addEventListener('dblclick',function(){{vb=base.slice(); apply();}});
+  frame.addEventListener('dblclick',function(e){{if(zo(e))return; vb=base.slice(); apply();}});
   // crosshair readout for line charts: nearest sample of every series under the pointer
   var meta=[]; try{{meta=JSON.parse(document.getElementById('lv-meta').textContent)||[];}}catch(err){{}}
+  window.__lv={{svg:svg,frame:frame,tip:tip,place:place,toSvg:toSvg,meta:meta}};
+  meta=meta.filter(function(m){{return m.series&&m.series.length;}}).concat([]);
   if(meta.length){{
     var NS='http://www.w3.org/2000/svg', layer=document.createElementNS(NS,'g');
     layer.setAttribute('pointer-events','none'); svg.appendChild(layer);
@@ -87,7 +90,7 @@ _PAGE = """<!doctype html>
     function clear(){{while(layer.firstChild)layer.removeChild(layer.firstChild);}}
     svg.addEventListener('pointermove',function(e){{
       if(drag)return; var p=toSvg(e), hit=null;
-      meta.forEach(function(m){{var r=m.plot; if(p[0]>=r[0]&&p[0]<=r[0]+r[2]&&p[1]>=r[1]&&p[1]<=r[1]+r[3])hit=m;}});
+      meta.forEach(function(m){{if(m.zoomActive)return; var r=m.plot; if(p[0]>=r[0]&&p[0]<=r[0]+r[2]&&p[1]>=r[1]&&p[1]<=r[1]+r[3])hit=m;}});
       clear();
       if(!hit){{return;}}
       var best=null;
@@ -145,5 +148,14 @@ def render(svg: str, title: str | None = None, meta=None, description: str = "",
     m = re.search(r'width="([\d.]+)"', svg)
     width = int(float(m.group(1))) + 32 if m else 900
     meta_json = json.dumps(meta or [], separators=(",", ":")).replace("</", "<\\/")
-    return _PAGE.format(svg=svg, title=escape(title or "Chart"), width=max(width, 360),
+    page = _PAGE.format(svg=svg, title=escape(title or "Chart"), width=max(width, 360),
                         data=_data_block(description, tables), meta=meta_json)
+    if any(m.get("zoom") for m in (meta or [])):
+        from ._zoom_js import CSS, JS
+        css = json.dumps(CSS).replace("</", "<\\/")
+        page = page.replace("Hover for values · scroll to zoom · drag to pan · double-click to reset",
+                            "Hover for values · scroll to zoom · drag to pan · shift+drag to select a range · "
+                            "double-click to reset")
+        page = page.replace("</body></html>",
+                            f"<script>window.__lvZoomCss={css};</script>\n<script>{JS}</script>\n</body></html>")
+    return page

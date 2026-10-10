@@ -10,6 +10,11 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
   `confusion_matrix`, `ecdf`, `qq` and `correlation` (clustered correlation matrix; Pearson or Spearman).
 - Gallery: a "New in 0.4" section with all of them.
 
+- Interactive HTML: line charts on a number or date axis get a data-level zoom. The wheel, a shift-drag brush and a
+  range strip change the visible x range; lines are redrawn at the new resolution and the axes are re-ticked
+  (date and number ticks prepared in Python at many densities). Also "Fit y to view", series buttons to hide lines, a
+  reset button, and linked zoom between grid panels with the same x range. SVG, PDF and PNG output is unchanged.
+
 ### Changed
 - Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
   switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).
