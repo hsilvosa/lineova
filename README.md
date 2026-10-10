@@ -38,9 +38,12 @@ That one call chooses the size, the ticks, number and date formats, the colours,
 - **Accessible by default.** Every chart carries a generated text description (`chart.describe()`, written into the SVG) and a data table (`chart.table()`); `texture=True` adds patterns as a second encoding.
 - **Any data size.** 100 million points render in about 2 seconds, and data larger than memory can be streamed in chunks, including group-bys for bars and heatmaps and quantile sketches for box plots. What a chart costs depends on its pixels, not its rows.
 - **One dependency.** Only NumPy is required. pandas, polars and pyarrow data are accepted as they are.
-- **Publication formats built in.** Vector SVG and PDF (text stays selectable), high-DPI PNG, and a self-contained interactive HTML page with tooltips, a crosshair readout and the data behind the chart.
+- **Publication formats built in.** Vector SVG and PDF (fonts are embedded, text stays selectable), high-DPI PNG with no extra install (a built-in renderer with bundled fonts), and a self-contained interactive HTML page with tooltips, a crosshair readout and the data behind the chart.
+- **Interactive zoom in HTML.** Mouse-wheel zoom with ticks that stay clean at every level, shift-drag to select a range, a minimap, clickable legend entries, and linked zoom between the panels of a grid. Static outputs do not change.
+- **Animated transitions.** `lv.animate(a, b).save("change.gif")` morphs one chart into the next (bars grow, lines bend, points move) and writes an animated GIF or an animated SVG.
 - **Maps without GIS dependencies.** GeoJSON choropleths, point maps of any size, and tile maps of Spanish provinces and regions.
-- **Graphs as data, too.** A `Graph` class with shortest paths, centrality, communities, flows and more, tested against networkx.
+- **Graphs as data, too.** A `Graph` class with shortest paths (including negative weights), centrality, Louvain communities, k-cores, clustering, bridges, flows and more, tested against networkx. Force, radial and bipartite layouts.
+- **Model evaluation.** `lv.roc`, `lv.pr`, `lv.calibration`, `lv.confusion_matrix`, `lv.ecdf`, `lv.qq` and `lv.correlation` (with clustering) take labels and scores directly.
 
 ## Installation
 
