@@ -83,6 +83,18 @@ Synthetic examples of every chart type, made by [`examples/gallery.py`](https://
 | ![](gallery/treemap-deep.svg) | ![](gallery/tilemap.svg) |
 | ![](gallery/textures.svg) | ![](gallery/brand-theme.svg) |
 
+### New in 0.4
+
+| | |
+|---|---|
+| ![](gallery/chord.svg) | ![](gallery/arc.svg) |
+| ![](gallery/parallel.svg) | ![](gallery/streamgraph.svg) |
+| ![](gallery/horizon.svg) | ![](gallery/marimekko.svg) |
+| ![](gallery/bullet.svg) | ![](gallery/correlation.svg) |
+| ![](gallery/roc.svg) | ![](gallery/pr.svg) |
+| ![](gallery/calibration.svg) | ![](gallery/confusion.svg) |
+| ![](gallery/ecdf.svg) | ![](gallery/qq.svg) |
+
 ## The four styles on the same data
 
 | | Folio | Ledger | Instrument | Fjord |

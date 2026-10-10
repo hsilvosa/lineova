@@ -186,6 +186,37 @@ Polygons with holes and multi-polygons are supported. Points above 50,000 become
 ### sankey
 Rows of `(source, target, value)` or an edge DataFrame. Nodes are placed in stages by their longest path from a source; flows must not form a cycle.
 
+### chord
+`chord(matrix, names=[...])`, a square DataFrame, or `(source, target, value)` rows. The arc of a group is as long as its row sum. The ribbon between groups *i* and *j* is as wide as `M[i][j]` at *i* and `M[j][i]` at *j*, so one-way flows show their asymmetry. `sort=True` orders groups by size. Use it for 3-10 groups.
+
+### arc
+Edge list, edge table, `lv.Graph` or networkx graph. Nodes sit on a line, one arc per link. `order="auto"` puts communities together; `order=[...]` fixes the order (time, position); `order="input"` keeps the order of appearance.
+
+### parallel
+`parallel(df, dims=[...], color="class")`: one axis per numeric column, one line per row. `color=` takes a text column (one colour per group) or a number (a ramp). `invert=[...]` flips axes, `normalize="zscore"` replaces the per-axis min-max scale. Above 30,000 rows a random sample is drawn and the chart says so.
+
+### streamgraph
+Same input as `area` with several series. `offset="wiggle"` (default) keeps the slopes small, `"silhouette"` centres the stack, `"zero"` is an ordinary stacked area. The y axis is hidden because the baseline moves: read shapes, not values.
+
+### horizon
+Same input as `line` with several series. Each series gets one thin row. The range is cut into `bands=3` slices drawn on top of each other in darker tones, and values below `baseline=` use the negative colour. `scale="shared"` (default) uses the same step in every row so rows stay comparable.
+
+### marimekko
+`marimekko({column: {segment: value}})` or long data with `x=`, `y=`, `value=`. Column width is the column total, segment height is its share inside the column. Hard to read with more than about 6 columns or 5 segments.
+
+### bullet
+`bullet([{"label": "Revenue", "value": 270, "target": 250, "ranges": [150, 225, 300]}])`, a `{label: (value, target, ranges)}` dict, or a DataFrame with label, value and target columns. Each row has its own scale from 0. `shared=True` uses one scale, `lower_is_better=True` reverses the range tones.
+
+### Model evaluation and distributions
+These functions return a normal `Chart`.
+
+- `roc(y_true, scores)` and `pr(y_true, scores)`: `scores` is one array or `{model: scores}`. The legend shows AUC or average precision.
+- `calibration(y_true, probabilities, bins=10, strategy="uniform")`: reliability diagram with the Brier score.
+- `confusion_matrix(y_true, y_pred, labels=None, normalize=None | "true" | "pred" | "all")`.
+- `ecdf(data, complementary=False)`: empirical CDF of one array, a dict of arrays or a DataFrame.
+- `qq(data, dist="normal" | "uniform" | "exponential" | function)`: quantile-quantile plot with a quartile reference line.
+- `correlation(df, method="pearson" | "spearman", cluster=True)`: diverging heatmap from -1 to 1. Clustering reorders variables so related ones form blocks.
+
 ### radar
 `radar({item: {measure: value}})` or a DataFrame with one row per item. `normalize=True` scales each measure to its own maximum (use it when measures have different units). Warns above 6 items.
 

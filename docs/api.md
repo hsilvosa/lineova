@@ -121,8 +121,6 @@ lv.donut(data: Any = None, x: Any = None, y: Any = None, **options) -> Chart
 
 Donut chart (a pie with a hole showing the total).
 
-Chart-specific options: `donut="auto"`, `top="auto"`, `sort="auto"`, `labels="auto"`, `center="auto"`, `format=None`, `agg='sum'`, `start=90.0`.
-
 ### `lv.dumbbell`
 
 ```python
@@ -321,6 +319,153 @@ Node-link diagram from a ``Graph``, an edge list, an edge DataFrame or a network
 
 Chart-specific options: `directed=None`, `layout="auto"`, `labels="auto"`, `node_size="auto"`, `groups="auto"`, `edge_labels="auto"`, `path=None`, `highlight=None`, `positions=None`, `seed=0`.
 
+### `lv.chord`
+
+```python
+lv.chord(data: Any = None, **options) -> Chart
+```
+
+Chord diagram: flows between groups as ribbons inside a circle.
+
+``data`` is a square matrix (with ``names=``), a square DataFrame, or (source, target, value) rows.
+Options: ``names=``, ``gap=`` (radians between groups), ``thickness=``, ``labels=``, ``format=``, ``sort=``.
+
+Chart-specific options: `names=None`, `gap=0.03`, `thickness="auto"`, `labels=True`, `format=None`, `sort=False`.
+
+### `lv.arc`
+
+```python
+lv.arc(data: Any = None, **options) -> Chart
+```
+
+Arc diagram: nodes on a line, one arc per link. ``order="auto" | "input" | [nodes]``,
+``groups=False`` turns off the community colours, ``labels=``, ``node_size="equal"``.
+
+Chart-specific options: `order="auto"`, `labels="auto"`, `groups="auto"`, `directed=None`, `node_size="auto"`.
+
+### `lv.parallel`
+
+```python
+lv.parallel(data: Any = None, **options) -> Chart
+```
+
+Parallel coordinates: one axis per numeric column, one line per row.
+
+``dims=[...]`` picks the axes, ``color=`` a column (groups or a ramp), ``invert=[...]`` flips axes,
+``normalize="range" | "zscore"``. Above 30,000 rows a random sample is drawn.
+
+Chart-specific options: `dims=None`, `invert=()`, `normalize='range'`, `opacity="auto"`, `label=None`, `cmap="auto"`, `seed=0`.
+
+### `lv.streamgraph`
+
+```python
+lv.streamgraph(data: Any = None, x: Any = None, y: Any = None, color: Any = "auto", **options) -> Chart
+```
+
+Streamgraph: stacked areas around a moving baseline. ``offset="wiggle" | "silhouette" | "zero"``,
+``order="inside-out" | "input"``. Best for 5-15 categories over time; read shapes, not values.
+
+Chart-specific options: `offset='wiggle'`, `order='inside-out'`.
+
+### `lv.horizon`
+
+```python
+lv.horizon(data: Any = None, x: Any = None, y: Any = None, color: Any = "auto", **options) -> Chart
+```
+
+Horizon chart: one thin row per series, large values folded into darker bands.
+``bands=3``, ``baseline=0``, ``scale="shared" | "each"``.
+
+Chart-specific options: `bands=3`, `baseline=0.0`, `scale='shared'`, `label=None`.
+
+### `lv.marimekko`
+
+```python
+lv.marimekko(data: Any = None, x: Any = None, y: Any = None, value: Any = None, **options) -> Chart
+```
+
+Marimekko: column width is the column total, segment height is its share inside the column.
+``marimekko({"EU": {"A": 3, "B": 2}, "US": {"A": 1, "B": 4}})`` or long data with ``x=``, ``y=``, ``value=``.
+
+Chart-specific options: `labels="auto"`, `format=None`, `gap=2.0`, `sort=False`.
+
+### `lv.bullet`
+
+```python
+lv.bullet(data: Any = None, **options) -> Chart
+```
+
+Bullet chart: a value against a target and ranges.
+``bullet([{"label": "Revenue", "value": 270, "target": 250, "ranges": [150, 225, 300]}])``.
+
+Chart-specific options: `ranges=None`, `lower_is_better=False`, `format=None`, `shared=False`.
+
+### `lv.roc`
+
+```python
+lv.roc(y_true: Any, scores: Any, **options) -> Chart
+```
+
+ROC curve with the AUC in the legend. ``scores`` is one array or ``{model: scores}``.
+
+### `lv.pr`
+
+```python
+lv.pr(y_true: Any, scores: Any, **options) -> Chart
+```
+
+Precision-recall curve with the average precision (AP) in the legend; the baseline is the positive rate.
+
+### `lv.calibration`
+
+```python
+lv.calibration(y_true: Any, probabilities: Any, bins: int = 10, strategy: str = 'uniform', **options) -> Chart
+```
+
+Reliability diagram: mean predicted probability against the observed rate, per bin; Brier score in the legend.
+
+``strategy="uniform"`` cuts [0, 1] in equal bins, ``"quantile"`` gives every bin the same number of rows.
+
+### `lv.confusion_matrix`
+
+```python
+lv.confusion_matrix(y_true: Any, y_pred: Any, labels=None, normalize=None, **options) -> Chart
+```
+
+Confusion matrix as an annotated heatmap: rows are the true class, columns the prediction.
+
+``normalize="true"`` shows each row as shares of the true class (recall), ``"pred"`` each column
+(precision), ``"all"`` shares of the total; ``None`` shows counts.
+
+### `lv.ecdf`
+
+```python
+lv.ecdf(data: Any, complementary: bool = False, **options) -> Chart
+```
+
+Empirical cumulative distribution: the share of values at or below x. One array, ``{name: values}`` or
+a DataFrame (one line per column). ``complementary=True`` shows the share above x (survival).
+
+### `lv.qq`
+
+```python
+lv.qq(data: Any, dist: Any = 'normal', **options) -> Chart
+```
+
+Quantile-quantile plot against a theoretical distribution (``"normal"``, ``"uniform"``,
+``"exponential"`` or a quantile function). Points on the reference line (through the quartiles) mean a good fit.
+
+### `lv.correlation`
+
+```python
+lv.correlation(data: Any, method: str = 'pearson', cluster: bool = True, **options) -> Chart
+```
+
+Correlation matrix of the numeric columns as a diverging heatmap, from -1 to 1.
+
+With ``cluster=True`` (default) the variables are reordered by average-linkage clustering of
+``1 - |r|``, so groups of related variables form blocks. ``method`` is ``"pearson"`` or ``"spearman"``.
+
 ## Common options
 
 Accepted by every chart function as keywords, and by `Chart(...)`:
@@ -347,13 +492,16 @@ lv.Chart(data: Any = None, **options)
 A figure made of one or more layers (line, bar, scatter, ...).
 
 - **`.annotate(x: Any, y: Any, text: str, *, dx: float = 8, dy: float = -8) -> Chart`**: Text note pointing at a data position.
+- **`.arc(data=None, **kw) -> Chart`**: Add an arc-diagram layer. Takes the same options as ``lv.arc()``.
 - **`.area(data=None, x=None, y=None, color="auto", **kw) -> Chart`**: Add a area layer. Takes the same options as ``lv.area()``.
 - **`.band(x: Any = None, y: Any = None, label: Optional[str] = None, *, color: Optional[str] = None) -> Chart`**: Shade a range, e.g. ``band(x=("2024-06-01", "2024-08-31"), label="Summer")``.
 - **`.bar(data=None, x=None, y=None, color=None, **kw) -> Chart`**: Add a bar layer. Takes the same options as ``lv.bar()``.
 - **`.box(data=None, x=None, y=None, **kw) -> Chart`**: Add a box layer. Takes the same options as ``lv.box()``.
+- **`.bullet(data=None, **kw) -> Chart`**: Add a bullet-chart layer. Takes the same options as ``lv.bullet()``.
 - **`.calendar(data=None, x=None, y=None, **kw) -> Chart`**: Add a calendar layer. Takes the same options as ``lv.calendar()``.
 - **`.candlestick(data=None, x=None, **kw) -> Chart`**: Add a candlestick layer. Takes the same options as ``lv.candlestick()``.
 - **`.caption(text: str, number: Optional[int] = None) -> Chart`**: Paragraph under the chart. ``number`` adds 'Figure N.' (Folio).
+- **`.chord(data=None, **kw) -> Chart`**: Add a chord layer. Takes the same options as ``lv.chord()``.
 - **`.density(data=None, x=None, y=None, color=None, **kw) -> Chart`**: Add a density layer. Takes the same options as ``lv.density()``.
 - **`.describe() -> str`**: A plain-language description of the chart (alt text): what is plotted, ranges, extremes, trends.
 - **`.dumbbell(data=None, x=None, y=None, color=None, **kw) -> Chart`**: Add a dumbbell layer. Takes the same options as ``lv.dumbbell()``.
@@ -363,11 +511,14 @@ A figure made of one or more layers (line, bar, scatter, ...).
 - **`.highlight(*keys) -> Chart`**: Emphasise some series/categories/nodes; everything else is muted.
 - **`.histogram(data=None, x=None, color=None, **kw) -> Chart`**: Add a histogram layer. Takes the same options as ``lv.histogram()``.
 - **`.hline(y: Any, label: Optional[str] = None, *, color: Optional[str] = None, dash=(4, 3)) -> Chart`**: Horizontal reference line, e.g. a target. ``y="mean"`` uses the data mean.
+- **`.horizon(data=None, x=None, y=None, color="auto", **kw) -> Chart`**: Add a horizon layer. Takes the same options as ``lv.horizon()``.
 - **`.legend(position: Any = "auto") -> Chart`**: auto | top | bottom | right | direct | readout | none.
 - **`.line(data=None, x=None, y=None, color="auto", **kw) -> Chart`**: Add a line layer. Takes the same options as ``lv.line()``.
 - **`.map(data=None, geo=None, **kw) -> Chart`**: Add a map layer. Takes the same options as ``lv.map()``.
+- **`.marimekko(data=None, x=None, y=None, value=None, **kw) -> Chart`**: Add a marimekko layer. Takes the same options as ``lv.marimekko()``.
 - **`.network(data=None, **kw) -> Chart`**: Add a network layer. Takes the same options as ``lv.network()``.
 - **`.palette(colors: Any) -> Chart`**: A list of colours, a {series: colour} dict, or one colour for everything.
+- **`.parallel(data=None, **kw) -> Chart`**: Add a parallel-coordinates layer. Takes the same options as ``lv.parallel()``.
 - **`.pie(data=None, x=None, y=None, **kw) -> Chart`**: Add a pie layer. Takes the same options as ``lv.pie()``.
 - **`.radar(data=None, **kw) -> Chart`**: Add a radar layer. Takes the same options as ``lv.radar()``.
 - **`.ridgeline(data=None, x=None, y=None, **kw) -> Chart`**: Add a ridgeline layer. Takes the same options as ``lv.ridgeline()``.
@@ -381,6 +532,7 @@ A figure made of one or more layers (line, bar, scatter, ...).
 - **`.source(text: str) -> Chart`**: 'Source: …' line under the chart.
 - **`.sparkline(data=None, x=None, **kw) -> Chart`**: Add a sparkline layer. Takes the same options as ``lv.sparkline()``.
 - **`.stat(value=None, **kw) -> Chart`**: Add a stat layer. Takes the same options as ``lv.stat()``.
+- **`.streamgraph(data=None, x=None, y=None, color="auto", **kw) -> Chart`**: Add a streamgraph layer. Takes the same options as ``lv.streamgraph()``.
 - **`.subtitle(text: str) -> Chart`**: Second heading line.
 - **`.sunburst(data=None, **kw) -> Chart`**: Add a sunburst layer. Takes the same options as ``lv.sunburst()``.
 - **`.table()`**: The data behind the chart as a ``Table`` (``.to_csv()``, ``.to_html()``, ``.to_pandas()``).

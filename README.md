@@ -109,6 +109,10 @@ More in the [gallery](https://github.com/hsilvosa/lineova/blob/main/docs/gallery
 | `dumbbell` | `box` | `treemap` | `area` | `density` | `sankey` | `map` (points) | `sparkline` |
 | `slope` | `violin` | `sunburst` | `candlestick` | `hexbin` | `timeline` | `tilemap` | `grid` |
 | `radar` | `ridgeline` | `waterfall` | `calendar` | `heatmap` | | | `facet=` |
+| `bullet` | `ecdf` | `marimekko` | `streamgraph` | `parallel` | `chord` | | |
+| | `qq` | | `horizon` | `correlation` | `arc` | | |
+
+For models: `roc`, `pr`, `calibration` and `confusion_matrix` take `y_true` and scores and return ordinary charts.
 
 Error bars and confidence bands, reference lines, shaded ranges, annotations, log and date axes, and small multiples work across chart types. See the [user guide](https://github.com/hsilvosa/lineova/blob/main/docs/guide.md).
 

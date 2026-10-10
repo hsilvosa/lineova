@@ -261,6 +261,34 @@ class Chart(Renderable):
         """Add a radar layer. Takes the same options as ``lv.radar()``."""
         return self._add(layer_class("radar")(self._d(data), **kw))
 
+    def chord(self, data=None, **kw) -> Chart:
+        """Add a chord layer. Takes the same options as ``lv.chord()``."""
+        return self._add(layer_class("chord")(self._d(data), **kw))
+
+    def arc(self, data=None, **kw) -> Chart:
+        """Add an arc-diagram layer. Takes the same options as ``lv.arc()``."""
+        return self._add(layer_class("arc")(self._d(data), **kw))
+
+    def streamgraph(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a streamgraph layer. Takes the same options as ``lv.streamgraph()``."""
+        return self._add(layer_class("streamgraph")(self._d(data), x, y, color, **kw))
+
+    def horizon(self, data=None, x=None, y=None, color="auto", **kw) -> Chart:
+        """Add a horizon layer. Takes the same options as ``lv.horizon()``."""
+        return self._add(layer_class("horizon")(self._d(data), x, y, color, **kw))
+
+    def marimekko(self, data=None, x=None, y=None, value=None, **kw) -> Chart:
+        """Add a marimekko layer. Takes the same options as ``lv.marimekko()``."""
+        return self._add(layer_class("marimekko")(self._d(data), x, y, value, **kw))
+
+    def bullet(self, data=None, **kw) -> Chart:
+        """Add a bullet-chart layer. Takes the same options as ``lv.bullet()``."""
+        return self._add(layer_class("bullet")(self._d(data), **kw))
+
+    def parallel(self, data=None, **kw) -> Chart:
+        """Add a parallel-coordinates layer. Takes the same options as ``lv.parallel()``."""
+        return self._add(layer_class("parallel")(self._d(data), **kw))
+
     def density(self, data=None, x=None, y=None, color=None, **kw) -> Chart:
         """Add a density layer. Takes the same options as ``lv.density()``."""
         return self._add(layer_class("density")(self._d(data), x, y, color, **kw))

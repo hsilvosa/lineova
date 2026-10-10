@@ -185,6 +185,54 @@ def radar(data: Any = None, **options) -> Chart:
     return _make("radar", data, {}, options)
 
 
+def chord(data: Any = None, **options) -> Chart:
+    """Chord diagram: flows between groups as ribbons inside a circle.
+
+    ``data`` is a square matrix (with ``names=``), a square DataFrame, or (source, target, value) rows.
+    Options: ``names=``, ``gap=`` (radians between groups), ``thickness=``, ``labels=``, ``format=``, ``sort=``.
+    """
+    return _make("chord", data, {}, options)
+
+
+def arc(data: Any = None, **options) -> Chart:
+    """Arc diagram: nodes on a line, one arc per link. ``order="auto" | "input" | [nodes]``,
+    ``groups=False`` turns off the community colours, ``labels=``, ``node_size="equal"``."""
+    return _make("arc", data, {}, options)
+
+
+def parallel(data: Any = None, **options) -> Chart:
+    """Parallel coordinates: one axis per numeric column, one line per row.
+
+    ``dims=[...]`` picks the axes, ``color=`` a column (groups or a ramp), ``invert=[...]`` flips axes,
+    ``normalize="range" | "zscore"``. Above 30,000 rows a random sample is drawn.
+    """
+    return _make("parallel", data, {}, options)
+
+
+def streamgraph(data: Any = None, x: Any = None, y: Any = None, color: Any = "auto", **options) -> Chart:
+    """Streamgraph: stacked areas around a moving baseline. ``offset="wiggle" | "silhouette" | "zero"``,
+    ``order="inside-out" | "input"``. Best for 5-15 categories over time; read shapes, not values."""
+    return _make("streamgraph", data, {"x": x, "y": y, "color": color}, options)
+
+
+def horizon(data: Any = None, x: Any = None, y: Any = None, color: Any = "auto", **options) -> Chart:
+    """Horizon chart: one thin row per series, large values folded into darker bands.
+    ``bands=3``, ``baseline=0``, ``scale="shared" | "each"``."""
+    return _make("horizon", data, {"x": x, "y": y, "color": color}, options)
+
+
+def marimekko(data: Any = None, x: Any = None, y: Any = None, value: Any = None, **options) -> Chart:
+    """Marimekko: column width is the column total, segment height is its share inside the column.
+    ``marimekko({"EU": {"A": 3, "B": 2}, "US": {"A": 1, "B": 4}})`` or long data with ``x=``, ``y=``, ``value=``."""
+    return _make("marimekko", data, {"x": x, "y": y, "value": value}, options)
+
+
+def bullet(data: Any = None, **options) -> Chart:
+    """Bullet chart: a value against a target and ranges.
+    ``bullet([{"label": "Revenue", "value": 270, "target": 250, "ranges": [150, 225, 300]}])``."""
+    return _make("bullet", data, {}, options)
+
+
 def density(data: Any = None, x: Any = None, y: Any = None, color: Any = None, **options) -> Chart:
     """2-D density with contour lines (for very many points, or to compare groups' shapes)."""
     return _make("density", data, {"x": x, "y": y, "color": color}, options)

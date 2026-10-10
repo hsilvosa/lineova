@@ -3,6 +3,13 @@
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Charts: `chord`, `arc` (arc diagram), `parallel` (parallel coordinates), `streamgraph`, `horizon`, `marimekko`
+  and `bullet`.
+- Evaluation and distribution helpers that return ordinary charts: `roc`, `pr`, `calibration`,
+  `confusion_matrix`, `ecdf`, `qq` and `correlation` (clustered correlation matrix; Pearson or Spearman).
+- Gallery: a "New in 0.4" section with all of them.
+
 ### Changed
 - Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
   switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).

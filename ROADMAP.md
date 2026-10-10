@@ -51,6 +51,11 @@ See CHANGELOG.md. Items ticked below shipped in 0.2 or 0.3.
 - [x] Box/violin for chunked (out-of-core) data via streaming quantile sketches
 - [x] Bar and heatmap aggregation directly from `Chunks`
 
+## 0.4 (in progress)
+- [x] Chord, arc, parallel coordinates, streamgraph, horizon, marimekko, bullet
+- [x] `roc`, `pr`, `calibration`, `confusion_matrix`, `ecdf`, `qq`, `correlation`
+- [x] Facets share the point budget (smaller SVG)
+
 ## Next
 - [ ] More tile layouts (European countries, US states) and bundled simplified boundaries
 - [ ] Font embedding in PDF, native PNG rasteriser
