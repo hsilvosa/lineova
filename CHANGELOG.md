@@ -33,6 +33,9 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
   points move, ticks slide, unmatched parts fade - and saves as an animated GIF (own encoder, delta frames) or an
   animated SVG (SMIL). `frame(t)` returns any in-between chart; easing, hold, loop and bounce are options.
 
+- Visual regression tests: 34 SVG snapshots compared with a numeric tolerance.
+- `tools/build_real_inputs.py` rebuilds the OMIE price/bid-curve and IGN earthquake inputs of `examples/real_data.py` from the raw sources.
+
 ### Changed
 - Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
   switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).

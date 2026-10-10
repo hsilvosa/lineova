@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv5861b0c9t lv5861b0c9d">
+<title id="lv5861b0c9t">Dates</title>
+<desc id="lv5861b0c9d">Dates. Line chart of Series 1, x from 2025-01-01 to 2025-12-01. Series 1: from 0 to 36.5, last 36.5, up 36.5 from the start.</desc>
+<defs><clipPath id="lv5861b0c9c1"><rect x="35.84" y="50.05" width="274.68" height="152.45"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Dates</text>
+<line x1="36.84" y1="201.5" x2="309.52" y2="201.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="163.89" x2="309.52" y2="163.89" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="126.28" x2="309.52" y2="126.28" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="88.66" x2="309.52" y2="88.66" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="51.05" x2="309.52" y2="51.05" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv5861b0c9c1)">
+<path d="M36.84,201.5L62.15,197.74L85.01,190.86L110.32,181.96L134.81,171.41L160.12,159.45L184.61,146.22L209.92,131.84L235.23,116.39L259.72,99.95L285.03,82.56L309.52,64.28" fill="none" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="2">
+<circle cx="309.52" cy="64.28" r="4"/>
+</g>
+</g>
+<text x="317.52" y="68.13" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">36.5</text>
+<line x1="36.84" y1="201.5" x2="309.52" y2="201.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="34.84" y="216.08" font-size="11" fill="#8a94a6">Jan 2025</text>
+<text x="184.61" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">Jul</text>
+<text x="29.84" y="205.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="29.84" y="167.74" font-size="11" fill="#8a94a6" text-anchor="end">10</text>
+<text x="29.84" y="130.12" font-size="11" fill="#8a94a6" text-anchor="end">20</text>
+<text x="29.84" y="92.51" font-size="11" fill="#8a94a6" text-anchor="end">30</text>
+<text x="29.84" y="54.9" font-size="11" fill="#8a94a6" text-anchor="end">40</text>
+</svg>

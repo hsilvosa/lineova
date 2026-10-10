@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv11c03ca8t lv11c03ca8d">
+<title id="lv11c03ca8t">Chart</title>
+<desc id="lv11c03ca8d">Waterfall chart of Increase, Decrease and Total.</desc>
+<defs><clipPath id="lv11c03ca8c1"><rect x="35.84" y="44.55" width="309.16" height="157.95"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="18" y="19.05" width="10" height="10" rx="2" fill="#17a38b"/>
+<text x="32" y="28.07" font-size="11.5" fill="#475467">Increase</text>
+<rect x="98.31" y="19.05" width="10" height="10" rx="2" fill="#d0527a"/>
+<text x="112.31" y="28.07" font-size="11.5" fill="#475467">Decrease</text>
+<line x1="36.84" y1="201.5" x2="344" y2="201.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="162.51" x2="344" y2="162.51" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="123.53" x2="344" y2="123.53" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="84.54" x2="344" y2="84.54" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="45.55" x2="344" y2="45.55" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv11c03ca8c1)">
+<path d="M45.44,201.5L45.44,126.53Q45.44,123.53,48.44,123.53L86.67,123.53Q89.67,123.53,89.67,126.53L89.67,201.5Z" fill="#475467"><title>Start: 10</title></path>
+<path d="M106.88,84.54L151.11,84.54L151.11,123.53L106.88,123.53Z" fill="#17a38b"><title>a: +5</title></path>
+<line x1="89.67" y1="123.53" x2="106.88" y2="123.53" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-dasharray="2 2"/>
+<path d="M168.31,84.54L212.54,84.54L212.54,100.13L168.31,100.13Z" fill="#d0527a"><title>b: −2</title></path>
+<line x1="151.11" y1="84.54" x2="168.31" y2="84.54" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-dasharray="2 2"/>
+<path d="M229.74,76.74L273.97,76.74L273.97,100.13L229.74,100.13Z" fill="#17a38b"><title>c: +3</title></path>
+<line x1="212.54" y1="100.13" x2="229.74" y2="100.13" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-dasharray="2 2"/>
+<path d="M291.17,201.5L291.17,79.74Q291.17,76.74,294.17,76.74L332.4,76.74Q335.4,76.74,335.4,79.74L335.4,201.5Z" fill="#475467"><title>Total: 16</title></path>
+<line x1="273.97" y1="76.74" x2="291.17" y2="76.74" fill="none" stroke="#8a94a6" stroke-width="0.8" stroke-dasharray="2 2"/>
+</g>
+<text x="67.56" y="118.53" font-size="10.5" fill="#1a2233" text-anchor="middle" font-weight="600">10</text>
+<text x="128.99" y="79.54" font-size="10.5" fill="#475467" text-anchor="middle">+5</text>
+<text x="190.42" y="113.63" font-size="10.5" fill="#475467" text-anchor="middle">−2</text>
+<text x="251.85" y="71.74" font-size="10.5" fill="#475467" text-anchor="middle">+3</text>
+<text x="313.28" y="71.74" font-size="10.5" fill="#1a2233" text-anchor="middle" font-weight="600">16</text>
+<line x1="36.84" y1="201.5" x2="344" y2="201.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="67.56" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">Start</text>
+<text x="128.99" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">a</text>
+<text x="190.42" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">b</text>
+<text x="251.85" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">c</text>
+<text x="313.28" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">Total</text>
+<text x="29.84" y="205.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="29.84" y="166.36" font-size="11" fill="#8a94a6" text-anchor="end">5</text>
+<text x="29.84" y="127.38" font-size="11" fill="#8a94a6" text-anchor="end">10</text>
+<text x="29.84" y="88.39" font-size="11" fill="#8a94a6" text-anchor="end">15</text>
+<text x="29.84" y="49.4" font-size="11" fill="#8a94a6" text-anchor="end">20</text>
+</svg>

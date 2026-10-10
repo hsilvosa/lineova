@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvd2d37c11t lvd2d37c11d">
+<title id="lvd2d37c11t">Chart</title>
+<desc id="lvd2d37c11d">Radar chart of s.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<path d="M180,99.5L200.5,120L180,140.5L159.5,120L180,99.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+<text x="185" y="109.4" font-size="9.5" fill="#8a94a6" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">0.75</text>
+<path d="M180,79L221,120L180,161L139,120L180,79" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+<text x="185" y="88.9" font-size="9.5" fill="#8a94a6" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">1.5</text>
+<path d="M180,58.5L241.5,120L180,181.5L118.5,120L180,58.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 3"/>
+<text x="185" y="68.4" font-size="9.5" fill="#8a94a6" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.25</text>
+<path d="M180,38L262,120L180,202L98,120L180,38" fill="none" stroke="#98a2b3" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="185" y="47.9" font-size="9.5" fill="#8a94a6" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">3</text>
+<line x1="180" y1="120" x2="180" y2="38" fill="none" stroke="#e7eaf0" stroke-width="1"/>
+<text x="180" y="28" font-size="11" fill="#475467" text-anchor="middle">p</text>
+<line x1="180" y1="120" x2="262" y2="120" fill="none" stroke="#e7eaf0" stroke-width="1"/>
+<text x="272" y="123.85" font-size="11" fill="#475467">q</text>
+<line x1="180" y1="120" x2="180" y2="202" fill="none" stroke="#e7eaf0" stroke-width="1"/>
+<text x="180" y="220.58" font-size="11" fill="#475467" text-anchor="middle">r</text>
+<line x1="180" y1="120" x2="98" y2="120" fill="none" stroke="#e7eaf0" stroke-width="1"/>
+<text x="88" y="123.85" font-size="11" fill="#475467" text-anchor="end">t</text>
+<path d="M180,92.67L234.67,120L180,202L125.33,120L180,92.67Z" fill="#2f5bd3" fill-opacity="0.14" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="1.2">
+<circle cx="180" cy="92.67" r="3.2"><title>s · p: 1</title></circle>
+<circle cx="234.67" cy="120" r="3.2"><title>s · q: 2</title></circle>
+<circle cx="180" cy="202" r="3.2"><title>s · r: 3</title></circle>
+<circle cx="125.33" cy="120" r="3.2"><title>s · t: 2</title></circle>
+</g>
+</svg>

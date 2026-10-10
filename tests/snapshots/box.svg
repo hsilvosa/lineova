@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv7128ffe1t lv7128ffe1d">
+<title id="lv7128ffe1t">Chart</title>
+<desc id="lv7128ffe1d">Box chart.</desc>
+<defs><clipPath id="lv7128ffe1c1"><rect x="36.35" y="34.8" width="308.65" height="147.9"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<line x1="37.35" y1="181.7" x2="344" y2="181.7" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="133.07" x2="344" y2="133.07" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="84.43" x2="344" y2="84.43" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="37.35" y1="35.8" x2="344" y2="35.8" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv7128ffe1c1)">
+<g fill="#2f5bd3" fill-opacity="0.45" opacity="0.9">
+<circle cx="93.85" cy="125.66" r="2.2"/>
+<circle cx="79.4" cy="158.36" r="2.2"/>
+<circle cx="70.4" cy="114.82" r="2.2"/>
+<circle cx="69.43" cy="110.2" r="2.2"/>
+<circle cx="100.79" cy="180.51" r="2.2"/>
+<circle cx="104.7" cy="164.73" r="2.2"/>
+<circle cx="92.66" cy="129.96" r="2.2"/>
+<circle cx="97.49" cy="140.76" r="2.2"/>
+<circle cx="90.18" cy="133.48" r="2.2"/>
+<circle cx="105.58" cy="153.81" r="2.2"/>
+<circle cx="100.89" cy="111.68" r="2.2"/>
+<circle cx="68.89" cy="114.15" r="2.2"/>
+<circle cx="102.52" cy="131.46" r="2.2"/>
+<circle cx="70.1" cy="105.66" r="2.2"/>
+<circle cx="97.5" cy="121.7" r="2.2"/>
+<circle cx="75.7" cy="153.96" r="2.2"/>
+<circle cx="102.75" cy="124.1" r="2.2"/>
+<circle cx="90.09" cy="156.38" r="2.2"/>
+<circle cx="80.58" cy="111.71" r="2.2"/>
+<circle cx="85.42" cy="134.28" r="2.2"/>
+<circle cx="69.9" cy="137.56" r="2.2"/>
+<circle cx="73.67" cy="149.62" r="2.2"/>
+<circle cx="95.17" cy="103.34" r="2.2"/>
+<circle cx="94.25" cy="136.82" r="2.2"/>
+<circle cx="93" cy="143.48" r="2.2"/>
+<circle cx="83.88" cy="141.63" r="2.2"/>
+<circle cx="108.03" cy="120.12" r="2.2"/>
+<circle cx="107.38" cy="124.18" r="2.2"/>
+<circle cx="95.76" cy="123.03" r="2.2"/>
+<circle cx="94.38" cy="122.59" r="2.2"/>
+<circle cx="95.88" cy="80.99" r="2.2"/>
+<circle cx="84.09" cy="142.95" r="2.2"/>
+<circle cx="74.1" cy="145.52" r="2.2"/>
+<circle cx="97.18" cy="152.85" r="2.2"/>
+<circle cx="89.46" cy="118.09" r="2.2"/>
+<circle cx="80.99" cy="105.61" r="2.2"/>
+<circle cx="87.9" cy="135.84" r="2.2"/>
+<circle cx="103.79" cy="153.5" r="2.2"/>
+<circle cx="105.54" cy="153.12" r="2.2"/>
+<circle cx="82.86" cy="117.25" r="2.2"/>
+</g>
+<line x1="88.46" y1="180.51" x2="88.46" y2="146.55" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="88.46" y1="117.88" x2="88.46" y2="80.99" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="76.09" y1="180.51" x2="100.83" y2="180.51" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="76.09" y1="80.99" x2="100.83" y2="80.99" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<rect x="60.35" y="117.88" width="56.22" height="28.67" rx="3" fill="#d1dbf5" stroke="#2f5bd3" stroke-width="1.2"><title>A: median 0.0246, IQR −0.554–0.625, n = 40</title></rect>
+<line x1="60.35" y1="132.47" x2="116.57" y2="132.47" fill="none" stroke="#1a2233" stroke-width="2.4"/>
+<g fill="#2f5bd3" fill-opacity="0.45" opacity="0.9">
+<circle cx="191.14" cy="114.99" r="2.2"/>
+<circle cx="208.4" cy="119.86" r="2.2"/>
+<circle cx="176.67" cy="149.25" r="2.2"/>
+<circle cx="208.33" cy="127.42" r="2.2"/>
+<circle cx="183.27" cy="130.23" r="2.2"/>
+<circle cx="187.66" cy="127.75" r="2.2"/>
+<circle cx="203.57" cy="111.88" r="2.2"/>
+<circle cx="187.1" cy="127.63" r="2.2"/>
+<circle cx="192.63" cy="116.56" r="2.2"/>
+<circle cx="172.08" cy="131.42" r="2.2"/>
+<circle cx="200.65" cy="126.04" r="2.2"/>
+<circle cx="192.18" cy="117.72" r="2.2"/>
+<circle cx="183.98" cy="168.5" r="2.2"/>
+<circle cx="202.03" cy="140.84" r="2.2"/>
+<circle cx="182.93" cy="144.5" r="2.2"/>
+<circle cx="188.85" cy="148.6" r="2.2"/>
+<circle cx="176.27" cy="139.76" r="2.2"/>
+<circle cx="186.86" cy="96.71" r="2.2"/>
+<circle cx="179.01" cy="154.12" r="2.2"/>
+<circle cx="181.32" cy="109.52" r="2.2"/>
+<circle cx="200.53" cy="173.99" r="2.2"/>
+<circle cx="182.03" cy="141.21" r="2.2"/>
+<circle cx="190.09" cy="129.11" r="2.2"/>
+<circle cx="209.59" cy="118.81" r="2.2"/>
+<circle cx="208.84" cy="115.77" r="2.2"/>
+<circle cx="199.52" cy="113.78" r="2.2"/>
+<circle cx="192.3" cy="141.55" r="2.2"/>
+<circle cx="181.9" cy="144.31" r="2.2"/>
+<circle cx="177.32" cy="112.2" r="2.2"/>
+<circle cx="209.17" cy="137.72" r="2.2"/>
+<circle cx="191.31" cy="164.09" r="2.2"/>
+<circle cx="175.56" cy="160.62" r="2.2"/>
+<circle cx="195.54" cy="155.42" r="2.2"/>
+<circle cx="201.56" cy="120.98" r="2.2"/>
+<circle cx="195.12" cy="129.6" r="2.2"/>
+<circle cx="207.1" cy="116.28" r="2.2"/>
+<circle cx="172.56" cy="143.46" r="2.2"/>
+<circle cx="191.8" cy="129.21" r="2.2"/>
+<circle cx="189.08" cy="117.85" r="2.2"/>
+<circle cx="173.45" cy="140.59" r="2.2"/>
+</g>
+<line x1="190.68" y1="173.99" x2="190.68" y2="143.67" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="190.68" y1="117.82" x2="190.68" y2="96.71" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="178.31" y1="173.99" x2="203.04" y2="173.99" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="178.31" y1="96.71" x2="203.04" y2="96.71" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<rect x="162.57" y="117.82" width="56.22" height="25.85" rx="3" fill="#d1dbf5" stroke="#2f5bd3" stroke-width="1.2"><title>B: median 0.15, IQR −0.436–0.627, n = 40</title></rect>
+<line x1="162.57" y1="129.41" x2="218.79" y2="129.41" fill="none" stroke="#1a2233" stroke-width="2.4"/>
+<g fill="#2f5bd3" fill-opacity="0.45" opacity="0.9">
+<circle cx="283.51" cy="121.96" r="2.2"/>
+<circle cx="284.96" cy="149.16" r="2.2"/>
+<circle cx="305.26" cy="141.89" r="2.2"/>
+<circle cx="276.83" cy="142.35" r="2.2"/>
+<circle cx="296.83" cy="162.15" r="2.2"/>
+<circle cx="301.89" cy="121.23" r="2.2"/>
+<circle cx="280.61" cy="144.48" r="2.2"/>
+<circle cx="275.39" cy="132.76" r="2.2"/>
+<circle cx="284.04" cy="121.38" r="2.2"/>
+<circle cx="299.09" cy="122.21" r="2.2"/>
+<circle cx="295.34" cy="116.89" r="2.2"/>
+<circle cx="279.12" cy="135.46" r="2.2"/>
+<circle cx="290.24" cy="143.36" r="2.2"/>
+<circle cx="299.55" cy="135.01" r="2.2"/>
+<circle cx="289.85" cy="174.1" r="2.2"/>
+<circle cx="298.13" cy="168.26" r="2.2"/>
+<circle cx="311.29" cy="165.23" r="2.2"/>
+<circle cx="300.1" cy="157.32" r="2.2"/>
+<circle cx="288.63" cy="123.35" r="2.2"/>
+<circle cx="280.58" cy="155.08" r="2.2"/>
+<circle cx="286.83" cy="142.26" r="2.2"/>
+<circle cx="293.33" cy="101.47" r="2.2"/>
+<circle cx="308.29" cy="141.73" r="2.2"/>
+<circle cx="303.74" cy="115.13" r="2.2"/>
+<circle cx="285.74" cy="155.77" r="2.2"/>
+<circle cx="309.59" cy="138.06" r="2.2"/>
+<circle cx="291.75" cy="156.17" r="2.2"/>
+<circle cx="300.52" cy="141.31" r="2.2"/>
+<circle cx="277.43" cy="112.63" r="2.2"/>
+<circle cx="277.33" cy="175.07" r="2.2"/>
+<circle cx="281.16" cy="122.5" r="2.2"/>
+<circle cx="308.02" cy="127.29" r="2.2"/>
+<circle cx="299.97" cy="147.51" r="2.2"/>
+<circle cx="306.64" cy="168.23" r="2.2"/>
+<circle cx="298.58" cy="131.31" r="2.2"/>
+<circle cx="289.21" cy="145.94" r="2.2"/>
+<circle cx="293.54" cy="127.41" r="2.2"/>
+<circle cx="296.57" cy="132.54" r="2.2"/>
+<circle cx="307.14" cy="94.12" r="2.2"/>
+<circle cx="290.46" cy="138.89" r="2.2"/>
+</g>
+<line x1="292.89" y1="175.07" x2="292.89" y2="150.64" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="292.89" y1="123.13" x2="292.89" y2="94.12" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="280.52" y1="175.07" x2="305.26" y2="175.07" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<line x1="280.52" y1="94.12" x2="305.26" y2="94.12" fill="none" stroke="#2f5bd3" stroke-width="1.2"/>
+<rect x="264.78" y="123.13" width="56.22" height="27.51" rx="3" fill="#d1dbf5" stroke="#2f5bd3" stroke-width="1.2"><title>C: median −0.289, IQR −0.723–0.408, n = 40</title></rect>
+<line x1="264.78" y1="140.1" x2="321" y2="140.1" fill="none" stroke="#1a2233" stroke-width="2.4"/>
+</g>
+<line x1="37.35" y1="133.07" x2="344" y2="133.07" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="88.46" y="196.28" font-size="11" fill="#8a94a6" text-anchor="middle">A</text>
+<text x="190.68" y="196.28" font-size="11" fill="#8a94a6" text-anchor="middle">B</text>
+<text x="292.89" y="196.28" font-size="11" fill="#8a94a6" text-anchor="middle">C</text>
+<text x="30.35" y="185.55" font-size="11" fill="#8a94a6" text-anchor="end">−2</text>
+<text x="30.35" y="136.92" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="30.35" y="88.28" font-size="11" fill="#8a94a6" text-anchor="end">2</text>
+<text x="30.35" y="39.65" font-size="11" fill="#8a94a6" text-anchor="end">4</text>
+<text x="344" y="222" font-size="11" fill="#8a94a6" text-anchor="end">g</text>
+<text x="16" y="25.9" font-size="11" fill="#8a94a6">v</text>
+</svg>

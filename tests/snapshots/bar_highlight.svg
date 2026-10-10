@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lva7b2953bt lva7b2953bd">
+<title id="lva7b2953bt">Chart</title>
+<desc id="lva7b2953bd">Bar chart of value for 3 categories. Highest: beta (5); lowest: gamma (2).</desc>
+<defs><clipPath id="lva7b2953bc1"><rect x="29.42" y="19" width="315.58" height="183.5"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<line x1="30.42" y1="201.5" x2="344" y2="201.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="165.2" x2="344" y2="165.2" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="128.9" x2="344" y2="128.9" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="92.6" x2="344" y2="92.6" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="56.3" x2="344" y2="56.3" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="20" x2="344" y2="20" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lva7b2953bc1)">
+<path d="M45.06,201.5L45.06,95.6Q45.06,92.6,48.06,92.6L117.31,92.6Q120.31,92.6,120.31,95.6L120.31,201.5Z" fill="#c9d0dc"><title>alpha: 3</title></path>
+<path d="M149.58,201.5L149.58,23Q149.58,20,152.58,20L221.84,20Q224.84,20,224.84,23L224.84,201.5Z" fill="#2f5bd3"><title>beta: 5</title></path>
+<path d="M254.11,201.5L254.11,131.9Q254.11,128.9,257.11,128.9L326.37,128.9Q329.37,128.9,329.37,131.9L329.37,201.5Z" fill="#c9d0dc"><title>gamma: 2</title></path>
+</g>
+<text x="82.68" y="86.6" font-size="11" fill="#475467" text-anchor="middle">3</text>
+<text x="187.21" y="14" font-size="11" fill="#1a2233" text-anchor="middle" font-weight="600">5</text>
+<text x="291.74" y="122.9" font-size="11" fill="#475467" text-anchor="middle">2</text>
+<line x1="30.42" y1="201.5" x2="344" y2="201.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="82.68" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">alpha</text>
+<text x="187.21" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">beta</text>
+<text x="291.74" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">gamma</text>
+<text x="23.42" y="205.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="23.42" y="169.05" font-size="11" fill="#8a94a6" text-anchor="end">1</text>
+<text x="23.42" y="132.75" font-size="11" fill="#8a94a6" text-anchor="end">2</text>
+<text x="23.42" y="96.45" font-size="11" fill="#8a94a6" text-anchor="end">3</text>
+<text x="23.42" y="60.15" font-size="11" fill="#8a94a6" text-anchor="end">4</text>
+<text x="23.42" y="23.85" font-size="11" fill="#8a94a6" text-anchor="end">5</text>
+<line x1="30.42" y1="80.5" x2="344" y2="80.5" fill="none" stroke="#1a2233" stroke-width="1.2" stroke-dasharray="4 3"/>
+<rect x="278.39" y="59.5" width="61.61" height="17" rx="8.5" fill="#1a2233"/>
+<text x="284.39" y="71.5" font-size="10" fill="#ffffff" font-weight="500">Mean 3.33</text>
+</svg>
