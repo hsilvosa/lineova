@@ -20,6 +20,11 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
   `modularity` and `to_networkx`. All are tested against networkx.
 - Network layouts `radial` (`root=`) and `bipartite` (`sets=`); `groups="louvain"`; the arc diagram colours nodes by community.
 
+- PNG without extra installs: a rasteriser written in NumPy (exact-coverage anti-aliasing, dashes, clips, hatch
+  textures, images, rotated text with halos) draws every chart type, with Liberation font subsets bundled in the
+  package (`tools/make_fonts.py` rebuilds them). It is the last fallback after resvg, cairosvg and playwright, or
+  `LINEOVA_PNG_BACKEND=native`. `lineova[png]` is now optional.
+
 ### Changed
 - Facets share the density threshold across the whole chart: panels that add up to more than 50,000 points
   switch to density rendering (12 x 200k scatter: 8.3 MB of SVG down to 0.3 MB).

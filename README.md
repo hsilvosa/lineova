@@ -46,7 +46,7 @@ That one call chooses the size, the ticks, number and date formats, the colours,
 
 ```bash
 pip install lineova              # SVG, PDF and HTML output
-pip install "lineova[png]"       # adds PNG export (resvg, no system libraries)
+pip install "lineova[png]"       # optional: resvg as the PNG renderer (PNG works without it)
 ```
 
 Until the first PyPI release, install from GitHub:

@@ -17,7 +17,7 @@ This gives you SVG, PDF and interactive HTML output, which need nothing else.
 
 | Extra | Installs | Adds |
 |---|---|---|
-| `png` | `resvg-py` | PNG export with no system libraries (`chart.save("x.png", dpi=300)`) |
+| `png` | `resvg-py` | Best-fidelity PNG renderer (`chart.save("x.png", dpi=300)`). PNG works without it, through the built-in renderer |
 | `pandas` | `pandas` | Nothing new in lineova itself; a convenience for notebooks |
 | `dev` | `pytest`, `pandas`, `networkx`, `ruff` | Running the test suite and linters |
 | `docs` | `mkdocs-material` | Building this documentation site |
@@ -26,7 +26,9 @@ This gives you SVG, PDF and interactive HTML output, which need nothing else.
 pip install "lineova[png]"
 ```
 
-PNG export can also use `cairosvg` or `playwright` if either is already installed. lineova tries resvg first, then cairosvg, then playwright. Set `LINEOVA_PNG_BACKEND=cairosvg` (or another name) to choose one.
+PNG export needs no extra install: lineova has its own renderer (`native`, NumPy only, with bundled fonts). If `resvg-py`, `cairosvg` or `playwright` is installed, lineova uses it first, in that order, because they match browser rendering most closely. Set `LINEOVA_PNG_BACKEND=native` (or `resvg`, `cairosvg`, `playwright`) to choose one.
+
+The built-in renderer draws every chart type with anti-aliased shapes and Liberation fonts (SIL Open Font License, subsets bundled in the wheel). It differs from resvg in small ways: the canvas is opaque, text is not hinted, and `folio` serif text uses Liberation Serif instead of the system serif font.
 
 ## From GitHub
 
