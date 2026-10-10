@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="244" viewBox="0 0 700 244" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv8182434et lv8182434ed">
+<title id="lv8182434et">Figure</title>
+<desc id="lv8182434ed">2 panels. (a) Line chart of Series 1, x from 0 to 23. Series 1: from 0 to 23, last 23, up 23 from the start. (b) Bar chart of value for 2 categories. Highest: b (2); lowest: a (1).</desc>
+<defs><clipPath id="lv8182434ec1"><rect x="35.84" y="19" width="284.31" height="163.5"/></clipPath><clipPath id="lv8182434ec2"><rect x="39.05" y="19" width="305.95" height="163.5"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g transform="translate(0 8)">
+<line x1="36.84" y1="181.5" x2="319.16" y2="181.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="149.2" x2="319.16" y2="149.2" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="116.9" x2="319.16" y2="116.9" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="84.6" x2="319.16" y2="84.6" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="52.3" x2="319.16" y2="52.3" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="36.84" y1="20" x2="319.16" y2="20" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv8182434ec1)">
+<path d="M36.84,181.5L49.12,175.04L61.39,168.58L73.67,162.12L85.94,155.66L98.22,149.2L110.49,142.74L122.76,136.28L135.04,129.82L147.31,123.36L159.59,116.9L171.86,110.44L184.14,103.98L196.41,97.52L208.69,91.06L220.96,84.6L233.24,78.14L245.51,71.68L257.78,65.22L270.06,58.76L282.33,52.3L294.61,45.84L306.88,39.38L319.16,32.92" fill="none" stroke="#2f5bd3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="2">
+<circle cx="319.16" cy="32.92" r="4"/>
+</g>
+</g>
+<text x="327.16" y="36.77" font-size="11" fill="#1a2233" font-weight="600" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" paint-order="stroke">23</text>
+<line x1="36.84" y1="181.5" x2="319.16" y2="181.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="34.84" y="196.08" font-size="11" fill="#8a94a6">0</text>
+<text x="98.22" y="196.08" font-size="11" fill="#8a94a6" text-anchor="middle">5</text>
+<text x="159.59" y="196.08" font-size="11" fill="#8a94a6" text-anchor="middle">10</text>
+<text x="220.96" y="196.08" font-size="11" fill="#8a94a6" text-anchor="middle">15</text>
+<text x="282.33" y="196.08" font-size="11" fill="#8a94a6" text-anchor="middle">20</text>
+<text x="29.84" y="185.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="29.84" y="153.05" font-size="11" fill="#8a94a6" text-anchor="end">5</text>
+<text x="29.84" y="120.75" font-size="11" fill="#8a94a6" text-anchor="end">10</text>
+<text x="29.84" y="88.45" font-size="11" fill="#8a94a6" text-anchor="end">15</text>
+<text x="29.84" y="56.15" font-size="11" fill="#8a94a6" text-anchor="end">20</text>
+<text x="29.84" y="23.85" font-size="11" fill="#8a94a6" text-anchor="end">25</text>
+</g>
+<g transform="translate(340 8)">
+<line x1="40.05" y1="181.5" x2="344" y2="181.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="141.12" x2="344" y2="141.12" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="100.75" x2="344" y2="100.75" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="60.38" x2="344" y2="60.38" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40.05" y1="20" x2="344" y2="20" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv8182434ec2)">
+<path d="M61.33,181.5L61.33,103.75Q61.33,100.75,64.33,100.75L167.75,100.75Q170.75,100.75,170.75,103.75L170.75,181.5Z" fill="#2f5bd3"><title>a: 1</title></path>
+<path d="M213.3,181.5L213.3,23Q213.3,20,216.3,20L319.72,20Q322.72,20,322.72,23L322.72,181.5Z" fill="#2f5bd3"><title>b: 2</title></path>
+</g>
+<text x="116.04" y="94.75" font-size="11" fill="#475467" text-anchor="middle">1</text>
+<text x="268.01" y="14" font-size="11" fill="#475467" text-anchor="middle">2</text>
+<line x1="40.05" y1="181.5" x2="344" y2="181.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="116.04" y="196.08" font-size="11" fill="#8a94a6" text-anchor="middle">a</text>
+<text x="268.01" y="196.08" font-size="11" fill="#8a94a6" text-anchor="middle">b</text>
+<text x="33.05" y="185.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="33.05" y="144.97" font-size="11" fill="#8a94a6" text-anchor="end">0.5</text>
+<text x="33.05" y="104.6" font-size="11" fill="#8a94a6" text-anchor="end">1.0</text>
+<text x="33.05" y="64.22" font-size="11" fill="#8a94a6" text-anchor="end">1.5</text>
+<text x="33.05" y="23.85" font-size="11" fill="#8a94a6" text-anchor="end">2.0</text>
+</g>
+</svg>

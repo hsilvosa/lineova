@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv5263dc1ft lv5263dc1fd">
+<title id="lv5263dc1ft">Chart</title>
+<desc id="lv5263dc1fd">Treemap of 6 in total, 2 level(s): x 67%, y 33%.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="17" y="17" width="216.67" height="206" fill="#dae1f7"><title>x: 4</title></rect>
+<text x="22" y="31" font-size="11" fill="#1a2233" font-weight="700">x  4</text>
+<rect x="20" y="39" width="157.5" height="181" rx="3" fill="#2f5bd3"><title>x › a: 3</title></rect>
+<text x="26" y="54" font-size="11" fill="#ffffff" font-weight="600">a</text>
+<text x="26" y="68.3" font-size="10.5" fill="#ffffff">3</text>
+<rect x="179.5" y="39" width="51.17" height="181" rx="3" fill="#6d8ce0"><title>x › b: 1</title></rect>
+<text x="185.5" y="54" font-size="11" fill="#111111" font-weight="600">b</text>
+<text x="185.5" y="68.3" font-size="10.5" fill="#111111">1</text>
+<rect x="235.67" y="17" width="107.33" height="206" fill="#d5eeea"><title>y: 2</title></rect>
+<text x="240.67" y="31" font-size="11" fill="#1a2233" font-weight="700">y  2</text>
+<rect x="238.67" y="39" width="101.33" height="181" rx="3" fill="#17a38b"><title>y › c: 2</title></rect>
+<text x="244.67" y="54" font-size="11" fill="#111111" font-weight="600">c</text>
+<text x="244.67" y="68.3" font-size="10.5" fill="#111111">2</text>
+</svg>

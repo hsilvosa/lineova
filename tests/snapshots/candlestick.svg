@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img" aria-labelledby="lvbf7d2cc6t lvbf7d2cc6d">
+<title id="lvbf7d2cc6t">Chart</title>
+<desc id="lvbf7d2cc6d">Candlestick chart of Up and Down.</desc>
+<defs><clipPath id="lvbf7d2cc6c1"><rect x="53" y="19" width="292" height="185"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#0f1a24"/>
+<line x1="54" y1="157.25" x2="344" y2="157.25" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="54" y1="111.5" x2="344" y2="111.5" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="54" y1="65.75" x2="344" y2="65.75" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="110.13" y1="20" x2="110.13" y2="203" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="241.1" y1="20" x2="241.1" y2="203" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<g clip-path="url(#lvbf7d2cc6c1)">
+<path d="M72.71,108.65L72.71,148.53M82.06,104.62L82.06,145.25M91.42,79.75L91.42,141.22M100.77,64.47L100.77,116.35M110.13,57.94L110.13,101.07M119.48,31.16L119.48,94.54M175.61,102.28L175.61,150.5M213.03,146.11L213.03,188.45M222.39,130.77L222.39,182.71M231.74,94.23L231.74,167.37M241.1,40.91L241.1,130.83M250.45,33.33L250.45,77.51M278.52,85.55L278.52,127.05M325.29,102.3L325.29,158.41M334.65,99.43L334.65,138.9" fill="none" stroke="#62a846" stroke-width="1" stroke-linejoin="round"/>
+<rect x="69.53" y="126.95" width="6.36" height="3.28" fill="#62a846"><title>O 99  H 100  L 98  C 99.2</title></rect>
+<rect x="78.88" y="122.92" width="6.36" height="4.03" fill="#62a846"><title>O 99.2  H 100  L 98.2  C 99.4</title></rect>
+<rect x="88.24" y="98.05" width="6.36" height="24.87" fill="#62a846"><title>O 99.4  H 102  L 98.4  C 101</title></rect>
+<rect x="97.59" y="82.77" width="6.36" height="15.28" fill="#62a846"><title>O 101  H 103  L 99.7  C 102</title></rect>
+<rect x="106.95" y="76.24" width="6.36" height="6.53" fill="#62a846"><title>O 102  H 103  L 101  C 102</title></rect>
+<rect x="116.3" y="49.46" width="6.36" height="26.78" fill="#62a846"><title>O 102  H 104  L 101  C 103</title></rect>
+<rect x="172.43" y="120.58" width="6.36" height="11.62" fill="#62a846"><title>O 98.9  H 101  L 97.9  C 99.5</title></rect>
+<rect x="209.85" y="164.41" width="6.36" height="5.74" fill="#62a846"><title>O 96.8  H 98.1  L 95.8  C 97.1</title></rect>
+<rect x="219.21" y="149.07" width="6.36" height="15.34" fill="#62a846"><title>O 97.1  H 98.9  L 96.1  C 97.9</title></rect>
+<rect x="228.56" y="112.53" width="6.36" height="36.54" fill="#62a846"><title>O 97.9  H 101  L 96.9  C 99.9</title></rect>
+<rect x="237.92" y="59.21" width="6.36" height="53.32" fill="#62a846"><title>O 99.9  H 104  L 98.9  C 103</title></rect>
+<rect x="247.27" y="51.63" width="6.36" height="7.58" fill="#62a846"><title>O 103  H 104  L 102  C 103</title></rect>
+<rect x="275.34" y="103.85" width="6.36" height="4.9" fill="#62a846"><title>O 100  H 101  L 99.2  C 100</title></rect>
+<rect x="322.11" y="120.6" width="6.36" height="19.51" fill="#62a846"><title>O 98.4  H 101  L 97.4  C 99.5</title></rect>
+<rect x="331.46" y="117.73" width="6.36" height="2.87" fill="#62a846"><title>O 99.5  H 101  L 98.5  C 99.7</title></rect>
+<path d="M63.35,93.2L63.35,148.53M128.84,31.16L128.84,89.51M138.19,52.91L138.19,101.22M147.55,64.62L147.55,118.18M156.9,81.58L156.9,125.31M166.26,88.71L166.26,150.5M184.97,102.28L184.97,142.95M194.32,106.35L194.32,169.86M203.68,133.26L203.68,188.45M259.81,33.33L259.81,88.03M269.16,51.43L269.16,127.05M287.87,85.55L287.87,137.03M297.23,100.43L297.23,144.63M306.58,108.03L306.58,155.83M315.94,119.23L315.94,158.41" fill="none" stroke="#d2567f" stroke-width="1" stroke-linejoin="round"/>
+<rect x="60.17" y="111.5" width="6.36" height="18.73" fill="#d2567f"><title>O 100  H 101  L 98  C 99</title></rect>
+<rect x="125.66" y="49.46" width="6.36" height="21.75" fill="#d2567f"><title>O 103  H 104  L 101  C 102</title></rect>
+<rect x="135.01" y="71.21" width="6.36" height="11.71" fill="#d2567f"><title>O 102  H 103  L 101  C 102</title></rect>
+<rect x="144.37" y="82.92" width="6.36" height="16.96" fill="#d2567f"><title>O 102  H 103  L 99.6  C 101</title></rect>
+<rect x="153.72" y="99.88" width="6.36" height="7.13" fill="#d2567f"><title>O 101  H 102  L 99.2  C 100</title></rect>
+<rect x="163.08" y="107.01" width="6.36" height="25.19" fill="#d2567f"><title>O 100  H 101  L 97.9  C 98.9</title></rect>
+<rect x="181.79" y="120.58" width="6.36" height="4.07" fill="#d2567f"><title>O 99.5  H 101  L 98.3  C 99.3</title></rect>
+<rect x="191.14" y="124.65" width="6.36" height="26.92" fill="#d2567f"><title>O 99.3  H 100  L 96.8  C 97.8</title></rect>
+<rect x="200.5" y="151.56" width="6.36" height="18.59" fill="#d2567f"><title>O 97.8  H 98.8  L 95.8  C 96.8</title></rect>
+<rect x="256.63" y="51.63" width="6.36" height="18.11" fill="#d2567f"><title>O 103  H 104  L 101  C 102</title></rect>
+<rect x="265.98" y="69.73" width="6.36" height="39.02" fill="#d2567f"><title>O 102  H 103  L 99.2  C 100</title></rect>
+<rect x="284.69" y="103.85" width="6.36" height="14.88" fill="#d2567f"><title>O 100  H 101  L 98.6  C 99.6</title></rect>
+<rect x="294.05" y="118.73" width="6.36" height="7.6" fill="#d2567f"><title>O 99.6  H 101  L 98.2  C 99.2</title></rect>
+<rect x="303.4" y="126.33" width="6.36" height="11.2" fill="#d2567f"><title>O 99.2  H 100  L 97.6  C 98.6</title></rect>
+<rect x="312.75" y="137.53" width="6.36" height="2.58" fill="#d2567f"><title>O 98.6  H 99.6  L 97.4  C 98.4</title></rect>
+</g>
+<rect x="54" y="20" width="290" height="183" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="110.13" y1="203" x2="110.13" y2="198" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="110.13" y1="20" x2="110.13" y2="25" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="110.13" y="216.8" font-size="10" fill="#62788a" text-anchor="middle">Jan 6, 2025</text>
+<line x1="241.1" y1="203" x2="241.1" y2="198" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="241.1" y1="20" x2="241.1" y2="25" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="241.1" y="216.8" font-size="10" fill="#62788a" text-anchor="middle">Jan 20</text>
+<line x1="54" y1="203" x2="59" y2="203" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="344" y1="203" x2="339" y2="203" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="47" y="206.5" font-size="10" fill="#62788a" text-anchor="end">95.0</text>
+<line x1="54" y1="157.25" x2="59" y2="157.25" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="344" y1="157.25" x2="339" y2="157.25" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="47" y="160.75" font-size="10" fill="#62788a" text-anchor="end">97.5</text>
+<line x1="54" y1="111.5" x2="59" y2="111.5" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="344" y1="111.5" x2="339" y2="111.5" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="47" y="115" font-size="10" fill="#62788a" text-anchor="end">100.0</text>
+<line x1="54" y1="65.75" x2="59" y2="65.75" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="344" y1="65.75" x2="339" y2="65.75" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="47" y="69.25" font-size="10" fill="#62788a" text-anchor="end">102.5</text>
+<line x1="54" y1="20" x2="59" y2="20" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="344" y1="20" x2="339" y2="20" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="47" y="23.5" font-size="10" fill="#62788a" text-anchor="end">105.0</text>
+</svg>

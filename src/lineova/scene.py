@@ -44,6 +44,7 @@ class Line:
     dash: Dash = None
     opacity: float = 1.0
     cap: str = "butt"
+    cls: Optional[str] = None        # CSS class (interactive HTML only)
 
 
 @dataclass(slots=True)
@@ -111,6 +112,7 @@ class Text:
     letter_spacing: float = 0.0
     halo: Optional[str] = None       # background-coloured outline for legibility
     spans: Optional[list] = None     # rich text: [(text, weight, italic, colour|None), ...]; overrides ``text``
+    cls: Optional[str] = None        # CSS class (interactive HTML only)
 
 
 @dataclass(slots=True)
@@ -129,6 +131,7 @@ class Clip:
     y: float
     w: float
     h: float
+    cls: Optional[str] = None        # CSS class (interactive HTML only)
 
 
 @dataclass(slots=True)

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lvb339b34ct lvb339b34cd">
+<title id="lvb339b34ct">Chart</title>
+<desc id="lvb339b34cd">Area chart of 2 series (a and b), x from 0 to 23. a: from 1 to 2, last 1.99, up 99% from the start. b: from 1.03 to 2, last 1.11, down 44% from the start.</desc>
+<defs><clipPath id="lvb339b34cc1"><rect x="29.42" y="44.55" width="315.58" height="157.95"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="18" y="19.05" width="10" height="10" rx="2" fill="#2f5bd3"/>
+<text x="32" y="28.07" font-size="11.5" fill="#475467">a</text>
+<rect x="58.71" y="19.05" width="10" height="10" rx="2" fill="#17a38b"/>
+<text x="72.71" y="28.07" font-size="11.5" fill="#475467">b</text>
+<line x1="30.42" y1="201.5" x2="344" y2="201.5" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="162.51" x2="344" y2="162.51" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="123.53" x2="344" y2="123.53" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="84.54" x2="344" y2="84.54" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="45.55" x2="344" y2="45.55" fill="none" stroke="#e7eaf0" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lvb339b34cc1)">
+<path d="M30.42,162.51L44.06,154.77L57.69,147.33L71.32,140.5L84.96,134.54L98.59,129.71L112.22,126.17L125.86,124.09L139.49,123.54L153.13,124.54L166.76,127.06L180.39,130.99L194.03,136.18L207.66,142.41L221.3,149.45L234.93,157.01L248.56,160.24L262.2,152.55L275.83,145.26L289.46,138.66L303.1,133.01L316.73,128.53L330.37,125.41L344,123.77L344,201.5L330.37,201.5L316.73,201.5L303.1,201.5L289.46,201.5L275.83,201.5L262.2,201.5L248.56,201.5L234.93,201.5L221.3,201.5L207.66,201.5L194.03,201.5L180.39,201.5L166.76,201.5L153.13,201.5L139.49,201.5L125.86,201.5L112.22,201.5L98.59,201.5L84.96,201.5L71.32,201.5L57.69,201.5L44.06,201.5L30.42,201.5Z" fill="#2f5bd3" fill-opacity="0.88"/>
+<path d="M30.42,162.51L44.06,154.77L57.69,147.33L71.32,140.5L84.96,134.54L98.59,129.71L112.22,126.17L125.86,124.09L139.49,123.54L153.13,124.54L166.76,127.06L180.39,130.99L194.03,136.18L207.66,142.41L221.3,149.45L234.93,157.01L248.56,160.24L262.2,152.55L275.83,145.26L289.46,138.66L303.1,133.01L316.73,128.53L330.37,125.41L344,123.77" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M30.42,84.54L44.06,77.57L57.69,72.43L71.32,69.33L84.96,68.39L98.59,69.65L112.22,73.06L125.86,78.48L139.49,83.42L153.13,76.7L166.76,71.85L180.39,69.06L194.03,68.44L207.66,70.02L221.3,73.73L234.93,79.43L248.56,82.33L262.2,75.87L275.83,71.31L289.46,68.83L303.1,68.54L316.73,70.43L330.37,74.44L344,80.41L344,123.77L330.37,125.41L316.73,128.53L303.1,133.01L289.46,138.66L275.83,145.26L262.2,152.55L248.56,160.24L234.93,157.01L221.3,149.45L207.66,142.41L194.03,136.18L180.39,130.99L166.76,127.06L153.13,124.54L139.49,123.54L125.86,124.09L112.22,126.17L98.59,129.71L84.96,134.54L71.32,140.5L57.69,147.33L44.06,154.77L30.42,162.51Z" fill="#17a38b" fill-opacity="0.88"/>
+<path d="M30.42,84.54L44.06,77.57L57.69,72.43L71.32,69.33L84.96,68.39L98.59,69.65L112.22,73.06L125.86,78.48L139.49,83.42L153.13,76.7L166.76,71.85L180.39,69.06L194.03,68.44L207.66,70.02L221.3,73.73L234.93,79.43L248.56,82.33L262.2,75.87L275.83,71.31L289.46,68.83L303.1,68.54L316.73,70.43L330.37,74.44L344,80.41" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<line x1="30.42" y1="201.5" x2="344" y2="201.5" fill="none" stroke="#98a2b3" stroke-width="1"/>
+<text x="28.42" y="216.08" font-size="11" fill="#8a94a6">0</text>
+<text x="98.59" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">5</text>
+<text x="166.76" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">10</text>
+<text x="234.93" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">15</text>
+<text x="303.1" y="216.08" font-size="11" fill="#8a94a6" text-anchor="middle">20</text>
+<text x="23.42" y="205.35" font-size="11" fill="#8a94a6" text-anchor="end">0</text>
+<text x="23.42" y="166.36" font-size="11" fill="#8a94a6" text-anchor="end">1</text>
+<text x="23.42" y="127.38" font-size="11" fill="#8a94a6" text-anchor="end">2</text>
+<text x="23.42" y="88.39" font-size="11" fill="#8a94a6" text-anchor="end">3</text>
+<text x="23.42" y="49.4" font-size="11" fill="#8a94a6" text-anchor="end">4</text>
+</svg>

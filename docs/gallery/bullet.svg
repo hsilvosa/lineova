@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv590bef97t lv590bef97d">
+<title id="lv590bef97t">Quarter against target</title>
+<desc id="lv590bef97d">Quarter against target. Bullet chart.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="224" font-size="12.5" fill="#4b5260">Quarter against target.</text>
+<text x="83.6" y="50.27" font-size="11" fill="#1e2229" text-anchor="end" font-weight="600">Revenue</text>
+<rect x="91.6" y="33.42" width="239.01" height="26" fill="#e8e9ea"/>
+<rect x="330.61" y="33.42" width="119.5" height="26" fill="#d6d7d8"/>
+<rect x="450.11" y="33.42" width="119.5" height="26" fill="#c0c1c3"/>
+<rect x="91.6" y="42" width="430.22" height="8.84" fill="#1e2229"><title>Revenue: 270 (target 250)</title></rect>
+<line x1="489.95" y1="36.54" x2="489.95" y2="56.3" fill="none" stroke="#1e2229" stroke-width="2.2"/>
+<text x="601.52" y="50.27" font-size="11" fill="#1e2229" font-weight="600">270</text>
+<text x="91.6" y="69.32" font-size="9" fill="#7b828e">0</text>
+<text x="593.52" y="69.32" font-size="9" fill="#7b828e" text-anchor="end">300</text>
+<text x="83.6" y="111.1" font-size="11" fill="#1e2229" text-anchor="end" font-weight="600">Profit</text>
+<rect x="91.6" y="94.25" width="318.68" height="26" fill="#e8e9ea"/>
+<rect x="410.28" y="94.25" width="79.67" height="26" fill="#d6d7d8"/>
+<rect x="489.95" y="94.25" width="79.67" height="26" fill="#c0c1c3"/>
+<rect x="91.6" y="102.83" width="350.55" height="8.84" fill="#1e2229"><title>Profit: 22 (target 27)</title></rect>
+<line x1="521.82" y1="97.37" x2="521.82" y2="117.13" fill="none" stroke="#1e2229" stroke-width="2.2"/>
+<text x="601.52" y="111.1" font-size="11" fill="#1e2229" font-weight="600">22</text>
+<text x="91.6" y="130.15" font-size="9" fill="#7b828e">0</text>
+<text x="593.52" y="130.15" font-size="9" fill="#7b828e" text-anchor="end">30</text>
+<text x="83.6" y="171.93" font-size="11" fill="#1e2229" text-anchor="end" font-weight="600">Satisfaction</text>
+<rect x="91.6" y="155.08" width="286.81" height="26" fill="#e8e9ea"/>
+<rect x="378.41" y="155.08" width="95.6" height="26" fill="#d6d7d8"/>
+<rect x="474.02" y="155.08" width="95.6" height="26" fill="#c0c1c3"/>
+<rect x="91.6" y="163.66" width="372.85" height="8.84" fill="#1e2229"><title>Satisfaction: 3.9 (target 4.5)</title></rect>
+<line x1="521.82" y1="158.2" x2="521.82" y2="177.96" fill="none" stroke="#1e2229" stroke-width="2.2"/>
+<text x="601.52" y="171.93" font-size="11" fill="#1e2229" font-weight="600">3.9</text>
+<text x="91.6" y="190.98" font-size="9" fill="#7b828e">0</text>
+<text x="593.52" y="190.98" font-size="9" fill="#7b828e" text-anchor="end">5</text>
+</svg>
