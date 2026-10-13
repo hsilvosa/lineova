@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="602.86" viewBox="0 0 640 602.86" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv88ed89f0t lv88ed89f0d">
+<title id="lv88ed89f0t">Population by autonomous community</title>
+<desc id="lv88ed89f0d">Population by autonomous community. millions (approximate). Tilemap chart.</desc>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Population by autonomous community</text>
+<text x="16" y="52.72" font-size="12.5" fill="#43565f">millions (approximate)</text>
+<rect x="18.61" y="107.44" width="81.65" height="81.65" rx="4" fill="#82bfc9"><title>Galicia: 2.7</title></rect>
+<text x="59.43" y="145.96" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Galicia</text>
+<text x="59.43" y="159.41" font-size="10.5" fill="#111111" text-anchor="middle">2.7</text>
+<rect x="105.46" y="107.44" width="81.65" height="81.65" rx="4" fill="#b2d6dc"><title>Asturias: 1</title></rect>
+<text x="146.29" y="145.96" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Asturias</text>
+<text x="146.29" y="159.41" font-size="10.5" fill="#111111" text-anchor="middle">1</text>
+<rect x="192.32" y="107.44" width="81.65" height="81.65" rx="4" fill="#bddbe0"><title>Cantabria: 0.6</title></rect>
+<text x="233.14" y="145.96" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Cantabria</text>
+<text x="233.14" y="159.41" font-size="10.5" fill="#111111" text-anchor="middle">0.6</text>
+<rect x="279.18" y="107.44" width="81.65" height="81.65" rx="4" fill="#92c8d0"><title>País Vasco: 2.2</title></rect>
+<text x="320" y="145.96" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">País Vasco</text>
+<text x="320" y="159.41" font-size="10.5" fill="#111111" text-anchor="middle">2.2</text>
+<rect x="366.03" y="107.44" width="81.65" height="81.65" rx="4" fill="#badadf"><title>Navarra: 0.7</title></rect>
+<text x="406.86" y="145.96" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Navarra</text>
+<text x="406.86" y="159.41" font-size="10.5" fill="#111111" text-anchor="middle">0.7</text>
+<rect x="539.75" y="107.44" width="81.65" height="81.65" rx="4" fill="#0b545f"><title>Cataluña: 8</title></rect>
+<text x="580.57" y="145.96" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="600">Cataluña</text>
+<text x="580.57" y="159.41" font-size="10.5" fill="#ffffff" text-anchor="middle">8</text>
+<rect x="105.46" y="194.3" width="81.65" height="81.65" rx="4" fill="#8dc6ce"><title>Castilla y León: 2.4</title></rect>
+<text x="146.29" y="232.82" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Castilla y Le…</text>
+<text x="146.29" y="246.27" font-size="10.5" fill="#111111" text-anchor="middle">2.4</text>
+<rect x="279.18" y="194.3" width="81.65" height="81.65" rx="4" fill="#c5dfe3"><title>La Rioja: 0.3</title></rect>
+<text x="320" y="232.82" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">La Rioja</text>
+<text x="320" y="246.27" font-size="10.5" fill="#111111" text-anchor="middle">0.3</text>
+<rect x="452.89" y="194.3" width="81.65" height="81.65" rx="4" fill="#aad3d9"><title>Aragón: 1.3</title></rect>
+<text x="493.71" y="232.82" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Aragón</text>
+<text x="493.71" y="246.27" font-size="10.5" fill="#111111" text-anchor="middle">1.3</text>
+<rect x="18.61" y="281.15" width="81.65" height="81.65" rx="4" fill="#b0d5db"><title>Extremadura: 1.1</title></rect>
+<text x="59.43" y="319.68" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Extremadura</text>
+<text x="59.43" y="333.13" font-size="10.5" fill="#111111" text-anchor="middle">1.1</text>
+<rect x="192.32" y="281.15" width="81.65" height="81.65" rx="4" fill="#096a77"><title>Madrid: 7</title></rect>
+<text x="233.14" y="319.68" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="600">Madrid</text>
+<text x="233.14" y="333.13" font-size="10.5" fill="#ffffff" text-anchor="middle">7</text>
+<rect x="279.18" y="281.15" width="81.65" height="81.65" rx="4" fill="#95cad1"><title>Castilla-La Mancha: 2.1</title></rect>
+<text x="320" y="319.68" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Castilla-La…</text>
+<text x="320" y="333.13" font-size="10.5" fill="#111111" text-anchor="middle">2.1</text>
+<rect x="366.03" y="281.15" width="81.65" height="81.65" rx="4" fill="#148fa0"><title>C. Valenciana: 5.3</title></rect>
+<text x="406.86" y="319.68" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">C. Valenciana</text>
+<text x="406.86" y="333.13" font-size="10.5" fill="#111111" text-anchor="middle">5.3</text>
+<rect x="539.75" y="281.15" width="81.65" height="81.65" rx="4" fill="#add4da"><title>Illes Balears: 1.2</title></rect>
+<text x="580.57" y="319.68" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Illes Balears</text>
+<text x="580.57" y="333.13" font-size="10.5" fill="#111111" text-anchor="middle">1.2</text>
+<rect x="105.46" y="368.01" width="81.65" height="81.65" rx="4" fill="#0b4750"><title>Andalucía: 8.6</title></rect>
+<text x="146.29" y="406.53" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="600">Andalucía</text>
+<text x="146.29" y="419.98" font-size="10.5" fill="#ffffff" text-anchor="middle">8.6</text>
+<rect x="279.18" y="368.01" width="81.65" height="81.65" rx="4" fill="#a5d1d7"><title>Murcia: 1.5</title></rect>
+<text x="320" y="406.53" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Murcia</text>
+<text x="320" y="419.98" font-size="10.5" fill="#111111" text-anchor="middle">1.5</text>
+<rect x="18.61" y="489.61" width="81.65" height="81.65" rx="4" fill="#92c8d0"><title>Canarias: 2.2</title></rect>
+<text x="59.43" y="528.13" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Canarias</text>
+<text x="59.43" y="541.58" font-size="10.5" fill="#111111" text-anchor="middle">2.2</text>
+<rect x="192.32" y="489.61" width="81.65" height="81.65" rx="4" fill="#cbe1e6"><title>Ceuta: 0.08</title></rect>
+<text x="233.14" y="528.13" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Ceuta</text>
+<text x="233.14" y="541.58" font-size="10.5" fill="#111111" text-anchor="middle">0.08</text>
+<rect x="279.18" y="489.61" width="81.65" height="81.65" rx="4" fill="#cbe1e6"><title>Melilla: 0.09</title></rect>
+<text x="320" y="528.13" font-size="11.5" fill="#111111" text-anchor="middle" font-weight="600">Melilla</text>
+<text x="320" y="541.58" font-size="10.5" fill="#111111" text-anchor="middle">0.09</text>
+<text x="16" y="78.69" font-size="11" fill="#43565f">millions</text>
+<text x="64.5" y="78.69" font-size="11" fill="#6e8088">0.08</text>
+<image x="92.97" y="70.84" width="160" height="8" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAACCAYAAAC3zQLZAAADQElEQVR4nO3U107eBRjAYUpZ3/c/8cDEA2NiYowxxhhjjMZojEbT2tpBCxQoUKBAWyiUMsooo4yWVfZeZe9d9qbsvffeq1Qv4eeLXoYcPLfwaOyc/M222Hr7F5ti4/gd62Lt6B2rRyesiOXDE5YO37J48JaFg2Pm94+ZE7N7R/+aEdO7h0yJyZ0DJsT49gFj2/uMipGtfYa39hja3GNwc5eBjV36Rd/GDr3rO/SI7rVt3oiu1S06RYdoX9mkTbQub9KyvEHz0gZNS+s0Lq7TIOoX16hbWKNWvJ5fpUZUz61QJSpFxewy5aJsZpnSmSVKppconl6kaGqRQlEwtUD+5AJ5IndinhyRPT5HlnglMsdmyRDpo7Okjc6QOjJDysg0ySJpeJrE4SkShqaIH5okbnCSWBEzMEG0iOofJ1JE9I0R3jtGWM8ooSKke4Tnb4YJFkFdQwR2DhHQOYh/xwB+7QP4tvXjI7xb+/Bq6cOzpReP5h7cm3pwa+rGtbEbl4Y3ONd38Ug41XXiWNuJQ20H9q87eFDTzv2aNuyq27CtasVGWFe2YFXRgmV5MxblTZiXNWFW2oipMClpwLi4HiNhWFSHQWEdNwpr0S+o5Vr+a67m1XBFXM6t5lJONRdzqriQXcXvWZX8llXBr68q+CWznJ/FTxll/Jhexg9ppXyfVsJ3qSV8m1LMN+Lr5CK+Siriy6RCvkgs4POEAj5LyOfT+Hw+icvj49g8PorN5cOYHD6IzuH96Gzei8pGicxCR2i8fIVGRCbnwjM4F5Yu0tAMTUUzJAXNF8loPk/ifHAi54MSRDxagXFoBcSi9Uz4x6DtFy2i0PaNRNvnJdpPI9DxDkfHK0yEouMZgq7HC3SfPEfXPRhdtyARiK5rAHouz9B7LJz90XvkJ3zRc/JB5fgU1UNvVA5ewhOVvQeqB09Q3XdHdc8Ntd0pV9S2LqhtHqO+64za+pFwQm3liNryIeo7Dqgt7FFOmT9AMbuPcvseiqmdsEUxsUExvotyyxrFyOo/hpYoBndQbloIc5QbZij6t1Gum6JcO2WCctUY5cotlD+NhCHKZQOUSzdR/jh1A+WiPsqF62icBXAWwFkA/98A/gEza11uEKsqTAAAAABJRU5ErkJggg=="/>
+<text x="258.97" y="78.69" font-size="11" fill="#6e8088">8.6</text>
+</svg>

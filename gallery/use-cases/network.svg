@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="440" viewBox="0 0 640 440" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv3222558bt lv3222558bd">
+<title id="lv3222558bt">Fastest route Oviedo → Málaga</title>
+<desc id="lv3222558bd">Fastest route Oviedo → Málaga. hours by road; larger nodes are busier junctions. Network chart.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">Fastest route Oviedo → Málaga</text>
+<text x="16" y="49.65" font-size="12" fill="#475467">hours by road; larger nodes are busier junctions</text>
+<path d="M291.14,310.01L110.3,306.27" fill="none" stroke="#cdd3de" stroke-width="1.78" stroke-linecap="round" stroke-linejoin="round"><title>Madrid – Zaragoza: 3.1</title></path>
+<path d="M291.14,310.01L217.1,366.3" fill="none" stroke="#cdd3de" stroke-width="2.02" stroke-linecap="round" stroke-linejoin="round"><title>Madrid – Valencia: 3.5</title></path>
+<path d="M291.14,310.01L442.42,299.88" fill="none" stroke="#cdd3de" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><title>Madrid – Sevilla: 5.2</title></path>
+<path d="M110.3,306.27L72.4,359.19" fill="none" stroke="#cdd3de" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"><title>Zaragoza – Barcelona: 2.9</title></path>
+<path d="M110.3,306.27L59.46,254.43" fill="none" stroke="#cdd3de" stroke-width="1.73" stroke-linecap="round" stroke-linejoin="round"><title>Zaragoza – Bilbao: 3</title></path>
+<path d="M72.4,359.19L217.1,366.3" fill="none" stroke="#cdd3de" stroke-width="1.96" stroke-linecap="round" stroke-linejoin="round"><title>Barcelona – Valencia: 3.4</title></path>
+<path d="M217.1,366.3L342.83,402.4" fill="none" stroke="#cdd3de" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round"><title>Valencia – Murcia: 2.4</title></path>
+<path d="M442.42,299.88L580.54,328.96" fill="none" stroke="#cdd3de" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"><title>Sevilla – Málaga: 2</title></path>
+<path d="M186.95,228.11L59.46,254.43" fill="none" stroke="#cdd3de" stroke-width="1.61" stroke-linecap="round" stroke-linejoin="round"><title>Valladolid – Bilbao: 2.8</title></path>
+<path d="M407.43,353.17L342.83,402.4" fill="none" stroke="#cdd3de" stroke-width="1.61" stroke-linecap="round" stroke-linejoin="round"><title>Granada – Murcia: 2.8</title></path>
+<path d="M291.14,310.01L186.95,228.11" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>Madrid – Valladolid: 2</title></path>
+<path d="M291.14,310.01L407.43,353.17" fill="none" stroke="#2f5bd3" stroke-width="3.48" stroke-linecap="round" stroke-linejoin="round"><title>Madrid – Granada: 4.3</title></path>
+<path d="M580.54,328.96L407.43,353.17" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>Málaga – Granada: 1.4</title></path>
+<path d="M186.95,228.11L159.64,148.21" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>Valladolid – León: 1.7</title></path>
+<path d="M159.64,148.21L135.28,86.25" fill="none" stroke="#2f5bd3" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>León – Oviedo: 1.6</title></path>
+<rect x="189.42" y="300.14" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="200.72" y="311.64" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">3.1</text>
+<rect x="242.82" y="330.15" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="254.12" y="341.65" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">3.5</text>
+<rect x="355.48" y="296.94" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="366.78" y="308.44" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">5.2</text>
+<rect x="231.05" y="261.06" width="16" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="239.05" y="272.56" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">2</text>
+<rect x="337.99" y="323.59" width="22.59" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="349.29" y="335.09" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">4.3</text>
+<rect x="80.05" y="324.73" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="91.35" y="336.23" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">2.9</text>
+<rect x="76.88" y="272.35" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="84.88" y="283.85" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">3</text>
+<rect x="133.45" y="354.74" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="144.75" y="366.24" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">3.4</text>
+<rect x="268.67" y="376.35" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="279.97" y="387.85" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">2.4</text>
+<rect x="503.48" y="306.42" width="16" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="511.48" y="317.92" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">2</text>
+<rect x="482.69" y="333.07" width="22.59" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="493.98" y="344.57" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">1.4</text>
+<rect x="111.91" y="233.27" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="123.2" y="244.77" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">2.8</text>
+<rect x="162" y="180.16" width="22.59" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="173.3" y="191.66" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">1.7</text>
+<rect x="363.83" y="369.79" width="22.59" height="16" rx="8" fill="#f4f4f5" stroke="#ffffff" stroke-width="2"/>
+<text x="375.13" y="381.29" font-size="10" fill="#475467" text-anchor="middle" font-weight="600">2.8</text>
+<rect x="136.16" y="109.23" width="22.59" height="16" rx="8" fill="#2f5bd3" stroke="#ffffff" stroke-width="2"/>
+<text x="147.46" y="120.73" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="600">1.6</text>
+<rect x="263.49" y="294.41" width="55.3" height="31.2" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>Madrid · degree 5</title></rect>
+<text x="291.14" y="314.21" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Madrid</text>
+<rect x="75.65" y="294.27" width="69.31" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>Zaragoza · degree 3</title></rect>
+<text x="110.3" y="310.47" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">Zaragoza</text>
+<rect x="34.93" y="347.19" width="74.92" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>Barcelona · degree 2</title></rect>
+<text x="72.4" y="363.39" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">Barcelona</text>
+<rect x="184.54" y="354.3" width="65.13" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>Valencia · degree 3</title></rect>
+<text x="217.1" y="370.5" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">Valencia</text>
+<rect x="415.45" y="287.88" width="53.93" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>Sevilla · degree 2</title></rect>
+<text x="442.42" y="304.08" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">Sevilla</text>
+<rect x="551.91" y="316.96" width="57.27" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>Málaga · degree 2</title></rect>
+<text x="580.54" y="333.16" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Málaga</text>
+<rect x="150.19" y="213.46" width="73.52" height="29.3" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>Valladolid · degree 3</title></rect>
+<text x="186.95" y="232.31" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Valladolid</text>
+<rect x="33.21" y="242.43" width="52.51" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>Bilbao · degree 2</title></rect>
+<text x="59.46" y="258.63" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">Bilbao</text>
+<rect x="374.87" y="341.12" width="65.12" height="24.1" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>Granada · degree 3</title></rect>
+<text x="407.43" y="357.37" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Granada</text>
+<rect x="315.53" y="390.4" width="54.61" height="24" rx="6" fill="#ffffff" stroke="#babdc2" stroke-width="1.3"><title>Murcia · degree 2</title></rect>
+<text x="342.83" y="406.6" font-size="12" fill="#1a2233" text-anchor="middle" font-weight="600">Murcia</text>
+<rect x="137.66" y="136.21" width="43.96" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>León · degree 2</title></rect>
+<text x="159.64" y="152.41" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">León</text>
+<rect x="106.92" y="74.25" width="56.71" height="24" rx="6" fill="#2f5bd3" stroke="#2f5bd3" stroke-width="1.3"><title>Oviedo · degree 1</title></rect>
+<text x="135.28" y="90.45" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="600">Oviedo</text>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lve2060640t lve2060640d">
+<title id="lve2060640t">Model comparison</title>
+<desc id="lve2060640d">Model comparison. Radar chart of Model A and Model B.</desc>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Model comparison</text>
+<rect x="18" y="52.99" width="10" height="10" rx="2" fill="#008c9e"/>
+<text x="32" y="62.19" font-size="12" fill="#43565f">Model A</text>
+<rect x="98.22" y="52.99" width="10" height="10" rx="2" fill="#e0673f"/>
+<text x="112.22" y="62.19" font-size="12" fill="#43565f">Model B</text>
+<path d="M320,197.24L351.15,219.87L339.25,256.49L300.75,256.49L288.85,219.87L320,197.24" fill="none" stroke="#d5dde1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="325" y="207.59" font-size="10" fill="#6e8088" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.5</text>
+<path d="M320,164.49L382.3,209.75L358.5,282.99L281.5,282.99L257.7,209.75L320,164.49" fill="none" stroke="#d5dde1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="325" y="174.84" font-size="10" fill="#6e8088" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">5</text>
+<path d="M320,131.74L413.44,199.63L377.75,309.48L262.25,309.48L226.56,199.63L320,131.74" fill="none" stroke="#d5dde1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="325" y="142.09" font-size="10" fill="#6e8088" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">7.5</text>
+<path d="M320,98.99L444.59,189.51L397,335.98L243,335.98L195.41,189.51L320,98.99" fill="none" stroke="#b7c4ca" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="325" y="109.34" font-size="10" fill="#6e8088" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">10</text>
+<line x1="320" y1="230" x2="320" y2="98.99" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<text x="320" y="88.99" font-size="11.5" fill="#43565f" text-anchor="middle">Speed</text>
+<line x1="320" y1="230" x2="444.59" y2="189.51" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<text x="454.1" y="190.45" font-size="11.5" fill="#43565f">Accuracy</text>
+<line x1="320" y1="230" x2="397" y2="335.98" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<text x="402.88" y="353.04" font-size="11.5" fill="#43565f">Cost</text>
+<line x1="320" y1="230" x2="243" y2="335.98" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<text x="237.12" y="353.04" font-size="11.5" fill="#43565f" text-anchor="end">Memory</text>
+<line x1="320" y1="230" x2="195.41" y2="189.51" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<text x="185.9" y="190.45" font-size="11.5" fill="#43565f" text-anchor="end">Ease</text>
+<path d="M320,125.19L394.76,205.71L350.8,272.39L266.1,304.18L207.87,193.56L320,125.19Z" fill="#008c9e" fill-opacity="0.14" stroke="#008c9e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#008c9e" stroke="#eef2f4" stroke-width="1.2">
+<circle cx="320" cy="125.19" r="3.2"><title>Model A · Speed: 8</title></circle>
+<circle cx="394.76" cy="205.71" r="3.2"><title>Model A · Accuracy: 6</title></circle>
+<circle cx="350.8" cy="272.39" r="3.2"><title>Model A · Cost: 4</title></circle>
+<circle cx="266.1" cy="304.18" r="3.2"><title>Model A · Memory: 7</title></circle>
+<circle cx="207.87" cy="193.56" r="3.2"><title>Model A · Ease: 9</title></circle>
+</g>
+<path d="M320,164.49L432.13,193.56L373.9,304.18L281.5,282.99L245.24,205.71L320,164.49Z" fill="#e0673f" fill-opacity="0.14" stroke="#e0673f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#e0673f" stroke="#eef2f4" stroke-width="1.2">
+<circle cx="320" cy="164.49" r="3.2"><title>Model B · Speed: 5</title></circle>
+<circle cx="432.13" cy="193.56" r="3.2"><title>Model B · Accuracy: 9</title></circle>
+<circle cx="373.9" cy="304.18" r="3.2"><title>Model B · Cost: 7</title></circle>
+<circle cx="281.5" cy="282.99" r="3.2"><title>Model B · Memory: 5</title></circle>
+<circle cx="245.24" cy="205.71" r="3.2"><title>Model B · Ease: 6</title></circle>
+</g>
+</svg>

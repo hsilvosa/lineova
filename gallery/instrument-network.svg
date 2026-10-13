@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img" aria-labelledby="lv5e460684t lv5e460684d">
+<title id="lv5e460684t">Cheapest route A → I</title>
+<desc id="lv5e460684d">Cheapest route A → I. Network chart.</desc>
+<rect width="100%" height="100%" fill="#0f1a24"/>
+<text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">CHEAPEST ROUTE A → I</text>
+<line x1="0" y1="33.9" x2="640" y2="33.9" fill="none" stroke="#3a5063" stroke-width="1"/>
+<path d="M220.44,354L34,270.63" fill="none" stroke="#3a5063" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>A – B: 4</title></path>
+<path d="M34,270.63L199.74,220.52" fill="none" stroke="#3a5063" stroke-width="2.12" stroke-linecap="round" stroke-linejoin="round"><title>B – D: 5</title></path>
+<path d="M34,270.63L34.73,170.76" fill="none" stroke="#3a5063" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"><title>B – E: 6</title></path>
+<path d="M470.25,279.84L574.51,185.36" fill="none" stroke="#3a5063" stroke-width="2.56" stroke-linecap="round" stroke-linejoin="round"><title>C – F: 6</title></path>
+<path d="M199.74,220.52L34.73,170.76" fill="none" stroke="#3a5063" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>D – E: 4</title></path>
+<path d="M34.73,170.76L64.62,78.3" fill="none" stroke="#3a5063" stroke-width="2.12" stroke-linecap="round" stroke-linejoin="round"><title>E – H: 5</title></path>
+<path d="M34.73,170.76L345.11,126.43" fill="none" stroke="#3a5063" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"><title>E – G: 2</title></path>
+<path d="M345.11,126.43L574.51,185.36" fill="none" stroke="#3a5063" stroke-width="1.68" stroke-linecap="round" stroke-linejoin="round"><title>G – F: 4</title></path>
+<path d="M345.11,126.43L64.62,78.3" fill="none" stroke="#3a5063" stroke-width="1.24" stroke-linecap="round" stroke-linejoin="round"><title>G – H: 3</title></path>
+<path d="M574.51,185.36L600,107.54" fill="none" stroke="#3a5063" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><title>F – I: 7</title></path>
+<path d="M220.44,354L470.25,279.84" fill="none" stroke="#c08418" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>A – C: 3</title></path>
+<path d="M470.25,279.84L199.74,220.52" fill="none" stroke="#c08418" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>C – D: 2</title></path>
+<path d="M199.74,220.52L345.11,126.43" fill="none" stroke="#c08418" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><title>D – G: 3</title></path>
+<path d="M345.11,126.43L600,107.54" fill="none" stroke="#c08418" stroke-width="3.12" stroke-linecap="round" stroke-linejoin="round"><title>G – I: 5</title></path>
+<text x="132.22" y="307.32" font-size="9" fill="#62788a">w4</text>
+<text x="350.34" y="311.92" font-size="9" fill="#c08418">w3</text>
+<text x="121.87" y="240.57" font-size="9" fill="#62788a">w5</text>
+<text x="39.36" y="215.7" font-size="9" fill="#62788a">w6</text>
+<text x="339.99" y="245.18" font-size="9" fill="#c08418">w2</text>
+<text x="527.38" y="227.6" font-size="9" fill="#62788a">w6</text>
+<text x="122.23" y="190.64" font-size="9" fill="#62788a">w4</text>
+<text x="277.42" y="168.47" font-size="9" fill="#c08418">w3</text>
+<text x="54.67" y="119.53" font-size="9" fill="#62788a">w5</text>
+<text x="194.92" y="143.59" font-size="9" fill="#62788a">w2</text>
+<text x="464.81" y="150.89" font-size="9" fill="#62788a">w4</text>
+<text x="209.86" y="97.36" font-size="9" fill="#62788a">w3</text>
+<text x="477.55" y="111.98" font-size="9" fill="#c08418">w5</text>
+<text x="592.26" y="141.45" font-size="9" fill="#62788a">w7</text>
+<g fill="#0f1a24" stroke-width="1.8">
+<circle cx="220.44" cy="354" r="8" stroke="#c08418"><title>A · degree 2</title></circle>
+<circle cx="34" cy="270.63" r="8" stroke="#2a9cc4"><title>B · degree 3</title></circle>
+<circle cx="470.25" cy="279.84" r="8" stroke="#c08418"><title>C · degree 3</title></circle>
+<circle cx="199.74" cy="220.52" r="8" stroke="#c08418"><title>D · degree 4</title></circle>
+<circle cx="34.73" cy="170.76" r="8" stroke="#2a9cc4"><title>E · degree 4</title></circle>
+<circle cx="345.11" cy="126.43" r="8" stroke="#c08418"><title>G · degree 5</title></circle>
+<circle cx="574.51" cy="185.36" r="8" stroke="#2a9cc4"><title>F · degree 3</title></circle>
+<circle cx="64.62" cy="78.3" r="8" stroke="#2a9cc4"><title>H · degree 2</title></circle>
+<circle cx="600" cy="107.54" r="8" stroke="#c08418"><title>I · degree 2</title></circle>
+</g>
+<g fill="#c08418">
+<circle cx="220.44" cy="354" r="2.5"/>
+<circle cx="470.25" cy="279.84" r="2.5"/>
+<circle cx="199.74" cy="220.52" r="2.5"/>
+<circle cx="345.11" cy="126.43" r="2.5"/>
+<circle cx="600" cy="107.54" r="2.5"/>
+</g>
+<text x="231.44" y="367" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">A</text>
+<text x="45" y="283.63" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">B</text>
+<text x="481.25" y="292.84" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">C</text>
+<text x="210.74" y="233.52" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">D</text>
+<text x="45.73" y="183.76" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">E</text>
+<text x="356.11" y="139.43" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">G</text>
+<text x="585.51" y="198.36" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">F</text>
+<text x="75.62" y="91.3" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">H</text>
+<text x="611" y="120.54" font-size="10" fill="#d5e1ea" stroke="#0f1a24" stroke-width="3" stroke-linejoin="round" paint-order="stroke">I</text>
+<text x="624" y="384" font-size="10" fill="#c08418" text-anchor="end">PATH A→C→D→G→I  Σw=13</text>
+</svg>

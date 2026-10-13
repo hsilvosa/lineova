@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Figtree, &#x27;Segoe UI&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv1979161at lv1979161ad">
+<title id="lv1979161at">Energy output by source</title>
+<desc id="lv1979161ad">Energy output by source. Monthly, GWh. Line chart of 3 series (Solar, Wind and Hydro), x from 2025-01-01 to 2025-12-01. Solar: from 38 to 138, last 38, down 10% from the start. Wind: from 62 to 118, last 118, up 5% from the start. Hydro: from 60 to 95, last 72, up 3% from the start.</desc>
+<defs><clipPath id="lv1979161ac1"><rect x="43.14" y="113.94" width="549.72" height="247.81"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#eef2f4"/>
+<text x="16" y="33.85" font-size="17" fill="#17262e" font-weight="700">Energy output by source</text>
+<text x="16" y="52.72" font-size="12.5" fill="#43565f">Monthly, GWh</text>
+<rect x="18" y="71.24" width="10" height="10" rx="5" fill="#008c9e"/>
+<text x="32" y="80.44" font-size="12" fill="#43565f">Solar</text>
+<rect x="81.41" y="71.24" width="10" height="10" rx="5" fill="#e0673f"/>
+<text x="95.41" y="80.44" font-size="12" fill="#43565f">Wind</text>
+<rect x="144.11" y="71.24" width="10" height="10" rx="5" fill="#4062b8"/>
+<text x="158.11" y="80.44" font-size="12" fill="#43565f">Hydro</text>
+<line x1="44.14" y1="360.75" x2="591.86" y2="360.75" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="44.14" y1="311.59" x2="591.86" y2="311.59" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="44.14" y1="262.43" x2="591.86" y2="262.43" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="44.14" y1="213.26" x2="591.86" y2="213.26" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="44.14" y1="164.1" x2="591.86" y2="164.1" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<line x1="44.14" y1="114.94" x2="591.86" y2="114.94" fill="none" stroke="#d5dde1" stroke-width="1"/>
+<g clip-path="url(#lv1979161ac1)">
+<path d="M44.14,327.32C61.09,318.8,78.03,314.36,94.98,301.76C110.28,290.37,125.59,269.39,140.89,256.53C157.84,242.28,174.78,234.48,191.73,221.13C208.13,208.21,224.53,189.2,240.93,177.87C257.87,166.16,274.82,158.93,291.76,152.3C308.16,145.89,324.56,138.54,340.96,138.54C357.9,138.54,374.85,147.39,391.79,160.17C408.74,172.95,425.69,196.91,442.63,215.23C459.03,232.96,475.43,251.86,491.83,268.33C508.77,285.34,525.72,304.27,542.66,315.52C559.06,326.41,575.46,328.63,591.86,335.19L591.86,360.75L44.14,360.75Z" fill="#008c9e" fill-opacity="0.22"/>
+<path d="M44.14,327.32C61.09,318.8,78.03,314.36,94.98,301.76C110.28,290.37,125.59,269.39,140.89,256.53C157.84,242.28,174.78,234.48,191.73,221.13C208.13,208.21,224.53,189.2,240.93,177.87C257.87,166.16,274.82,158.93,291.76,152.3C308.16,145.89,324.56,138.54,340.96,138.54C357.9,138.54,374.85,147.39,391.79,160.17C408.74,172.95,425.69,196.91,442.63,215.23C459.03,232.96,475.43,251.86,491.83,268.33C508.77,285.34,525.72,304.27,542.66,315.52C559.06,326.41,575.46,328.63,591.86,335.19" fill="none" stroke="#008c9e" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#008c9e" stroke="#eef2f4" stroke-width="2">
+<circle cx="591.86" cy="335.19" r="4"/>
+</g>
+<path d="M44.14,189.67C61.09,194.91,78.03,200.6,94.98,205.4C110.28,209.73,125.59,211.68,140.89,217.2C157.84,223.31,174.78,232.8,191.73,240.79C208.13,248.53,224.53,257.92,240.93,264.39C257.87,271.08,274.82,276.15,291.76,280.12C308.16,283.97,324.56,287.99,340.96,287.99C357.9,287.99,374.85,282.09,391.79,276.19C408.74,270.29,425.69,261.95,442.63,252.59C459.03,243.54,475.43,230.18,491.83,221.13C508.77,211.78,525.72,204.85,542.66,197.53C559.06,190.45,575.46,184.42,591.86,177.87" fill="none" stroke="#e0673f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#e0673f" stroke="#eef2f4" stroke-width="2">
+<circle cx="591.86" cy="177.87" r="4"/>
+</g>
+<path d="M44.14,272.26C61.09,269.64,78.03,270.78,94.98,264.39C110.28,258.62,125.59,243.52,140.89,236.86C157.84,229.49,174.78,223.1,191.73,223.1C208.13,223.1,224.53,225.48,240.93,229C257.87,232.63,274.82,238.04,291.76,244.73C308.16,251.2,324.56,261.86,340.96,268.33C357.9,275.01,374.85,280.12,391.79,284.06C408.74,287.99,425.69,291.92,442.63,291.92C459.03,291.92,475.43,287.27,491.83,284.06C508.77,280.74,525.72,274.9,542.66,272.26C559.06,269.7,575.46,269.64,591.86,268.33" fill="none" stroke="#4062b8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#4062b8" stroke="#eef2f4" stroke-width="2">
+<circle cx="591.86" cy="268.33" r="4"/>
+</g>
+</g>
+<text x="599.86" y="339.21" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">38</text>
+<text x="599.86" y="181.89" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">118</text>
+<text x="599.86" y="272.35" font-size="11.5" fill="#17262e" font-weight="600" stroke="#eef2f4" stroke-width="3" stroke-linejoin="round" paint-order="stroke">72</text>
+<text x="42.14" y="375.72" font-size="11.5" fill="#6e8088">Jan 2025</text>
+<text x="140.89" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Mar</text>
+<text x="240.93" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">May</text>
+<text x="340.96" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Jul</text>
+<text x="442.63" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Sep</text>
+<text x="542.66" y="375.72" font-size="11.5" fill="#6e8088" text-anchor="middle">Nov</text>
+<text x="37.14" y="364.77" font-size="11.5" fill="#6e8088" text-anchor="end">25</text>
+<text x="37.14" y="315.61" font-size="11.5" fill="#6e8088" text-anchor="end">50</text>
+<text x="37.14" y="266.45" font-size="11.5" fill="#6e8088" text-anchor="end">75</text>
+<text x="37.14" y="217.29" font-size="11.5" fill="#6e8088" text-anchor="end">100</text>
+<text x="37.14" y="168.13" font-size="11.5" fill="#6e8088" text-anchor="end">125</text>
+<text x="37.14" y="118.97" font-size="11.5" fill="#6e8088" text-anchor="end">150</text>
+<text x="16" y="104.59" font-size="11.5" fill="#6e8088">GWh</text>
+</svg>

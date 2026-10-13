@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="720" viewBox="0 0 760 720" font-family="&#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, Consolas, &#x27;DejaVu Sans Mono&#x27;, monospace" role="img" aria-labelledby="lv2c591daet lv2c591daed">
+<title id="lv2c591daet">Mean price by hour</title>
+<desc id="lv2c591daed">Mean price by hour. €/MWh, 2023 vs 2025. Dumbbell chart of 2023 and 2025.</desc>
+<defs><clipPath id="lv2c591daec1"><rect x="53" y="75.15" width="683" height="586.85"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#0f1a24"/>
+<text x="16" y="24.25" font-size="11" fill="#9db0bf" font-weight="500" letter-spacing="0.6">MEAN PRICE BY HOUR</text>
+<text x="744" y="23.9" font-size="10" fill="#62788a" text-anchor="end" letter-spacing="0.4">€/MWH, 2023 VS 2025</text>
+<line x1="0" y1="33.9" x2="760" y2="33.9" fill="none" stroke="#3a5063" stroke-width="1"/>
+<rect x="18" y="50.65" width="10" height="10" rx="5" fill="#2a9cc4"/>
+<text x="32" y="59.32" font-size="10.5" fill="#9db0bf">2023</text>
+<rect x="77.2" y="50.65" width="10" height="10" rx="5" fill="#c08418"/>
+<text x="91.2" y="59.32" font-size="10.5" fill="#9db0bf">2025</text>
+<text x="16" y="704" font-size="10" fill="#62788a">Source: OMIE, Mercado diario</text>
+<line x1="129.67" y1="76.15" x2="129.67" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="205.33" y1="76.15" x2="205.33" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="281" y1="76.15" x2="281" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="356.67" y1="76.15" x2="356.67" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="432.33" y1="76.15" x2="432.33" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="508" y1="76.15" x2="508" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="583.67" y1="76.15" x2="583.67" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<line x1="659.33" y1="76.15" x2="659.33" y2="661" fill="none" stroke="#2a3c4c" stroke-width="1" stroke-dasharray="1 3"/>
+<g clip-path="url(#lv2c591daec1)">
+<line x1="542.93" y1="88.33" x2="426.58" y2="88.33" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="542.93" cy="88.33" r="5.5" fill="#2a9cc4"><title>01:00 · 2023: 94.6</title></circle>
+<circle cx="426.58" cy="88.33" r="5.5" fill="#c08418"><title>01:00 · 2025: 79.2</title></circle>
+</g>
+<line x1="490.2" y1="112.7" x2="367.46" y2="112.7" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="490.2" cy="112.7" r="5.5" fill="#2a9cc4"><title>02:00 · 2023: 87.6</title></circle>
+<circle cx="367.46" cy="112.7" r="5.5" fill="#c08418"><title>02:00 · 2025: 71.4</title></circle>
+</g>
+<line x1="457.95" y1="137.07" x2="333.09" y2="137.07" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="457.95" cy="137.07" r="5.5" fill="#2a9cc4"><title>03:00 · 2023: 83.4</title></circle>
+<circle cx="333.09" cy="137.07" r="5.5" fill="#c08418"><title>03:00 · 2025: 66.9</title></circle>
+</g>
+<line x1="440.64" y1="161.44" x2="308.61" y2="161.44" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="440.64" cy="161.44" r="5.5" fill="#2a9cc4"><title>04:00 · 2023: 81.1</title></circle>
+<circle cx="308.61" cy="161.44" r="5.5" fill="#c08418"><title>04:00 · 2025: 63.6</title></circle>
+</g>
+<line x1="428.79" y1="185.81" x2="298.79" y2="185.81" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="428.79" cy="185.81" r="5.5" fill="#2a9cc4"><title>05:00 · 2023: 79.5</title></circle>
+<circle cx="298.79" cy="185.81" r="5.5" fill="#c08418"><title>05:00 · 2025: 62.4</title></circle>
+</g>
+<line x1="451.46" y1="210.18" x2="321.01" y2="210.18" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="451.46" cy="210.18" r="5.5" fill="#2a9cc4"><title>06:00 · 2023: 82.5</title></circle>
+<circle cx="321.01" cy="210.18" r="5.5" fill="#c08418"><title>06:00 · 2025: 65.3</title></circle>
+</g>
+<line x1="516.52" y1="234.55" x2="383.91" y2="234.55" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="516.52" cy="234.55" r="5.5" fill="#2a9cc4"><title>07:00 · 2023: 91.1</title></circle>
+<circle cx="383.91" cy="234.55" r="5.5" fill="#c08418"><title>07:00 · 2025: 73.6</title></circle>
+</g>
+<line x1="593.82" y1="258.92" x2="476.6" y2="258.92" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="593.82" cy="258.92" r="5.5" fill="#2a9cc4"><title>08:00 · 2023: 101</title></circle>
+<circle cx="476.6" cy="258.92" r="5.5" fill="#c08418"><title>08:00 · 2025: 85.8</title></circle>
+</g>
+<line x1="613.38" y1="283.28" x2="484.99" y2="283.28" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="613.38" cy="283.28" r="5.5" fill="#2a9cc4"><title>09:00 · 2023: 104</title></circle>
+<circle cx="484.99" cy="283.28" r="5.5" fill="#c08418"><title>09:00 · 2025: 87</title></circle>
+</g>
+<line x1="533.13" y1="307.65" x2="341.75" y2="307.65" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="533.13" cy="307.65" r="5.5" fill="#2a9cc4"><title>10:00 · 2023: 93.3</title></circle>
+<circle cx="341.75" cy="307.65" r="5.5" fill="#c08418"><title>10:00 · 2025: 68</title></circle>
+</g>
+<line x1="434.67" y1="332.02" x2="206.01" y2="332.02" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="434.67" cy="332.02" r="5.5" fill="#2a9cc4"><title>11:00 · 2023: 80.3</title></circle>
+<circle cx="206.01" cy="332.02" r="5.5" fill="#c08418"><title>11:00 · 2025: 50.1</title></circle>
+</g>
+<line x1="390.77" y1="356.39" x2="127.51" y2="356.39" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="390.77" cy="356.39" r="5.5" fill="#2a9cc4"><title>12:00 · 2023: 74.5</title></circle>
+<circle cx="127.51" cy="356.39" r="5.5" fill="#c08418"><title>12:00 · 2025: 39.7</title></circle>
+</g>
+<line x1="368.96" y1="380.76" x2="102.04" y2="380.76" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="368.96" cy="380.76" r="5.5" fill="#2a9cc4"><title>13:00 · 2023: 71.6</title></circle>
+<circle cx="102.04" cy="380.76" r="5.5" fill="#c08418"><title>13:00 · 2025: 36.3</title></circle>
+</g>
+<line x1="349.45" y1="405.13" x2="83.31" y2="405.13" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="349.45" cy="405.13" r="5.5" fill="#2a9cc4"><title>14:00 · 2023: 69</title></circle>
+<circle cx="83.31" cy="405.13" r="5.5" fill="#c08418"><title>14:00 · 2025: 33.9</title></circle>
+</g>
+<line x1="324.82" y1="429.5" x2="79.42" y2="429.5" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="324.82" cy="429.5" r="5.5" fill="#2a9cc4"><title>15:00 · 2023: 65.8</title></circle>
+<circle cx="79.42" cy="429.5" r="5.5" fill="#c08418"><title>15:00 · 2025: 33.4</title></circle>
+</g>
+<line x1="316.67" y1="453.87" x2="106.9" y2="453.87" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="316.67" cy="453.87" r="5.5" fill="#2a9cc4"><title>16:00 · 2023: 64.7</title></circle>
+<circle cx="106.9" cy="453.87" r="5.5" fill="#c08418"><title>16:00 · 2025: 37</title></circle>
+</g>
+<line x1="345.78" y1="478.23" x2="173.35" y2="478.23" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="345.78" cy="478.23" r="5.5" fill="#2a9cc4"><title>17:00 · 2023: 68.6</title></circle>
+<circle cx="173.35" cy="478.23" r="5.5" fill="#c08418"><title>17:00 · 2025: 45.8</title></circle>
+</g>
+<line x1="424.38" y1="502.6" x2="293.93" y2="502.6" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="424.38" cy="502.6" r="5.5" fill="#2a9cc4"><title>18:00 · 2023: 78.9</title></circle>
+<circle cx="293.93" cy="502.6" r="5.5" fill="#c08418"><title>18:00 · 2025: 61.7</title></circle>
+</g>
+<line x1="520.08" y1="526.97" x2="424.22" y2="526.97" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="520.08" cy="526.97" r="5.5" fill="#2a9cc4"><title>19:00 · 2023: 91.6</title></circle>
+<circle cx="424.22" cy="526.97" r="5.5" fill="#c08418"><title>19:00 · 2025: 78.9</title></circle>
+</g>
+<line x1="641.44" y1="551.34" x2="561.05" y2="551.34" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="641.44" cy="551.34" r="5.5" fill="#2a9cc4"><title>20:00 · 2023: 108</title></circle>
+<circle cx="561.05" cy="551.34" r="5.5" fill="#c08418"><title>20:00 · 2025: 97</title></circle>
+</g>
+<line x1="731.55" y1="575.71" x2="648.19" y2="575.71" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="731.55" cy="575.71" r="5.5" fill="#2a9cc4"><title>21:00 · 2023: 120</title></circle>
+<circle cx="648.19" cy="575.71" r="5.5" fill="#c08418"><title>21:00 · 2025: 109</title></circle>
+</g>
+<line x1="721.88" y1="600.08" x2="641.27" y2="600.08" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="721.88" cy="600.08" r="5.5" fill="#2a9cc4"><title>22:00 · 2023: 118</title></circle>
+<circle cx="641.27" cy="600.08" r="5.5" fill="#c08418"><title>22:00 · 2025: 108</title></circle>
+</g>
+<line x1="656.92" y1="624.45" x2="558.44" y2="624.45" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="656.92" cy="624.45" r="5.5" fill="#2a9cc4"><title>23:00 · 2023: 110</title></circle>
+<circle cx="558.44" cy="624.45" r="5.5" fill="#c08418"><title>23:00 · 2025: 96.7</title></circle>
+</g>
+<line x1="583.4" y1="648.82" x2="471.19" y2="648.82" fill="none" stroke="#3f5467" stroke-width="3" stroke-linecap="round"/>
+<g stroke="#0f1a24" stroke-width="1.5">
+<circle cx="583.4" cy="648.82" r="5.5" fill="#2a9cc4"><title>24:00 · 2023: 100</title></circle>
+<circle cx="471.19" cy="648.82" r="5.5" fill="#c08418"><title>24:00 · 2025: 85.1</title></circle>
+</g>
+</g>
+<rect x="54" y="76.15" width="681" height="584.85" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="54" y1="661" x2="54" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="54" y1="76.15" x2="54" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="54" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">30</text>
+<line x1="129.67" y1="661" x2="129.67" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="129.67" y1="76.15" x2="129.67" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="129.67" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">40</text>
+<line x1="205.33" y1="661" x2="205.33" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="205.33" y1="76.15" x2="205.33" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="205.33" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">50</text>
+<line x1="281" y1="661" x2="281" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="281" y1="76.15" x2="281" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="281" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">60</text>
+<line x1="356.67" y1="661" x2="356.67" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="356.67" y1="76.15" x2="356.67" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="356.67" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">70</text>
+<line x1="432.33" y1="661" x2="432.33" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="432.33" y1="76.15" x2="432.33" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="432.33" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">80</text>
+<line x1="508" y1="661" x2="508" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="508" y1="76.15" x2="508" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="508" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">90</text>
+<line x1="583.67" y1="661" x2="583.67" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="583.67" y1="76.15" x2="583.67" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="583.67" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">100</text>
+<line x1="659.33" y1="661" x2="659.33" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="659.33" y1="76.15" x2="659.33" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="659.33" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">110</text>
+<line x1="735" y1="661" x2="735" y2="656" fill="none" stroke="#3a5063" stroke-width="1"/>
+<line x1="735" y1="76.15" x2="735" y2="81.15" fill="none" stroke="#3a5063" stroke-width="1"/>
+<text x="735" y="674.8" font-size="10" fill="#62788a" text-anchor="middle">120</text>
+<text x="47" y="652.32" font-size="10" fill="#62788a" text-anchor="end">24:00</text>
+<text x="47" y="627.95" font-size="10" fill="#62788a" text-anchor="end">23:00</text>
+<text x="47" y="603.58" font-size="10" fill="#62788a" text-anchor="end">22:00</text>
+<text x="47" y="579.21" font-size="10" fill="#62788a" text-anchor="end">21:00</text>
+<text x="47" y="554.84" font-size="10" fill="#62788a" text-anchor="end">20:00</text>
+<text x="47" y="530.47" font-size="10" fill="#62788a" text-anchor="end">19:00</text>
+<text x="47" y="506.1" font-size="10" fill="#62788a" text-anchor="end">18:00</text>
+<text x="47" y="481.73" font-size="10" fill="#62788a" text-anchor="end">17:00</text>
+<text x="47" y="457.37" font-size="10" fill="#62788a" text-anchor="end">16:00</text>
+<text x="47" y="433" font-size="10" fill="#62788a" text-anchor="end">15:00</text>
+<text x="47" y="408.63" font-size="10" fill="#62788a" text-anchor="end">14:00</text>
+<text x="47" y="384.26" font-size="10" fill="#62788a" text-anchor="end">13:00</text>
+<text x="47" y="359.89" font-size="10" fill="#62788a" text-anchor="end">12:00</text>
+<text x="47" y="335.52" font-size="10" fill="#62788a" text-anchor="end">11:00</text>
+<text x="47" y="311.15" font-size="10" fill="#62788a" text-anchor="end">10:00</text>
+<text x="47" y="286.78" font-size="10" fill="#62788a" text-anchor="end">09:00</text>
+<text x="47" y="262.42" font-size="10" fill="#62788a" text-anchor="end">08:00</text>
+<text x="47" y="238.05" font-size="10" fill="#62788a" text-anchor="end">07:00</text>
+<text x="47" y="213.68" font-size="10" fill="#62788a" text-anchor="end">06:00</text>
+<text x="47" y="189.31" font-size="10" fill="#62788a" text-anchor="end">05:00</text>
+<text x="47" y="164.94" font-size="10" fill="#62788a" text-anchor="end">04:00</text>
+<text x="47" y="140.57" font-size="10" fill="#62788a" text-anchor="end">03:00</text>
+<text x="47" y="116.2" font-size="10" fill="#62788a" text-anchor="end">02:00</text>
+<text x="47" y="91.83" font-size="10" fill="#62788a" text-anchor="end">01:00</text>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1172" height="205.05" viewBox="0 0 1172 205.05" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv5fc8d3e4t lv5fc8d3e4d">
+<title id="lv5fc8d3e4t">This week</title>
+<desc id="lv5fc8d3e4d">This week. 3 panels. (a) Stat tile. (b) Stat tile. (c) Stat tile.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="16" y="31.75" font-size="15" fill="#1a2233" font-weight="600">This week</text>
+<g transform="translate(0 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Active users</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">1,284</text>
+<rect x="16" y="77.5" width="57.21" height="19" rx="9.5" fill="#daf0ec"/>
+<text x="23" y="90.85" font-size="11" fill="#17a38b" font-weight="700">▲ +7.9%</text>
+<path d="M19,134L19,126.79L31.62,126.12L44.24,126.25L56.86,121.32L69.48,119.09L82.1,117.69L94.72,122.33L107.34,122.44L119.97,123.98L132.59,125.55L145.21,126.34L157.83,123.34L170.45,118.2L183.07,118.93L195.69,122.03L208.31,118.02L220.93,115.22L233.55,109.5L246.17,110.25L258.79,114.05L271.41,115.84L284.03,123.6L296.66,130.3L309.28,131L321.9,130.77L334.52,130.24L347.14,129.18L359.76,129.83L372.38,123.83L385,128.51L385,134Z" fill="#2f5bd3" fill-opacity="0.12"/>
+<path d="M19,126.79L31.62,126.12L44.24,126.25L56.86,121.32L69.48,119.09L82.1,117.69L94.72,122.33L107.34,122.44L119.97,123.98L132.59,125.55L145.21,126.34L157.83,123.34L170.45,118.2L183.07,118.93L195.69,122.03L208.31,118.02L220.93,115.22L233.55,109.5L246.17,110.25L258.79,114.05L271.41,115.84L284.03,123.6L296.66,130.3L309.28,131L321.9,130.77L334.52,130.24L347.14,129.18L359.76,129.83L372.38,123.83L385,128.51" fill="none" stroke="#2f5bd3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="1.2">
+<circle cx="385" cy="128.51" r="3"/>
+</g>
+</g>
+<g transform="translate(384 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Revenue (k€)</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">56.2</text>
+<rect x="16" y="77.5" width="57.39" height="19" rx="9.5" fill="#f7e3ea"/>
+<text x="23" y="90.85" font-size="11" fill="#d0527a" font-weight="700">▼ −7.9%</text>
+<path d="M19,134L19,114.01L31.62,110.99L44.24,113.46L56.86,113.66L69.48,109.5L82.1,111.83L94.72,112.94L107.34,116.95L119.97,121.87L132.59,124.23L145.21,125.87L157.83,129.84L170.45,131L183.07,129.36L195.69,130.14L208.31,124.59L220.93,125.86L233.55,121.87L246.17,122.06L258.79,117.78L271.41,117.81L284.03,116.13L296.66,113.99L309.28,119.3L321.9,125.09L334.52,119.03L347.14,126.08L359.76,121.78L372.38,116.86L385,113.08L385,134Z" fill="#2f5bd3" fill-opacity="0.12"/>
+<path d="M19,114.01L31.62,110.99L44.24,113.46L56.86,113.66L69.48,109.5L82.1,111.83L94.72,112.94L107.34,116.95L119.97,121.87L132.59,124.23L145.21,125.87L157.83,129.84L170.45,131L183.07,129.36L195.69,130.14L208.31,124.59L220.93,125.86L233.55,121.87L246.17,122.06L258.79,117.78L271.41,117.81L284.03,116.13L296.66,113.99L309.28,119.3L321.9,125.09L334.52,119.03L347.14,126.08L359.76,121.78L372.38,116.86L385,113.08" fill="none" stroke="#2f5bd3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#2f5bd3" stroke="#ffffff" stroke-width="1.2">
+<circle cx="385" cy="113.08" r="3"/>
+</g>
+</g>
+<g transform="translate(768 39.05)">
+<text x="16" y="27" font-size="11" fill="#475467">Uptime</text>
+<text x="16" y="66.7" font-size="36" fill="#1a2233" font-weight="700">99.9%</text>
+<text x="16" y="88.5" font-size="10.5" fill="#8a94a6">last 30 days</text>
+</g>
+</svg>

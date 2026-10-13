@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;IBM Plex Sans&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif" role="img" aria-labelledby="lv057c2311t lv057c2311d">
+<title id="lv057c2311t">Monthly generation</title>
+<desc id="lv057c2311d">Monthly generation. TWh. Line chart of 3 series (Solar, Wind and Hydro), month from 2025-01-01 to 2027-12-01. Solar: from 1 to 7, last 2.75, down 31% from the start. Wind: from 3.5 to 6.5, last 6.36, down 2% from the start. Hydro: from 2.79 to 3.17, last 2.94, up 1% from the start.</desc>
+<defs><clipPath id="lv057c2311c1"><rect x="29.42" y="109" width="561.1" height="233.7"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#141a23"/>
+<text x="16" y="31.75" font-size="15" fill="#e6ebf2" font-weight="600">Monthly generation</text>
+<text x="16" y="49.65" font-size="12" fill="#aab4c3">TWh</text>
+<rect x="18" y="67.7" width="10" height="10" rx="2" fill="#4676f1"/>
+<text x="32" y="76.73" font-size="11.5" fill="#aab4c3">Solar</text>
+<rect x="80.18" y="67.7" width="10" height="10" rx="2" fill="#12ab92"/>
+<text x="94.18" y="76.73" font-size="11.5" fill="#aab4c3">Wind</text>
+<rect x="141.69" y="67.7" width="10" height="10" rx="2" fill="#b46d16"/>
+<text x="155.69" y="76.73" font-size="11.5" fill="#aab4c3">Hydro</text>
+<line x1="30.42" y1="341.7" x2="589.52" y2="341.7" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="303.08" x2="589.52" y2="303.08" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="264.47" x2="589.52" y2="264.47" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="225.85" x2="589.52" y2="225.85" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="187.23" x2="589.52" y2="187.23" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="148.62" x2="589.52" y2="148.62" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="30.42" y1="110" x2="589.52" y2="110" fill="none" stroke="#262f3c" stroke-width="1" stroke-dasharray="3 3"/>
+<g clip-path="url(#lv057c2311c1)">
+<path d="M30.42,225.85L46.71,167.65L61.42,125.21L77.71,110L93.48,126.16L109.77,169.29L125.53,227.74L141.82,285.67L158.11,327.41L173.88,341.67L190.17,324.57L205.93,280.75L222.22,222.07L238.51,164.42L253.22,123.39L269.51,110.1L285.28,128.13L301.57,172.62L317.33,231.51L333.62,288.87L349.91,329.18L365.67,341.51L381.96,322.54L397.73,277.4L414.02,218.3L430.31,161.25L445.02,121.68L461.31,110.31L477.07,130.21L493.36,176L509.13,235.28L525.42,292.01L541.71,330.83L557.47,341.23L573.76,320.41L589.52,273.99" fill="none" stroke="#4676f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#4676f1" stroke="#141a23" stroke-width="2">
+<circle cx="589.52" cy="273.99" r="4"/>
+</g>
+<path d="M30.42,129.31L46.71,137.15L61.42,158.54L77.71,187.71L93.48,216.74L109.77,237.79L125.53,245.15L141.82,236.84L158.11,215.1L173.88,185.82L190.17,156.92L205.93,136.23L222.22,129.34L238.51,138.12L253.22,160.2L269.51,189.59L285.28,218.35L301.57,238.68L317.33,245.09L333.62,235.84L349.91,213.43L365.67,183.93L381.96,155.33L397.73,135.36L414.02,129.43L430.31,139.15L445.02,161.88L461.31,191.48L477.07,219.92L493.36,239.52L509.13,244.97L525.42,234.78L541.71,211.73L557.47,182.05L573.76,153.77L589.52,134.55" fill="none" stroke="#12ab92" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#12ab92" stroke="#141a23" stroke-width="2">
+<circle cx="589.52" cy="134.55" r="4"/>
+</g>
+<path d="M30.42,267.86L46.71,266.74L61.42,267.69L77.71,266.61L93.48,266.25L109.77,260.83L125.53,264.16L141.82,260.75L158.11,261.3L173.88,262.94L190.17,262.3L205.93,268.19L222.22,272.73L238.51,269.52L253.22,268.76L269.51,265.99L285.28,264.03L301.57,264.76L317.33,265.57L333.62,264.83L349.91,262.89L365.67,260.33L381.96,261.5L397.73,262.05L414.02,259.22L430.31,261.56L445.02,259.39L461.31,258.16L477.07,257.73L493.36,261.2L509.13,265.05L525.42,264.06L541.71,263.03L557.47,261.5L573.76,261.81L589.52,266.81" fill="none" stroke="#b46d16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#b46d16" stroke="#141a23" stroke-width="2">
+<circle cx="589.52" cy="266.81" r="4"/>
+</g>
+</g>
+<text x="597.52" y="283.86" font-size="11" fill="#e6ebf2" font-weight="600" stroke="#141a23" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.75</text>
+<text x="597.52" y="138.4" font-size="11" fill="#e6ebf2" font-weight="600" stroke="#141a23" stroke-width="3" stroke-linejoin="round" paint-order="stroke">6.36</text>
+<text x="597.52" y="270.66" font-size="11" fill="#e6ebf2" font-weight="600" stroke="#141a23" stroke-width="3" stroke-linejoin="round" paint-order="stroke">2.94</text>
+<line x1="30.42" y1="341.7" x2="589.52" y2="341.7" fill="none" stroke="#4a5566" stroke-width="1"/>
+<text x="28.42" y="356.28" font-size="11" fill="#7a8698">Jan 2025</text>
+<text x="125.53" y="356.28" font-size="11" fill="#7a8698" text-anchor="middle">Jul</text>
+<text x="222.22" y="356.28" font-size="11" fill="#7a8698" text-anchor="middle">Jan 2026</text>
+<text x="317.33" y="356.28" font-size="11" fill="#7a8698" text-anchor="middle">Jul</text>
+<text x="414.02" y="356.28" font-size="11" fill="#7a8698" text-anchor="middle">Jan 2027</text>
+<text x="509.13" y="356.28" font-size="11" fill="#7a8698" text-anchor="middle">Jul</text>
+<text x="23.42" y="345.55" font-size="11" fill="#7a8698" text-anchor="end">1</text>
+<text x="23.42" y="306.93" font-size="11" fill="#7a8698" text-anchor="end">2</text>
+<text x="23.42" y="268.32" font-size="11" fill="#7a8698" text-anchor="end">3</text>
+<text x="23.42" y="229.7" font-size="11" fill="#7a8698" text-anchor="end">4</text>
+<text x="23.42" y="191.08" font-size="11" fill="#7a8698" text-anchor="end">5</text>
+<text x="23.42" y="152.47" font-size="11" fill="#7a8698" text-anchor="end">6</text>
+<text x="23.42" y="113.85" font-size="11" fill="#7a8698" text-anchor="end">7</text>
+<text x="589.52" y="382" font-size="11" fill="#7a8698" text-anchor="end">month</text>
+<text x="16" y="100.1" font-size="11" fill="#7a8698">twh</text>
+</svg>

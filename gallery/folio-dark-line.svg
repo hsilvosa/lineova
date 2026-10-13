@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="&#x27;Source Serif 4&#x27;, &#x27;Source Serif Pro&#x27;, Georgia, &#x27;Times New Roman&#x27;, serif" role="img" aria-labelledby="lv30c51317t lv30c51317d">
+<title id="lv30c51317t">Monthly generation</title>
+<desc id="lv30c51317d">Monthly generation. TWh. Line chart of 3 series (Solar, Wind and Hydro), month from 2025-01-01 to 2027-12-01. Solar: from 1 to 7, last 2.75, down 31% from the start. Wind: from 3.5 to 6.5, last 6.36, down 2% from the start. Hydro: from 2.79 to 3.17, last 2.94, up 1% from the start.</desc>
+<defs><clipPath id="lv30c51317c1"><rect x="58.76" y="19" width="519.33" height="286.2"/></clipPath></defs>
+<rect width="100%" height="100%" fill="#17191d"/>
+<text x="16" y="384" font-size="12.5" fill="#b3b8c1">Monthly generation. TWh.</text>
+<g clip-path="url(#lv30c51317c1)">
+<path d="M59.76,162.12L74.83,96.01L88.45,47.8L103.52,30.53L118.11,48.87L133.18,97.87L147.76,164.26L162.84,230.07L177.91,277.49L192.5,293.67L207.57,274.25L222.16,224.48L237.23,157.83L252.3,92.34L265.91,45.73L280.99,30.63L295.57,51.12L310.65,101.65L325.23,168.55L340.31,233.71L355.38,279.49L369.96,293.5L385.04,271.95L399.62,220.67L414.7,153.54L429.77,88.74L443.38,43.79L458.46,30.88L473.04,53.48L488.11,105.49L502.7,172.83L517.77,237.27L532.85,281.37L547.43,293.18L562.51,269.53L577.09,216.8" fill="none" stroke="#e4e6ea" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#17191d" stroke="#e4e6ea" stroke-width="1.12">
+<circle cx="59.76" cy="162.12" r="3"/>
+<circle cx="74.83" cy="96.01" r="3"/>
+<circle cx="88.45" cy="47.8" r="3"/>
+<circle cx="103.52" cy="30.53" r="3"/>
+<circle cx="118.11" cy="48.87" r="3"/>
+<circle cx="133.18" cy="97.87" r="3"/>
+<circle cx="147.76" cy="164.26" r="3"/>
+<circle cx="162.84" cy="230.07" r="3"/>
+<circle cx="177.91" cy="277.49" r="3"/>
+<circle cx="192.5" cy="293.67" r="3"/>
+<circle cx="207.57" cy="274.25" r="3"/>
+<circle cx="222.16" cy="224.48" r="3"/>
+<circle cx="237.23" cy="157.83" r="3"/>
+<circle cx="252.3" cy="92.34" r="3"/>
+<circle cx="265.91" cy="45.73" r="3"/>
+<circle cx="280.99" cy="30.63" r="3"/>
+<circle cx="295.57" cy="51.12" r="3"/>
+<circle cx="310.65" cy="101.65" r="3"/>
+<circle cx="325.23" cy="168.55" r="3"/>
+<circle cx="340.31" cy="233.71" r="3"/>
+<circle cx="355.38" cy="279.49" r="3"/>
+<circle cx="369.96" cy="293.5" r="3"/>
+<circle cx="385.04" cy="271.95" r="3"/>
+<circle cx="399.62" cy="220.67" r="3"/>
+<circle cx="414.7" cy="153.54" r="3"/>
+<circle cx="429.77" cy="88.74" r="3"/>
+<circle cx="443.38" cy="43.79" r="3"/>
+<circle cx="458.46" cy="30.88" r="3"/>
+<circle cx="473.04" cy="53.48" r="3"/>
+<circle cx="488.11" cy="105.49" r="3"/>
+<circle cx="502.7" cy="172.83" r="3"/>
+<circle cx="517.77" cy="237.27" r="3"/>
+<circle cx="532.85" cy="281.37" r="3"/>
+<circle cx="547.43" cy="293.18" r="3"/>
+<circle cx="562.51" cy="269.53" r="3"/>
+<circle cx="577.09" cy="216.8" r="3"/>
+</g>
+<path d="M59.76,52.45L74.83,61.36L88.45,85.66L103.52,118.79L118.11,151.77L133.18,175.68L147.76,184.04L162.84,174.6L177.91,149.9L192.5,116.64L207.57,83.82L222.16,60.31L237.23,52.49L252.3,62.47L265.91,87.54L280.99,120.93L295.57,153.6L310.65,176.69L325.23,183.97L340.31,173.46L355.38,148.01L369.96,114.5L385.04,82.01L399.62,59.33L414.7,52.59L429.77,63.63L443.38,89.46L458.46,123.07L473.04,155.39L488.11,177.65L502.7,183.83L517.77,172.27L532.85,146.08L547.43,112.36L562.51,80.24L577.09,58.4" fill="none" stroke="#9aa6b8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 3"/>
+<g fill="#17191d" stroke="#9aa6b8" stroke-width="1.12">
+<path d="M56.76,49.45h6v6h-6Z"/>
+<path d="M71.83,58.36h6v6h-6Z"/>
+<path d="M85.45,82.66h6v6h-6Z"/>
+<path d="M100.52,115.79h6v6h-6Z"/>
+<path d="M115.11,148.77h6v6h-6Z"/>
+<path d="M130.18,172.68h6v6h-6Z"/>
+<path d="M144.76,181.04h6v6h-6Z"/>
+<path d="M159.84,171.6h6v6h-6Z"/>
+<path d="M174.91,146.9h6v6h-6Z"/>
+<path d="M189.5,113.64h6v6h-6Z"/>
+<path d="M204.57,80.82h6v6h-6Z"/>
+<path d="M219.16,57.31h6v6h-6Z"/>
+<path d="M234.23,49.49h6v6h-6Z"/>
+<path d="M249.3,59.47h6v6h-6Z"/>
+<path d="M262.91,84.54h6v6h-6Z"/>
+<path d="M277.99,117.93h6v6h-6Z"/>
+<path d="M292.57,150.6h6v6h-6Z"/>
+<path d="M307.65,173.69h6v6h-6Z"/>
+<path d="M322.23,180.97h6v6h-6Z"/>
+<path d="M337.31,170.46h6v6h-6Z"/>
+<path d="M352.38,145.01h6v6h-6Z"/>
+<path d="M366.96,111.5h6v6h-6Z"/>
+<path d="M382.04,79.01h6v6h-6Z"/>
+<path d="M396.62,56.33h6v6h-6Z"/>
+<path d="M411.7,49.59h6v6h-6Z"/>
+<path d="M426.77,60.63h6v6h-6Z"/>
+<path d="M440.38,86.46h6v6h-6Z"/>
+<path d="M455.46,120.07h6v6h-6Z"/>
+<path d="M470.04,152.39h6v6h-6Z"/>
+<path d="M485.11,174.65h6v6h-6Z"/>
+<path d="M499.7,180.83h6v6h-6Z"/>
+<path d="M514.77,169.27h6v6h-6Z"/>
+<path d="M529.85,143.08h6v6h-6Z"/>
+<path d="M544.43,109.36h6v6h-6Z"/>
+<path d="M559.51,77.24h6v6h-6Z"/>
+<path d="M574.09,55.4h6v6h-6Z"/>
+</g>
+<path d="M59.76,209.83L74.83,208.56L88.45,209.65L103.52,208.41L118.11,208.01L133.18,201.86L147.76,205.63L162.84,201.76L177.91,202.38L192.5,204.25L207.57,203.52L222.16,210.21L237.23,215.37L252.3,211.73L265.91,210.86L280.99,207.71L295.57,205.49L310.65,206.31L325.23,207.24L340.31,206.4L355.38,204.19L369.96,201.28L385.04,202.61L399.62,203.24L414.7,200.03L429.77,202.68L443.38,200.21L458.46,198.82L473.04,198.33L488.11,202.28L502.7,206.64L517.77,205.52L532.85,204.35L547.43,202.61L562.51,202.96L577.09,208.64" fill="none" stroke="#ce4f5d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1.5 3"/>
+<g fill="#17191d" stroke="#ce4f5d" stroke-width="1.12">
+<path d="M59.76,206.23L63.06,212.23L56.46,212.23Z"/>
+<path d="M74.83,204.96L78.13,210.96L71.53,210.96Z"/>
+<path d="M88.45,206.05L91.75,212.05L85.15,212.05Z"/>
+<path d="M103.52,204.81L106.82,210.81L100.22,210.81Z"/>
+<path d="M118.11,204.41L121.41,210.41L114.81,210.41Z"/>
+<path d="M133.18,198.26L136.48,204.26L129.88,204.26Z"/>
+<path d="M147.76,202.03L151.06,208.03L144.46,208.03Z"/>
+<path d="M162.84,198.16L166.14,204.16L159.54,204.16Z"/>
+<path d="M177.91,198.78L181.21,204.78L174.61,204.78Z"/>
+<path d="M192.5,200.65L195.8,206.65L189.2,206.65Z"/>
+<path d="M207.57,199.92L210.87,205.92L204.27,205.92Z"/>
+<path d="M222.16,206.61L225.46,212.61L218.86,212.61Z"/>
+<path d="M237.23,211.77L240.53,217.77L233.93,217.77Z"/>
+<path d="M252.3,208.13L255.6,214.13L249,214.13Z"/>
+<path d="M265.91,207.26L269.21,213.26L262.61,213.26Z"/>
+<path d="M280.99,204.11L284.29,210.11L277.69,210.11Z"/>
+<path d="M295.57,201.89L298.87,207.89L292.27,207.89Z"/>
+<path d="M310.65,202.71L313.95,208.71L307.35,208.71Z"/>
+<path d="M325.23,203.64L328.53,209.64L321.93,209.64Z"/>
+<path d="M340.31,202.8L343.61,208.8L337.01,208.8Z"/>
+<path d="M355.38,200.59L358.68,206.59L352.08,206.59Z"/>
+<path d="M369.96,197.68L373.26,203.68L366.66,203.68Z"/>
+<path d="M385.04,199.01L388.34,205.01L381.74,205.01Z"/>
+<path d="M399.62,199.64L402.92,205.64L396.32,205.64Z"/>
+<path d="M414.7,196.43L418,202.43L411.4,202.43Z"/>
+<path d="M429.77,199.08L433.07,205.08L426.47,205.08Z"/>
+<path d="M443.38,196.61L446.68,202.61L440.08,202.61Z"/>
+<path d="M458.46,195.22L461.76,201.22L455.16,201.22Z"/>
+<path d="M473.04,194.73L476.34,200.73L469.74,200.73Z"/>
+<path d="M488.11,198.68L491.41,204.68L484.81,204.68Z"/>
+<path d="M502.7,203.04L506,209.04L499.4,209.04Z"/>
+<path d="M517.77,201.92L521.07,207.92L514.47,207.92Z"/>
+<path d="M532.85,200.75L536.15,206.75L529.55,206.75Z"/>
+<path d="M547.43,199.01L550.73,205.01L544.13,205.01Z"/>
+<path d="M562.51,199.36L565.81,205.36L559.21,205.36Z"/>
+<path d="M577.09,205.04L580.39,211.04L573.79,211.04Z"/>
+</g>
+</g>
+<line x1="59.76" y1="312.2" x2="577.09" y2="312.2" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<line x1="51.76" y1="293.67" x2="51.76" y2="30.53" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<line x1="59.76" y1="312.2" x2="59.76" y2="316.2" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="57.76" y="330.78" font-size="11" fill="#b3b8c1">2025</text>
+<line x1="237.23" y1="312.2" x2="237.23" y2="316.2" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="237.23" y="330.78" font-size="11" fill="#b3b8c1" text-anchor="middle">2026</text>
+<line x1="414.7" y1="312.2" x2="414.7" y2="316.2" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="414.7" y="330.78" font-size="11" fill="#b3b8c1" text-anchor="middle">2027</text>
+<line x1="47.76" y1="293.67" x2="51.76" y2="293.67" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="297.52" font-size="11" fill="#b3b8c1" text-anchor="end">1</text>
+<line x1="47.76" y1="249.85" x2="51.76" y2="249.85" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="253.7" font-size="11" fill="#b3b8c1" text-anchor="end">2</text>
+<line x1="47.76" y1="205.98" x2="51.76" y2="205.98" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="209.83" font-size="11" fill="#b3b8c1" text-anchor="end">3</text>
+<line x1="47.76" y1="162.12" x2="51.76" y2="162.12" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="165.97" font-size="11" fill="#b3b8c1" text-anchor="end">4</text>
+<line x1="47.76" y1="118.25" x2="51.76" y2="118.25" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="122.1" font-size="11" fill="#b3b8c1" text-anchor="end">5</text>
+<line x1="47.76" y1="74.39" x2="51.76" y2="74.39" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="78.24" font-size="11" fill="#b3b8c1" text-anchor="end">6</text>
+<line x1="47.76" y1="30.53" x2="51.76" y2="30.53" fill="none" stroke="#c9cdd3" stroke-width="0.9"/>
+<text x="40.76" y="34.38" font-size="11" fill="#b3b8c1" text-anchor="end">7</text>
+<text x="318.43" y="356.5" font-size="11" fill="#b3b8c1" text-anchor="middle" font-style="italic">month</text>
+<text x="22.6" y="165.95" font-size="11" fill="#b3b8c1" text-anchor="middle" font-style="italic" transform="rotate(-90 22.6 162.1)">twh</text>
+<text x="586.09" y="62.43" font-size="11.5" fill="#e4e6ea" font-style="italic">Wind</text>
+<text x="586.09" y="212.66" font-size="11.5" fill="#e4e6ea" font-style="italic">Hydro</text>
+<line x1="580.09" y1="216.8" x2="584.09" y2="224.74" fill="none" stroke="#868c97" stroke-width="0.7"/>
+<text x="586.09" y="228.76" font-size="11.5" fill="#e4e6ea" font-style="italic">Solar</text>
+</svg>
